@@ -1,0 +1,469 @@
+<!--
+    Copyright 2011 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <title>Alice Bounce Demo</title>
+        <link href="../favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="common/default.css">
+    </head>
+    <body>
+        <h1><a href="../demos.html#bounce"><img src="../images/back_btn.png" style="vertical-align: middle; margin-right: 10px;"></a>Alice Bounce Demo</h1>
+
+        <p>This is an example of the bounce effect applied to different DIVs and an IMG using different sizes.</p>
+
+        <div id="icons">
+            <div id="icon1">
+                <img src="common/images/photos/aerogel_flower.jpg">
+                <div>Flower on Aerogel over a flame</div>
+                <h3>Login</h3>
+                <form>
+                    <table border="0" cellpadding="3" cellspacing="0">
+                        <tr>
+                            <td align="right"><label>User Name:</label></td>
+                            <td><input type="text" name="username" value=""></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><label>Password:</label></td>
+                            <td><input type="password" name="password" value=""></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+            <div id="icon2">
+                <img src="common/images/photos/aurora_borealis.jpg">
+                <div>Aurora Borealis (Northern Lights)</div>
+            </div>
+
+            <div id="icon3">
+                <img src="common/images/photos/buzz_aldrin_moon.jpg">
+                <div>Buzz Aldrin on the Moon</div>
+            </div>
+
+            <div id="icon4">
+                <img src="common/images/photos/cartwheel_galaxy.jpg">
+                <div>Cartwheel Galaxy</div>
+            </div>
+        </div>
+
+        <div id="controls" style="display: none; position: absolute; top: 0px; right: 0px; padding: 10px; background: rgba(0, 176, 228, 0.9); border-radius: 10px;">
+            <fieldset>
+                <legend>Settings:</legend>
+                <table border="0" cellpadding="5" cellspacing="0">
+                    <tr>
+                        <td align="right"><label for="scale">Scale (%):</label></td>
+                        <td><input id="scale" type="range" min="1" max="90" value="50" step="1" onchange="app.updateScale(this);" onmouseup="app.changeScale(this);"></td>
+                        <td><input type="text" id="scale_val" name="scale_val" value="50" size="4" onchange="app.changeScale(this);"></td>
+                    </tr>
+                    <tr>
+                        <td align="right"><label for="angle">Angle (&deg;):</label></td>
+                        <td><input id="angle" type="range" min="0" max="180" value="0" step="1" onchange="app.updateAngle(this);" onmouseup="app.changeAngle(this);"></td>
+                        <td><input type="text" id="angle_val" name="angle_val" value="0" size="4" onchange="app.changeAngle(this);"></td>
+                    </tr>
+                    <tr>
+                        <td align="right"><label for="duration">Duration (ms):</label></td>
+                        <td><input id="duration" type="range" min="250" max="10000" value="1000" step="250" onchange="app.updateDuration(this);" onmouseup="app.changeDuration(this);"></td>
+                        <td><input type="text" id="duration_val" name="duration_val" value="1000" size="4" onchange="app.changeDuration(this);"></td>
+                    </tr>
+                    <tr>
+                        <td align="right"><label for="random">Randomness (%):</label></td>
+                        <td><input id="random" type="range" min="0" max="100" value="0" step="5" onchange="app.updateRandom(this);" onmouseup="app.changeRandom(this);"></td>
+                        <td><input type="text" id="random_val" name="random_val" value="0" size="4" onchange="app.changeRandom(this);"></td>
+                    </tr>
+                    <tr>
+                        <td align="right" valign="top"><label for="timing">Timing Function:</label></td>
+                        <td colspan="2">
+                            <select id="timing_val" size="1" onchange="app.changeTiming(this);">
+                                <option value="ease">ease</option>
+                                <option value="linear">linear</option>
+                                <option value="ease-in">ease-in</option>
+                                <option value="ease-out" selected="selected">ease-out</option>
+                                <option value="ease-in-out">ease-in-out</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" valign="top"><label for="origin">Origin (x, y %):</label></td>
+                        <td colspan="2">
+                            <select id="origin_val" size="1" onchange="app.updateOrigin(this);">
+                            <option value="TL">top-left</option>
+                            <option value="TC">top-center</option>
+                            <option value="TR">top-right</option>
+
+                            <option value="ML">middle-left</option>
+                            <option value="C" selected="selected">center (default)</option>
+                            <option value="MR">middle-right</option>
+
+                            <option value="BL">bottom-left</option>
+                            <option value="BC">bottom-center</option>
+                            <option value="BR">bottom-right</option>
+
+                            <option value="X">custom</option>
+                            </select>
+                            <br>
+                            <input type="number" id="origin-x" step="50" min="-400" max="400" value="50" size="4" disabled="disabled" onchange="app.changeOrigin(this);">
+                            <input type="number" id="origin-y" step="50" min="-400" max="400" value="50" size="4" disabled="disabled" onchange="app.changeOrigin(this);">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td colspan="2">
+                        <input type="button" value="Start" onclick="app.startAnimation();">
+                        &nbsp;
+                        <input type="button" value="Stop" onclick="app.stopAnimation();">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <div></div>
+        </div>
+
+        <div onclick="app.togglePanel(this, 'controls');" style="position: absolute; top: 0px; right: 0px; padding: 10px; background: rgba(0, 0, 102, 0.9); border-radius: 5px; color: #FFFFFF;">Change Settings</div>
+
+        <script src="../js/alice.core.js"></script>
+        <script src="../js/alice.bounce.js"></script>
+        <script type="text/javascript">
+        /**
+         * @description
+         * Object for application logic.
+         */
+        var app = {
+            icons: document.getElementById('icons').children,
+            animating: true
+        };
+
+        /**
+         * @description
+         * Toggle settings panel.
+         */
+        app.togglePanel = function (btn, elem_id) {
+            var elem = document.getElementById(elem_id);
+            if (elem.style.display == 'none') {
+                elem.style.display = 'block';
+                btn.innerHTML = 'Hide';
+            }
+            else {
+                elem.style.display = 'none';
+                btn.innerHTML = 'Change Settings';
+            }
+        };
+
+        /**
+         * @description
+         * Start the animation effect.
+         */
+        app.startAnimation = function () {
+            //console.info('startAnimation:');
+
+            for (var i = 0; i < app.icons.length; i++) {
+                w = parseInt(document.getElementById(app.icons[i].id).style.width, 10);
+                h = parseInt(document.getElementById(app.icons[i].id).style.height, 10);
+
+                var originx = w * document.getElementById('origin-x').value / 100;
+                var originy = h * document.getElementById('origin-y').value / 100;
+                var origin = originx + 'px ' + originy + 'px';
+                //console.debug('origin = ' + origin);
+
+                // apply effect
+                alice.bounce({
+                    id: app.icons[i].id,
+                    duration: document.getElementById('duration_val').value / 1000,
+                    random: document.getElementById('random_val').value,
+                    timing: document.getElementById('timing_val').value,
+                    //shadow: true,
+                    origin: origin
+                });
+            }
+
+            app.animating = true;
+        };
+
+        /**
+         * @description
+         * Stop the animation effect.
+         */
+        app.stopAnimation = function () {
+            //console.info('stopAnimation:');
+
+            var closeIcon, elem, s;
+            for (var i = 0; i < app.icons.length; i++) {
+
+                elem = document.getElementById(app.icons[i].id);
+                s = elem.style;
+
+                // clear effect
+                s['-webkit-animation-name'] = '';
+                s['-webkit-animation-duration'] = '';
+                s['-webkit-animation-iteration-count'] = '';
+                s['-webkit-animation-direction'] = '';
+                s['-webkit-animation-timing-function'] = '';
+            }
+
+            app.animating = false;
+        };
+
+        app.updateScale = function (elem) {
+            document.getElementById('scale_val').value = elem.value;
+        };
+
+        /**
+         * @description
+         * Change scale value.
+         */
+        app.changeScale = function (elem) {
+            //console.info('changeScale: ' + elem.value);
+
+            document.getElementById('scale').value = elem.value;
+
+            // set randomness
+            var r;
+            if (elem.value) {
+                r = (Math.random() * (document.getElementById('random_val').value / 50) - document.getElementById('random_val').value / 100);
+            }
+
+            // calculate a scale
+            var s = (parseFloat(document.getElementById('scale_val').value / 100) + parseFloat(document.getElementById('scale_val').value / 100) * r);
+            //console.debug('s=' + s);
+
+            // adjust rule
+            var styleSheet, cssRule;
+            for (var i = 0; i < document.styleSheets.length; i++) {
+                styleSheet = document.styleSheets[i];
+                for (var j = 0; j < styleSheet.cssRules.length; j++) {
+                    cssRule = styleSheet.cssRules[j];
+                    //if (cssRule.type === window.CSSRule.WEBKIT_KEYFRAMES_RULE && cssRule.name == 'alice-bounce') {
+                    if (cssRule.type === window.CSSRule.WEBKIT_KEYFRAMES_RULE && cssRule.name == 'alice-bounce-shadow') {
+                        cssRule.findRule('0%').style.webkitTransform = 'scale(' + s + ')';
+                        break;
+                    }
+                }
+            }
+
+            if (app.animating === true) {
+                app.stopAnimation();
+
+                // need to pause for rule to take effect
+                setTimeout('app.startAnimation()', 100);
+            }
+        };
+
+        app.updateAngle = function (elem) {
+            document.getElementById('angle_val').value = elem.value;
+        };
+
+        /**
+         * @description
+         * Change angle value.
+         */
+        app.changeAngle = function (elem) {
+            //console.info('changeAngle: ' + elem.value);
+
+            document.getElementById('angle').value = elem.value;
+
+            // set randomness
+            var r;
+            if (elem.value) {
+                r = (Math.random() * (document.getElementById('random_val').value / 50) - document.getElementById('random_val').value / 100);
+            }
+
+            // calculate an angle
+            var a = Math.round(parseFloat(document.getElementById('angle_val').value) + parseFloat(document.getElementById('angle_val').value) * r);
+            //console.debug('a=' + a);
+
+            // adjust rule
+            var styleSheet, cssRule;
+            for (var i = 0; i < document.styleSheets.length; i++) {
+                styleSheet = document.styleSheets[i];
+                for (var j = 0; j < styleSheet.cssRules.length; j++) {
+                    cssRule = styleSheet.cssRules[j];
+                    //if (cssRule.type === window.CSSRule.WEBKIT_KEYFRAMES_RULE && cssRule.name == 'alice-bounce') {
+                    if (cssRule.type === window.CSSRule.WEBKIT_KEYFRAMES_RULE && cssRule.name == 'alice-bounce-shadow') {
+                        //cssRule.findRule('0%').style.webkitTransform = 'rotate(' + a + 'deg)';
+                        cssRule.findRule('100%').style.webkitTransform = 'rotate(-' + a + 'deg)';
+                        //console.warn(cssRule);
+                        break;
+                    }
+                }
+            }
+
+            if (app.animating === true) {
+                app.stopAnimation();
+
+                // need to pause for rule to take effect
+                setTimeout('app.startAnimation()', 100);
+            }
+        };
+
+        app.updateDuration = function (elem) {
+            document.getElementById('duration_val').value = elem.value;
+        };
+
+        /**
+         * @description
+         * Change duration value.
+         */
+        app.changeDuration = function (elem) {
+            document.getElementById('duration').value = elem.value;
+
+            if (app.animating === true) {
+                app.stopAnimation();
+                app.startAnimation();
+            }
+        };
+
+        app.updateRandom = function (elem) {
+            document.getElementById('random_val').value = elem.value;
+        };
+
+        /**
+         * @description
+         * Change randomness value.
+         */
+        app.changeRandom = function (elem) {
+            document.getElementById('random').value = elem.value;
+
+            if (app.animating === true) {
+                app.stopAnimation();
+                app.startAnimation();
+            }
+        };
+
+        /**
+         * @description
+         * Change timing function value.
+         */
+        app.changeTiming = function (elem) {
+            if (app.animating === true) {
+                app.stopAnimation();
+                app.startAnimation();
+            }
+        };
+
+        /**
+         * @description
+         * Change origin (anchor point) value.
+         */
+        app.updateOrigin = function (elem) {
+            //console.debug(elem);
+            var x, y;
+
+            switch (elem.value) {
+            case "TL":
+                x = 0;
+                y = 0;
+                break;
+            case "TC":
+                x = 50;
+                y = 0;
+                break;
+            case "TR":
+                x = 100;
+                y = 0;
+                break;
+
+            case "ML":
+                x = 0;
+                y = 50;
+                break;
+            case "C":
+                x = 50;
+                y = 50;
+                break;
+            case "MR":
+                x = 100;
+                y = 50;
+                break;
+
+            case "BL":
+                x = 0;
+                y = 100;
+                break;
+            case "BC":
+                x = 50;
+                y = 100;
+                break;
+            case "BR":
+                x = 100;
+                y = 100;
+                break;
+
+            default:
+                x = -100;
+                y = -100;
+                break;
+            }
+
+            document.getElementById('origin-x').value = x;
+            document.getElementById('origin-y').value = y;
+
+            var disabled = (elem.value == 'X') ? false : true;
+
+            document.getElementById('origin-x').disabled = disabled;
+            document.getElementById('origin-y').disabled = disabled;
+
+            app.changeOrigin();
+        };
+
+        var originx, originy;
+
+        /**
+         * @description
+         * Change origin value.
+         */
+        app.changeOrigin = function () {
+            if (app.animating === true) {
+                if (document.getElementById('origin-x').value != originx || document.getElementById('origin-y').value != originy) {
+                    originy = document.getElementById('origin-y').value;
+                    originx = document.getElementById('origin-x').value;
+
+                    app.stopAnimation();
+                    app.startAnimation();
+                }
+            }
+        };
+
+        //------------------------------------------------------------------------
+
+        alice.bounce({
+            id: "icon1",
+            //shadow: true,
+            width: "300px",
+            height: "225px"
+        });
+        alice.bounce({
+            id: "icon2",
+            //shadow: true,
+            width: "250px",
+            height: "188px"
+        });
+        alice.bounce({
+            id: "icon3",
+            //shadow: true,
+            width: "200px",
+            height: "150px"
+        });
+        alice.bounce({
+            id: "icon4",
+            //shadow: true,
+            width: "150px",
+            height: "113px"
+        });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,393 @@
+<!--
+    Copyright 2011 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <title>Alice Rotate Demo</title>
+        <link href="../favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="common/default.css">
+        <style>
+        fieldset {
+            padding: 20px;
+        }
+
+        legend {
+            font-weight: bold;
+            font-size: 12pt;
+            padding: 5px;
+        }
+
+        pre {
+            font-size: 12pt;
+        }
+
+        .code {
+
+        }
+
+        .card {
+            position: relative;
+            width: 140px;
+            height: 195px;
+            margin: 0 auto;
+        }
+
+        .card span {
+            position: relative;
+            text-align: left;
+        }
+
+        .card img {
+            width: inherit;
+            height: inherit;
+            -webkit-border-radius: 15px;
+        }
+
+        .Container {
+            position: relative;
+            width: 140px;
+            height: 195px;
+            margin: 0 auto;
+        }
+
+        .Container div {
+            width: inherit;
+            height: inherit;
+            border: 3px outset #aa7777;
+            -webkit-border-radius: 23px;
+        }
+
+        .Container img {
+            width: inherit;
+            height: inherit;
+            -webkit-border-radius: 20px;
+        }
+        </style>
+    </head>
+    <body style="overflow: auto;">
+        <h1><a href="../demos.html#rotate"><img src="../images/back_btn.png" style="vertical-align: middle; margin-right: 10px;"></a>Alice Rotate Demo</h1>
+
+        <fieldset>
+            <legend>Single Card</legend>
+
+            <div>Rotate an image 20&deg;:</div>
+            <div class="code">
+                <pre class="prettyprint lang-js linenums">
+alice.rotate("D01", "20");
+                </pre>
+            </div>
+            <br>
+            <div style="height: 280px;">
+                <div id="D01" class="card"><img src="common/images/cards/2_spades.png"></div>
+            </div>
+
+            <div>Rotate an image 20&deg; with a 1.5s transition:</div>
+            <div class="code">
+                <pre class="prettyprint lang-js linenums">
+alice.rotate("D02", "20", {
+    origin: "center",
+    timing: 1500,
+    iteration: '3',
+    direction: 'alternate',
+    easing: "cubic-bezier(0.33333,0.6667,0.66667,1)"
+});
+                </pre>
+            </div>
+            <br>
+            <div style="height: 280px;">
+                <div id="D02" class="card"><img src="common/images/cards/3_spades.png"></div>
+            </div>
+
+            <div>Simulate a wobble effect:</div>
+            <div class="code">
+                <pre class="prettyprint lang-js linenums">
+alice.rotate("D03", "5", {
+    origin: "center",
+    timing: 100,
+    iteration: 'infinite',
+    direction: 'alternate'
+});
+                </pre>
+            </div>
+            <br>
+            <div style="height: 280px;">
+                <div id="D03" class="card"><img src="common/images/cards/4_spades.png"></div>
+            </div>
+
+            <div>Simulate a pendulum swinging:</div>
+            <div class="code">
+                <pre class="prettyprint lang-js linenums">
+alice.rotate("D04", "45", {
+    origin: "50% 0%",
+    timing: 1000,
+    iteration: 'infinite',
+    direction: 'alternate',
+    easing: 'cubic-bezier(0.33333,0.6667,0.66667,1)'
+});
+                </pre>
+            </div>
+            <br>
+            <div style="height: 280px;">
+                <div id="D04" class="card"><img src="common/images/cards/5_spades.png"></div>
+            </div>
+
+            <div>Simulate a swinging door hinge:</div>
+            <div class="code">
+                <pre class="prettyprint lang-js linenums">
+alice.rotate("D05", "90", {
+    origin: "0% 0%",
+    timing: 1500,
+    iteration: 'infinite',
+    direction: 'alternate',
+    easing: 'ease-in-out'
+});
+                </pre>
+            </div>
+            <br>
+            <div style="height: 280px;">
+                <div id="D05" class="card"><img src="common/images/cards/6_spades.png"></div>
+            </div>
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend>Deck of Cards</legend>
+
+            <div>Rotate an entire deck of images:</div>
+            <div class="code">
+                <pre class="prettyprint lang-js linenums">
+alice.rotate("container1", "20");
+                </pre>
+            </div>
+            <br>
+            <div style="height: 280px;">
+                <div id="container1" class="Container">
+                    <div><img src="common/images/cards/7_spades.png"></div>
+                    <div><img src="common/images/cards/8_spades.png"></div>
+                </div>
+            </div>
+
+            <div>Rotate a deck of images like playing cards:</div>
+            <div class="code">
+                <pre class="prettyprint lang-js linenums">
+alice.rotate("container2", "-145", {
+    origin: "0% 100%",
+    timing: 3000,
+    angle_offset: 18,
+    iteration: '5',
+    direction: 'alternate',
+    easing: "cubic-bezier(0.33333,0.6667,0.66667,1)"
+});
+                </pre>
+            </div>
+            <br>
+            <div style="height: 480px;">
+                <div id="container2" class="Container">
+                    <div><img src="common/images/cards/2_spades.png"></div>
+                    <div><img src="common/images/cards/3_spades.png"></div>
+                    <div><img src="common/images/cards/4_spades.png"></div>
+                    <div><img src="common/images/cards/5_spades.png"></div>
+                    <div><img src="common/images/cards/6_spades.png"></div>
+                    <div><img src="common/images/cards/7_spades.png"></div>
+                    <div><img src="common/images/cards/8_spades.png"></div>
+                    <div><img src="common/images/cards/9_spades.png"></div>
+                    <div><img src="common/images/cards/10_spades.png"></div>
+                    <div><img src="common/images/cards/jack_spades.png"></div>
+                    <div><img src="common/images/cards/queen_spades.png"></div>
+                    <div><img src="common/images/cards/king_spades.png"></div>
+                    <div><img src="common/images/cards/ace_spades.png"></div>
+                </div>
+            </div>
+
+            <div>Rotate a deck of cards back-and-forth:</div>
+            <div class="code">
+                <pre class="prettyprint lang-js linenums">
+alice.rotate("container3", "90", {
+    origin: "center",
+    timing: 2000,
+    timing_offset: 5,
+    iteration: 'infinite',
+    direction: 'alternate',
+    easing: "cubic-bezier(0.33333,0.6667,0.66667,1)"
+});
+                </pre>
+            </div>
+            <br>
+            <div style="height: 280px;">
+                <div id="container3" class="Container">
+                    <div><img src="common/images/cards/2_spades.png"></div>
+                    <div><img src="common/images/cards/3_spades.png"></div>
+                    <div><img src="common/images/cards/4_spades.png"></div>
+                    <div><img src="common/images/cards/5_spades.png"></div>
+                    <div><img src="common/images/cards/6_spades.png"></div>
+                    <div><img src="common/images/cards/7_spades.png"></div>
+                    <div><img src="common/images/cards/8_spades.png"></div>
+                    <div><img src="common/images/cards/9_spades.png"></div>
+                    <div><img src="common/images/cards/10_spades.png"></div>
+                    <div><img src="common/images/cards/jack_spades.png"></div>
+                    <div><img src="common/images/cards/queen_spades.png"></div>
+                    <div><img src="common/images/cards/king_spades.png"></div>
+                    <div><img src="common/images/cards/ace_spades.png"></div>
+                </div>
+            </div>
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend>Forms</legend>
+
+            <div>Rotate a form with a transition:</div>
+            <div class="code">
+                <pre class="prettyprint lang-js linenums">
+alice.rotate("container4", "20", {
+    origin: "center",
+    timing: 1500,
+    iteration: 'infinite',
+    direction: 'alternate',
+    easing: "cubic-bezier(0.33333,0.6667,0.66667,1)"
+});
+                </pre>
+            </div>
+            <br>
+            <div style="height: 280px;">
+                <div id="container4" class="card">
+                    <div>
+                        <form>
+                            <table border="0" cellpadding="3" cellspacing="0">
+                                <tr>
+                                    <td align="right"><label>Username:</label></td>
+                                    <td align="left"><input type="text" name="username" value=""></td>
+                                </tr>
+                                <tr>
+                                    <td align="right"><label>Password:</label></td>
+                                    <td align="left"><input type="password" name="password" value=""></td>
+                                </tr>
+                                <tr>
+                                    <td align="right"><label>Language:</label></td>
+                                    <td align="left">
+                                        <input type="radio" id="lang_en" name="language" value="en" checked="checked"><label for="lang_en">English</label>
+                                        <input type="radio" id="lang_fr" name="language" value="fr"><label for="lang_fr">French</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top"><label>Province:</label></td>
+                                    <td align="left">
+                                        <select name="province" size="3">
+                                            <option value="">-- Select --</option>
+                                            <option value="AB">Alberta</option>
+                                            <option value="BC">British Columbia</option>
+                                            <option value="MB">Manitoba</option>
+                                            <option value="NB">New Brunswick</option>
+                                            <option value="NL">Newfoundland and Labrador</option>
+                                            <option value="NT">Northwest Territories</option>
+                                            <option value="NS">Nova Scotia</option>
+                                            <option value="NU">Nunavut</option>
+                                            <option value="ON">Ontario</option>
+                                            <option value="PE">Prince Edward Island</option>
+                                            <option value="QC">Quebec</option>
+                                            <option value="SK">Saskatchewan</option>
+                                            <option value="YT">Yukon</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">&nbsp;</td>
+                                    <td align="left"><input type="button" value="Login"></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- Syntax Highlighting -->
+        <link rel="stylesheet" type="text/css" href="../lib/prettify/themes/sons-of-obsidian.css">
+        <script type="text/javascript" src="../lib/prettify/prettify.js"></script>
+
+        <script src="../js/alice.core.js"></script>
+        <script src="../js/alice.rotate.js"></script>
+        <script type="text/javascript">
+        prettyPrint();
+
+        alice.rotate("D01", "20");
+
+        alice.rotate("D02", "20", {
+            origin: "center",
+            timing: 1500,
+            iteration: '3',
+            direction: 'alternate',
+            easing: "cubic-bezier(0.33333,0.6667,0.66667,1)"
+        });
+
+        alice.rotate("D03", "5", {
+            origin: "center",
+            timing: 100,
+            iteration: 'infinite',
+            direction: 'alternate'
+            //easing: "cubic-bezier(0.33333,0.6667,0.66667,1)"
+        });
+
+        alice.rotate("D04", "45", {
+            origin: "50% 0%",
+            timing: 1000,
+            iteration: 'infinite',
+            direction: 'alternate',
+            easing: 'cubic-bezier(0.33333,0.6667,0.66667,1)'
+        });
+
+        alice.rotate("D05", "90", {
+            origin: "0% 0%",
+            timing: 1500,
+            iteration: 'infinite',
+            direction: 'alternate',
+            easing: 'ease-in-out'
+        });
+
+        alice.rotate("container1", "20");
+
+        alice.rotate("container2", "-145", {
+            origin: "0% 100%",
+            timing: 3000,
+            angle_offset: 18,
+            iteration: '5',
+            direction: 'alternate',
+            easing: "cubic-bezier(0.33333,0.6667,0.66667,1)"
+        });
+
+        alice.rotate("container3", "90", {
+            origin: "center",
+            timing: 2000,
+            timing_offset: 5,
+            iteration: 'infinite',
+            direction: 'alternate',
+            easing: "cubic-bezier(0.33333,0.6667,0.66667,1)"
+        });
+
+        alice.rotate("container4", "20", {
+            origin: "center",
+            timing: 1500,
+            iteration: 'infinite',
+            direction: 'alternate',
+            easing: "cubic-bezier(0.33333,0.6667,0.66667,1)"
+        });
+        </script>
+    </body>
+</html>

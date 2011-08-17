@@ -1,0 +1,77 @@
+<!--
+    Copyright 2011 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <title>Alice Cube Demo</title>
+        <link href="../favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="cube.css">
+        <link rel="stylesheet" href="common/default.css">
+    </head>
+    <body>
+        <h1><a href="../demos.html#cube"><img src="../images/back_btn.png" style="vertical-align: middle; margin-right: 10px;"></a>Alice Cube Demo</h1>
+
+        <p>This is an interactive picture cube that has been sliced horizontally. You can spin the cube by:</p>
+
+        <ul>
+            <li>swiping with your finger</li>
+            <li>tilting the device more than 40&deg;</li>
+            <li>clicking and dragging with your mouse</li>
+            <li>or pressing the arrow keys (W/A/S/D = up/left/down/right)</li>
+        </ul>
+
+        <input type="checkbox" id="tilt"><label for="tilt">Enable Tilt</label>
+
+        <div id="my_cube">
+            <img src="common/images/photos/aerogel_flower.jpg">
+            <img src="common/images/photos/buzz_aldrin_moon.jpg">
+            <img src="common/images/photos/earth_western_hemisphere.jpg">
+            <img src="common/images/photos/hurricane_katrina.jpg">
+        </div>
+
+        <div id="statusbar"></div>
+
+        <script src="../js/alice.core.js"></script>
+        <script src="../js/alice.cube.js"></script>
+        <script src="cube.js"></script>
+        <script type="text/javascript">
+        if (document.getElementById('statusbar')) {
+            document.getElementById('statusbar').innerHTML = navigator.userAgent;
+        }
+
+        var elem = document.getElementById('my_cube');
+
+        elem.addEventListener('touchstart', app.touchStart, false);
+        elem.addEventListener('touchmove', app.touchMove, false);
+        elem.addEventListener('touchend', app.touchEnd, false);
+
+        elem.addEventListener('mousedown', app.mouseDown, false);
+        elem.addEventListener('mousemove', app.mouseMove, false);
+        elem.addEventListener('mouseup', app.mouseUp, false);
+
+        document.addEventListener('keydown', app.keyDown, false);
+
+        window.addEventListener('devicemotion', app.deviceMotion, false);
+
+        alice.cube({
+            id: "my_cube",
+            hslice: 8
+        });
+        </script>
+    </body>
+</html>

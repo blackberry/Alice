@@ -1,0 +1,76 @@
+<!--
+    Copyright 2011 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <title>Alice</title>
+        <link href="favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="default.css">
+        <style type="text/css">
+        </style>
+    </head>
+    <body>
+        <div class="fineprint"><p id="version"></p></div>
+
+        <div id="container">
+            <div id="card1" class="card-edge">
+                <div>
+                    <h1>Alice</h1>
+
+                    <p><b>Alice</b> - <i>(A Lightweight Independent CSS Engine)</i> - is a highly focused JavaScript/CSS3 library for generating high-quality, high-end visual effects.</p>
+
+                    <a href="demos.html" class="big button">View Demos</a>
+
+                    <p>To download a version for the PlayBook:</p>
+                    <ol>
+                        <li>If you haven't installed the WebWorks SDK for Tablet OS, follow these <a href="http://us.blackberry.com/developers/tablet/webworks.jsp" target="_blank">instructions</a> before continuing.</li>
+                        <li>Download <a href="../bin/alice.bar">alice.bar</a> and save it to a temporary folder on your machine.</li>
+                        <li>
+                            Open a Command Prompt and run these commands (<b>Note:</b> you'll need to adjust the paths for your machine):
+                            <ol style="list-style: lower-roman; font-family: Courier;">
+                                <li>cd "C:\Program Files\Research In Motion\BlackBerry WebWorks SDK for TabletOS 2.1.0.6\bbwp\blackberry-tablet-sdk\bin"</li>
+                                <li>blackberry-deploy -installApp -password <span class="userarg">your password</span> -device <span class="userarg">your IP Address</span> -package C:\<span class="userarg">your temporary folder</span>\alice.bar</li>
+                            </ol>
+                        </li>
+                        <li>An icon should appear at the bottom of your PlayBook screen. Tap it to launch Alice.</li>
+                    </ol>
+
+                    <p>You can also download a <a href="../alice.zip">zipped</a> version.</p>
+                </div>
+
+                <div class="spacer"></div>
+            </div>
+        </div>
+
+        <div class="fineprint"><p>Copyright &copy; 2011 Research In Motion Limited &bull; <a href="license.txt">License</a> &bull; <a href="credits.html">Credits</a></p></div>
+
+        <!-- Syntax Highlighting -->
+        <link rel="stylesheet" type="text/css" href="lib/prettify/themes/sons-of-obsidian.css">
+        <script type="text/javascript" src="lib/prettify/prettify.js"></script>
+        <script type="text/javascript" src="lib/prettify/lang-css.js"></script>
+
+        <!-- Alice -->
+        <script src="js/alice.core.js"></script>
+
+        <script type="text/javascript">
+        prettyPrint();
+
+        document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
+        </script>
+    </body>
+</html>

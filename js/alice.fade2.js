@@ -25,8 +25,6 @@ alice._utils.insertCSSRule('@-webkit-keyframes alice-fade-out { 0% { opacity: 1;
  * Fade effect.
  */
 alice.fade = function (params) {
-    //console.debug(params);
-
     // set default values
     var r = 0;
     var duration = 1;
@@ -53,7 +51,6 @@ alice.fade = function (params) {
         if (params.timing) {
             timing = params.timing;
         }
-        //console.debug(params.id + ': duration=' + duration + 's, timing=' + timing + ',random=' + r);
 
         s['-webkit-animation-name']            = 'alice-fade-out';
         s['-webkit-animation-duration']        = duration + 's';

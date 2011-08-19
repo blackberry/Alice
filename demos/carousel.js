@@ -68,7 +68,6 @@ Carousel3D.prototype.modify = function () {
             figureElem;
 
         for (var h = (numFigures + 1); h <= (numFigures + numNeeded); h++) {
-            //console.log('Adding panel ' + h);
             figureElem = document.createElement('figure');
             figureElem.innerHTML = h;
             this.element.appendChild(figureElem);
@@ -88,7 +87,6 @@ Carousel3D.prototype.modify = function () {
     for (i = 0; i < this.panelCount; i++) {
         panel = this.element.children[i];
         panel.id = 'carousel-' + i;
-        //console.log(panel);
 
         panel.addEventListener('mouseover', function (e) {
             var wkt;
@@ -98,7 +96,6 @@ Carousel3D.prototype.modify = function () {
             else {
                 wkt = this.style['-webkit-transform'] + ' scale(1.3)';
             }
-            //console.log(wkt);
 
             this.style['-webkit-transform'] = wkt;
             this.style['-webkit-box-shadow'] = '10px 10px 10px rgba(0,0,0,.6)';
@@ -107,7 +104,6 @@ Carousel3D.prototype.modify = function () {
 
         panel.addEventListener('mouseout', function (e) {
             var wkt = this.style['-webkit-transform'].replace(scalePatt, '');
-            //console.log(wkt);
 
             this.style['-webkit-transform'] = wkt;
             this.style['-webkit-box-shadow'] = '';
@@ -141,7 +137,6 @@ Carousel3D.prototype.transform = function () {
 //----------------------------------------------------------------------------
 
 function getStockQuote() {
-    //console.info('getStockQuote:');
     var xhr;
     if (window.XMLHttpRequest) {
         xhr = new XMLHttpRequest();
@@ -152,7 +147,6 @@ function getStockQuote() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var json = JSON.parse(xhr.responseText);
-            //console.log(json);
 
             var html = '';
             html += '<table border="0" cellpadding="3" cellspacing="0">';
@@ -172,7 +166,6 @@ function getStockQuote() {
 }
 
 function getWeather() {
-    //console.info('getWeather:');
     var xhr;
     if (window.XMLHttpRequest) {
         xhr = new XMLHttpRequest();
@@ -183,7 +176,6 @@ function getWeather() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var json = JSON.parse(xhr.responseText);
-            //console.log(json);
 
             var html = '';
             html += '<table border="0" cellpadding="3" cellspacing="0">';
@@ -247,7 +239,6 @@ var init = function () {
             ev = parseInt(event.target.value, 10);
 
         if (carousel.panelCount != ev) {
-            //console.log(mn + ' <= ' + ev + ' <= ' + mx);
             if (mn <= ev && ev <= mx) {
                 carousel.panelCount = ev;
                 panelCountInput.value = ev;
@@ -261,7 +252,6 @@ var init = function () {
     }, false);
 
     perspectiveInput.addEventListener('change', function () {
-        //console.log(event.target.value);
         perspectiveValue.value = event.target.value;
         document.getElementById('container').style['-webkit-perspective'] = event.target.value;
     }, false);
@@ -313,14 +303,3 @@ function handleKeys(e) {
 
 window.addEventListener('DOMContentLoaded', init, false);
 window.addEventListener('keypress', handleKeys, false);
-
-/*
-var w1 = Math.round(window.innerWidth * 0.46875), h1 = Math.round(w1 * .75),
-    w2 = Math.round(window.innerWidth * 0.609375), h2 = Math.round(w2 * .75),
-    scale = (w2 / w1).toFixed(2);
-
-console.log('(w, h) = ' + window.innerWidth + ', ' + window.innerHeight);
-console.log('(w1, h1) = ' + w1 + ', ' + h1);
-console.log('(w2, h2) = ' + w2 + ', ' + h2);
-console.log('(scale) = ' + scale);
-*/

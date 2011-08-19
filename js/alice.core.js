@@ -27,9 +27,7 @@
  */
 var alice = {
     version: '0.1',
-    build: '20110817-1050',
-
-    target: ''
+    build: '20110819-1440'
 };
 
 /**

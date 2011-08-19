@@ -169,8 +169,6 @@
          * Start the animation effect.
          */
         app.startAnimation = function () {
-            //console.info('startAnimation:');
-
             for (var i = 0; i < app.icons.length; i++) {
                 w = parseInt(document.getElementById(app.icons[i].id).style.width, 10);
                 h = parseInt(document.getElementById(app.icons[i].id).style.height, 10);
@@ -178,7 +176,6 @@
                 var originx = w * document.getElementById('origin-x').value / 100;
                 var originy = h * document.getElementById('origin-y').value / 100;
                 var origin = originx + 'px ' + originy + 'px';
-                //console.debug('origin = ' + origin);
 
                 // apply effect
                 alice.bounce({
@@ -199,8 +196,6 @@
          * Stop the animation effect.
          */
         app.stopAnimation = function () {
-            //console.info('stopAnimation:');
-
             var closeIcon, elem, s;
             for (var i = 0; i < app.icons.length; i++) {
 
@@ -227,8 +222,6 @@
          * Change scale value.
          */
         app.changeScale = function (elem) {
-            //console.info('changeScale: ' + elem.value);
-
             document.getElementById('scale').value = elem.value;
 
             // set randomness
@@ -239,7 +232,6 @@
 
             // calculate a scale
             var s = (parseFloat(document.getElementById('scale_val').value / 100) + parseFloat(document.getElementById('scale_val').value / 100) * r);
-            //console.debug('s=' + s);
 
             // adjust rule
             var styleSheet, cssRule;
@@ -272,7 +264,6 @@
          * Change angle value.
          */
         app.changeAngle = function (elem) {
-            //console.info('changeAngle: ' + elem.value);
 
             document.getElementById('angle').value = elem.value;
 
@@ -284,7 +275,6 @@
 
             // calculate an angle
             var a = Math.round(parseFloat(document.getElementById('angle_val').value) + parseFloat(document.getElementById('angle_val').value) * r);
-            //console.debug('a=' + a);
 
             // adjust rule
             var styleSheet, cssRule;
@@ -296,7 +286,6 @@
                     if (cssRule.type === window.CSSRule.WEBKIT_KEYFRAMES_RULE && cssRule.name == 'alice-bounce-shadow') {
                         //cssRule.findRule('0%').style.webkitTransform = 'rotate(' + a + 'deg)';
                         cssRule.findRule('100%').style.webkitTransform = 'rotate(-' + a + 'deg)';
-                        //console.warn(cssRule);
                         break;
                     }
                 }
@@ -360,7 +349,6 @@
          * Change origin (anchor point) value.
          */
         app.updateOrigin = function (elem) {
-            //console.debug(elem);
             var x, y;
 
             switch (elem.value) {

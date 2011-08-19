@@ -20,7 +20,6 @@
  * ===========================================================================
  */
 
-/*
 @-webkit-keyframes alice-overspin {
     0% { -webkit-transform: rotateY(0deg);}
     50% {-webkit-transform: rotateY(385deg); }
@@ -28,6 +27,7 @@
     100% { -webkit-transform: rotateY(360deg); }
 }
 
+/*
 @-webkit-keyframes alice-cointoss {
     0% {
         -webkit-transform: translateY(350px) rotate(-360deg);

@@ -106,8 +106,6 @@
         <script src="flip2.js"></script>
         <script type="text/javascript">
         evha.animate = function (x, y, dur) {
-            //console.log('animate: x=' + x + ', y=' + y + ', dur=' + dur);
-
             var card = document.getElementById('card');
             var sbar = document.getElementById('statusbar');
             var dur = (dur) ? (dur * 2) + 'ms' : '2s';
@@ -119,7 +117,6 @@
         };
 
         evha.scale = function (f) {
-            //console.log('scale: f=' + f);
             document.getElementById('card').style['-webkit-transform'] = 'scale(' + f + ')';
         };
 

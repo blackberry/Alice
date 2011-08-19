@@ -22,8 +22,6 @@
  *
  */
 alice.rotate = function (id, angle, opts) {
-    //console.log('rotate ' + id + ' to ' + angle);
-
     var x = {
         _elem         : document.getElementById(id),
         _angle        : angle, // degrees
@@ -40,22 +38,17 @@ alice.rotate = function (id, angle, opts) {
         setup         : alice._utils.setup2,
 
         _setupHelper  : function (i, s) {
-            //console.log(i);
-
             if (opts && opts.timing && opts.timing_rand) {
                 this._timing = alice._utils.randomize(this._timing, this._timing_rand)
-                //console.warn(this._timing);
             }
 
             if (opts && opts.timing && opts.timing_offset) {
                 this._timing = parseInt(this._timing, 10) + parseInt(opts.timing_offset, 10);
-                //console.warn(this._timing);
             }
 
             if (opts && opts.angle_offset) {
                 this._angle = parseInt(this._angle, 10) + parseInt(opts.angle_offset, 10);
                 //this._timing = parseInt(this._timing, 10) + (parseInt(opts.angle_offset, 10) * 100);
-                //console.warn(this._angle, this._timing);
             }
 
             if (this._iteration === 'infinite' || this._iteration > 1) {
@@ -93,11 +86,8 @@ alice.rotate = function (id, angle, opts) {
 
             s['-webkit-transform']                 = 'rotate(' + this._angle + 'deg)';
             s['-webkit-transform-origin']          = this._origin;
-            //console.debug(s.cssText);
         }
     };
-
-    //console.log(x._timing);
 
     return x.setup();
 };

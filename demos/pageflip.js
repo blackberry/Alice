@@ -48,7 +48,6 @@ var alice = {
             for (var j = 0; j < styleSheet.cssRules.length; j++) {
                 cssRule = styleSheet.cssRules[j];
                 if (cssRule.selectorText == cssname) {
-                    //console.log('Changing "' + cssprop + '" in "' + cssname + '" from "' + cssRule.style[cssprop] + '" to "' + val + '"');
                     cssRule.style[cssprop] = val;
                     break;
                 }
@@ -60,7 +59,6 @@ var alice = {
 alice.flip = {
     init: function (params) {
         if (params.id) {
-            //console.log(params);
 
             var pages = document.getElementById(params.id),
                 duration = params.duration || 2,
@@ -70,7 +68,6 @@ alice.flip = {
                 page;
 
             pages.addClassName('alice-flip-deck');
-            //console.log(pages);
 
             alice.setCSS('.alice-flip-card', '-webkit-transition-duration', duration + 's');
 
@@ -83,14 +80,12 @@ alice.flip = {
             var cnt = 0;
             for (var i = pages.children.length; i--;) {
                 cnt++;
-                //console.log(pages.children[i].id);
                 page = pages.children[i];
 
                 page.id = 'card' + (i + 1);
                 page.addClassName('alice-flip-card');
                 page.style['z-index'] = cnt;
                 page['data-order'] = cnt;
-                //console.log(pages.children[i].id + ' -> ' + page.style['z-index']);
             }
             pages.children[0].style.display = 'block';
         }
@@ -108,7 +103,6 @@ function getDirection() {
     for (var i = 0; i < document.forms['options']['flip_direction'].length; i++) {
         if (document.forms['options']['flip_direction'][i].checked === true) {
             flip_direction = document.forms['options']['flip_direction'][i].value;
-            //console.log('Setting flip direction to ' + flip_direction);
             break;
         }
     }
@@ -131,12 +125,10 @@ function reorder () {
 
         card.style['z-index'] = zi;
         cur = (i == idx) ? '-> ' : '   ';
-        //console.log(cur + i + ': ' + card.style['z-index']);
     }
 }
 
 function previous () {
-    //console.log(idx);
     getDirection();
 
     if (idx === 1) {
@@ -155,7 +147,6 @@ function previous () {
     if (elem2) {
         elem2.removeClassName('fade-in');
         setTimeout(function() {
-            console.log('Fading out...');
             elem2.addClassName('fade-out');
         }, 100);
     }

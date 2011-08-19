@@ -22,15 +22,12 @@
  *
  */
 alice.cube = function (params) {
-    //console.log(params);
     var elem = document.getElementById(params.id);
 
     elem.className = 'alice-cube-view';
 
     // hide all the child elements
-    //console.debug(elem.childNodes.length);
     for (var i = 0; i < elem.childNodes.length; i++) {
-        //console.debug(elem.childNodes[i]);
         if (elem.childNodes[i].style) {
             elem.childNodes[i].style.display = 'none';
         }
@@ -57,7 +54,6 @@ alice.cube = function (params) {
             side.className = 'alice-cube-face alice-cube-' + sides[j] + 'side alice-cube-s' + i;
 
             // set the CSS background property
-            //console.log(imgs[j].src);
             alice._utils.setCSS('.alice-cube-' + sides[j] + 'side', 'background', 'url("' + imgs[j].src + '")');
 
             hslice.appendChild(side);

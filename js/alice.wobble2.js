@@ -70,8 +70,6 @@ alice.wobble = function (ids, angle, angle_rand, origin, timing, timing_rand, ea
                     origin = params.origin;
                 }
 
-                //console.debug(params.id + ': duration=' + duration + 's, timing=' + timing + ', random=' + r);
-
                 s['-webkit-animation-name']            = 'alice-wobble';
                 s['-webkit-animation-duration']        = duration + 's';
                 s['-webkit-animation-iteration-count'] = 'infinite';

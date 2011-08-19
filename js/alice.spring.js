@@ -31,6 +31,11 @@ alice.spring = function (params) {
             iteration = params.iteration;
         }
 
+        var speed = 1;
+        if (params.speed) {
+            speed = params.speed;
+        }
+
         var elasticity = .50;
 
         var precision = 1; // 100 = 2 decimal places
@@ -38,7 +43,6 @@ alice.spring = function (params) {
         var height_val = (document.getElementById('height_val')) ? document.getElementById('height_val').innerHTML : params.drop_height;
 
         var floor_y = (height_val - parseInt(params.height) - 10);
-        //console.debug('floor_y=' + floor_y);
 
         var h = floor_y;
 
@@ -53,7 +57,6 @@ alice.spring = function (params) {
             num++;
             h = Math.round(h * params.elasticity * precision) / precision;
         }
-        //console.debug('num=' + num);
 
         // reset
         h = floor_y;
@@ -77,8 +80,6 @@ alice.spring = function (params) {
             else {
                 f = Math.round(((h / floor_y) * params.elasticity * .98) * 10000) / 10000;
                 t = floor_y;
-                //y = 1 - (f/2);
-                //x = 1 + (f/2);
                 y = 1 - f;
                 x = 1 + (f/4);
                 adj_y = ((1 - y) * 100) + '%';
@@ -91,23 +92,16 @@ alice.spring = function (params) {
             if (p === 100) {
                 t = floor_y;
             }
-            //t = floor_y;
             e = 'cubic-bezier(0.33333,0.6667,0.66667,1)';
-            //y = 1;
-            //x = 1;
-            //console.debug(params.id + ', ' + p + '%, top=' + t + 'px, X=' + x + ', Y=' + y + ', f=' + f + ', h=' + h);
 
             css += '  '+ p + '% {' + "\n";
             css += '    top: ' + t + 'px;' + "\n";
             css += '    -webkit-transform: scaleY(' + y + ')  scaleX(' + x + ') translateY(' + adj_y + ');' + "\n";
-            //css += '    -webkit-transform: scaleY(' + y + '); scaleX(' + x + '); translateY(-200px);' + "\n";
             css += '    -webkit-animation-timing-function: ' + e + ';' + "\n";
             css += '  }' + "\n";
 
             p = p + s;
         }
-
-        //console.debug('last p=' + last_p);
 
         // add a final frame if it's missing
         if (last_p < 100) {
@@ -123,16 +117,10 @@ alice.spring = function (params) {
 
         var elem = document.getElementById(params.id);
         var s = elem.style;
-        //console.debug(elem);
 
         s['position']                          = 'relative';
         s['float']                             = 'left';
-        //s['width']                             = params.width + 'px';
-        //s['height']                            = params.height + 'px';
-        //s['margin']                            = '10px';
-/*
-        s['text-align']                        = 'center';
-*/
+
         // adjust width and height of nested images
         if (elem.tagName != 'IMG' && elem.children.length > 0) {
             for (var i = 0; i < elem.children.length; i++) {
@@ -146,15 +134,10 @@ alice.spring = function (params) {
 
         // set animation properties
         s['-webkit-animation-name']            = 'alice-spring-' + params.id;
-        s['-webkit-animation-duration']        = (params.elasticity * 10) + 's';
+        s['-webkit-animation-duration']        = (params.elasticity * speed * 10) + 's';
         s['-webkit-animation-iteration-count'] = iteration;
         s['-webkit-animation-direction']       = 'normal';
         s['-webkit-animation-fill-mode']       = 'forwards';
-        //s['-webkit-animation-timing-function'] = 'ease-in-out';
-        //s['-webkit-animation-timing-function'] = 'cubic-bezier(0, 0.35, .5, 1.3)';
-        //s['-webkit-animation-timing-function'] = params.timing_function;
-
-        //console.debug(s);
     }
     else {
         console.warn('Could not access ' + params.id);

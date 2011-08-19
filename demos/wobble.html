@@ -24,14 +24,14 @@
         <style type="text/css">
         .icon {
             float: left;
-            width: 116px; /* 84 */
+            width: 116px;
             height: 116px;
             padding: 10px;
             text-align: center;
         }
 
         .icon img {
-            width: 96px; /* 64 */
+            width: 96px;
             height: 96px;
             /*border-radius: 15px;*/
         }
@@ -134,45 +134,52 @@
         <script src="../js/alice.core.js"></script>
         <script src="../js/alice.wobble.js"></script>
         <script type="text/javascript">
-
+/*
         var social = {
-            aim:         { name: 'AIM',             link: 'http://www.aim.com/' },
-            ask:         { name: 'Ask',             link: 'http://www.ask.com/' },
-            //bebo:        { name: 'Bebo',            link: 'http://www.bebo.com/' },
-            //blinklist:   { name: 'BlinkList',       link: 'http://blinklist.com/' },
-            blogger:     { name: 'Blogger',         link: 'http://www.blogger.com/' },
-            delicious:   { name: 'Delicious',       link: 'http://www.delicious.com/' },
-            deviantart:  { name: 'deviantART',      link: 'http://www.deviantart.com/' },
-            digg:        { name: 'Digg',            link: 'http://digg.com/' },
-            //diigo:       { name: 'Diigo',           link: 'http://www.diigo.com/' },
-            //evernote:    { name: 'Evernote',        link: 'http://www.evernote.com/' },
-            facebook:    { name: 'Facebook',        link: 'http://www.facebook.com/' },
-            flickr:      { name: 'Flickr',          link: 'http://www.flickr.com/' },
-            //friendfeed:  { name: 'FriendFeed',      link: 'http://friendfeed.com/' },
-            friendster:  { name: 'Friendster',      link: 'http://friendster.com/' },
-            google:      { name: 'Google',          link: 'http://www.google.com/' },
-            lastfm:      { name: 'Last.fm',         link: 'http://www.last.fm/' },
-            linkedin:    { name: 'LinkedIn',        link: 'http://www.linkedin.com/' },
-            //livejournal: { name: 'LiveJournal',     link: 'http://www.livejournal.com/' },
-            //mixx:        { name: 'Mixx',            link: 'http://www.mixx.com/' },
-            myspace:     { name: 'MySpace',         link: 'http://www.myspace.com/' },
-            netvibes:    { name: 'Netvibes',        link: 'http://www.netvibes.com/' },
-            //newsvine:    { name: 'Newsvine',        link: 'http://www.newsvine.com/' },
-            //orkut:       { name: 'Orkut',           link: 'http://www.orkut.com/' },
-            //plaxo:       { name: 'Plaxo',           link: 'http://www.plaxo.com/' },
-            //plurk:       { name: 'Plurk',           link: 'http://www.plurk.com/' },
-            //posterous:   { name: 'Posterous',       link: 'https://posterous.com/' },
-            reddit:      { name: 'Reddit',          link: 'http://www.reddit.com/' },
-            //squidoo:     { name: 'Squidoo',         link: 'http://www.squidoo.com/' },
-            //stumbleupon: { name: 'StumbleUpon',     link: 'http://www.stumbleupon.com/' },
-            //technorati:  { name: 'Technorati',      link: 'http://technorati.com/' },
-            //tumblr:      { name: 'Tumblr',          link: 'http://www.tumblr.com/' },
-            twitter:     { name: 'Twitter',         link: 'http://twitter.com/' },
-            vimeo:       { name: 'Vimeo',           link: 'http://vimeo.com/' },
-            wordpress:   { name: 'WordPress',       link: 'http://wordpress.org/' },
-            //xanga:       { name: 'Xanga',           link: 'http://www.xanga.com/' },
-            yahoo:       { name: 'Yahoo!',          link: 'http://www.yahoo.com/' },
-            youtube:     { name: 'YouTube',         link: 'http://www.youtube.com/' }
+            "address-book"    : { name: "Address Book",     link: "" },
+            "calendar"        : { name: "Calendar",         link: "" },
+            "flickr"          : { name: "Photos",           link: "" },
+            "heart"           : { name: "Heart",            link: "" },
+            "magnifying-glass": { name: "Magnifying Glass", link: "" },
+            "map"             : { name: "Map",              link: "" },
+            "name-tag"        : { name: "Name Tag",         link: "" },
+            "notebook"        : { name: "Notebook",         link: "" },
+            "phone"           : { name: "Phone",            link: "" },
+            "post-it"         : { name: "Stickie",          link: "" },
+            "rosette"         : { name: "Guarantee",        link: "" },
+            "rss"             : { name: "RSS",              link: "" },
+            "sale"            : { name: "Sale",             link: "" },
+            "tick"            : { name: "Tick",             link: "" },
+            "twitter"         : { name: "Tweet",            link: "" }
+        };
+*/
+        var social = {
+            "10_spades"      : { name: "10 of Spades",      link: "" },
+            "jack_spades"    : { name: "Jack of Spades",    link: "" },
+            "queen_spades"   : { name: "Queen of Spades",   link: "" },
+            "king_spades"    : { name: "King of Spades",    link: "" },
+            "ace_spades"     : { name: "Ace of Spades",     link: "" },
+
+            "10_hearts"      : { name: "10 of Hearts",      link: "" },
+            "jack_hearts"    : { name: "Jack of Hearts",    link: "" },
+            "queen_hearts"   : { name: "Queen of Hearts",   link: "" },
+            "king_hearts"    : { name: "King of Hearts",    link: "" },
+            "ace_hearts"     : { name: "Ace of Hearts",     link: "" },
+
+            "10_clubs"       : { name: "10 of Clubs",       link: "" },
+            "jack_clubs"     : { name: "Jack of Clubs",     link: "" },
+            "queen_clubs"    : { name: "Queen of Clubs",    link: "" },
+            "king_clubs"     : { name: "King of Clubs",     link: "" },
+            "ace_clubs"      : { name: "Ace of Clubs",      link: "" },
+
+            "10_diamonds"    : { name: "10 of Diamonds",    link: "" },
+            "jack_diamonds"  : { name: "Jack of Diamonds",  link: "" },
+            "queen_diamonds" : { name: "Queen of Diamonds", link: "" },
+            "king_diamonds"  : { name: "King of Diamonds",  link: "" },
+            "ace_diamonds"   : { name: "Ace of Diamonds",   link: "" },
+
+            "joker_black"    : { name: "Black Joker",       link: "" },
+            "joker_red"      : { name: "Red Joker",         link: "" }
         };
 
         // create HTML for forms and icons
@@ -225,14 +232,16 @@
         html += '</table>';
         html += '</form>';
         html += '</div>';
-        //html += '<div>&nbsp;</div>';
 
         for (var item in social) {
             html += '<div id="icon-' + item + '" class="icon">';
-            //html += '<a href="' + social[item].link + '" target="_blank">';
-            html += '<a href="' + social[item].link + '">';
-            html += '<img src="common/images/social/' + item + '.png">';
-            html += '</a>';
+            if (social[item].link != '') {
+                html += '<a href="' + social[item].link + '">';
+            }
+            html += '<img src="common/images/cards/' + item + '.png">';
+            if (social[item].link != '') {
+                html += '</a>';
+            }
             html += '<div>' + social[item].name + '</div>';
             html += '</div>';
         }
@@ -256,18 +265,13 @@
             hold_time_diff: 0,
             wobbling: false
         };
-        //console.debug('Found ' + app.icons.length + ' icons');
 
         /**
          * @description
          * Remove the icon from the collection.
          */
         app.handleClose = function (elem) {
-            //console.info('handleClose:');
-
             if (elem && elem.parentNode && elem.parentNode.id) {
-                //console.debug('Removing ' + elem.parentNode.id);
-
                 // remove icon
                 document.getElementById('icons').removeChild(document.getElementById(elem.parentNode.id));
             }
@@ -278,78 +282,72 @@
          * Start the wobble effect.
          */
         app.startWobble = function () {
-                //console.info('startWobble:');
+            var styleSheet, cssRule, cssW, cssH, w, h;
 
-                var styleSheet, cssRule, cssW, cssH, w, h;
-
-                for (var i = 0; i < document.styleSheets.length; i++) {
-                    styleSheet = document.styleSheets[i];
-                    for (var j = 0; j < styleSheet.cssRules.length; j++) {
-                        cssRule = styleSheet.cssRules[j];
-                        //console.debug(cssRule);
-                        if (cssRule.selectorText == '.icon') {
-                            cssW = parseInt(cssRule.style.width, 10);
-                            cssH = parseInt(cssRule.style.height, 10);
-                            //console.warn(w + ',' + h);
-                            break;
-                        }
+            for (var i = 0; i < document.styleSheets.length; i++) {
+                styleSheet = document.styleSheets[i];
+                for (var j = 0; j < styleSheet.cssRules.length; j++) {
+                    cssRule = styleSheet.cssRules[j];
+                    //console.debug(cssRule);
+                    if (cssRule.selectorText == '.icon') {
+                        cssW = parseInt(cssRule.style.width, 10);
+                        cssH = parseInt(cssRule.style.height, 10);
+                        break;
                     }
                 }
+            }
 
-                var closeIcon, elem;
-                for (var i = 0; i < app.icons.length; i++) {
-                    //console.log(document.getElementById(app.icons[i].id).className);
-                    if (document.getElementById(app.icons[i].id).className != 'icon') {
-                        w = parseInt(document.getElementById(app.icons[i].id).style.width, 10);
-                        h = parseInt(document.getElementById(app.icons[i].id).style.height, 10);
-                    }
-                    else {
-                        w = cssW;
-                        h = cssH;
-                    }
-                    //console.log('(w, h) = (' + w + ', ' + h + ')');
-
-                    var originx = w * document.getElementById('origin-x').value / 100;
-                    var originy = h * document.getElementById('origin-y').value / 100;
-                    var origin = originx + 'px ' + originy + 'px';
-                    //console.debug('origin = ' + origin);
-
-                    // show close icon if it exists
-                    if (document.getElementById(app.icons[i].id + '_close')) {
-                        closeIcon = document.getElementById(app.icons[i].id + '_close');
-                        closeIcon.style.display = 'block';
-                    }
-                    // create close icon
-                    else {
-                        closeIcon = document.createElement('div');
-                        closeIcon.id = app.icons[i].id + '_close';
-                        closeIcon.className = 'close-icon';
-
-                        if (w != h) {
-                                closeIcon.style.top = '-14px';
-                                closeIcon.style.left = '-14px';
-                        }
-
-                        closeIcon.onclick = function () {
-                            app.handleClose(this);
-                        };
-
-                        elem = document.getElementById(app.icons[i].id);
-                        elem.appendChild(closeIcon);
-                    }
-
-                    // apply wobble effect
-                    alice.wobble({
-                        id: app.icons[i].id,
-                        angle: document.getElementById('angle_val').value,
-                        duration: document.getElementById('duration_val').value,
-                        random: document.getElementById('random_val').value,
-                        timing: document.getElementById('timing_val').value,
-                        origin: origin
-                    });
+            var closeIcon, elem;
+            for (var i = 0; i < app.icons.length; i++) {
+                if (document.getElementById(app.icons[i].id).className != 'icon') {
+                    w = parseInt(document.getElementById(app.icons[i].id).style.width, 10);
+                    h = parseInt(document.getElementById(app.icons[i].id).style.height, 10);
+                }
+                else {
+                    w = cssW;
+                    h = cssH;
                 }
 
-                app.wobbling = true;
+                var originx = w * document.getElementById('origin-x').value / 100;
+                var originy = h * document.getElementById('origin-y').value / 100;
+                var origin = originx + 'px ' + originy + 'px';
+
+                // show close icon if it exists
+                if (document.getElementById(app.icons[i].id + '_close')) {
+                    closeIcon = document.getElementById(app.icons[i].id + '_close');
+                    closeIcon.style.display = 'block';
+                }
+                // create close icon
+                else {
+                    closeIcon = document.createElement('div');
+                    closeIcon.id = app.icons[i].id + '_close';
+                    closeIcon.className = 'close-icon';
+
+                    if (w != h) {
+                            closeIcon.style.top = '-14px';
+                            closeIcon.style.left = '-14px';
+                    }
+
+                    closeIcon.onclick = function () {
+                        app.handleClose(this);
+                    };
+
+                    elem = document.getElementById(app.icons[i].id);
+                    elem.appendChild(closeIcon);
+                }
+
+                // apply wobble effect
+                alice.wobble({
+                    id: app.icons[i].id,
+                    angle: document.getElementById('angle_val').value,
+                    duration: document.getElementById('duration_val').value,
+                    random: document.getElementById('random_val').value,
+                    timing: document.getElementById('timing_val').value,
+                    origin: origin
+                });
+            }
+
+            app.wobbling = true;
         };
 
         /**
@@ -357,28 +355,24 @@
          * Stop the wobble effect.
          */
         app.stopWobble = function () {
-                //console.info('stopWobble:');
+            var closeIcon, elem, s;
+            for (var i = 0; i < app.icons.length; i++) {
+                // hide close icon
+                closeIcon = document.getElementById(app.icons[i].id + '_close');
+                closeIcon.style.display = 'none';
 
-                var closeIcon, elem, s;
-                for (var i = 0; i < app.icons.length; i++) {
-                    // hide close icon
-                    closeIcon = document.getElementById(app.icons[i].id + '_close');
-                    closeIcon.style.display = 'none';
+                elem = document.getElementById(app.icons[i].id);
+                s = elem.style;
 
-                    elem = document.getElementById(app.icons[i].id);
-                    s = elem.style;
+                // clear wobble effect
+                s['-webkit-animation-name'] = '';
+                s['-webkit-animation-duration'] = '';
+                s['-webkit-animation-iteration-count'] = '';
+                s['-webkit-animation-direction'] = '';
+                s['-webkit-animation-timing-function'] = '';
+            }
 
-                    // clear wobble effect
-                    s['-webkit-animation-name'] = '';
-                    s['-webkit-animation-duration'] = '';
-                    s['-webkit-animation-iteration-count'] = '';
-                    s['-webkit-animation-direction'] = '';
-                    s['-webkit-animation-timing-function'] = '';
-
-                    //s['-webkit-animation-play-state'] = 'paused';
-                }
-
-                app.wobbling = false;
+            app.wobbling = false;
         };
 
         /**
@@ -386,14 +380,9 @@
          * Handle touch start event.
          */
         app.handleTouchStart = function (e) {
-            //e.preventDefault();
             if (e.target.nodeName != 'INPUT' && e.target.nodeName != 'SELECT') {
-                //console.warn(e.target.nodeName);
                 e.preventDefault();
             }
-
-            //console.info('handleTouchStart:');
-            //console.debug(e);
 
             // start the touch timer
             app.hold_time_start = new Date();
@@ -404,14 +393,9 @@
          * Handle touch move event.
          */
         app.handleTouchMove = function (e) {
-            //e.preventDefault();
             if (e.target.nodeName != 'INPUT' && e.target.nodeName != 'SELECT') {
-                //console.warn(e.target.nodeName);
                 e.preventDefault();
             }
-
-            //console.info('handleTouchMove:');
-            //console.debug(e);
 
             // calculate touch hold time
             app.hold_time_end = new Date();
@@ -429,14 +413,9 @@
          * Handle touch end event.
          */
         app.handleTouchEnd = function (e) {
-            //e.preventDefault();
             if (e.target.nodeName != 'INPUT' && e.target.nodeName != 'SELECT') {
-                //console.warn(e.target.nodeName);
                 e.preventDefault();
             }
-
-            //console.info('handleTouchEnd:');
-            //console.debug(e);
 
             // trigger close if the user taps the close icon
             if (e.target.className && e.target.className == 'close-icon') {
@@ -471,8 +450,6 @@
          * Start hold timer.
          */
         app.startHoldTimer = function () {
-            //console.info('startHoldTimer:');
-
             // calculate click hold time
             app.hold_time_end = new Date();
             app.hold_time_diff = app.hold_time_end - app.hold_time_start;
@@ -488,11 +465,6 @@
          * Handle mouse down event.
          */
         app.handleMouseDown = function (e) {
-            //e.preventDefault();
-
-            //console.info('handleMouseDown:');
-            //console.debug(e);
-
             app.hold_time_start = new Date();
             app.hold = true;
 
@@ -506,11 +478,6 @@
          * Handle mouse up event.
          */
         app.handleMouseUp = function (e) {
-            //e.preventDefault();
-
-            //console.info('handleMouseUp:');
-            //console.debug(e);
-
             // clear the hold timer
             app.hold = false;
             clearInterval(app.timer_id);
@@ -522,9 +489,6 @@
          */
         app.handleSingleClick = function (e) {
             e.preventDefault();
-
-            //console.info('handleSingleClick:');
-            //console.debug(e);
 /*
             if (e.target.nodeName == 'IMG') {
                 console.warn(e.target.nodeName);
@@ -550,17 +514,12 @@
             }
             // open the link in a new window/tab if the user clicks the icon
             else {
-                //console.debug(e.target.parentElement.href);
-
                 if (e.target.parentElement.href) {
                     window.open(
                         e.target.parentElement.href,
                         e.target.parentElement.parentElement.id,
                         ''
                     );
-                }
-                else {
-                    //console.debug('Ignored click');
                 }
 
                 app.clicks = 0;
@@ -584,8 +543,7 @@
         };
 
         app.updateAngle = function (elem) {
-                document.getElementById('angle_val').value = elem.value;
-                //app.changeAngle(elem);
+            document.getElementById('angle_val').value = elem.value;
         };
 
         /**
@@ -593,8 +551,6 @@
          * Change angle value.
          */
         app.changeAngle = function (elem) {
-            //console.info('changeAngle: ' + elem.value);
-
             document.getElementById('angle').value = elem.value;
 
             // set randomness
@@ -605,7 +561,6 @@
 
             // calculate an angle
             var a = Math.round(parseFloat(document.getElementById('angle_val').value / 2) + parseFloat(document.getElementById('angle_val').value / 2) * r);
-            //console.debug('a=' + a);
 
             // adjust rule
             var styleSheet, cssRule;
@@ -631,12 +586,7 @@
         };
 
         app.updateDuration = function (elem) {
-                //var dec_val = (elem.value / 100);
-                //dec_val = dec_val.toFixed(2);
-                //document.getElementById('duration_val').value = dec_val;
-                document.getElementById('duration_val').value = elem.value;
-
-                //app.changeDuration(dec_val);
+            document.getElementById('duration_val').value = elem.value;
         };
 
         /**
@@ -644,11 +594,6 @@
          * Change duration value.
          */
         app.changeDuration = function (elem) {
-            //console.debug(val);
-            //var dec_val = (elem.value / 100);
-            //dec_val = dec_val.toFixed(2);
-
-            //document.getElementById('duration').value = dec_val * 100;
             document.getElementById('duration').value = elem.value;
 
             if (app.wobbling === true) {
@@ -658,8 +603,7 @@
         };
 
         app.updateRandom = function (elem) {
-                document.getElementById('random_val').value = elem.value;
-                //app.changeRandom(elem);
+            document.getElementById('random_val').value = elem.value;
         };
 
         /**
@@ -691,7 +635,6 @@
          * Change origin (anchor point) value.
          */
         app.updateOrigin = function (elem) {
-            //console.debug(elem);
             var x, y;
 
             switch (elem.value) {
@@ -783,8 +726,6 @@
 
             elem.addEventListener('click', app.handleSingleClick, false);
         }
-
-        //alice.wobble({id: "div1", duration: 100, random: 0});
         </script>
     </body>
 </html>

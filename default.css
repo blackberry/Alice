@@ -111,7 +111,7 @@ pre {
     font-style: italic;
 }
 
-/* GitHub-style button */
+/* Big button */
 
 a.button.big, button.big {
     font-size: 16px;
@@ -152,7 +152,7 @@ a.button, button {
     padding: 5px;
     font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
     text-decoration: none;
-    background: #ECECEC url('../images/css3buttons_backgrounds.png') 0 0 no-repeat;
+    background-color: #ECECEC;
     white-space: nowrap;
     overflow: visible;
     cursor: pointer;

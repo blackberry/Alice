@@ -1,6 +1,6 @@
 # Alice
 
-[Alice](http://) (A Lightweight Independent CSS Engine) - is a highly focused JavaScript/CSS3 library for generating high-quality, high-end visual effects.
+[Alice](http://) (A Lightweight Independent CSS Engine) is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.
 
 This library and the sample code is Open Source under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html).
 

@@ -56,7 +56,6 @@ alice.bounce = function (params) {
 */
         var elem = document.getElementById(params.id);
         var s = elem.style;
-        //console.debug(elem);
 
         s['float']                             = 'left';
         s['width']                             = params.width;

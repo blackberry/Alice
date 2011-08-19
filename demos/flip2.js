@@ -68,12 +68,10 @@ var evha = {
  */
 
 evha.gestureStart = function (e) {
-    //console.info('gestureStart');
     e.preventDefault();
 }
 
 evha.gestureChange = function (e) {
-    //console.info('gestureChange');
     e.preventDefault();
 
     scale = e.scale;
@@ -81,12 +79,10 @@ evha.gestureChange = function (e) {
 }
 
 evha.gestureEnd = function (e) {
-    //console.info('gestureEnd');
     e.preventDefault();
 
     var zoom_level;
 
-    //console.debug('scale=' + scale + ', rotation=' + rotation);
     if (scale > 1) {
 
     }
@@ -101,8 +97,6 @@ evha.gestureEnd = function (e) {
 
 evha.touchStart = function (e) {
     e.preventDefault();
-    //console.log('touchStart: ' + e.targetTouches.length);
-    //console.log(e.targetTouches.length);
 
     evha.timeStart = new Date();
     evha.touchX1 = e.targetTouches[0].pageX;
@@ -110,29 +104,20 @@ evha.touchStart = function (e) {
     if (e.targetTouches.length === 2) {
         evha.fx1 = Math.abs(e.targetTouches[1].pageX - e.targetTouches[0].pageX);
         evha.fy1 = Math.abs(e.targetTouches[1].pageY - e.targetTouches[0].pageY);
-        //console.warn(evha.fx1 + ', ' + evha.fy1);
     }
 };
 
 evha.touchMove = function (e) {
     e.preventDefault();
-    //console.log('touchMove: ' + e.targetTouches.length);
-    //console.log();
-/*
-    for (var i = 0; i < e.targetTouches.length; i++) {
-        console.log(i + ': ' + e.targetTouches[0].pageX + ', ' + e.targetTouches[0].pageY);
-    }
-*/
+
     if (e.targetTouches.length === 2) {
         //evha.pinch = true;
 
         evha.fx2 = Math.abs(e.targetTouches[1].pageX - e.targetTouches[0].pageX);
         evha.fy2 = Math.abs(e.targetTouches[1].pageY - e.targetTouches[0].pageY);
-        //console.log(evha.fx2 + ', ' + evha.fy2);
         evha.fx = evha.fx2 / evha.fx1;
         evha.fy = evha.fy2 / evha.fy1;
 
-        //console.log('(' + evha.fx1 + ', ' + evha.fy1 + ') => (' + evha.fx2 + ', ' + evha.fy2 + ') = (' + evha.fx + ', ' + evha.fy + ')');
         //evha.scale(evha.fx);
     }
     else {
@@ -145,47 +130,37 @@ evha.touchMove = function (e) {
 
 evha.touchEnd = function (e) {
     e.preventDefault();
-    //console.log('touchEnd: ' + e.targetTouches.length);
-    //console.log(e.targetTouches.length);
-    //console.debug('touchEnd: ' + e.targetTouches[ 0 ].pageX + ',' + e.targetTouches[ 0 ].pageY);
     evha.timeEnd = new Date();
     evha.timeElapsed = evha.timeEnd.getTime() - evha.timeStart.getTime();
-    //console.log('timeElapsed=' + evha.timeElapsed + ', targetTouches=' + e.targetTouches.length);
 
     if (evha.pinch === false) {
         if (evha.touchX1 && evha.touchX2) {
             evha.panX = evha.touchX1 - evha.touchX2;
             evha.panY = evha.touchY1 - evha.touchY2;
-            //console.warn('(' + evha.touchX1 + ',' + evha.touchY1 + ') => (' + evha.touchX2 + ',' + evha.touchY2 + ') = (' + evha.panX + ',' + evha.panY + ')');
 
             if (Math.abs(evha.panX) >= 5 || Math.abs(evha.panY) >= 5) {
                 if (Math.abs(evha.panY) > Math.abs(evha.panX)) {
                     // up
                     if (evha.panY > 0) {
-                        //evha.xAngle += (evha.panY / 1600) * 100;
                         evha.xAngle += evha.increment;
                     }
                     // down
                     else {
-                        //evha.xAngle -= (Math.abs(evha.panY) / 1600) * 100;
                         evha.xAngle -= evha.increment;
                     }
                 }
                 else {
                     // right
                     if (evha.panX > 0) {
-                        //evha.yAngle -= (evha.panX / 1600) * 100;
                         evha.yAngle -= evha.increment;
                     }
                     // left
                     else {
-                        //evha.yAngle += (Math.abs(evha.panX) / 1600) * 100;
                         evha.yAngle += evha.increment;
                     }
                 }
             }
 
-            //console.debug(evha.xAngle + ',' + evha.yAngle);
             evha.animate(evha.xAngle, evha.yAngle, evha.timeElapsed);
         }
     }
@@ -200,7 +175,6 @@ evha.touchEnd = function (e) {
 
 evha.mouseDown = function (e) {
     e.preventDefault();
-    //console.debug('mouseDown: ' + e.x + ',' + e.y);
 
     evha.timeStart = new Date();
     evha.leftClick = true;
@@ -214,47 +188,39 @@ evha.mouseMove = function (e) {
 
 evha.mouseUp = function (e) {
     e.preventDefault();
-    //console.log(e);
 
     evha.timeEnd = new Date();
     evha.timeElapsed = evha.timeEnd.getTime() - evha.timeStart.getTime();
 
     if (evha.leftClick === true) {
-        //console.debug('mouseMove: ' + e.x + ',' + e.y);
         evha.mouseX2 = e.x;
         evha.mouseY2 = e.y;
 
         evha.mouseX = evha.mouseX1 - evha.mouseX2;
         evha.mouseY = evha.mouseY1 - evha.mouseY2;
-        //console.log('(' + evha.mouseX1 + ', ' + evha.mouseY1 + ') -> (' + evha.mouseX2 + ', ' + evha.mouseY2 + ') = (' + evha.mouseX + ', ' + evha.mouseY + ')');
 
         if (evha.mouseX !== 0 || evha.mouseY !== 0) {
             if (Math.abs(evha.mouseY) > Math.abs(evha.mouseX)) {
                 // up
                 if (evha.mouseY > 0) {
-                    //evha.xAngle += (evha.mouseY / 1600) * 100;
                     evha.xAngle += evha.increment;
                 }
                 // down
                 else {
-                    //evha.xAngle -= (Math.abs(evha.mouseY) / 1600) * 100;
                     evha.xAngle -= evha.increment;
                 }
             }
             else {
                 // left
                 if (evha.mouseX > 0) {
-                    //evha.yAngle -= (evha.mouseX / 1600) * 100;
                     evha.yAngle -= evha.increment;
                 }
                 // right
                 else {
-                    //evha.yAngle += (Math.abs(evha.mouseX) / 1600) * 100;
                     evha.yAngle += evha.increment;
                 }
             }
 
-            //console.debug(evha.xAngle + ',' + evha.yAngle);
             evha.animate(evha.xAngle, evha.yAngle, evha.timeElapsed);
         }
     }
@@ -264,7 +230,6 @@ evha.mouseUp = function (e) {
 
 evha.mouseWheel = function (e) {
     e.preventDefault();
-    //console.log(e.wheelDeltaX + ', ' + e.wheelDeltaY);
 
     // up
     if (e.wheelDeltaY > 0) {
@@ -285,7 +250,6 @@ evha.mouseWheel = function (e) {
         //evha.yAngle += 45;
     }
 
-    //console.debug(evha.xAngle + ',' + evha.yAngle);
     //evha.animate(evha.xAngle, evha.yAngle);
     evha.scale(evha.factor);
 };
@@ -296,7 +260,6 @@ evha.mouseWheel = function (e) {
 
 evha.keyDown = function (e) {
     if (evha.keydown === false) {
-        //console.log('keyDown: ' + e.keyCode);
         evha.timeStart = new Date();
     }
 
@@ -304,7 +267,6 @@ evha.keyDown = function (e) {
 };
 
 evha.keyUp = function (e) {
-    //console.debug('keyUp: ' + e.keyCode);
 
     evha.keydown = false;
 
@@ -367,21 +329,7 @@ evha.keyUp = function (e) {
                 evha.xAngle += evha.increment;
                 break;
         };
-/*
-        if (evha.xAngle > 360) {
-            evha.xAngle = 0 + 45;
-        }
-        else if (evha.xAngle < -360) {
-            evha.xAngle = 360 - 45;
-        }
 
-        if (evha.yAngle > 360) {
-            evha.yAngle = 0 + 45;
-        }
-        else if (evha.yAngle < -360) {
-            evha.yAngle = 360 - 45;
-        }
-*/
         evha.animate(evha.xAngle, evha.yAngle, evha.timeElapsed);
     }
 };
@@ -394,7 +342,6 @@ evha.deviceMotion = function (e) {
     if (document.getElementById('tilt').checked === true) {
         evha.ax = e.accelerationIncludingGravity.x * 10;
         evha.ay = e.accelerationIncludingGravity.y * 10;
-        //console.debug(evha.ax + ',' + evha.ay);
 /*
         if (document.getElementById('statusbar')) {
             document.getElementById('statusbar').innerHTML = 'devicemotion (ax, ay) = ' + evha.ax + ', ' + evha.ay;
@@ -421,7 +368,6 @@ evha.deviceMotion = function (e) {
                     evha.yAngle -= evha.increment;
                 }
             }
-            //console.debug(evha.xAngle + ',' + evha.yAngle);
             evha.animate(evha.xAngle, evha.yAngle);
         //}
     }
@@ -432,11 +378,9 @@ evha.deviceMotion = function (e) {
  */
 
 evha.animate = function (x, y) {
-    //console.log('(x, y) = (' + x + ',' + y + ')');
     //document.getElementById('your_id').style.webkitTransform = "rotateX(" + x + "deg) rotateY(" + y + "deg)";
 };
 
 evha.scale = function (f) {
-    //console.log('(f) = (' + f + ')');
     //document.getElementById('your_id').style.webkitTransform = "scale(" + f + ")";
 };

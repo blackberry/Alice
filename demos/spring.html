@@ -45,11 +45,6 @@
         }
 
         .balls {
-/*
-            background-image: url('../images/backgrounds/black_canvas.jpg');
-            background-repeat: no-repeat;
-            background-position: center bottom;
-*/
             margin: 10px;
             height: 250px;
             border: 3px solid #C0C0C0;
@@ -79,6 +74,11 @@
             <fieldset>
                 <legend>Settings:</legend>
                 <table border="0" cellpadding="10" cellspacing="0">
+                    <tr>
+                        <td align="right"><label for="speed">Speed:<br><span style="font-size: 75%;">(1 = normal, 20 = slowest)</span></label></td>
+                        <td><input id="speed" type="range" min="1" max="20" value="1" step="1" onchange="app.updateSpeedSlider(this.value);" onmouseup="app.changeSpeed(this);"></td>
+                        <td><span id="speed_val">1</span></td>
+                    </tr>
                     <tr>
                         <td align="right"><label for="height">Height:</label></td>
                         <td><input id="height" type="range" min="150" max="1000" value="250" step="10" onchange="app.updateHeightSlider(this.value);" onmouseup="app.handleChangeHeight(this);"></td>
@@ -112,35 +112,15 @@
          *   elasticity is a percentage value
          *   mass is in kg (not being used yet)
          */
-/*
         var balls = {
-            'bowling':      { name: 'Bowling',    elasticity: '.10', mass: 6.780, width: '97',  height: '97' },
-            'billiards-08': { name: 'Billiards',  elasticity: '.15', mass: 0.155, width: '25',  height: '25' },
-            //'hockey':       { name: 'Hockey',     elasticity: '.20', mass: 0.155, width: '36',  height: '36' },
-            'baseball':     { name: 'Baseball',   elasticity: '.32', mass: 0.145, width: '34',  height: '34' },
-            'golf':         { name: 'Golf',       elasticity: '.36', mass: 0.046, width: '20',  height: '20' },
-            //'football':     { name: 'Football',   elasticity: '.38', mass: 0.350, width: '115', height: '115' },
-            'soccer':       { name: 'Soccer',     elasticity: '.40', mass: 0.430, width: '98',  height: '98' },
-            'tennis':       { name: 'Tennis',     elasticity: '.49', mass: 0.057, width: '30',  height: '30' },
-            'volleyball':   { name: 'Volleyball', elasticity: '.50', mass: 0.226, width: '95',  height: '95' },
-            'basketball':   { name: 'Basketball', elasticity: '.56', mass: 0.620, width: '110', height: '110' },
-            'pingpong':     { name: 'Ping Pong',  elasticity: '.65', mass: 0.003, width: '18',  height: '18' },
-            'beachball':    { name: 'Beach Ball', elasticity: '.74', mass: 0.250, width: '125', height: '125' }
-        };
-*/
-        var balls = {
-            'digg':         { name: 'Bowling ball',   elasticity: '.10', mass: 6.780, width: '64', height: '64' },
-            'facebook':     { name: 'Billiard ball',  elasticity: '.15', mass: 0.155, width: '64', height: '64' },
-            //'flickr':       { name: 'Hockey',        elasticity: '.20', mass: 0.155, width: '64', height: '64' },
-            'google':       { name: 'Baseball',       elasticity: '.32', mass: 0.145, width: '64', height: '64' },
-            'linkedin':     { name: 'Golf ball',      elasticity: '.36', mass: 0.046, width: '64', height: '64' },
-            //'myspace':      { name: 'Football',      elasticity: '.38', mass: 0.350, width: '64', height: '64' },
-            //'plaxo':        { name: 'Soccer ball',    elasticity: '.40', mass: 0.430, width: '64', height: '64' },
-            //'tumblr':       { name: 'Tennis ball',    elasticity: '.49', mass: 0.057, width: '64', height: '64' },
-            'twitter':      { name: 'Volleyball',     elasticity: '.50', mass: 0.226, width: '64', height: '64' },
-            'vimeo':        { name: 'Basketball',     elasticity: '.56', mass: 0.620, width: '64', height: '64' },
-            'yahoo':        { name: 'Ping Pong ball', elasticity: '.65', mass: 0.003, width: '64', height: '64' },
-            'youtube':      { name: 'Beach ball',     elasticity: '.74', mass: 0.250, width: '64', height: '64' }
+            'jack_spades':  { name: 'Bowling ball',   elasticity: '.10', mass: 6.780, width: '71', height: '96' },
+            'queen_spades': { name: 'Billiard ball',  elasticity: '.15', mass: 0.155, width: '71', height: '96' },
+            'king_spades':  { name: 'Baseball',       elasticity: '.32', mass: 0.145, width: '71', height: '96' },
+            'ace_spades':   { name: 'Golf ball',      elasticity: '.36', mass: 0.046, width: '71', height: '96' },
+            'jack_hearts':  { name: 'Volleyball',     elasticity: '.50', mass: 0.226, width: '71', height: '96' },
+            'queen_hearts': { name: 'Basketball',     elasticity: '.56', mass: 0.620, width: '71', height: '96' },
+            'king_hearts':  { name: 'Ping Pong ball', elasticity: '.65', mass: 0.003, width: '71', height: '96' },
+            'ace_hearts':   { name: 'Beach ball',     elasticity: '.74', mass: 0.250, width: '71', height: '96' }
         };
 
         //------------------------------------------------------------------------
@@ -157,8 +137,6 @@
          * Toggle settings panel.
          */
         app.togglePanel = function (btn, elem_id) {
-            //console.info('togglePanel:');
-
             var elem = document.getElementById(elem_id);
 
             if (elem.style.display == 'none') {
@@ -176,8 +154,6 @@
          * Change height value.
          */
         app.changeHeight = function () {
-            //console.info('changeHeight:');
-
             if (app.timer.changeHeight) {
                 clearInterval(app.timer.changeHeight);
                 app.startSpring();
@@ -197,9 +173,6 @@
          * Handle change height value.
          */
         app.handleChangeHeight = function (elem) {
-            //console.info('handleChangeHeight: ' + elem.value);
-            //console.debug(elem);
-
             // check if the value changed
             if (elem.value === app.last_height) {
                 return;
@@ -217,8 +190,6 @@
             var styleSheet;
             for (var i = 0; i < document.styleSheets.length; i++) {
                 styleSheet = document.styleSheets[i];
-                //console.debug(styleSheet);
-                //console.debug(styleSheet.title);
 
                 if (styleSheet.title == 'alice-spring') {
                     var cssRule;
@@ -226,22 +197,12 @@
 
                     for (var j = cssRulesLen; j >= 0; j--) {
                         cssRule = styleSheet.cssRules[j];
-                        //console.debug(cssRule);
 
                         try {
                             if (cssRule.type === window.CSSRule.WEBKIT_KEYFRAMES_RULE) {
                                 if (reAliceSpringRule.test(cssRule.name)) {
-                                    //console.debug(cssRule);
-
-                                    //console.debug('Removing ' + cssRule.name + ' [' + j + '/' + (styleSheet.cssRules.length - 1) + '] from ' + styleSheet.title + ' (' + i + ')...');
                                     styleSheet.deleteRule(cssRule);
                                 }
-                                else {
-                                    //console.debug('Ignoring rule ' + cssRule.name);
-                                }
-                            }
-                            else {
-                                //console.debug('Ignoring type ' + cssRule.type);
                             }
                         }
                         catch (ex) {
@@ -251,9 +212,6 @@
 
                     break;
                 }
-                else {
-                    //console.debug('Ignoring stylesheet ' + i);
-                }
             }
 
             app.timer.changeHeight = setInterval('app.changeHeight()', 250);
@@ -261,11 +219,26 @@
 
         /**
          * @description
+         * Update the value of the speed slider.
+         */
+        app.updateSpeedSlider = function (val) {
+            document.getElementById('speed_val').innerHTML = val;
+            app.stopSpring();
+        };
+
+        /**
+         * @description
+         * Change speed value.
+         */
+        app.changeSpeed = function () {
+            app.startSpring();
+        };
+
+        /**
+         * @description
          * Apply the spring effect.
          */
         app.applyEffect = function (elem_id, params) {
-            //console.info('applyEffect: ' + elem_id);
-
             if (app.timer.applyEffect) {
                 clearInterval(app.timer.applyEffect);
             }
@@ -273,14 +246,15 @@
             var elem = document.getElementById(elem_id);
             var s = elem.style;
 
+            var speed = params.speed || 1;
+
             // set animation properties
             s['-webkit-animation-name']            = 'alice-spring-' + elem_id;
-            s['-webkit-animation-duration']        = (params.elasticity * 10) + 's';
+            s['-webkit-animation-duration']        = (params.elasticity * speed * 10) + 's';
             s['-webkit-animation-iteration-count'] = '1';
             s['-webkit-animation-direction']       = 'normal';
             s['-webkit-animation-fill-mode']       = 'forwards';
             //s['-webkit-animation-timing-function'] = 'cubic-bezier(0, 0.35, .5, 1.3)';
-            //console.log(s['-webkit-animation-name'] + ': ' + s['-webkit-animation-duration']);
         };
 
         /**
@@ -288,8 +262,6 @@
          * Clear the spring effect.
          */
         app.clearEffect = function (elem_id) {
-            //console.info('clearEffect: ' + elem_id);
-
             var elem = document.getElementById(elem_id);
             var s = elem.style;
 
@@ -309,12 +281,10 @@
         app.handleSingleClick = function (e, elem) {
             e.preventDefault();
 
-            //console.info('handleSingleClick: ' + elem.id);
-
             app.clearEffect(elem.id);
 
             // need to pause before applying effect
-            app.timer.applyEffect = setInterval('app.applyEffect("' + elem.id + '", {elasticity: balls["' + elem.id + '"].elasticity})', 25);
+            app.timer.applyEffect = setInterval('app.applyEffect("' + elem.id + '", { elasticity: balls["' + elem.id + '"].elasticity, speed: document.getElementById("speed_val").innerHTML })', 25);
         };
 
         /**
@@ -322,8 +292,6 @@
          * Start the spring effect.
          */
         app.startSpring = function () {
-            //console.info('startSpring:');
-
             if (app.dropped === false) {
                 var b, w, h;
 
@@ -331,7 +299,6 @@
                     b = balls[app.icons[i].id];
                     w = (b.width) ? b.width : 64;
                     h = (b.height) ? b.height : 64;
-                    //console.warn(app.icons[i]);
 
                     //app.icons[i].style['position'] = 'relative';
                     //app.icons[i].style['float'] = 'left';
@@ -342,6 +309,7 @@
                         id: app.icons[i].id,
                         width: w,
                         height: h,
+                        speed: document.getElementById('speed_val').innerHTML,
                         timing_function: 'cubic-bezier(0, 0.35, .5, 1.3)',
                         elasticity: b.elasticity,
                         mass: b.mass
@@ -360,8 +328,6 @@
          * Stop the spring effect.
          */
         app.stopSpring = function () {
-            //console.info('stopSpring:');
-
             if (app.dropped === true) {
                 for (var i = 0; i < app.icons.length; i++) {
                     app.clearEffect(app.icons[i].id);
@@ -369,26 +335,20 @@
 
                 app.dropped = false;
             }
-            else {
-                //console.warn('Icons have not dropped yet!');
-            }
         };
 
         //---[ Main ]-------------------------------------------------------------
 
         // set max value of height slider to window height
         document.getElementById('height').max = window.innerHeight - document.getElementById('main').clientHeight - 100;
-        //console.debug(document.getElementById('main').style.margin);
 
         if (app.icons.length === 0) {
-            //console.debug('Creating icons...');
             // create HTML for icons
             var html = '', i;
             for (var item in balls) {
                 i++;
-                //console.log(i + '/' + balls.length);
                 html += '<div id="' + item + '">';
-                html += '<img src="common/images/social/' + item + '.png" alt="' + balls[item].name + '" title="' + balls[item].name + '"><br>';
+                html += '<img src="common/images/cards/' + item + '.png" alt="' + balls[item].name + '" title="' + balls[item].name + '"><br>';
                 // add a form to the last icon
                 if (balls[item].name == 'Beach ball') {
                     html += '<div>';
@@ -417,7 +377,6 @@
             // set up event listeners
             var elem;
             for (var i = 0; i < app.icons.length; i++) {
-                //console.debug('Attaching event handlers to ' + app.icons[i].id);
                 elem = document.getElementById(app.icons[i].id);
 
                 elem.addEventListener('touchstart', function() { app.handleSingleClick(event, this); }, false);

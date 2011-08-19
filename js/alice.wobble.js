@@ -24,8 +24,6 @@ alice._utils.insertCSSRule('@-webkit-keyframes alice-wobble { 0% { -webkit-trans
  * Wobble effect.
  */
 alice.wobble = function (params) {
-    //console.debug(params);
-
     // set default values
     var r = 0;
     var duration = (((Math.random() * 6) / 100) + 0.13) * 1000; // range between 130 and 190
@@ -52,8 +50,6 @@ alice.wobble = function (params) {
         if (params.origin) {
             origin = params.origin;
         }
-
-        //console.debug(params.id + ': duration=' + duration + 'ms, timing=' + timing + ', random=' + r);
 
         s['-webkit-animation-name']            = 'alice-wobble';
         s['-webkit-animation-duration']        = duration + 'ms';

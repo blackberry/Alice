@@ -24,8 +24,8 @@
         <style type="text/css">
         .icon {
             float: left;
-            width: 100px; /*140*/
-            height: 136px; /*190*/
+            width: 100px;
+            height: 136px;
             padding: 24px;
             text-align: center;
         }
@@ -183,8 +183,6 @@
          * Toggle settings panel.
          */
         app.togglePanel = function (btn, elem_id) {
-            //console.info('togglePanel:');
-
             var elem = document.getElementById(elem_id);
 
             if (elem.style.display == 'none') {
@@ -231,8 +229,6 @@
          * Change timing function value.
          */
         app.changeTiming = function (elem) {
-            //console.info('changeTiming:');
-
             app.animate();
         };
 
@@ -241,8 +237,6 @@
          * Change origin (anchor point) value.
          */
         app.changeOrigin = function (elem) {
-            //console.info('changeOrigin:');
-            //console.debug(elem);
             var x, y;
 
             switch (elem.value) {
@@ -309,7 +303,6 @@
         app.changeTranslate = function () {
             var tx = document.getElementById('translatex_val').value;
             var ty = document.getElementById('translatey_val').value;
-            //console.info('changeTranslate: (tx, ty) = (' + tx + ', ' + ty + ')');
 
             document.getElementById('translatex').value = tx;
             document.getElementById('translatey').value = ty;
@@ -323,7 +316,6 @@
                 for (var j = 0; j < styleSheet.cssRules.length; j++) {
                     cssRule = styleSheet.cssRules[j];
                     if (cssRule.type === window.CSSRule.WEBKIT_KEYFRAMES_RULE && cssRule.name == 'alice-toss') {
-                        //console.warn('translateX(' + tx + 'px) translateY(' + ty + 'px) rotate(-360deg)');
                         cssRule.findRule('0%').style.webkitTransform = 'translateY(' + ty + 'px) translateX(' + tx + 'px) rotate(-360deg)';
                         cssRule.findRule('0%').style.opacity = '0';
                         cssRule.findRule('70%').style.webkitTransform = 'translateY(-20px) translateX(0px) rotate(5deg)';
@@ -341,7 +333,6 @@
          *
          */
         app.changeTranslateX = function (elem) {
-            //console.info('changeTranslateX:');
             document.getElementById('translatex_val').value = elem.value;
         };
 
@@ -350,7 +341,6 @@
          *
          */
         app.changeTranslateY = function (elem) {
-            //console.info('changeTranslateY:');
             document.getElementById('translatey_val').value = elem.value;
         };
 
@@ -359,8 +349,6 @@
          * Apply the effect.
          */
         app.applyEffect = function (elem_id, params) {
-            //console.info('applyEffect: ' + elem_id);
-
             if (app.timer.applyEffect) {
                 clearInterval(app.timer.applyEffect);
             }
@@ -381,8 +369,6 @@
          * Clear the effect.
          */
         app.clearEffect = function (elem_id) {
-            //console.info('clearEffect: ' + elem_id);
-
             var elem = document.getElementById(elem_id);
             var s = elem.style;
 
@@ -400,8 +386,6 @@
          */
         app.handleSingleClick = function (e, elem) {
             e.preventDefault();
-
-            //console.info('handleSingleClick: ' + elem.id);
 
             app.clearEffect(elem.id);
 
@@ -422,8 +406,6 @@
          * Start the effects.
          */
         app.start = function () {
-            //console.info('start:');
-
             if (app.timer.start) {
                 clearInterval(app.timer.start);
             }
@@ -437,7 +419,6 @@
                     if (cssRule.selectorText == '.icon') {
                         icon_w = parseInt(cssRule.style.width, 10);
                         icon_h = parseInt(cssRule.style.height, 10);
-                        //console.debug(icon_w + ',' + icon_h);
                         break;
                     }
                 }
@@ -446,14 +427,13 @@
             var elem, w, h, origin;
             for (var i = 0; i < app.ids.length; i++) {
                 elem = document.getElementById(app.ids[i]);
-                //console.debug(elem);
+
                 w = (elem.style.width) ? parseInt(elem.style.width, 10) : icon_w;
                 h = (elem.style.height) ? parseInt(elem.style.height, 10) : icon_h;
 
                 var originx = w * document.getElementById('origin-x').value / 100;
                 var originy = h * document.getElementById('origin-y').value / 100;
                 var origin = originx + 'px ' + originy + 'px';
-                //console.debug(origin);
 
                 // apply toss effect
                 alice.toss({
@@ -471,8 +451,6 @@
          * Stop the effects.
          */
         app.stop = function () {
-            //console.info('stop:');
-
             for (var i = 0; i < app.ids.length; i++) {
                 app.clearEffect(app.ids[i]);
             }
@@ -484,19 +462,6 @@
          *
          */
         app.animate = function () {
-            //console.info('animate:');
-/*
-            if (document.getElementById('origin-x').value != originx || document.getElementById('origin-y').value != originy) {
-                originx = document.getElementById('origin-x').value;
-                originy = document.getElementById('origin-y').value;
-
-                app.stop();
-                app.delayStart();
-            }
-            else {
-                console.log('Ignoring change/click');
-            }
-*/
             app.stop();
             app.delayStart();
         };
@@ -545,7 +510,6 @@
         // set up event listeners
         var elem;
         for (var i = 0; i < app.ids.length; i++) {
-            //console.log(app.ids[i]);
             elem = document.getElementById(app.ids[i]);
 
             elem.addEventListener('click', function () {

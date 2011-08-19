@@ -70,36 +70,29 @@ app.touchMove = function (e) {
 
 app.touchEnd = function (e) {
     e.preventDefault();
-    //console.debug('touchEnd: ' + e.targetTouches[ 0 ].pageX + ',' + e.targetTouches[ 0 ].pageY);
     if (app.touchX1 && app.touchX2) {
         app.panX = app.touchX1 - app.touchX2;
         app.panY = app.touchY1 - app.touchY2;
-        //console.debug('(' + app.touchX1 + ',' + app.touchY1 + ') => (' + app.touchX2 + ',' + app.touchY2 + ') = (' + app.panX + ',' + app.panY + ')');
         if (Math.abs(app.panY) > Math.abs(app.panX)) {
             // up
             if (app.panY > 0) {
-                //app.xAngle += (app.panY / 1600) * 100;
                 app.xAngle += 45;
             }
             // down
             else {
-                //app.xAngle -= (Math.abs(app.panY) / 1600) * 100;
                 app.xAngle -= 45;
             }
         }
         else {
             // right
             if (app.panX > 0) {
-                //app.yAngle -= (app.panX / 1600) * 100;
                 app.yAngle -= 90;
             }
             // left
             else {
-                //app.yAngle += (Math.abs(app.panX) / 1600) * 100;
                 app.yAngle += 90;
             }
         }
-        //console.debug(app.xAngle + ',' + app.yAngle);
         app.animate(app.xAngle, app.yAngle);
     }
 };
@@ -110,7 +103,6 @@ app.touchEnd = function (e) {
 
 app.mouseDown = function (e) {
     e.preventDefault();
-    //console.debug('mouseDown: ' + e.x + ',' + e.y);
     app.leftClick = true;
     app.mouseX1 = e.x;
     app.mouseY1 = e.y;
@@ -124,7 +116,6 @@ app.mouseUp = function (e) {
     e.preventDefault();
 
     if (app.leftClick === true) {
-        //console.debug('mouseMove: ' + e.x + ',' + e.y);
         app.mouseX2 = e.x;
         app.mouseY2 = e.y;
 
@@ -134,28 +125,23 @@ app.mouseUp = function (e) {
         if (Math.abs(app.mouseY) > Math.abs(app.mouseX)) {
             // up
             if (app.mouseY > 0) {
-                //app.xAngle += (app.mouseY / 1600) * 100;
                 app.xAngle += 45;
             }
             // down
             else {
-                //app.xAngle -= (Math.abs(app.mouseY) / 1600) * 100;
                 app.xAngle -= 45;
             }
         }
         else {
             // left
             if (app.mouseX > 0) {
-                //app.yAngle -= (app.mouseX / 1600) * 100;
                 app.yAngle -= 90;
             }
             // right
             else {
-                //app.yAngle += (Math.abs(app.mouseX) / 1600) * 100;
                 app.yAngle += 90;
             }
         }
-        //console.debug(app.xAngle + ',' + app.yAngle);
         app.animate(app.xAngle, app.yAngle);
     }
 
@@ -167,7 +153,6 @@ app.mouseUp = function (e) {
  */
 
 app.keyDown = function (e) {
-    //console.debug(e.keyCode);
     switch (e.keyCode) {
     case 37:
         // left arrow
@@ -220,7 +205,6 @@ app.keyDown = function (e) {
 app.deviceMotion = function (e) {
     app.ax = e.accelerationIncludingGravity.x * 10;
     app.ay = e.accelerationIncludingGravity.y * 10;
-    //console.debug(app.ax + ',' + app.ay);
     if (document.getElementById('statusbar')) {
         document.getElementById('statusbar').innerHTML = 'devicemotion (ax, ay) = ' + app.ax + ', ' + app.ay;
     }
@@ -246,7 +230,6 @@ app.deviceMotion = function (e) {
                 app.yAngle -= 90;
             }
         }
-        //console.debug(app.xAngle + ',' + app.yAngle);
         app.animate(app.xAngle, app.yAngle);
     }
 };

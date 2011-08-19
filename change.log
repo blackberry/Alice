@@ -1,0 +1,22 @@
+==============================================================================
+Alice
+Change Log
+==============================================================================
+
+0.1 (Build 20110817-1050)
+
+    - Initial check-in to Git.
+
+0.1 (Build 20110819-1300)
+
+    - Added this "change.log" file.
+    - Added project information to the main page (index.html).
+    - Removed unused files/folders: catface.png, css3buttons, and
+      michenriksen-css3buttons-1d544a4.zip.
+    - Updated text for copyright line.
+    - Removed "social" icons and replaced them with "cards" in the Wobble and
+      Spring demos.
+    - Added a speed setting to the Spring demo.
+    - Changed rotate demo to make the cards open and close continuously.
+    - Removed debugging comments.
+    - Re-enabled the overspin in the Cube demo.

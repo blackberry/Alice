@@ -24,9 +24,6 @@ alice._utils.insertCSSRule('@-webkit-keyframes alice-toss { 0% { -webkit-transfo
  * Toss effect.
  */
 alice.toss = function (params) {
-    //console.info('toss:');
-    //console.debug(params);
-
     // set default values
     var r = 0;
     var duration = 1;
@@ -44,8 +41,6 @@ alice.toss = function (params) {
 
         if (params.duration) {
             duration = parseFloat(params.duration) + parseFloat(params.duration) * r;
-            //duration = Math.round(duration * 1000) / 1000;
-            //duration = Math.round(duration * 1000);
         }
 
         if (params.iteration) {
@@ -59,8 +54,6 @@ alice.toss = function (params) {
         if (params.origin) {
             origin = params.origin;
         }
-
-        //console.debug(params.id + ': duration=' + duration + 's, timing=' + timing + ', origin=' + origin + ',random=' + r);
 
         s['-webkit-animation-name']            = 'alice-toss';
         s['-webkit-animation-duration']        = duration + 'ms';

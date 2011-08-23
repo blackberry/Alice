@@ -1,49 +1,100 @@
 # Alice
 
-[Alice](http://) (A Lightweight Independent CSS Engine) is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.
+**Alice** - *(A Lightweight Independent CSS Engine)* is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.
 
 This library and the sample code is Open Source under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html).
 
-**Applies To**
+**Author(s):**
 
-* [BlackBerry Tablet OS](http://us.blackberry.com/developers/tablet/)
-* [BlackBerry WebWorks SDK for Tablet OS](http://us.blackberry.com/developers/tablet/webworks.jsp)
+* [Laurent Hasson](https://github.com/ldhasson) ([@ldhasson](http://twitter.com/ldhasson))
+* [Jim Ing](https://github.com/psiborg) ([@jim_ing](http://twitter.com/jim_ing))
 
-**Author(s)**
+**Requirements:**
 
-* [Laurent Hasson](https://github.com/ldhasson)
-* [Jim Ing](https://github.com/psiborg)
+1. A WebKit-based browser with support for CSS3.
 
-**Dependencies**
+## How to use Alice in a web project
 
-1. [prettify.js](http://code.google.com/p/google-code-prettify/) is licensed under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license.
+1. Download the source package (zip or tar.gz) and unzip it to your web folder (e.g., /var/www/html/***your project name***/js/alice).
+2. Include the Alice library in your HTML using one of the following:
 
-**To contribute code to this repository you must be [signed up as an official contributor](http://blackberry.github.com/howToContribute.html).**
+    a. Full library (with comments):
 
-## How to Use
+            <script src="js/alice/alice.js"></script>
 
-To use the Alice library:
+    b. Minified version of the full library:
 
-1. Click on the **Downloads** button at the top right of this screen.
-2. Select **Download.zip** and save the downloaded file to your local machine.
-3. Create a new folder on your local machine named **alice** (e.g., **C:\webworks\alice**).
-4. Open the downloaded zip file from step 2 and **extract the contents from inside the top level folder** to your new **alice** folder.  This ensures that the necessary application assets, such as **config.xml**, are correctly located at the top level of the **alice** folder (e.g., **C:\webworks\alice\config.xml**).
-5. Using an achiving utility (e.g., [WinZip](http://www.winzip.com/) or [7-Zip](http://www.7-zip.org/)), package the contents of your **C:\webworks\alice** folder into a zip archive named **alice.zip**.  This archive should have the application assets (not a folder containing the application assets) at its top level.
-6. Using the **[BlackBerry WebWorks SDK for Tablet OS](http://us.blackberry.com/developers/tablet/webworks.jsp)**, package the **alice.zip** archive into a BlackBerry Tablet OS application using the following command line: **bbwp c:\webworks\alice\alice.zip**
+            <script src="js/alice/alice-min.js"></script>
+
+    c. Specific effect(s):
+
+            <script src="js/alice/src/alice.core.js"></script>
+            <script src="js/alice/src/alice.rotate.js"></script>
+
+3. Create your HTML markup. For example:
+
+            <div id="deck" class="cards">
+                <div class="card"><span>2</span></div>
+                <div class="card"><span>3</span></div>
+                <div class="card"><span>4</span></div>
+                <div class="card"><span>5</span></div>
+                <div class="card"><span>6</span></div>
+                <div class="card"><span>7</span></div>
+                <div class="card"><span>8</span></div>
+                <div class="card"><span>9</span></div>
+                <div class="card"><span>10</span></div>
+                <div class="card"><span>J</span></div>
+                <div class="card"><span>Q</span></div>
+                <div class="card"><span>K</span></div>
+                <div class="card"><span>A</span></div>
+            </div>
+
+4. Apply Alice's effects by specifying the ID of your target DIV and some parameters:
+
+            <script type="text/javascript">
+            alice.rotate("deck", "-145", {
+                origin: "0% 100%", // bottom-left corner
+                timing: 6000, // ms
+                angle_offset: 18,
+                iteration: 'infinite',
+                direction: 'alternate',
+                easing: "cubic-bezier(0.33333,0.6667,0.66667,1)" // bounce
+            });
+            </script>
+
+   These options will apply a "card fanning" effect to your DIVs.
+
+5. Add optional CSS styling to your DIVs:
+
+            <style type="text/css">
+            .cards {
+                position: relative;
+                width: 150px;
+                margin: 0 auto;
+            }
+            .card {
+                background-color: #FFFFFF;
+                border: 3px solid #C0C0C0;
+                border-radius: 20px;
+                width: 150px;
+                height: 200px;
+                padding: 10px;
+            }
+            </style>
 
 ## More Info
 * [BlackBerry WebWorks SDK for Tablet OS](http://us.blackberry.com/developers/tablet/webworks.jsp) - Getting Started guides, SDK downloads, code signing keys.
-* [BlackBerry WebWorks Development Guides] (http://docs.blackberry.com/en/developers/deliverables/30182/)
+* [BlackBerry WebWorks Development Guides](http://docs.blackberry.com/en/developers/deliverables/30182/)
 * [BlackBerry WebWorks Community Forums](http://supportforums.blackberry.com/t5/Web-and-WebWorks-Development/bd-p/browser_dev)
 * [BlackBerry Open Source WebWorks Contributions Forums](http://supportforums.blackberry.com/t5/BlackBerry-WebWorks/bd-p/ww_con)
 
 ## Contributing Changes
 
-Please see the [README](https://github.com/astanley/WebWorks-Samples/blob/master/README.md) of the WebWorks-Samples repository for instructions on how to add new Samples or make modifications to existing Samples.
+To contribute code to this repository, you must [sign up as an official contributor](http://blackberry.github.com/howToContribute.html).
 
 ## Bug Reporting and Feature Requests
 
-If you find a bug in a sample or have an enhancement request, simply file an [Issue](https://github.com/blackberry/WebWorks-Samples/issues) for the sample and send a message (via github messages) to the sample author(s) to let them know that you have filed an [Issue](https://github.com/blackberry/WebWorks-Samples/issues).
+If you find a bug or have an enhancement request, please report an [Issue](https://github.com/blackberry/Alice/issues) and send a message (via github messages) to the author(s) to let them know that you have filed an issue.
 
 ## Disclaimer
 

@@ -131,7 +131,7 @@ alice.spring({
                     <p><a href="demos/fade.html">Fade</a> - The "fade" effect fades from one DIV element to another.</p>
                     <div class="code">
                         <pre class="prettyprint lang-js linenums">
-alice.fade({
+alice.fade2({
     id: "my_fade",
     duration: 3.0,
     iteration: 'infinite'
@@ -177,7 +177,7 @@ alice.rotate("my_rotate", "45", {
                         <a href="demos/carousel.html"><img src="images/rabbit.png" alt="Carousel" title="Carousel"></a>
                         <span>Carousel</span>
                     </div>
-                    <p><a href="demos/carousel.html">Carousel</a> - The "carousel" effect takes any number of DIVs and places them on panels that can be spun around. You can dynamically increase/decrease the number of panels. So you can reduce it to flipping a card (2 panels) or increase it all the way up to a huge carousel of 100 panels called a hectogon!</p>
+                    <p><a href="demos/carousel.html">Carousel</a> - The "carousel" effect takes any number of DIVs and places them on panels that can be spun around. You can dynamically increase/decrease the number of panels. So you can reduce it to flipping a card (2 panels) or increase it up to 30 panels called a <a href="http://www.math.com/tables/geometry/polygons.htm#names">Triacontagon</a>!</p>
                     <div class="code">
                         <pre class="prettyprint lang-js linenums">
 // code sample coming soon
@@ -292,17 +292,18 @@ alice.cube({
         <script type="text/javascript" src="lib/prettify/lang-css.js"></script>
 
         <!-- Alice -->
-        <script src="js/alice.core.js"></script>
-        <script src="js/alice.bounce.js"></script>
-        <script src="js/alice.toss.js"></script>
-        <script src="js/alice.wobble.js"></script>
-        <script src="js/alice.spring.js"></script>
-        <script src="js/alice.cube.js"></script>
-        <script src="js/alice.fade2.js"></script>
-        <script src="js/alice.rotate.js"></script>
 <!--
-        <script src="js/alice-min.js"></script>
+        <script src="js/src/alice.core.js"></script>
+        <script src="js/src/alice.bounce.js"></script>
+        <script src="js/src/alice.toss.js"></script>
+        <script src="js/src/alice.wobble.js"></script>
+        <script src="js/src/alice.spring.js"></script>
+        <script src="js/src/alice.cube.js"></script>
+        <script src="js/src/alice.fade2.js"></script>
+        <script src="js/src/alice.rotate.js"></script>
+        <script src="js/alice.js"></script>
 -->
+        <script src="js/alice-min.js"></script>
 
         <script type="text/javascript">
         prettyPrint();
@@ -334,7 +335,7 @@ alice.cube({
             iteration: 'infinite'
         });
 
-        alice.fade({
+        alice.fade2({
             id: "my_fade",
             duration: 3.0,
             iteration: 'infinite'

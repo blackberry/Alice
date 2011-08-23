@@ -27,7 +27,7 @@
  */
 var alice = {
     version: '0.1',
-    build: '20110823-1200'
+    build: '20110823-1300'
 };
 
 /**
@@ -262,20 +262,6 @@ alice._utils.insertStyleSheet = function (styleTitle, styleText) {
         //console.warn('The stylesheet "' + styleTitle + '" already exists!');
     }
 };
-/* Copyright 2011 Research In Motion Limited.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 /*
  * ---[ Bounce ]--------------------------------------------------------------
@@ -362,20 +348,6 @@ alice.bounce = function (params) {
 
     return this;
 };
-/* Copyright 2011 Research In Motion Limited.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 /*
  * ---[ Cube ]----------------------------------------------------------------
@@ -437,20 +409,6 @@ alice.cube = function (params) {
 
     return this;
 };
-/* Copyright 2011 Research In Motion Limited.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 /*
  * ---[ Fade ]----------------------------------------------------------------
@@ -500,23 +458,9 @@ alice.fade = function (id, timingms, easing) {
 
     return x.setup();
 };
-/* Copyright 2011 Research In Motion Limited.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 /*
- * ---[ Fade ]----------------------------------------------------------------
+ * ---[ Fade 2 ]--------------------------------------------------------------
  */
 
 alice._utils.insertCSSRule('@-webkit-keyframes alice-fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }');
@@ -567,20 +511,6 @@ alice.fade2 = function (params) {
 
     return this;
 };
-/* Copyright 2011 Research In Motion Limited.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 /*
  * ---[ Flip ]----------------------------------------------------------------
@@ -635,20 +565,6 @@ alice.flip = function (id, timingms, easing, perspective, zindex, rotations) {
     };
     return x.setup();
 };
-/* Copyright 2011 Research In Motion Limited.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 /*
  * ---[ Rotate ]--------------------------------------------------------------
@@ -728,20 +644,6 @@ alice.rotate = function (id, angle, opts) {
 
     return x.setup();
 };
-/* Copyright 2011 Research In Motion Limited.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 /*
  * ---[ Spring ]--------------------------------------------------------------
@@ -876,20 +778,6 @@ alice.spring = function (params) {
 
     return this;
 };
-/* Copyright 2011 Research In Motion Limited.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 /*
  * ---[ Toss ]----------------------------------------------------------------
@@ -946,20 +834,6 @@ alice.toss = function (params) {
 
     return this;
 };
-/* Copyright 2011 Research In Motion Limited.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 /*
  * ---[ Wobble ]--------------------------------------------------------------

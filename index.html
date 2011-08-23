@@ -33,7 +33,7 @@
                     <h1>Alice</h1>
 
                     <p><b>Alice</b> - <i>(A Lightweight Independent CSS Engine)</i> is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.</p>
-                    <p>Created by Laurent Hasson (<a href="https://twitter.com/#!/ldhasson">@ldhasson</a>), and co-developed with Jim Ing (<a href="https://twitter.com/#!/jim_ing">@jim_ing</a>)</p>
+                    <p>Created by Laurent Hasson (<a href="http://twitter.com/ldhasson">@ldhasson</a>), and co-developed with Jim Ing (<a href="http://twitter.com/jim_ing">@jim_ing</a>)</p>
 
                     <h2>Introduction</h2>
 
@@ -74,7 +74,7 @@
                     <h2>Architecture</h2>
 
                     <p>Alice is completely self-contained and doesn't rely on any other libraries. It also focuses exclusively on setting up animations through CSS manipulations. This makes it easy to include along with other libraries without fear of collision as Alice doesn't try to do event handling (touch or mouse), nor does it enforce particular logic or layout elements. It's easy for instance to use Alice to animate a Dojo Dialog component for example, or a jQuery UI component, just by addressing the underlying DIV.</p>
-                    <p>Alice is composed exclusively of JS files in a single folder, without image, CSS or any other dependencies. There is an "alice.core.js" file that contains common code and utilities, and then each effect has its own additional JS file, for example, "alice.wobble.js". The goal is to keep each animation separate which makes it easy for a developer to create a minified build with only what is needed and nothing else. Alice is lean and right now, the gzipped minified version containing the entire library is about 10K only!</p>
+                    <p>Alice is composed exclusively of JS files in a single folder, without image, CSS or any other dependencies. There is an "alice.core.js" file that contains common code and utilities, and then each effect has its own additional JS file, for example, "alice.wobble.js". The goal is to keep each animation separate which makes it easy for a developer to create a minified build with only what is needed and nothing else. Alice is lean and right now, the gzipped minified version containing the entire library is about 5K only!</p>
                     <p>The syntax for Alice is also kept minimal and in line with CSS, which we believe to be really simple and easy to grasp. For example:</p>
 
                     <pre class="prettyprint lang-js linenums">
@@ -144,7 +144,7 @@ alice.wobble("MyDiv", 20, 5, "top-left", 1000, 10, "ease-in-out", -1);
         <script type="text/javascript" src="lib/prettify/lang-css.js"></script>
 
         <!-- Alice -->
-        <script src="js/alice.core.js"></script>
+        <script src="js/src/alice.core.js"></script>
 
         <script type="text/javascript">
         prettyPrint();

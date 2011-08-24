@@ -49,7 +49,7 @@ This library and the sample code is Open Source under the [Apache 2.0 License](h
                 <div class="card"><span>A</span></div>
             </div>
 
-4. Apply Alice's effects by specifying the ID of your target DIV and some parameters:
+4. Apply Alice's effects by specifying the ID of your target DIV and some parameters. These options will apply a "card fanning" effect to your DIVs.
 
             <script type="text/javascript">
             alice.rotate("deck", "-145", {
@@ -61,8 +61,6 @@ This library and the sample code is Open Source under the [Apache 2.0 License](h
                 easing: "cubic-bezier(0.33333,0.6667,0.66667,1)" // bounce
             });
             </script>
-
-   These options will apply a "card fanning" effect to your DIVs.
 
 5. Add optional CSS styling to your DIVs:
 

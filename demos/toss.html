@@ -168,9 +168,14 @@
             </div>
         </div>
 
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../lib/sniffer.js"></script>
+
         <script src="../js/src/alice.core.js"></script>
         <script src="../js/src/alice.toss.js"></script>
         <script type="text/javascript">
+        sniffer.init();
+
         var app = {
             ids: ['div1', 'card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'card7', 'card8'],
             timer: {},

@@ -103,8 +103,13 @@
 
         <div id="statusbar">Ready</div>
 
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../lib/sniffer.js"></script>
+
         <script src="flip2.js"></script>
         <script type="text/javascript">
+        sniffer.init();
+
         evha.animate = function (x, y, dur) {
             var card = document.getElementById('card');
             var sbar = document.getElementById('statusbar');

@@ -158,8 +158,13 @@
             <input type="button" id="next" value="Next &gt;" onclick="next();">
         </div>
 
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../lib/sniffer.js"></script>
+
         <script src="pageflip.js"></script>
         <script type="text/javascript">
+        sniffer.init();
+
         function init () {
             getDirection();
             document.getElementById('previous').disabled = true;

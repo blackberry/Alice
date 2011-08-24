@@ -82,25 +82,25 @@ body {
 }
 
 .panels {
-        position: absolute;
-        white-space: nowrap;
-        top: 200px;
+    position: absolute;
+    white-space: nowrap;
+    top: 200px;
 }
 
 .panel {
-        float: left;
-        padding: 10px;
-        width: 180px;
-        height: 180px;
-        white-space: normal;
+    float: left;
+    padding: 10px;
+    width: 180px;
+    height: 180px;
+    white-space: normal;
 
-        -webkit-animation-duration: 3s;
-        -webkit-animation-iteration-count: 6;
-        -webkit-animation-direction: alternate;
-        /*-webkit-animation-timing-function: ease-out;*/
-        -webkit-animation-timing-function: cubic-bezier(0.33333,0.6667,0.66667,1);
-        -webkit-animation-fill-mode: both;
-        -webkit-transform-origin: 0% 0%;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: 6;
+    -webkit-animation-direction: alternate;
+    /*-webkit-animation-timing-function: ease-out;*/
+    -webkit-animation-timing-function: cubic-bezier(0.33333,0.6667,0.66667,1);
+    -webkit-animation-fill-mode: both;
+    -webkit-transform-origin: 0% 0%;
 }
 
 .panel div {
@@ -143,21 +143,27 @@ body {
         <h1><a href="../demos.html#fold"><img src="../images/back_btn.png" style="vertical-align: middle; margin-right: 10px;"></a>Fold</h1>
 
         <div class="panels">
-                <div class="panel p1"><img src="common/images/photos/aerogel_flower.jpg" width="180" height="180"><div>Flower on Aerogel over a flame</div></div>
-                <div class="panel p2"><img src="common/images/photos/aurora_borealis.jpg" width="180" height="180"><div>The Aurora Borealis (Northern Lights) shines above Bear Lake</div></div>
-                <div class="panel p3"><img src="common/images/photos/buzz_aldrin_moon.jpg" width="180" height="180"><div>Buzz Aldrin on the Moon</div></div>
-                <div class="panel p4">
-                        <p>The quick brown fox jumps over the lazy dog.</p>
-                </div>
-                <div class="panel p5">
-                        <video id="movie" width="430" height="180" preload="metadata" controls="controls" autoplay="autoplay" poster="common/videos/last_shuttle_liftoff.jpg">
-                                <source src="common/videos/last_shuttle_liftoff.m4v" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-                        </video>
-                        <div>Final Shuttle Mission</div>
-                </div>
-                <div class="panel p6"><img src="common/images/photos/cartwheel_galaxy.jpg" width="180" height="180"><div>Cartwheel Galaxy from the Chandra X-ray Observatory</div></div>
-                <div class="panel p6"><img src="common/images/photos/earth_western_hemisphere.jpg" width="180" height="180"><div>Earth Western Hemisphere</div></div>
-                <div class="panel p6"><img src="common/images/photos/hurricane_katrina.jpg" width="180" height="180"><div>Hurricane Katrina</div></div>
+            <div class="panel p1"><img src="common/images/photos/aerogel_flower.jpg" width="180" height="180"><div>Flower on Aerogel over a flame</div></div>
+            <div class="panel p2"><img src="common/images/photos/aurora_borealis.jpg" width="180" height="180"><div>The Aurora Borealis (Northern Lights) shines above Bear Lake</div></div>
+            <div class="panel p3"><img src="common/images/photos/buzz_aldrin_moon.jpg" width="180" height="180"><div>Buzz Aldrin on the Moon</div></div>
+            <div class="panel p4">
+                <p>The quick brown fox jumps over the lazy dog.</p>
+            </div>
+            <div class="panel p5">
+                <video id="movie" width="430" height="180" preload="metadata" controls="controls" autoplay="autoplay" poster="common/videos/last_shuttle_liftoff.jpg">
+                    <source src="common/videos/last_shuttle_liftoff.m4v" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+                </video>
+                <div>Final Shuttle Mission</div>
+            </div>
+            <div class="panel p6"><img src="common/images/photos/cartwheel_galaxy.jpg" width="180" height="180"><div>Cartwheel Galaxy from the Chandra X-ray Observatory</div></div>
+            <div class="panel p6"><img src="common/images/photos/earth_western_hemisphere.jpg" width="180" height="180"><div>Earth Western Hemisphere</div></div>
+            <div class="panel p6"><img src="common/images/photos/hurricane_katrina.jpg" width="180" height="180"><div>Hurricane Katrina</div></div>
         </div>
+
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../lib/sniffer.js"></script>
+        <script type="text/javascript">
+        sniffer.init();
+        </script>
     </body>
 </html>

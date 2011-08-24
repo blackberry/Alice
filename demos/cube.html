@@ -46,10 +46,15 @@
 
         <div id="statusbar"></div>
 
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../lib/sniffer.js"></script>
+
         <script src="../js/src/alice.core.js"></script>
         <script src="../js/src/alice.cube.js"></script>
         <script src="cube.js"></script>
         <script type="text/javascript">
+        sniffer.init();
+
         if (document.getElementById('statusbar')) {
             document.getElementById('statusbar').innerHTML = navigator.userAgent;
         }

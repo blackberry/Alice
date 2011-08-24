@@ -83,9 +83,14 @@
             <div><img src="common/images/photos/hurricane_katrina.jpg"></div>
         </div>
 
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../lib/sniffer.js"></script>
+
         <script src="../js/src/alice.core.js"></script>
         <script src="../js/src/alice.flip.js"></script>
         <script type="text/javascript">
+        sniffer.init();
+
         var Flipper = alice.flip("CONTAINER_FLIP", 2000, "ease-in-out", 1500, 1000, 2);
 
         function ButtonClickFlip(Next) {

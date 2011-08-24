@@ -83,9 +83,14 @@
             <div><img src="common/images/photos/hurricane_katrina.jpg"></div>
         </div>
 
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../lib/sniffer.js"></script>
+
         <script src="../js/src/alice.core.js"></script>
         <script src="../js/src/alice.fade.js"></script>
         <script type="text/javascript">
+        sniffer.init();
+
         var Fader = alice.fade("CONTAINER_FADE", 750, "ease-in-out");
 
         function ButtonClickFade(Next) {

@@ -291,6 +291,9 @@ alice.cube({
         <script type="text/javascript" src="lib/prettify/prettify.js"></script>
         <script type="text/javascript" src="lib/prettify/lang-css.js"></script>
 
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="lib/sniffer.js"></script>
+
         <!-- Alice -->
 <!--
         <script src="js/src/alice.core.js"></script>
@@ -307,6 +310,7 @@ alice.cube({
 
         <script type="text/javascript">
         prettyPrint();
+        sniffer.init();
 
         document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
 

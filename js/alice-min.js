@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var alice={version:'0.1',build:'20110824-1030'};alice._utils={};alice._utils.getElems=function(ids){var elems=new Array(ids.length);for(var i=0;i<ids.length;++i){elems[i]=document.getElementById(ids[i]);}
+var alice={version:'0.1',build:'20110824-1200'};alice._utils={};alice._utils.getElems=function(ids){var elems=new Array(ids.length);for(var i=0;i<ids.length;++i){elems[i]=document.getElementById(ids[i]);}
 return elems;};alice._utils.randomize=function(val,factor){var val_rand=(factor===undefined||factor===null)?val:val+val*((Math.random()*2*factor)-factor);return val_rand;};alice._utils.getPercentCoords=function(coords){if(coords===undefined||coords===null){return{x:50,y:50};}
 if(typeof coords=='string'){switch(coords){case"top-left":return{x:0,y:0};case"top-center":return{x:50,y:0};case"top-right":return{x:100,y:0};case"middle-left":return{x:0,y:50};case"middle-right":return{x:100,y:50};case"bottom-left":return{x:0,y:100};case"bottom-center":return{x:50,y:100};case"bottom-right":return{x:100,y:100};default:return{x:50,y:50};}}
 return coords;};alice._utils.hideAndRemoveEventListener=function(e){this.style.visibility="hidden";this.removeEventListener(e.type,arguments.callee,false);};alice._utils.setup=function(){var s;if(this._current===null){this._current=0;}

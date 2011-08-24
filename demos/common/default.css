@@ -29,6 +29,10 @@ body {
     overflow: hidden;
 }
 
+img {
+    border: 0;
+}
+
 fieldset {
     padding: 10px;
 }

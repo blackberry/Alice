@@ -32,6 +32,9 @@
         td {
             vertical-align: top;
         }
+        img {
+            border: 0;
+        }
         .odd {
             background-color: #F5F5F5;
         }
@@ -78,7 +81,7 @@
                 var ext_pos = item.filename.lastIndexOf(".");
                 var filename = item.filename.substring(0, ext_pos);
                 var extension = item.filename.substring(ext_pos);
-                console.log(filename + ' -> ' + extension);
+                //console.log(filename + ' -> ' + extension);
 
                 var name = item.filename || item.name;
                 var w = item.width || group.width || 64;

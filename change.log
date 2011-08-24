@@ -36,3 +36,9 @@ Change Log
     - Added email addresses.
     - Updated intro text.
     - Added a feature sniffer to inform users of browser requirements.
+
+0.1 (Build 20110824-1200)
+
+    - Commented out console line in "credits.html" that was causing an error
+      in IE.
+    - Disabled border on IMG elements in CSS for IE.

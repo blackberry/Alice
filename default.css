@@ -38,6 +38,10 @@ a:hover {
     color: #FF0000;
 }
 
+img {
+    border: 0;
+}
+
 #container {
     overflow: hidden;
     width: 100%;

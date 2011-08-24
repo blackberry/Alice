@@ -20,6 +20,10 @@ body {
     font-size: 84%;
 }
 
+img {
+    border: 0;
+}
+
 .container {
     position: relative;
     width: 480px;

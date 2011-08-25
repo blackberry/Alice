@@ -136,12 +136,12 @@ a.button:active, button:active, a.button.active, button.active {
 }
 
 button:focus, a.button:hover, button:hover {
-    color: white;
-    border-color: #388AD4;
+    border-color: #4B7F6A;
+    background-color: #196E4C; /*#2D7DC5*/
+    color: #94D4BA;
     text-decoration: none;
     text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
     background-position: 0 -40px;
-    background-color: #2D7DC5;
 }
 
 a.button {
@@ -154,13 +154,15 @@ a.button {
 a.button, button {
     display: inline-block;
     padding: 5px;
-    font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
     text-decoration: none;
-    background-color: #ECECEC;
+    border: 1px solid #BB9A6D; /*#CACACA*/
+    background-color: #F9BF6F; /*#ECECEC*/
+    color: #A26D24;
     white-space: nowrap;
     overflow: visible;
     cursor: pointer;
-    border: 1px solid #CACACA;
     -webkit-border-radius: 2px;
     border-radius: 2px;
     outline: none;

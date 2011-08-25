@@ -1,0 +1,357 @@
+<!--
+    Copyright 2011 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <title>Alice Demos</title>
+        <link href="favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="default.css">
+        <style type="text/css">
+        </style>
+    </head>
+    <body>
+        <div class="fineprint"><p id="version"></p></div>
+
+        <div class="close" style="position: absolute; top: 45px; right: 15px;">
+            <a href="index.html"><img src="images/close_icon.png"></a>
+        </div>
+
+        <div id="container">
+            <div id="card1" class="card-edge">
+                <div>
+                    <h1>Alice Demos</h1>
+                    <p><b><a href="index.html">Alice</a></b> <i>(<u>A</u> <u>L</u>ightweight <u>I</u>ndependent <u>C</u>SS <u>E</u>ngine)</i> is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.</p>
+                </div>
+
+                <div>
+                    <h2>Demos</h2>
+                </div>
+
+                <!-- Bounce -->
+                <a name="bounce"></a>
+                <div class="card">
+                    <div id="my_bounce" class="icon">
+                        <a href="demos/bounce.html"><img src="images/rabbit.png" alt="Bounce" title="Bounce"></a>
+                        <span>Bounce</span>
+                    </div>
+                    <p><a href="demos/bounce.html">Bounce</a> - The "bounce" effect simulates the bouncing of an object from a top view including a shadow.</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js linenums">
+alice.bounce({
+    id: "my_bounce"
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Toss -->
+                <a name="toss"></a>
+                <div class="card">
+                    <div id="my_toss" class="icon">
+                        <a href="demos/toss.html"><img src="images/rabbit.png" alt="Toss" title="Toss"></a>
+                        <span>Toss</span>
+                    </div>
+                    <p><a href="demos/toss.html">Toss</a> - The "toss" effect is similar to throwing an object like a frisbee. With the options, you can specify the direction that the toss comes from.</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js linenums">
+alice.toss({
+    id: "my_toss",
+    duration: 2000, // ms
+    iteration: 'infinite'
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Wobble -->
+                <a name="wobble"></a>
+                <div class="card">
+                    <div id="my_wobble" class="icon">
+                        <a href="demos/wobble.html"><img src="images/rabbit.png" alt="Wobble" title="Wobble"></a>
+                        <span>Wobble</span>
+                    </div>
+                    <p><a href="demos/wobble.html">Wobble</a> - The "wobble" effect simulates the behavior you get when you press-and-hold on icons to delete apps. However, the name can be a misnomer because by adjusting a few options, you can get a "breeze" or "sway" effect.</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js linenums">
+alice.wobble({
+    id: "my_wobble"
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Spring -->
+                <a name="spring"></a>
+                <div class="card">
+                    <div id="my_spring" class="icon">
+                        <a href="demos/spring.html"><img src="images/rabbit.png" alt="Spring" title="Spring"></a>
+                        <span>Spring</span>
+                    </div>
+                    <p><a href="demos/spring.html">Spring</a> - The "spring" effect simulates the "springiness" of an object being dropped. It can be configured with a certain amount of elasticity, which affects the number of bounces and how "squishy" the object appears.</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js linenums">
+alice.spring({
+    id: "my_spring",
+    width: 96,
+    height: 96,
+    drop_height: 190,
+    elasticity: 0.56, // basketball
+    iteration: 'infinite'
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Fade -->
+                <a name="fade"></a>
+                <div class="card">
+                    <div id="my_fade" class="icon">
+                        <a href="demos/fade.html"><img src="images/rabbit.png" alt="Fade" title="Fade"></a>
+                        <span>Fade</span>
+                    </div>
+                    <p><a href="demos/fade.html">Fade</a> - The "fade" effect fades from one DIV element to another.</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js linenums">
+alice.fade2({
+    id: "my_fade",
+    duration: 3.0,
+    iteration: 'infinite'
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Rotate -->
+                <a name="rotate"></a>
+                <div class="card">
+                    <div id="my_rotate" class="icon">
+                        <div>
+                            <a href="demos/rotate.html"><img src="images/rabbit.png"></a>
+                        </div>
+                    </div>
+                    <p><a href="demos/rotate.html">Rotate</a> - The "rotate" effect rotates a DIV. By specifying a few parameters, rotate can simulate other effects like a pendulum, wobble, or swinging door.</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js linenums">
+alice.rotate("my_rotate", "45", {
+    origin: "50% 0%",
+    timing: 1000,
+    iteration: 'infinite',
+    direction: 'alternate',
+    easing: 'cubic-bezier(0.33333,0.6667,0.66667,1)' // bounce
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <div>
+                    <h2>Experimental</h2>
+                    <p>The following effects are under development:</p>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Carousel -->
+                <a name="carousel"></a>
+                <div class="card">
+                    <div id="my_carousel" class="icon">
+                        <a href="demos/carousel.html"><img src="images/rabbit.png" alt="Carousel" title="Carousel"></a>
+                        <span>Carousel</span>
+                    </div>
+                    <p><a href="demos/carousel.html">Carousel</a> - The "carousel" effect takes any number of DIVs and places them on panels that can be spun around. You can dynamically increase/decrease the number of panels. So you can reduce it to flipping a card (2 panels) or increase it up to 30 panels called a <a href="http://www.math.com/tables/geometry/polygons.htm#names">Triacontagon</a>!</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js linenums">
+// code sample coming soon
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Cube -->
+                <a name="cube"></a>
+                <div class="card">
+                    <div id="my_cube" class="icon">
+                        <a href="demos/cube.html"><img src="images/rabbit.png" alt="Cube" title="Cube"></a>
+                        <span>Cube</span>
+                    </div>
+                    <p><a href="demos/cube.html">Cube</a> - The "cube" effect takes DIV elements and places them on to the faces of a cube, which can be sliced into horizontal layers.</p>
+                    <p>The cube can be rotated with touch, mouse, keyboard, and tilt events. With slices enabled, you get a very cool effect of each slice rotating one right after the other.</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js linenums">
+alice.cube({
+    id: "my_cube",
+    hslice: 8
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Page Flip -->
+                <a name="pageflip"></a>
+                <div class="card">
+                    <div id="my_pageflip" class="icon">
+                        <a href="demos/pageflip.html"><img src="images/rabbit.png" alt="Page Flip" title="Page Flip"></a>
+                        <span>Page Flip</span>
+                    </div>
+                    <p><a href="demos/pageflip.html">Page Flip</a> - The "page flip" effect simulates the flipping of pages in a book.</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js linenums">
+// code sample coming soon
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Fold -->
+                <a name="fold"></a>
+                <div class="card">
+                    <div id="my_fold" class="icon">
+                        <a href="demos/fold.html"><img src="images/rabbit.png" alt="Fold" title="Fold"></a>
+                        <span>Fold</span>
+                    </div>
+                    <p><a href="demos/fold.html">Fold</a> - The "fold" effect tries to mimic folded paper being expanded and collapsed (think of the paper dolls you used to cut out when you were a kid).</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js linenums">
+// code sample coming soon
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Flip -->
+                <a name="flip"></a>
+                <div class="card">
+                    <div id="my_flip" class="icon">
+                        <a href="demos/flip.html"><img src="images/rabbit.png" alt="Flip" title="Flip"></a>
+                        <span>Flip</span>
+                    </div>
+                    <p><a href="demos/flip.html">Flip</a> - The "flip" applies a card flipping effect from one DIV element to the next.</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js linenums">
+// code sample coming soon
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Flip2 -->
+                <a name="flip2"></a>
+                <div class="card">
+                    <div id="my_flip" class="icon">
+                        <a href="demos/flip2.html"><img src="images/rabbit.png" alt="Flip" title="Flip"></a>
+                        <span>Flip 2</span>
+                    </div>
+                    <p><a href="demos/flip2.html">Flip 2</a> - This "flip" applies a card flipping effect, and supports different mouse, touch, keyboard, and accelerometer events.</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js linenums">
+// code sample coming soon
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+            </div>
+        </div>
+<!--
+        <pre class="prettyprint linenums">
+            <code class="language-css">
+-webkit-animation-timing-function: ease-in;
+            </code>
+        </pre>
+-->
+        <div class="fineprint"><p>Copyright (c) 2011 Research In Motion Limited. &bull; <a href="license.txt">License</a> &bull; <a href="credits.html">Credits</a></p></div>
+
+        <!-- Syntax Highlighting -->
+<!--
+        <link rel="stylesheet" type="text/css" href="lib/prettify/prettify.css">
+        <link rel="stylesheet" type="text/css" href="lib/prettify/themes/sons-of-obsidian.css">
+        <link rel="stylesheet" type="text/css" href="lib/prettify/themes/desert.css">
+        <link rel="stylesheet" type="text/css" href="lib/prettify/themes/sunburst.css">
+-->
+        <link rel="stylesheet" type="text/css" href="lib/prettify/themes/sons-of-obsidian.css">
+        <script type="text/javascript" src="lib/prettify/prettify.js"></script>
+        <script type="text/javascript" src="lib/prettify/lang-css.js"></script>
+
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="lib/sniffer.js"></script>
+
+        <!-- Alice -->
+<!--
+        <script src="js/src/alice.core.js"></script>
+        <script src="js/src/alice.bounce.js"></script>
+        <script src="js/src/alice.toss.js"></script>
+        <script src="js/src/alice.wobble.js"></script>
+        <script src="js/src/alice.spring.js"></script>
+        <script src="js/src/alice.cube.js"></script>
+        <script src="js/src/alice.fade2.js"></script>
+        <script src="js/src/alice.rotate.js"></script>
+        <script src="js/alice.js"></script>
+-->
+        <script src="js/alice-min.js"></script>
+
+        <script type="text/javascript">
+        prettyPrint();
+        sniffer.init();
+
+        document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
+
+        alice.bounce({
+            id: "my_bounce",
+            shadow: true
+        });
+
+        alice.toss({
+            id: "my_toss",
+            duration: 2000,
+            iteration: 'infinite'
+        });
+
+        alice.wobble({
+            id: "my_wobble"
+        });
+
+        alice.spring({
+            id: "my_spring",
+            width: 96,
+            height: 96,
+            drop_height: 190,
+            elasticity: 0.56,
+            timing_function: 'cubic-bezier(0, 0.35, .5, 1.3)',
+            iteration: 'infinite'
+        });
+
+        alice.fade2({
+            id: "my_fade",
+            duration: 3.0,
+            iteration: 'infinite'
+        });
+
+        alice.rotate("my_rotate", "45", {
+            origin: "50% 0%",
+            timing: 1000,
+            iteration: 'infinite',
+            direction: 'alternate',
+            easing: 'cubic-bezier(0.33333,0.6667,0.66667,1)'
+        });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,735 @@
+<!--
+    Copyright 2011 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <title>Alice Wobble Demo</title>
+        <link href="../favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="common/default.css">
+        <style type="text/css">
+        .icon {
+            float: left;
+            width: 116px;
+            height: 116px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .icon img {
+            width: 96px;
+            height: 96px;
+            /*border-radius: 15px;*/
+        }
+
+        .close-icon {
+            background: transparent url(../images/close_icon.png) no-repeat;
+            position: absolute;
+            top: 0px;
+            left: 10px;
+            width: 29px;
+            height: 29px;
+        }
+        </style>
+    </head>
+    <body style="overflow: auto;">
+        <h1><a href="../demos.html#wobble"><img src="../images/back_btn.png" style="vertical-align: middle; margin-right: 10px;"></a>Alice Wobble Demo</h1>
+
+        <p>This is an interactive example that simulates the wobble effect for deleting apps.</p>
+
+        <p>Instructions:</p>
+
+        <ul>
+            <li>To remove an icon, tap/click-and-hold an icon for 1 sec. until it wobbles then tap/click the 'x'.</li>
+            <li>To cancel the wobble, tap/click an icon.</li>
+        </ul>
+
+        <div id="icons"></div>
+
+        <div id="controls" style="display: none; position: absolute; top: 0px; right: 0px; padding: 10px; background: rgba(0, 176, 228, 0.9); border-radius: 10px;">
+            <fieldset>
+                <legend>Settings:</legend>
+                <table border="0" cellpadding="5" cellspacing="0">
+                    <tr>
+                        <td align="right"><label for="angle">Angle (&deg;):</label></td>
+                        <td><input id="angle" type="range" min="1" max="720" value="20" step="1" onchange="app.updateAngle(this);" onmouseup="app.changeAngle(this);"></td>
+                        <td><input type="text" id="angle_val" name="angle_val" value="20" size="4" onchange="app.changeAngle(this);"></td>
+                    </tr>
+                    <tr>
+                        <td align="right"><label for="duration">Duration (ms):</label></td>
+                        <td><input id="duration" type="range" min="250" max="10000" value="1000" step="250" onchange="app.updateDuration(this);" onmouseup="app.changeDuration(this);"></td>
+                        <td><input type="text" id="duration_val" name="duration_val" value="1000" size="4" onchange="app.changeDuration(this);"></td>
+                    </tr>
+                    <tr>
+                        <td align="right"><label for="random">Randomness (%):</label></td>
+                        <td><input id="random" type="range" min="0" max="100" value="0" step="5" onchange="app.updateRandom(this);" onmouseup="app.changeRandom(this);"></td>
+                        <td><input type="text" id="random_val" name="random_val" value="0" size="4" onchange="app.changeRandom(this);"></td>
+                    </tr>
+                    <tr>
+                        <td align="right" valign="top"><label for="timing">Timing Function:</label></td>
+                        <td colspan="2">
+                            <select id="timing_val" size="1" onchange="app.changeTiming(this);">
+                                <option value="ease">ease</option>
+                                <option value="linear">linear</option>
+                                <option value="ease-in">ease-in</option>
+                                <option value="ease-out">ease-out</option>
+                                <option value="ease-in-out" selected="selected">ease-in-out</option>
+                                <option value="cubic-bezier(0, 0.35, .5, 1.3)">bounce</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" valign="top"><label for="origin">Origin (x, y %):</label></td>
+                        <td colspan="2">
+                            <select id="origin_val" size="1" onchange="app.updateOrigin(this);">
+                                <option value="TL" selected="selected">top-left</option>
+                                <option value="TC">top-center</option>
+                                <option value="TR">top-right</option>
+
+                                <option value="ML">middle-left</option>
+                                <option value="C">center</option>
+                                <option value="MR">middle-right</option>
+
+                                <option value="BL">bottom-left</option>
+                                <option value="BC">bottom-center</option>
+                                <option value="BR">bottom-right</option>
+
+                                <option value="X">custom</option>
+                            </select>
+                            <br>
+                            <input type="number" id="origin-x" step="50" min="-400" max="400" value="0" size="4" disabled="disabled" onchange="app.changeOrigin(this);">
+                            <input type="number" id="origin-y" step="50" min="-400" max="400" value="0" size="4" disabled="disabled" onchange="app.changeOrigin(this);">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td colspan="2">
+                            <input type="button" value="Start" onclick="app.startWobble();">
+                            &nbsp;
+                            <input type="button" value="Stop" onclick="app.stopWobble();">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <div>
+            </div>
+        </div>
+
+        <div onclick="app.togglePanel(this, 'controls');" style="position: absolute; top: 0px; right: 0px; padding: 10px; background: rgba(0, 0, 102, 0.9); border-radius: 5px; color: #FFFFFF;">Change Settings</div>
+
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../lib/sniffer.js"></script>
+
+        <script src="../js/src/alice.core.js"></script>
+        <script src="../js/src/alice.wobble.js"></script>
+        <script type="text/javascript">
+        sniffer.init();
+/*
+        var social = {
+            "address-book"    : { name: "Address Book",     link: "" },
+            "calendar"        : { name: "Calendar",         link: "" },
+            "flickr"          : { name: "Photos",           link: "" },
+            "heart"           : { name: "Heart",            link: "" },
+            "magnifying-glass": { name: "Magnifying Glass", link: "" },
+            "map"             : { name: "Map",              link: "" },
+            "name-tag"        : { name: "Name Tag",         link: "" },
+            "notebook"        : { name: "Notebook",         link: "" },
+            "phone"           : { name: "Phone",            link: "" },
+            "post-it"         : { name: "Stickie",          link: "" },
+            "rosette"         : { name: "Guarantee",        link: "" },
+            "rss"             : { name: "RSS",              link: "" },
+            "sale"            : { name: "Sale",             link: "" },
+            "tick"            : { name: "Tick",             link: "" },
+            "twitter"         : { name: "Tweet",            link: "" }
+        };
+*/
+        var social = {
+            "10_spades"      : { name: "10 of Spades",      link: "" },
+            "jack_spades"    : { name: "Jack of Spades",    link: "" },
+            "queen_spades"   : { name: "Queen of Spades",   link: "" },
+            "king_spades"    : { name: "King of Spades",    link: "" },
+            "ace_spades"     : { name: "Ace of Spades",     link: "" },
+
+            "10_hearts"      : { name: "10 of Hearts",      link: "" },
+            "jack_hearts"    : { name: "Jack of Hearts",    link: "" },
+            "queen_hearts"   : { name: "Queen of Hearts",   link: "" },
+            "king_hearts"    : { name: "King of Hearts",    link: "" },
+            "ace_hearts"     : { name: "Ace of Hearts",     link: "" },
+
+            "10_clubs"       : { name: "10 of Clubs",       link: "" },
+            "jack_clubs"     : { name: "Jack of Clubs",     link: "" },
+            "queen_clubs"    : { name: "Queen of Clubs",    link: "" },
+            "king_clubs"     : { name: "King of Clubs",     link: "" },
+            "ace_clubs"      : { name: "Ace of Clubs",      link: "" },
+
+            "10_diamonds"    : { name: "10 of Diamonds",    link: "" },
+            "jack_diamonds"  : { name: "Jack of Diamonds",  link: "" },
+            "queen_diamonds" : { name: "Queen of Diamonds", link: "" },
+            "king_diamonds"  : { name: "King of Diamonds",  link: "" },
+            "ace_diamonds"   : { name: "Ace of Diamonds",   link: "" },
+
+            "joker_black"    : { name: "Black Joker",       link: "" },
+            "joker_red"      : { name: "Red Joker",         link: "" }
+        };
+
+        // create HTML for forms and icons
+        var html = '';
+
+        html += '<div id="div1" style="float: left; margin: 10px; padding: 10px; background-color: #000000; color: #FFFFFF; border-radius: 5px; border: 2px solid #C0C0C0; width: 360px; height: 70px;">';
+        html += '<form>';
+        html += '<table border="0" cellpadding="3" cellspacing="0">';
+        html += '<tr>';
+        html += '<td align="right"><label>User Name:</label></td>';
+        html += '<td><input type="text" name="username" value=""></td>';
+        html += '</tr>';
+        html += '<tr>';
+        html += '<td align="right"><label>Password:</label></td>';
+        html += '<td><input type="password" name="password" value=""></td>';
+        html += '</tr>';
+        html += '</table>';
+        html += '</form>';
+        html += '</div>';
+        //html += '<div>&nbsp;</div>';
+
+        html += '<div id="div2" style="float: left; margin: 10px; padding: 10px; background-color: #FFFFFF; color: #000000; border-radius: 5px; border: 2px solid #C0C0C0; width: 500px; height: 70px;">';
+        html += '<form>';
+        html += '<table border="0" cellpadding="3" cellspacing="0">';
+        html += '<tr>';
+        html += '<td align="right"><label>City:</label></td>';
+        html += '<td><input type="text" name="city" value=""></td>';
+        html += '</tr>';
+        html += '<tr>';
+        html += '<td align="right"><label>Province:</label></td>';
+        html += '<td>';
+        html += '<select>';
+        html += '<option value="">-- Select --</option>';
+        html += '<option value="AB">Alberta</option>';
+        html += '<option value="BC">British Columbia</option>';
+        html += '<option value="MB">Manitoba</option>';
+        html += '<option value="NB">New Brunswick</option>';
+        html += '<option value="NL">Newfoundland and Labrador</option>';
+        html += '<option value="NT">Northwest Territories</option>';
+        html += '<option value="NS">Nova Scotia</option>';
+        html += '<option value="NU">Nunavut</option>';
+        html += '<option value="ON">Ontario</option>';
+        html += '<option value="PE">Prince Edward Island</option>';
+        html += '<option value="QC">Quebec</option>';
+        html += '<option value="SK">Saskatchewan</option>';
+        html += '<option value="YK">Yukon</option>';
+        html += '</select>';
+        html += '</td>';
+        html += '</tr>';
+        html += '</table>';
+        html += '</form>';
+        html += '</div>';
+
+        for (var item in social) {
+            html += '<div id="icon-' + item + '" class="icon">';
+            if (social[item].link != '') {
+                html += '<a href="' + social[item].link + '">';
+            }
+            html += '<img src="common/images/cards/' + item + '.png">';
+            if (social[item].link != '') {
+                html += '</a>';
+            }
+            html += '<div>' + social[item].name + '</div>';
+            html += '</div>';
+        }
+
+        // add icons to the collection
+        document.getElementById('icons').innerHTML = html;
+
+        //------------------------------------------------------------------------
+
+        /**
+         * @description
+         * Object for application logic.
+         */
+        var app = {
+            icons: document.getElementById('icons').children,
+            timer_id: null,
+            clicks: 0,
+            hold: false,
+            hold_time_start: 0,
+            hold_time_end: 0,
+            hold_time_diff: 0,
+            wobbling: false
+        };
+
+        /**
+         * @description
+         * Remove the icon from the collection.
+         */
+        app.handleClose = function (elem) {
+            if (elem && elem.parentNode && elem.parentNode.id) {
+                // remove icon
+                document.getElementById('icons').removeChild(document.getElementById(elem.parentNode.id));
+            }
+        };
+
+        /**
+         * @description
+         * Start the wobble effect.
+         */
+        app.startWobble = function () {
+            var styleSheet, cssRule, cssW, cssH, w, h;
+
+            for (var i = 0; i < document.styleSheets.length; i++) {
+                styleSheet = document.styleSheets[i];
+                for (var j = 0; j < styleSheet.cssRules.length; j++) {
+                    cssRule = styleSheet.cssRules[j];
+                    //console.debug(cssRule);
+                    if (cssRule.selectorText == '.icon') {
+                        cssW = parseInt(cssRule.style.width, 10);
+                        cssH = parseInt(cssRule.style.height, 10);
+                        break;
+                    }
+                }
+            }
+
+            var closeIcon, elem;
+            for (var i = 0; i < app.icons.length; i++) {
+                if (document.getElementById(app.icons[i].id).className != 'icon') {
+                    w = parseInt(document.getElementById(app.icons[i].id).style.width, 10);
+                    h = parseInt(document.getElementById(app.icons[i].id).style.height, 10);
+                }
+                else {
+                    w = cssW;
+                    h = cssH;
+                }
+
+                var originx = w * document.getElementById('origin-x').value / 100;
+                var originy = h * document.getElementById('origin-y').value / 100;
+                var origin = originx + 'px ' + originy + 'px';
+
+                // show close icon if it exists
+                if (document.getElementById(app.icons[i].id + '_close')) {
+                    closeIcon = document.getElementById(app.icons[i].id + '_close');
+                    closeIcon.style.display = 'block';
+                }
+                // create close icon
+                else {
+                    closeIcon = document.createElement('div');
+                    closeIcon.id = app.icons[i].id + '_close';
+                    closeIcon.className = 'close-icon';
+
+                    if (w != h) {
+                            closeIcon.style.top = '-14px';
+                            closeIcon.style.left = '-14px';
+                    }
+
+                    closeIcon.onclick = function () {
+                        app.handleClose(this);
+                    };
+
+                    elem = document.getElementById(app.icons[i].id);
+                    elem.appendChild(closeIcon);
+                }
+
+                // apply wobble effect
+                alice.wobble({
+                    id: app.icons[i].id,
+                    angle: document.getElementById('angle_val').value,
+                    duration: document.getElementById('duration_val').value,
+                    random: document.getElementById('random_val').value,
+                    timing: document.getElementById('timing_val').value,
+                    origin: origin
+                });
+            }
+
+            app.wobbling = true;
+        };
+
+        /**
+         * @description
+         * Stop the wobble effect.
+         */
+        app.stopWobble = function () {
+            var closeIcon, elem, s;
+            for (var i = 0; i < app.icons.length; i++) {
+                // hide close icon
+                closeIcon = document.getElementById(app.icons[i].id + '_close');
+                closeIcon.style.display = 'none';
+
+                elem = document.getElementById(app.icons[i].id);
+                s = elem.style;
+
+                // clear wobble effect
+                s['-webkit-animation-name'] = '';
+                s['-webkit-animation-duration'] = '';
+                s['-webkit-animation-iteration-count'] = '';
+                s['-webkit-animation-direction'] = '';
+                s['-webkit-animation-timing-function'] = '';
+            }
+
+            app.wobbling = false;
+        };
+
+        /**
+         * @description
+         * Handle touch start event.
+         */
+        app.handleTouchStart = function (e) {
+            if (e.target.nodeName != 'INPUT' && e.target.nodeName != 'SELECT') {
+                e.preventDefault();
+            }
+
+            // start the touch timer
+            app.hold_time_start = new Date();
+        };
+
+        /**
+         * @description
+         * Handle touch move event.
+         */
+        app.handleTouchMove = function (e) {
+            if (e.target.nodeName != 'INPUT' && e.target.nodeName != 'SELECT') {
+                e.preventDefault();
+            }
+
+            // calculate touch hold time
+            app.hold_time_end = new Date();
+            app.hold_time_diff = app.hold_time_end - app.hold_time_start;
+
+            // start the wobble if the user holds longer than 1 sec.
+            if (app.hold === false && app.hold_time_diff > 1000) {
+                app.hold = true;
+                app.startWobble();
+            }
+        };
+
+        /**
+         * @description
+         * Handle touch end event.
+         */
+        app.handleTouchEnd = function (e) {
+            if (e.target.nodeName != 'INPUT' && e.target.nodeName != 'SELECT') {
+                e.preventDefault();
+            }
+
+            // trigger close if the user taps the close icon
+            if (e.target.className && e.target.className == 'close-icon') {
+                app.handleClose(e.target);
+            }
+
+            // open the link in a new window/tab if the user taps the icon
+            if (app.hold === false && app.wobbling === false) {
+                if (e.target.parentElement.href) {
+                    window.open(
+                        e.target.parentElement.href,
+                        e.target.parentElement.parentElement.id,
+                        ''
+                    );
+                }
+            }
+
+            // clear the wobble when a user taps the icon area that is not a close icon
+            if (app.hold === false && app.wobbling === true && e.target && e.target.className != 'close-icon') {
+                app.stopWobble();
+            }
+
+            // reset hold
+            app.hold = false;
+            app.hold_time_start = 0;
+            app.hold_time_end = 0;
+            app.hold_time_diff = 0;
+        };
+
+        /**
+         * @description
+         * Start hold timer.
+         */
+        app.startHoldTimer = function () {
+            // calculate click hold time
+            app.hold_time_end = new Date();
+            app.hold_time_diff = app.hold_time_end - app.hold_time_start;
+
+            // start the wobble if the user holds longer than 1 sec.
+            if (app.wobbling === false && app.hold_time_diff > 1000) {
+                app.startWobble();
+            }
+        };
+
+        /**
+         * @description
+         * Handle mouse down event.
+         */
+        app.handleMouseDown = function (e) {
+            app.hold_time_start = new Date();
+            app.hold = true;
+
+            // use a timer to check if the user is holding the mouse button because
+            // mousemove doesn't get triggered on a hold like touchmove
+            app.timer_id = setInterval('app.startHoldTimer()', 100);
+        };
+
+        /**
+         * @description
+         * Handle mouse up event.
+         */
+        app.handleMouseUp = function (e) {
+            // clear the hold timer
+            app.hold = false;
+            clearInterval(app.timer_id);
+        };
+
+        /**
+         * @description
+         * Handle single click event.
+         */
+        app.handleSingleClick = function (e) {
+            e.preventDefault();
+/*
+            if (e.target.nodeName == 'IMG') {
+                console.warn(e.target.nodeName);
+                e.preventDefault();
+            }
+*/
+            app.clicks++;
+
+            if (app.wobbling === true) {
+                if (e.target && e.target.className != 'close-icon') {
+                    // clear the wobble when a user clicks the icon area that is not a close icon
+                    if (app.clicks > 1) {
+                        app.stopWobble();
+                        app.clicks = 0;
+                    }
+                    else {
+                        //console.debug('hold click detected');
+                    }
+                }
+                else {
+                    //console.debug('close icon clicked');
+                }
+            }
+            // open the link in a new window/tab if the user clicks the icon
+            else {
+                if (e.target.parentElement.href) {
+                    window.open(
+                        e.target.parentElement.href,
+                        e.target.parentElement.parentElement.id,
+                        ''
+                    );
+                }
+
+                app.clicks = 0;
+            }
+        };
+
+        /**
+         * @description
+         * Toggle settings panel.
+         */
+        app.togglePanel = function (btn, elem_id) {
+            var elem = document.getElementById(elem_id);
+            if (elem.style.display == 'none') {
+                elem.style.display = 'block';
+                btn.innerHTML = 'Hide';
+            }
+            else {
+                elem.style.display = 'none';
+                btn.innerHTML = 'Change Settings';
+            }
+        };
+
+        app.updateAngle = function (elem) {
+            document.getElementById('angle_val').value = elem.value;
+        };
+
+        /**
+         * @description
+         * Change angle value.
+         */
+        app.changeAngle = function (elem) {
+            document.getElementById('angle').value = elem.value;
+
+            // set randomness
+            var r;
+            if (elem.value) {
+                r = (Math.random() * (document.getElementById('random_val').value / 50) - document.getElementById('random_val').value / 100);
+            }
+
+            // calculate an angle
+            var a = Math.round(parseFloat(document.getElementById('angle_val').value / 2) + parseFloat(document.getElementById('angle_val').value / 2) * r);
+
+            // adjust rule
+            var styleSheet, cssRule;
+            for (var i = 0; i < document.styleSheets.length; i++) {
+                styleSheet = document.styleSheets[i];
+                for (var j = 0; j < styleSheet.cssRules.length; j++) {
+                    cssRule = styleSheet.cssRules[j];
+                    if (cssRule.type === window.CSSRule.WEBKIT_KEYFRAMES_RULE && cssRule.name == 'alice-wobble') {
+                        cssRule.findRule('0%').style.webkitTransform = 'rotate(' + a + 'deg)';
+                        cssRule.findRule('100%').style.webkitTransform = 'rotate(-' + a + 'deg)';
+                        break;
+                    }
+                }
+            }
+
+            if (app.wobbling === true) {
+                app.stopWobble();
+                //app.startWobble();
+
+                // need to pause for rule to take effect
+                setTimeout('app.startWobble()', 100);
+            }
+        };
+
+        app.updateDuration = function (elem) {
+            document.getElementById('duration_val').value = elem.value;
+        };
+
+        /**
+         * @description
+         * Change duration value.
+         */
+        app.changeDuration = function (elem) {
+            document.getElementById('duration').value = elem.value;
+
+            if (app.wobbling === true) {
+                app.stopWobble();
+                app.startWobble();
+            }
+        };
+
+        app.updateRandom = function (elem) {
+            document.getElementById('random_val').value = elem.value;
+        };
+
+        /**
+         * @description
+         * Change randomness value.
+         */
+        app.changeRandom = function (elem) {
+            document.getElementById('random').value = elem.value;
+
+            if (app.wobbling === true) {
+                app.stopWobble();
+                app.startWobble();
+            }
+        };
+
+        /**
+         * @description
+         * Change timing function value.
+         */
+        app.changeTiming = function (elem) {
+            if (app.wobbling === true) {
+                app.stopWobble();
+                app.startWobble();
+            }
+        };
+
+        /**
+         * @description
+         * Change origin (anchor point) value.
+         */
+        app.updateOrigin = function (elem) {
+            var x, y;
+
+            switch (elem.value) {
+                case "TL":
+                    x = 0;
+                    y = 0;
+                    break;
+                case "TC":
+                    x = 50;
+                    y = 0;
+                    break;
+                case "TR":
+                    x = 100;
+                    y = 0;
+                    break;
+
+                case "ML":
+                    x = 0;
+                    y = 50;
+                    break;
+                case "C":
+                    x = 50;
+                    y = 50;
+                    break;
+                case "MR":
+                    x = 100;
+                    y = 50;
+                    break;
+
+                case "BL":
+                    x = 0;
+                    y = 100;
+                    break;
+                case "BC":
+                    x = 50;
+                    y = 100;
+                    break;
+                case "BR":
+                    x = 100;
+                    y = 100;
+                    break;
+
+                default:
+                    x = -100;
+                    y = -100;
+                    break;
+            }
+
+            document.getElementById('origin-x').value = x;
+            document.getElementById('origin-y').value = y;
+
+            var disabled = (elem.value == 'X') ? false : true;
+
+            document.getElementById('origin-x').disabled = disabled;
+            document.getElementById('origin-y').disabled = disabled;
+
+            app.changeOrigin();
+        };
+
+        var originx, originy;
+
+        /**
+         * @description
+         * Change origin value.
+         */
+        app.changeOrigin = function () {
+            if (app.wobbling === true) {
+                if (document.getElementById('origin-x').value != originx || document.getElementById('origin-y').value != originy) {
+                    originy = document.getElementById('origin-y').value;
+                    originx = document.getElementById('origin-x').value;
+
+                    app.stopWobble();
+                    app.startWobble();
+                }
+            }
+        };
+
+        // set up event listeners
+        var elem;
+        for (var i = 0; i < app.icons.length; i++) {
+            elem = document.getElementById(app.icons[i].id);
+
+            elem.addEventListener('touchstart', app.handleTouchStart, false);
+            elem.addEventListener('touchmove', app.handleTouchMove, false);
+            elem.addEventListener('touchend', app.handleTouchEnd, false);
+
+            elem.addEventListener('mousedown', app.handleMouseDown, false);
+            elem.addEventListener('mouseup', app.handleMouseUp, false);
+
+            elem.addEventListener('click', app.handleSingleClick, false);
+        }
+        </script>
+    </body>
+</html>

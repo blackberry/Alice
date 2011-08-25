@@ -1,0 +1,55 @@
+<!--
+    Copyright 2011 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+        <title>Logos</title>
+        <link href="favicon.ico" rel="icon" type="image/x-icon">
+        <style type="text/css">
+        body {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 84%;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>Logos</h1>
+
+        <p>This is a sample page, which shows the logos against different colored backgrounds.</p>
+
+        <div id="content"></div>
+
+        <script type="text/javascript">
+        var colors = ['FFF', 'EEE', 'DDD', 'CCC', 'BBB', 'AAA', '999', '888', '777', '666', '555', '444', '333', '222', '111', '000'];
+        var icons = ['app_icon.png', 'logo_header_plain.png', 'rabbit.png'];
+
+        var html = '';
+        html += '<table border="0" cellpadding="3" cellspacing="3">';
+        for (var i = 0; i < colors.length; i++) {
+            html += '<tr style="background-color: #' + colors[i] + ';">';
+            for (var j = 0; j < icons.length; j++) {
+                html += '<td><img src="' + icons[j] + '"></td>';
+            }
+            html += '</tr>';
+        }
+        html += '</table>';
+
+        document.getElementById('content').innerHTML = html;
+        </script>
+    </body>
+</html>

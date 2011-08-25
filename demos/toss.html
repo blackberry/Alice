@@ -1,0 +1,526 @@
+<!--
+    Copyright 2011 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <title>Alice Toss Demo</title>
+        <link href="../favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="common/default.css">
+        <style type="text/css">
+        .icon {
+            float: left;
+            width: 100px;
+            height: 136px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .icon img {
+            width: inherit;
+            height: inherit;
+            border-radius: 24px;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="controls" style="display: none; position: absolute; top: 0px; right: 0px; padding: 10px; background: rgba(0, 176, 228, 0.9); border-radius: 10px;">
+            <fieldset>
+                <legend>Settings:</legend>
+                <table border="0" cellpadding="10" cellspacing="0">
+                    <tr>
+                        <td align="right"><label for="duration">Duration (ms):</label></td>
+                        <td><input id="duration" type="range" min="250" max="10000" value="2000" step="250" onchange="app.updateDuration(this);" onmouseup="app.changeDuration(this);"></td>
+                        <td><input type="text" id="duration_val" name="duration_val" value="2000" size="4" onchange="app.changeDuration(this);"></td>
+                    </tr>
+                    <tr>
+                        <td align="right"><label for="random">Randomness (%):</label></td>
+                        <td><input id="random" type="range" min="0" max="100" value="0" step="5" onchange="app.updateRandom(this);" onmouseup="app.changeRandom(this);"></td>
+                        <td><input type="text" id="random_val" name="random_val" value="0" size="4" onchange="app.changeRandom(this);"></td>
+                    </tr>
+                    <tr>
+                        <td align="right" valign="top"><label for="timing">Timing Function:</label></td>
+                        <td colspan="2">
+                            <select id="timing_val" size="1" onchange="app.changeTiming(this);">
+                                <option value="ease">ease</option>
+                                <option value="linear">linear</option>
+                                <option value="ease-in">ease-in</option>
+                                <option value="ease-out">ease-out</option>
+                                <option value="ease-in-out" selected="selected">ease-in-out</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" valign="top"><label for="origin">Origin (x, y %):</label></td>
+                        <td colspan="2">
+                            <select id="origin_val" size="1" onchange="app.changeOrigin(this);">
+                                <option value="TL">top-left</option>
+                                <option value="TC">top-center</option>
+                                <option value="TR">top-right</option>
+                                <option value="ML">middle-left</option>
+                                <option value="C" selected="selected">center (default)</option>
+                                <option value="MR">middle-right</option>
+                                <option value="BL">bottom-left</option>
+                                <option value="BC">bottom-center</option>
+                                <option value="BR">bottom-right</option>
+                                <option value="X">custom</option>
+                            </select>
+                            <br>
+
+                            <input type="number" id="origin-x" step="50" min="-400" max="400" value="50" size="4" disabled="disabled" onchange="app.animate();">
+                            <input type="number" id="origin-y" step="50" min="-400" max="400" value="50" size="4" disabled="disabled" onchange="app.animate();">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right"><label for="translatex">Translate-X (px):</label></td>
+                        <td><input id="translatex" type="range" min="-2000" max="2000" value="0" step="10" onchange="app.changeTranslateX(this);" onmouseup="app.changeTranslate();"></td>
+                        <td><input type="text" id="translatex_val" name="translatex_val" value="0" size="4" onchange="app.changeTranslate(this);"></td>
+                    </tr>
+                    <tr>
+                        <td align="right"><label for="translatey">Translate-Y (px):</label></td>
+                        <td><input id="translatey" type="range" min="-2000" max="2000" value="1000" step="10" onchange="app.changeTranslateY(this);" onmouseup="app.changeTranslate();"></td>
+                        <td><input type="text" id="translatey_val" name="translatey_val" value="1000" size="4" onchange="app.changeTranslate(this);"></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td colspan="2">
+                            <input type="button" value="Start" onclick="app.animate();">
+                            <input type="button" value="Stop" onclick="app.stop();">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <div></div>
+        </div>
+
+        <div id="controls-button" onclick="app.togglePanel(this, 'controls');" style="position: absolute; top: 0px; right: 0px; padding: 10px; background: rgba(0, 0, 102, 0.9); border-radius: 5px; color: #FFFFFF;">Change Settings</div>
+
+        <h1><a href="../demos.html#toss"><img src="../images/back_btn.png" style="vertical-align: middle; margin-right: 10px;"></a>Alice Toss Demo</h1>
+
+        <ul>
+            <li>To toss a single card, tap/click on it.</li>
+            <li>To toss all the cards, click "Change Settings" &gt; "Start".</li>
+        </ul>
+
+        <div id="div1" style="border: 1px solid red; width: 300px;">
+            <form>
+                <table border="0" cellpadding="3" cellspacing="0">
+                    <tr>
+                        <td align="right"><label>User Name:</label></td>
+                        <td><input type="text" name="username" value=""></td>
+                    </tr>
+                    <tr>
+                        <td align="right"><label>Password:</label></td>
+                        <td><input type="password" name="password" value=""></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div style="float: left;">
+            <div id="card1" class="icon">
+                <img src="common/images/cards/jack_spades.png">
+                <div>Jack of Spades</div>
+            </div>
+            <div id="card2" class="icon">
+                <img src="common/images/cards/queen_spades.png">
+                <div>Queen of Spades</div>
+            </div>
+            <div id="card3" class="icon">
+                <img src="common/images/cards/king_spades.png">
+                <div>King of Spades</div>
+            </div>
+            <div id="card4" class="icon">
+                <img src="common/images/cards/ace_spades.png">
+                <div>Ace of Spades</div>
+            </div>
+        </div>
+
+        <div style="float: left;">
+            <div id="card5" class="icon">
+                <img src="common/images/cards/jack_hearts.png">
+                <div>Jack of Hearts</div>
+            </div>
+            <div id="card6" class="icon">
+                <img src="common/images/cards/queen_hearts.png">
+                <div>Queen of Hearts</div>
+            </div>
+            <div id="card7" class="icon">
+                <img src="common/images/cards/king_hearts.png">
+                <div>King of Hearts</div>
+            </div>
+            <div id="card8" class="icon">
+                <img src="common/images/cards/ace_hearts.png">
+                <div>Ace of Hearts</div>
+            </div>
+        </div>
+
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../lib/sniffer.js"></script>
+
+        <script src="../js/src/alice.core.js"></script>
+        <script src="../js/src/alice.toss.js"></script>
+        <script type="text/javascript">
+        sniffer.init();
+
+        var app = {
+            ids: ['div1', 'card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'card7', 'card8'],
+            timer: {},
+            duration: null,
+            randomness: null
+        };
+
+        /**
+         * @description
+         * Toggle settings panel.
+         */
+        app.togglePanel = function (btn, elem_id) {
+            var elem = document.getElementById(elem_id);
+
+            if (elem.style.display == 'none') {
+                elem.style.display = 'block';
+                btn.innerHTML = 'Hide';
+            }
+            else {
+                elem.style.display = 'none';
+                btn.innerHTML = 'Change Settings';
+            }
+        };
+
+        app.updateDuration = function (elem) {
+            app.duration = elem.value;
+            document.getElementById('duration_val').value = elem.value;
+        };
+
+        /**
+         * @description
+         * Change duration value.
+         */
+        app.changeDuration = function (elem) {
+            document.getElementById('duration').value = elem.value;
+
+            app.animate();
+        };
+
+        app.updateRandom = function (elem) {
+            document.getElementById('random_val').value = elem.value;
+        };
+
+        /**
+         * @description
+         * Change randomness value.
+         */
+        app.changeRandom = function (elem) {
+            document.getElementById('random').value = elem.value;
+
+            app.animate();
+        };
+
+        /**
+         * @description
+         * Change timing function value.
+         */
+        app.changeTiming = function (elem) {
+            app.animate();
+        };
+
+        /**
+         * @description
+         * Change origin (anchor point) value.
+         */
+        app.changeOrigin = function (elem) {
+            var x, y;
+
+            switch (elem.value) {
+            case "TL":
+                x = 0;
+                y = 0;
+                break;
+            case "TC":
+                x = 50;
+                y = 0;
+                break;
+            case "TR":
+                x = 100;
+                y = 0;
+                break;
+
+            case "ML":
+                x = 0;
+                y = 50;
+                break;
+            case "C":
+                x = 50;
+                y = 50;
+                break;
+            case "MR":
+                x = 100;
+                y = 50;
+                break;
+
+            case "BL":
+                x = 0;
+                y = 100;
+                break;
+            case "BC":
+                x = 50;
+                y = 100;
+                break;
+            case "BR":
+                x = 100;
+                y = 100;
+                break;
+
+            default:
+                x = -100;
+                y = -100;
+                break;
+            }
+
+            document.getElementById('origin-x').value = x;
+            document.getElementById('origin-y').value = y;
+
+            var disabled = (elem.value == 'X') ? false : true;
+
+            document.getElementById('origin-x').disabled = disabled;
+            document.getElementById('origin-y').disabled = disabled;
+
+            app.animate();
+        };
+
+        /**
+         * @description
+         *
+         */
+        app.changeTranslate = function () {
+            var tx = document.getElementById('translatex_val').value;
+            var ty = document.getElementById('translatey_val').value;
+
+            document.getElementById('translatex').value = tx;
+            document.getElementById('translatey').value = ty;
+
+            // adjust rule
+            var reAliceTossRule = /^alice\-toss\-/;
+            var styleSheet, cssRule;
+            for (var i = 0; i < document.styleSheets.length; i++) {
+                styleSheet = document.styleSheets[i];
+
+                for (var j = 0; j < styleSheet.cssRules.length; j++) {
+                    cssRule = styleSheet.cssRules[j];
+                    if (cssRule.type === window.CSSRule.WEBKIT_KEYFRAMES_RULE && cssRule.name == 'alice-toss') {
+                        cssRule.findRule('0%').style.webkitTransform = 'translateY(' + ty + 'px) translateX(' + tx + 'px) rotate(-360deg)';
+                        cssRule.findRule('0%').style.opacity = '0';
+                        cssRule.findRule('70%').style.webkitTransform = 'translateY(-20px) translateX(0px) rotate(5deg)';
+                        cssRule.findRule('100%').style.opacity = '1';
+                        break;
+                    }
+                }
+            }
+
+            app.animate();
+        };
+
+        /**
+         * @description
+         *
+         */
+        app.changeTranslateX = function (elem) {
+            document.getElementById('translatex_val').value = elem.value;
+        };
+
+        /**
+         * @description
+         *
+         */
+        app.changeTranslateY = function (elem) {
+            document.getElementById('translatey_val').value = elem.value;
+        };
+
+        /**
+         * @description
+         * Apply the effect.
+         */
+        app.applyEffect = function (elem_id, params) {
+            if (app.timer.applyEffect) {
+                clearInterval(app.timer.applyEffect);
+            }
+
+            var elem = document.getElementById(elem_id);
+            var s = elem.style;
+
+            // set animation properties
+            s['-webkit-animation-name'] = 'alice-toss';
+            s['-webkit-animation-duration'] = params.duration + 'ms';
+            s['-webkit-animation-iteration-count'] = '1';
+            s['-webkit-animation-direction'] = 'alternate';
+            s['-webkit-animation-timing-function'] = 'ease-out';
+        };
+
+        /**
+         * @description
+         * Clear the effect.
+         */
+        app.clearEffect = function (elem_id) {
+            var elem = document.getElementById(elem_id);
+            var s = elem.style;
+
+            // clear effect
+            s['-webkit-animation-name'] = '';
+            s['-webkit-animation-duration'] = '';
+            s['-webkit-animation-iteration-count'] = '';
+            s['-webkit-animation-direction'] = '';
+            s['-webkit-animation-timing-function'] = '';
+        };
+
+        /**
+         * @description
+         * Handle single click event.
+         */
+        app.handleSingleClick = function (e, elem) {
+            e.preventDefault();
+
+            app.clearEffect(elem.id);
+
+            // need to pause before applying effect
+            app.timer.applyEffect = setInterval('app.applyEffect("' + elem.id + '", { duration: ' + document.getElementById('duration_val').value + ' })', 25);
+        };
+
+        /**
+         * @description
+         * Delay the start of the animation
+         */
+        app.delayStart = function () {
+            app.timer.start = setInterval('app.start()', 25);
+        };
+
+        /**
+         * @description
+         * Start the effects.
+         */
+        app.start = function () {
+            if (app.timer.start) {
+                clearInterval(app.timer.start);
+            }
+
+            var styleSheet, cssRule, icon_w, icon_h;
+            for (var i = 0; i < document.styleSheets.length; i++) {
+                styleSheet = document.styleSheets[i];
+                for (var j = 0; j < styleSheet.cssRules.length; j++) {
+                    cssRule = styleSheet.cssRules[j];
+                    //console.debug(cssRule);
+                    if (cssRule.selectorText == '.icon') {
+                        icon_w = parseInt(cssRule.style.width, 10);
+                        icon_h = parseInt(cssRule.style.height, 10);
+                        break;
+                    }
+                }
+            }
+
+            var elem, w, h, origin;
+            for (var i = 0; i < app.ids.length; i++) {
+                elem = document.getElementById(app.ids[i]);
+
+                w = (elem.style.width) ? parseInt(elem.style.width, 10) : icon_w;
+                h = (elem.style.height) ? parseInt(elem.style.height, 10) : icon_h;
+
+                var originx = w * document.getElementById('origin-x').value / 100;
+                var originy = h * document.getElementById('origin-y').value / 100;
+                var origin = originx + 'px ' + originy + 'px';
+
+                // apply toss effect
+                alice.toss({
+                    id: app.ids[i],
+                    duration: document.getElementById('duration_val').value,
+                    random: document.getElementById('random_val').value,
+                    timing: document.getElementById('timing_val').value,
+                    origin: origin
+                });
+            }
+        };
+
+        /**
+         * @description
+         * Stop the effects.
+         */
+        app.stop = function () {
+            for (var i = 0; i < app.ids.length; i++) {
+                app.clearEffect(app.ids[i]);
+            }
+        };
+
+        var originx, originy;
+
+        /**
+         *
+         */
+        app.animate = function () {
+            app.stop();
+            app.delayStart();
+        };
+
+        //------------------------------------------------------------------------
+
+        alice.toss({
+            id: "div1",
+            duration: 2000
+        });
+
+        alice.toss({
+            id: "card1",
+            duration: 1000
+        });
+        alice.toss({
+            id: "card2",
+            duration: 1250
+        });
+        alice.toss({
+            id: "card3",
+            duration: 1500
+        });
+        alice.toss({
+            id: "card4",
+            duration: 1750
+        });
+
+        alice.toss({
+            id: "card5",
+            duration: 1000
+        });
+        alice.toss({
+            id: "card6",
+            duration: 1250
+        });
+        alice.toss({
+            id: "card7",
+            duration: 1500
+        });
+        alice.toss({
+            id: "card8",
+            duration: 1750
+        });
+
+        // set up event listeners
+        var elem;
+        for (var i = 0; i < app.ids.length; i++) {
+            elem = document.getElementById(app.ids[i]);
+
+            elem.addEventListener('click', function () {
+                app.handleSingleClick(event, this);
+            }, false);
+        }
+        </script>
+    </body>
+</html>

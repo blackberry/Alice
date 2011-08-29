@@ -23,7 +23,7 @@
 
 /**
  * @description
- * Alice is a CSS3 framework.
+ * Alice.js is a CSS3 framework.
  */
 var alice = {
     version: '0.1',

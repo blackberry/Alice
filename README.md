@@ -1,6 +1,6 @@
-# Alice
+# Alice.js
 
-**Alice** - *(A Lightweight Independent CSS Engine)* is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.
+**Alice.js** - *(A Lightweight Independent CSS Engine)* is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.
 
 This library and the sample code is Open Source under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html).
 
@@ -13,10 +13,10 @@ This library and the sample code is Open Source under the [Apache 2.0 License](h
 
 1. A WebKit-based browser with support for CSS3.
 
-## How to use Alice in a web project
+## How to use Alice.js in a web project
 
 1. Download the source package (zip or tar.gz) and unzip it to your web folder (e.g., /var/www/html/***your project name***/js/alice).
-2. Include the Alice library in your HTML using one of the following:
+2. Include the Alice.js library in your HTML using one of the following:
 
     a. Full library (with comments):
 

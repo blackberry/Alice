@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:rim="http://www.blackberry.com/ns/widgets" version="0.1.25" rim:header="RIM-Widget:rim/widget">
-    <name>Alice</name>
-    <description>Alice (A Lightweight Independent CSS Engine)</description>
+    <name>Alice.js</name>
+    <description>Alice.js (A Lightweight Independent CSS Engine)</description>
     <author rim:copyright="2011">Research In Motion Limited</author>
     <icon rim:hover="false" src="images/app_icon.png"/>
     <icon rim:hover="true" src="images/app_icon.png"/>

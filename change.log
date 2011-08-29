@@ -1,5 +1,5 @@
 ==============================================================================
-Alice
+Alice.js
 Change Log
 ==============================================================================
 
@@ -23,7 +23,7 @@ Change Log
 
 0.1 (Build 20110823-1300)
 
-    - Updated README.md with instructions on using Alice in a web project.
+    - Updated README.md with instructions on using Alice.js in a web project.
     - Moved "js/*.js" to "js/src/*.js".
     - Added alice.js and alice-min.js.
     - Fixes for JSHint.

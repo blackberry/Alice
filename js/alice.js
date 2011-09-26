@@ -37,7 +37,7 @@ var alice = {
 alice._utils = {};
 
 alice._utils.getElems = function (ids) {
-    var elems = new Array(ids.length);
+    var elems = [];
 
     for (var i = 0; i < ids.length; ++i) {
         elems[i] = document.getElementById(ids[i]);

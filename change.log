@@ -1,5 +1,5 @@
 ==============================================================================
-Alice.js
+AliceJS
 Change Log
 ==============================================================================
 
@@ -23,7 +23,7 @@ Change Log
 
 0.1 (Build 20110823-1300)
 
-    - Updated README.md with instructions on using Alice.js in a web project.
+    - Updated README.md with instructions on using AliceJS in a web project.
     - Moved "js/*.js" to "js/src/*.js".
     - Added alice.js and alice-min.js.
     - Fixes for JSHint.
@@ -42,3 +42,7 @@ Change Log
     - Commented out console line in "credits.html" that was causing an error
       in IE.
     - Disabled border on IMG elements in CSS for IE.
+
+0.1 (Build 20111017-1235)
+
+    - Changed Alice.js to AliceJS.

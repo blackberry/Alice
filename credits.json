@@ -303,7 +303,7 @@ var groups = [
             {
                 filename: "favicon.ico",
                 desc    : "Favorite Icon",
-                source  : "Alice.js",
+                source  : "AliceJS",
                 url     : "",
                 license : "Apache License 2.0",
                 width   : 16,

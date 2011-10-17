@@ -14,7 +14,7 @@
  */
 
 /* ===========================================================================
- * alice.js
+ * AliceJS
  *
  * @author Laurent Hasson
  * @author Jim Ing
@@ -23,11 +23,11 @@
 
 /**
  * @description
- * Alice.js is a CSS3 framework.
+ * AliceJS is a CSS3 framework.
  */
 var alice = {
     version: '0.1',
-    build: '20110824-1200'
+    build: '20111017-1235'
 };
 
 /**
@@ -37,7 +37,7 @@ var alice = {
 alice._utils = {};
 
 alice._utils.getElems = function (ids) {
-    var elems = new Array(ids.length);
+    var elems = [];
 
     for (var i = 0; i < ids.length; ++i) {
         elems[i] = document.getElementById(ids[i]);

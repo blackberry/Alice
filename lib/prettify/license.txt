@@ -1,3 +1,0 @@
-http://code.google.com/p/google-code-prettify/
-
-License: Apache License 2.0

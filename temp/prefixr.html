@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+        <title>Heading</title>
+        <link href="favicon.ico" rel="icon" type="image/x-icon">
+        <style type="text/css">
+@-webkit-keyframes alice-slide {
+	0% {
+		 -webkit-transform: translateX(1057px) rotate(-360deg) scale(1);
+		opacity: 0;
+		-webkit-box-shadow:  0px 0px 0px rgba(0, 0, 0, 1);
+	}
+	85% {
+		 -webkit-transform: translateX(-105px) rotate(10deg) scale(1.5);
+	}
+	100% {
+		 -webkit-transform: translateX(0px) rotate(0deg) scale(1.5);
+		opacity: 1;
+		-webkit-box-shadow:  30px 30px 30px rgba(0, 0, 0, 0.5);
+	}
+}
+
+@-moz-keyframes alice-slide {
+	0% {
+		 -moz-transform: translateX(1057px) rotate(-360deg) scale(1);
+		opacity: 0;
+		-moz-box-shadow:  0px 0px 0px rgba(0, 0, 0, 1);
+	}
+	85% {
+		 -moz-transform: translateX(-105px) rotate(10deg) scale(1.5);
+	}
+	100% {
+		 -moz-transform: translateX(0px) rotate(0deg) scale(1.5);
+		opacity: 1;
+		-moz-box-shadow:  30px 30px 30px rgba(0, 0, 0, 0.5);
+	}
+}
+
+.slide {
+     -webkit-animation: alice-slide 2s 1;
+     -moz-animation: alice-slide 2s 1;
+}
+        </style>
+    </head>
+    <body>
+        <h1>Heading</h1>
+
+        <p class="slide">The quick brown fox jumps over the lazy dog.</p>
+
+        <script type="text/javascript">
+
+        </script>
+    </body>
+</html>

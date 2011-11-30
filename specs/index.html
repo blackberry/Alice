@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <title>AliceJS Unit Tests</title>
+        <link rel="stylesheet" type="text/css" href="../libs/jasmine/jasmine.css">
+        <script type="text/javascript" src="../libs/jasmine/jasmine.js"></script>
+        <script type="text/javascript" src="../libs/jasmine/jasmine-html.js"></script>
+    </head>
+    <body>
+        <!-- Library -->
+<!--
+        <script src="../js/alice-min.js"></script>
+        <script src="../js/alice.js"></script>
+-->
+        <script src="../js/src/alice.core.js"></script>
+        <script src="../js/src/alice.slide.js"></script>
+
+        <!-- Unit Tests -->
+        <script>
+        describe('duration', function () {
+            it('1000 returns 1000ms', function () {
+                expect(alice._duration(1000)).toEqual('1000ms');
+            });
+            it('"1000" returns 1000ms', function () {
+                expect(alice._duration('1000')).toEqual('1000ms');
+            });
+            it('"1000ms" returns 1000ms', function () {
+                expect(alice._duration('1000ms')).toEqual('1000ms');
+            });
+            it('"1s" returns 1000ms', function () {
+                expect(alice._duration('1s')).toEqual('1000ms');
+            });
+            it('{value: 1000} returns 1000ms', function () {
+                expect(alice._duration({value: 1000})).toEqual('1000ms');
+            });
+            it('{value: "1000"} returns 1000ms', function () {
+                expect(alice._duration({value: "1000"})).toEqual('1000ms');
+            });
+            it('{value: "1000ms"} returns 1000ms', function () {
+                expect(alice._duration({value: "1000ms"})).toEqual('1000ms');
+            });
+            it('{value: "1s"} returns 1000ms', function () {
+                expect(alice._duration({value: "1s"})).toEqual('1000ms');
+            });
+        });
+
+        (function() {
+            var jasmineEnv = jasmine.getEnv();
+            jasmineEnv.updateInterval = 1000;
+
+            var trivialReporter = new jasmine.TrivialReporter();
+
+            jasmineEnv.addReporter(trivialReporter);
+
+            jasmineEnv.specFilter = function(spec) {
+                return trivialReporter.specFilter(spec);
+            };
+
+            var currentWindowOnload = window.onload;
+            window.onload = function() {
+                if (currentWindowOnload) {
+                  currentWindowOnload();
+                }
+                execJasmine();
+            };
+
+            function execJasmine() {
+                jasmineEnv.execute();
+            }
+        })();
+        </script>
+    </body>
+</html>

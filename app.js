@@ -43,7 +43,12 @@ app.serialize = function (obj) {
                                 vObj.push('"' + attr + '": ["' + obj[attr].id + '"]');
                             }
                             else if (typeof obj[attr] !== "function") {
-                                vObj.push('"' + attr + '":' + this.serialize(obj[attr]));
+                                if (typeof obj[attr] === "object" || typeof obj[attr] === "number") {
+                                    vObj.push('"' + attr + '": ' + this.serialize(obj[attr]));
+                                }
+                                else {
+                                    vObj.push('"' + attr + '": "' + this.serialize(obj[attr]) + '"');
+                                }
                             }
                         }
                     }
@@ -117,7 +122,7 @@ app.applyStyle = function () {
  */
 app.applyEffect = function (param) {
     "use strict";
-    //console.log("Applying " + param.value);
+    console.log("Applying " + param.value);
 
     if (document.getElementById("json")) {
         document.getElementById("json").innerHTML = "";
@@ -206,6 +211,7 @@ app.applyEffect = function (param) {
         //console.warn(ret, this.serialize(ret));
 
         if (document.getElementById("json")) {
+            //document.getElementById("json").innerHTML += JSON.stringify(ret) + "\n\n";
             document.getElementById("json").innerHTML += this.serialize(ret) + "\n\n";
         }
     }

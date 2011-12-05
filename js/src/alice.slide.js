@@ -9,6 +9,28 @@
 alice.slide = function (params) {
     "use strict";
     console.info("slide", params);
+    var that = this;
+
+    var formatDuration = function (d) {
+        var dObj = that._duration(d),
+            dVal = that._randomize(dObj.value, dObj.randomness) + "ms";
+
+        return dVal;
+    };
+
+    var formatCoords = function (c) {
+        var cObj = that._coords(c),
+            cVal = cObj.x + " " + cObj.y;
+
+        return cVal;
+    };
+
+    var formatEasing = function (e) {
+        var eObj = that._easing(e),
+            eVal = "cubic-bezier(" + eObj.p1 + ", " + eObj.p2 + ", " + eObj.p3 + ", " + eObj.p4 + ")";
+
+        return eVal;
+    };
 
     // Initialize variables
     var elems = this._elements(params.elems),
@@ -49,10 +71,10 @@ alice.slide = function (params) {
         axis = "",
         sign = 1,
         posStart = 0,
-        posEnd = 0,
+        posEnd = params.posEnd || 0,
         over = posEnd + (sign * Math.floor(posEnd * overshoot)),
 
-        container, elem, i, animId, css, transformStart, transformOver, transformEnd, boxShadowStart, boxShadowEnd;
+        container, elem, i, animId, css, transformStart, transformOver, transformEnd, boxShadowStart, boxShadowEnd, dir, size;
 
     // Loop through elements
     if (elems && elems.length > 0) {
@@ -67,37 +89,43 @@ alice.slide = function (params) {
 
             // Configure settings
             if (params.move) {
-                switch (params.move) {
+                dir = params.move.direction || params.move;
+                switch (dir) {
                     case "left":
                         move = "Left";
                         axis = "X";
                         sign = -1;
-                        posStart = window.innerWidth;
-                        posEnd = 0;
+                        size = window.innerWidth;
+                        posStart = (params.move.start) ? this._pixel(params.move.start, size) : size;
+                        posEnd = (params.move.end) ? this._pixel(params.move.end, size) : 0;
                         over = sign * Math.floor(posStart * overshoot);
                         break;
                     case "right":
                         move = "Right";
                         axis = "X";
                         sign = 1;
-                        posStart = 0;
-                        posEnd = document.body.offsetWidth - elem.clientWidth;
+                        size = document.body.offsetWidth - elem.clientWidth;
+                        posStart = (params.move.start) ? this._pixel(params.move.start, size) : 0;
+                        posEnd = (params.move.end) ? this._pixel(params.move.end, size) : size;
                         over = posEnd + (sign * Math.floor(posEnd * overshoot));
                         break;
                     case "up":
                         move = "Up";
                         axis = "Y";
                         sign = -1;
-                        posStart = window.innerHeight;
-                        posEnd = 0;
+                        size = window.innerHeight;
+                        posStart = (params.move.start) ? this._pixel(params.move.start, size) : size;
+                        posEnd = (params.move.end) ? this._pixel(params.move.end, size) : 0;
                         over = sign * Math.floor(posStart * overshoot);
                         break;
                     case "down":
                         move = "Down";
                         axis = "Y";
                         sign = 1;
-                        posStart = 0;
-                        posEnd = window.innerHeight - window.pageYOffset - (container.clientHeight * 3);
+                        size = this._docHeight() - (container.clientHeight * 3);
+                        posStart = (params.move.start) ? this._pixel(params.move.start, size) : 0;
+                        posEnd = (params.move.end) ? this._pixel(params.move.end, size) : size;
+                        console.warn(this._docHeight(), window.innerHeight, window.pageYOffset, container.clientHeight)
                         over = posEnd + (sign * Math.floor(posEnd * overshoot));
                         break;
                 }
@@ -166,15 +194,17 @@ alice.slide = function (params) {
 
             // Apply perspective to parent container
             container.style[this.prefixJS + "Perspective"] = perspective;
-            container.style[this.prefixJS + "PerspectiveOrigin"] = this._coords(perspectiveOrigin);
+            container.style[this.prefixJS + "PerspectiveOrigin"] = formatCoords(perspectiveOrigin); // this._coords();
 
             // Apply properties to elements
             elem.style[this.prefixJS + "BackfaceVisibility"] = backfaceVisibility;
 
             elem.style[this.prefixJS + "AnimationName"] = animId;
-            elem.style[this.prefixJS + "AnimationDelay"] = this._duration(delay);
-            elem.style[this.prefixJS + "AnimationDuration"] = this._duration(duration);
-            elem.style[this.prefixJS + "AnimationTimingFunction"] = this._easing(timing);
+            //elem.style[this.prefixJS + "AnimationDelay"] = this._duration(delay);
+            //elem.style[this.prefixJS + "AnimationDuration"] = this._duration(duration);
+            elem.style[this.prefixJS + "AnimationDelay"] = formatDuration(delay);
+            elem.style[this.prefixJS + "AnimationDuration"] = formatDuration(duration);
+            elem.style[this.prefixJS + "AnimationTimingFunction"] = formatEasing(timing);
             elem.style[this.prefixJS + "AnimationIterationCount"] = iteration;
             elem.style[this.prefixJS + "AnimationDirection"] = direction;
             elem.style[this.prefixJS + "AnimationPlayState"] = playstate;

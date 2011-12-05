@@ -982,7 +982,7 @@
                                 <td align="right" valign="top">Scale:</td>
                                 <td>
                                     <select id="scale1" name="scale1">
-                                        <option value="0%">0</option>
+                                        <option value="1%">1</option>
                                         <option value="10%">10</option>
                                         <option value="20%">20</option>
                                         <option value="30%">30</option>
@@ -1007,7 +1007,7 @@
                                 </td>
                                 <td>
                                     <select id="scale2" name="scale2">
-                                        <option value="0%">0</option>
+                                        <option value="1%">1</option>
                                         <option value="10%">10</option>
                                         <option value="20%">20</option>
                                         <option value="30%">30</option>
@@ -1203,11 +1203,22 @@
         alice.slide({
             elems: ["elem1", "elem2"],
             move: "left",
+            //move: "right",
+            //move: "up",
+            //move: "down",
+            //move: {direction: "left", start: "1024px", end: "100px"},
+            //move: {direction: "right", start: "100px", end: "1024px"},
+            //move: {direction: "up", start: "800px", end: "10px"},
+            //move: {direction: "down", start: "10px", end: "800px"},
+            //move: {direction: "left", start: "100%", end: "10%"},
+            //move: {direction: "right", start: "0%", end: "90%"},
+            //move: {direction: "up", start: "100%", end: "10%"},
+            //move: {direction: "down", start: "0%", end: "90%"},
             duration: {
-                value: 2000,
-                randomness: "10%"
+                value: 1000,
+                randomness: "0%"
             },
-            timing: "ease"
+            timing: "linear"
         });
         </script>
     </body>

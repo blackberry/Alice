@@ -203,6 +203,18 @@ app.applyEffect = function (param) {
             case "pushBackward":
                 ret = alice.pushBackward(p);
                 break;
+            case "fadeIn":
+                ret = alice.fadeIn(p);
+                break;
+            case "fadeOut":
+                ret = alice.fadeOut(p);
+                break;
+            case "drain":
+                ret = alice.drain(p);
+                break;
+            case "phantomZone":
+                ret = alice.phantomZone(p);
+                break;
             default:
                 ret = alice.slide(p);
                 break;

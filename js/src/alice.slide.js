@@ -133,7 +133,7 @@ alice.slide = function (params) {
 
             // Generate transforms
             transformStart  = "";
-            transformStart += (flip) ? "rotate" + flipAxis + "(" + flipStart + "deg)" : " translate" + axis + "(" + posStart + "px)";
+            transformStart += (flip) ? " rotate" + flipAxis + "(" + flipStart + "deg)" : " translate" + axis + "(" + posStart + "px)";
             transformStart += (rotate && rotate !== "0%") ? " rotate(" + rotateStart + "deg)" : "";
             transformStart += (scale) ? " scale(1)" : "";
 
@@ -440,6 +440,73 @@ alice.pushBackward = function (params) {
     // Set presets
     p.scale = "50%";
     //console.info("pushBackward", p);
+
+    alice.slide(p);
+    return p;
+};
+
+/**
+ *
+ */
+alice.fadeIn = function (params) {
+    "use strict";
+    var p = params;
+
+    // Set presets
+    p.fade = "in";
+    //console.info("fadeIn", p);
+
+    alice.slide(p);
+    return p;
+};
+
+/**
+ *
+ */
+alice.fadeOut = function (params) {
+    "use strict";
+    var p = params;
+
+    // Set presets
+    p.fade = "out";
+    //console.info("fadeOut", p);
+
+    alice.slide(p);
+    return p;
+};
+
+/**
+ *
+ */
+alice.drain = function (params) {
+    "use strict";
+    var p = params;
+
+    // Set presets
+    p.move = "none";
+    p.rotate = -720;
+    p.fade = "out";
+    p.scale = 1;
+    console.info("drainOut", p);
+
+    alice.slide(p);
+    return p;
+};
+
+/**
+ *
+ */
+alice.phantomZone = function (params) {
+    "use strict";
+    var p = params;
+
+    // Set presets
+    p.move = "none";
+    p.rotate = -720;
+    p.flip = "left";
+    p.fade = "out";
+    p.scale = 1;
+    console.info("drainOut", p);
 
     alice.slide(p);
     return p;

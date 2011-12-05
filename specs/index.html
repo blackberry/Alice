@@ -17,37 +17,8 @@
         <script src="../js/src/alice.slide.js"></script>
 
         <!-- Unit Tests -->
+        <script src="alice.core.js"></script>
         <script>
-        describe('duration', function () {
-            var expected = {value: 1000, randomness: 0},
-                expectedStr = JSON.stringify(expected);
-
-            it('1000 returns ' + expectedStr, function () {
-                expect(alice._duration(1000)).toEqual(expected);
-            });
-            it('"1000" returns ' + expectedStr, function () {
-                expect(alice._duration('1000')).toEqual(expected);
-            });
-            it('"1000ms" returns ' + expectedStr, function () {
-                expect(alice._duration('1000ms')).toEqual(expected);
-            });
-            it('"1s" returns ' + expectedStr, function () {
-                expect(alice._duration('1s')).toEqual(expected);
-            });
-            it('{value: 1000} returns ' + expectedStr, function () {
-                expect(alice._duration({value: 1000})).toEqual(expected);
-            });
-            it('{value: "1000"} returns ' + expectedStr, function () {
-                expect(alice._duration({value: "1000"})).toEqual(expected);
-            });
-            it('{value: "1000ms"} returns ' + expectedStr, function () {
-                expect(alice._duration({value: "1000ms"})).toEqual(expected);
-            });
-            it('{value: "1s"} returns ' + expectedStr, function () {
-                expect(alice._duration({value: "1s"})).toEqual(expected);
-            });
-        });
-
         (function() {
             var jasmineEnv = jasmine.getEnv();
             //jasmineEnv.updateInterval = 1000;

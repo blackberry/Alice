@@ -690,6 +690,10 @@
                         <input type="button" class="button" id="effect-flipDown" name="effect" value="flipDown" onclick="app.applyEffect(this);"><br>
                         <input type="button" class="button" id="effect-pushForward" name="effect" value="pushForward" onclick="app.applyEffect(this);"><br>
                         <input type="button" class="button" id="effect-pushBackward" name="effect" value="pushBackward" onclick="app.applyEffect(this);"><br>
+                        <input type="button" class="button" id="effect-fadeIn" name="effect" value="fadeIn" onclick="app.applyEffect(this);"><br>
+                        <input type="button" class="button" id="effect-fadeOut" name="effect" value="fadeOut" onclick="app.applyEffect(this);"><br>
+                        <input type="button" class="button" id="effect-drain" name="effect" value="drain" onclick="app.applyEffect(this);"><br>
+                        <input type="button" class="button" id="effect-phantomZone" name="effect" value="phantomZone" onclick="app.applyEffect(this);"><br>
                     </fieldset>
                 </td>
                 <td valign="top">
@@ -1199,13 +1203,10 @@
         <script src="app.js"></script>
         <script type="text/javascript">
         alice.init();
-
         alice.slide({
-            elems: ["elem1", "elem2"],
-            move: "left",
-            //move: "right",
-            //move: "up",
-            //move: "down",
+            elems: ["elem1"],
+            move: "left", // left | right | up | down
+            //move: {direction: "left", end: "100px"},
             //move: {direction: "left", start: "1024px", end: "100px"},
             //move: {direction: "right", start: "100px", end: "1024px"},
             //move: {direction: "up", start: "800px", end: "10px"},
@@ -1219,6 +1220,10 @@
                 randomness: "0%"
             },
             timing: "linear"
+        });
+
+        alice.fadeOut({
+            elems: ["elem2"]
         });
         </script>
     </body>

@@ -159,6 +159,7 @@ alice.slide = function (params) {
 
             css += "\t" + "0% {" + "\n";
             css += "\t\t" + " " + this.prefix + "transform:" + transformStart + ";" + "\n";
+            css += "\t\t" + " " + this.prefix + "transform-origin:" + formatCoords(perspectiveOrigin) + ";" + "\n";
             css += (fade) ? "\t\t" + "opacity: " + fadeStart + ";" + "\n" : "";
             css += (scale > 1) ? "\t\t" + this.prefix + "box-shadow: " + boxShadowStart + ";" + "\n" : "";
 
@@ -167,11 +168,13 @@ alice.slide = function (params) {
             if (overshoot !== 0) {
                 css += "\t" + overShootPercent + "% {\n";
                 css += "\t\t" + " " + this.prefix + "transform:" + transformOver + ";" + "\n";
+            css += "\t\t" + " " + this.prefix + "transform-origin:" + formatCoords(perspectiveOrigin) + ";" + "\n";
                 css += "\t" + "}" + "\n";
             }
 
             css += "\t" + "100% {" + "\n";
             css += "\t\t" + " " + this.prefix + "transform:" + transformEnd + ";" + "\n";
+            css += "\t\t" + " " + this.prefix + "transform-origin:" + formatCoords(perspectiveOrigin) + ";" + "\n";
             css += (fade) ? "\t\t" + "opacity: " + fadeEnd + ";" + "\n" : "";
             css += (scale > 1) ? "\t\t" + this.prefix + "box-shadow: " + boxShadowEnd + ";" + "\n" : "";
 
@@ -453,6 +456,7 @@ alice.fadeIn = function (params) {
     var p = params;
 
     // Set presets
+    p.move = "none";
     p.fade = "in";
     //console.info("fadeIn", p);
 
@@ -468,6 +472,7 @@ alice.fadeOut = function (params) {
     var p = params;
 
     // Set presets
+    p.move = "none";
     p.fade = "out";
     //console.info("fadeOut", p);
 
@@ -512,3 +517,102 @@ alice.phantomZone = function (params) {
     return p;
 };
 
+/**
+ *
+ */
+alice.pageFlipLeft = function (params) {
+    "use strict";
+    var p = params;
+
+    // Set presets
+    p.flip = "left";
+    p.perspectiveOrigin = "left";
+    //console.info("pageFlipLeft", p);
+
+    alice.slide(p);
+    return p;
+};
+
+/**
+ *
+ */
+alice.pageFlipRight = function (params) {
+    "use strict";
+    var p = params;
+
+    // Set presets
+    p.flip = "right";
+    p.perspectiveOrigin = "right";
+    //console.info("pageFlipRight", p);
+
+    alice.slide(p);
+    return p;
+};
+
+/**
+ *
+ */
+alice.pageFlipUp = function (params) {
+    "use strict";
+    var p = params;
+
+    // Set presets
+    p.flip = "up";
+    p.perspectiveOrigin = "top";
+    //console.info("pageFlipUp", p);
+
+    alice.slide(p);
+    return p;
+};
+
+/**
+ *
+ */
+alice.pageFlipDown = function (params) {
+    "use strict";
+    var p = params;
+
+    // Set presets
+    p.flip = "down";
+    p.perspectiveOrigin = "bottom";
+    //console.info("pageFlipDown", p);
+
+    alice.slide(p);
+    return p;
+};
+
+/**
+ *
+ */
+alice.twirlLeft = function (params) {
+    "use strict";
+    var p = params;
+
+    // Set presets
+    p.move = "none";
+    p.rotate = -135;
+    p.flip = "left";
+    p.perspectiveOrigin = "left";
+    //console.info("twirlLeft", p);
+
+    alice.slide(p);
+    return p;
+};
+
+/**
+ *
+ */
+alice.twirlRight = function (params) {
+    "use strict";
+    var p = params;
+
+    // Set presets
+    p.move = "none";
+    p.rotate = 135;
+    p.flip = "right";
+    p.perspectiveOrigin = "right";
+    //console.info("twirlRight", p);
+
+    alice.slide(p);
+    return p;
+};

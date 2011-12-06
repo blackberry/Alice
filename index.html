@@ -30,1168 +30,1175 @@
         </style>
     </head>
     <body>
-        <h1>AliceJS Tester</h1>
-
         <!-- Test Elements -->
-        <div id="container1">
-            <div id="elem1">
-                <img src="samples/images/vehicles/front_loader.png"><p>Front End Loader</p>
+        <div id="testDiv">
+            <h1>AliceJS Tester</h1>
+
+            <div id="container1">
+                <div id="elem1">
+                    <img src="samples/images/vehicles/front_loader.png"><p>Front End Loader</p>
+                </div>
             </div>
-        </div>
+            <br>
 
-        <br>
-
-        <div id="container2">
-            <div id="elem2">
-                <img src="samples/images/vehicles/muscle_car.png"><p>Muscle Car</p>
+            <div id="container2">
+                <div id="elem2">
+                    <img src="samples/images/vehicles/muscle_car.png"><p>Muscle Car</p>
+                </div>
             </div>
+            <br>
         </div>
-
-        <br>
 
         <!-- Settings -->
-        <table border="0" cellpadding="5" cellspacing="0">
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td colspan="4" align="center">
-                    <input type="button" class="apply" id="effect-slide" name="effect" value="Apply Settings" onclick="app.applyEffect(this);">
-                </td>
-            </tr>
-            <tr>
-                <td valign="top">
-                    <fieldset>
-                        <legend>Transform Settings</legend>
-                        <table border="0" cellpadding="5" cellspacing="0">
-                            <tr>
-                                <td align="right" valign="top">Perspective (px):</td>
-                                <td>
-                                    <select id="transform_perspective1" name="transform_perspective1" onchange="app.applyStyle(this);">
-                                        <option value="none">none</option>
-                                        <option value="100">100</option>
-                                        <option value="250">250</option>
-                                        <option value="500">500</option>
-                                        <option value="750">750</option>
-                                        <option value="1000" selected>1000</option>
-                                        <option value="1500">1500</option>
-                                        <option value="1750">1750</option>
-                                        <option value="2000">2000</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="transform_perspective2" name="transform_perspective2" onchange="app.applyStyle(this);">
-                                        <option value="none">none</option>
-                                        <option value="100">100</option>
-                                        <option value="250">250</option>
-                                        <option value="500">500</option>
-                                        <option value="750">750</option>
-                                        <option value="1000" selected>1000</option>
-                                        <option value="1500">1500</option>
-                                        <option value="1750">1750</option>
-                                        <option value="2000">2000</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Rotate:</td>
-                                <td>
-                                    <select id="transform_rotate1" name="transform_rotate1" onchange="app.applyStyle(this);">
-                                        <option value="0deg" selected>0</option>
-                                        <option value="10deg">10</option>
-                                        <option value="20deg">20</option>
-                                        <option value="30deg">30</option>
-                                        <option value="40deg">40</option>
-                                        <option value="50deg">50</option>
-                                        <option value="60deg">60</option>
-                                        <option value="70deg">70</option>
-                                        <option value="80deg">80</option>
-                                        <option value="90deg">90</option>
-                                        <option value="100deg">100</option>
-                                        <option value="110deg">110</option>
-                                        <option value="120deg">120</option>
-                                        <option value="130deg">130</option>
-                                        <option value="140deg">140</option>
-                                        <option value="150deg">150</option>
-                                        <option value="160deg">160</option>
-                                        <option value="170deg">170</option>
-                                        <option value="180deg">180</option>
-                                        <option value="225deg">225</option>
-                                        <option value="270deg">270</option>
-                                        <option value="315deg">315</option>
-                                        <option value="360deg">360</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="transform_rotate2" name="transform_rotate2" onchange="app.applyStyle(this);">
-                                        <option value="0deg" selected>0</option>
-                                        <option value="10deg">10</option>
-                                        <option value="20deg">20</option>
-                                        <option value="30deg">30</option>
-                                        <option value="40deg">40</option>
-                                        <option value="50deg">50</option>
-                                        <option value="60deg">60</option>
-                                        <option value="70deg">70</option>
-                                        <option value="80deg">80</option>
-                                        <option value="90deg">90</option>
-                                        <option value="100deg">100</option>
-                                        <option value="110deg">110</option>
-                                        <option value="120deg">120</option>
-                                        <option value="130deg">130</option>
-                                        <option value="140deg">140</option>
-                                        <option value="150deg">150</option>
-                                        <option value="160deg">160</option>
-                                        <option value="170deg">170</option>
-                                        <option value="180deg">180</option>
-                                        <option value="225deg">225</option>
-                                        <option value="270deg">270</option>
-                                        <option value="315deg">315</option>
-                                        <option value="360deg">360</option>
-                                    </select>
-                                </td>
-                            </tr>
-<!--
-                            <tr>
-                                <td align="right" valign="top">Rotate X:</td>
-                                <td>
-                                    <select id="transform_rotateX1" name="transform_rotateX1" onchange="app.applyStyle(this);">
-                                        <option value="0deg" selected>0</option>
-                                        <option value="10deg">10</option>
-                                        <option value="20deg">20</option>
-                                        <option value="30deg">30</option>
-                                        <option value="40deg">40</option>
-                                        <option value="50deg">50</option>
-                                        <option value="60deg">60</option>
-                                        <option value="70deg">70</option>
-                                        <option value="80deg">80</option>
-                                        <option value="90deg">90</option>
-                                        <option value="100deg">100</option>
-                                        <option value="110deg">110</option>
-                                        <option value="120deg">120</option>
-                                        <option value="130deg">130</option>
-                                        <option value="140deg">140</option>
-                                        <option value="150deg">150</option>
-                                        <option value="160deg">160</option>
-                                        <option value="170deg">170</option>
-                                        <option value="180deg">180</option>
-                                        <option value="225deg">225</option>
-                                        <option value="270deg">270</option>
-                                        <option value="315deg">315</option>
-                                        <option value="360deg">360</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="transform_rotateX2" name="transform_rotateX2" onchange="app.applyStyle(this);">
-                                        <option value="0deg" selected>0</option>
-                                        <option value="10deg">10</option>
-                                        <option value="20deg">20</option>
-                                        <option value="30deg">30</option>
-                                        <option value="40deg">40</option>
-                                        <option value="50deg">50</option>
-                                        <option value="60deg">60</option>
-                                        <option value="70deg">70</option>
-                                        <option value="80deg">80</option>
-                                        <option value="90deg">90</option>
-                                        <option value="100deg">100</option>
-                                        <option value="110deg">110</option>
-                                        <option value="120deg">120</option>
-                                        <option value="130deg">130</option>
-                                        <option value="140deg">140</option>
-                                        <option value="150deg">150</option>
-                                        <option value="160deg">160</option>
-                                        <option value="170deg">170</option>
-                                        <option value="180deg">180</option>
-                                        <option value="225deg">225</option>
-                                        <option value="270deg">270</option>
-                                        <option value="315deg">315</option>
-                                        <option value="360deg">360</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Rotate Y:</td>
-                                <td>
-                                    <select id="transform_rotateY1" name="transform_rotateY1" onchange="app.applyStyle(this);">
-                                        <option value="0deg" selected>0</option>
-                                        <option value="10deg">10</option>
-                                        <option value="20deg">20</option>
-                                        <option value="30deg">30</option>
-                                        <option value="40deg">40</option>
-                                        <option value="50deg">50</option>
-                                        <option value="60deg">60</option>
-                                        <option value="70deg">70</option>
-                                        <option value="80deg">80</option>
-                                        <option value="90deg">90</option>
-                                        <option value="100deg">100</option>
-                                        <option value="110deg">110</option>
-                                        <option value="120deg">120</option>
-                                        <option value="130deg">130</option>
-                                        <option value="140deg">140</option>
-                                        <option value="150deg">150</option>
-                                        <option value="160deg">160</option>
-                                        <option value="170deg">170</option>
-                                        <option value="180deg">180</option>
-                                        <option value="225deg">225</option>
-                                        <option value="270deg">270</option>
-                                        <option value="315deg">315</option>
-                                        <option value="360deg">360</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="transform_rotateY2" name="transform_rotateY2" onchange="app.applyStyle(this);">
-                                        <option value="0deg" selected>0</option>
-                                        <option value="10deg">10</option>
-                                        <option value="20deg">20</option>
-                                        <option value="30deg">30</option>
-                                        <option value="40deg">40</option>
-                                        <option value="50deg">50</option>
-                                        <option value="60deg">60</option>
-                                        <option value="70deg">70</option>
-                                        <option value="80deg">80</option>
-                                        <option value="90deg">90</option>
-                                        <option value="100deg">100</option>
-                                        <option value="110deg">110</option>
-                                        <option value="120deg">120</option>
-                                        <option value="130deg">130</option>
-                                        <option value="140deg">140</option>
-                                        <option value="150deg">150</option>
-                                        <option value="160deg">160</option>
-                                        <option value="170deg">170</option>
-                                        <option value="180deg">180</option>
-                                        <option value="225deg">225</option>
-                                        <option value="270deg">270</option>
-                                        <option value="315deg">315</option>
-                                        <option value="360deg">360</option>
-                                    </select>
-                                </td>
-                            </tr>
--->
-                            <tr>
-                                <td align="right" valign="top">Scale:</td>
-                                <td>
-                                    <select id="transform_scale1" name="transform_scale1" onchange="app.applyStyle(this);">
-                                        <option value="0.10">10</option>
-                                        <option value="0.20">20</option>
-                                        <option value="0.30">30</option>
-                                        <option value="0.40">40</option>
-                                        <option value="0.50">50</option>
-                                        <option value="0.60">60</option>
-                                        <option value="0.70">70</option>
-                                        <option value="0.80">80</option>
-                                        <option value="0.90">90</option>
-                                        <option value="1" selected>100</option>
-                                        <option value="1.5">150</option>
-                                        <option value="2">200</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="transform_scale2" name="transform_scale2" onchange="app.applyStyle(this);">
-                                        <option value="0.10">10</option>
-                                        <option value="0.20">20</option>
-                                        <option value="0.30">30</option>
-                                        <option value="0.40">40</option>
-                                        <option value="0.50">50</option>
-                                        <option value="0.60">60</option>
-                                        <option value="0.70">70</option>
-                                        <option value="0.80">80</option>
-                                        <option value="0.90">90</option>
-                                        <option value="1" selected>100</option>
-                                        <option value="1.5">150</option>
-                                        <option value="2">200</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Scale X:</td>
-                                <td>
-                                    <select id="transform_scaleX1" name="transform_scaleX1" onchange="app.applyStyle(this);">
-                                        <option value="0.10">10</option>
-                                        <option value="0.20">20</option>
-                                        <option value="0.30">30</option>
-                                        <option value="0.40">40</option>
-                                        <option value="0.50">50</option>
-                                        <option value="0.60">60</option>
-                                        <option value="0.70">70</option>
-                                        <option value="0.80">80</option>
-                                        <option value="0.90">90</option>
-                                        <option value="1" selected>100</option>
-                                        <option value="1.5">150</option>
-                                        <option value="2">200</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="transform_scaleX2" name="transform_scaleX2" onchange="app.applyStyle(this);">
-                                        <option value="0.10">10</option>
-                                        <option value="0.20">20</option>
-                                        <option value="0.30">30</option>
-                                        <option value="0.40">40</option>
-                                        <option value="0.50">50</option>
-                                        <option value="0.60">60</option>
-                                        <option value="0.70">70</option>
-                                        <option value="0.80">80</option>
-                                        <option value="0.90">90</option>
-                                        <option value="1" selected>100</option>
-                                        <option value="1.5">150</option>
-                                        <option value="2">200</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Scale Y:</td>
-                                <td>
-                                    <select id="transform_scaleY1" name="transform_scaleY1" onchange="app.applyStyle(this);">
-                                        <option value="0.10">10</option>
-                                        <option value="0.20">20</option>
-                                        <option value="0.30">30</option>
-                                        <option value="0.40">40</option>
-                                        <option value="0.50">50</option>
-                                        <option value="0.60">60</option>
-                                        <option value="0.70">70</option>
-                                        <option value="0.80">80</option>
-                                        <option value="0.90">90</option>
-                                        <option value="1" selected>100</option>
-                                        <option value="1.5">150</option>
-                                        <option value="2">200</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="transform_scaleY2" name="transform_scaleY2" onchange="app.applyStyle(this);">
-                                        <option value="0.10">10</option>
-                                        <option value="0.20">20</option>
-                                        <option value="0.30">30</option>
-                                        <option value="0.40">40</option>
-                                        <option value="0.50">50</option>
-                                        <option value="0.60">60</option>
-                                        <option value="0.70">70</option>
-                                        <option value="0.80">80</option>
-                                        <option value="0.90">90</option>
-                                        <option value="1" selected>100</option>
-                                        <option value="1.5">150</option>
-                                        <option value="2">200</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Skew:</td>
-                                <td>
-                                    <select id="transform_skew1" name="transform_skew1" onchange="app.applyStyle(this);">
-                                        <option value="0deg" selected>0</option>
-                                        <option value="10deg">10</option>
-                                        <option value="20deg">20</option>
-                                        <option value="30deg">30</option>
-                                        <option value="40deg">40</option>
-                                        <option value="50deg">50</option>
-                                        <option value="60deg">60</option>
-                                        <option value="70deg">70</option>
-                                        <option value="80deg">80</option>
-                                        <option value="90deg">90</option>
-                                        <option value="100deg">100</option>
-                                        <option value="110deg">110</option>
-                                        <option value="120deg">120</option>
-                                        <option value="130deg">130</option>
-                                        <option value="140deg">140</option>
-                                        <option value="150deg">150</option>
-                                        <option value="160deg">160</option>
-                                        <option value="170deg">170</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="transform_skew2" name="transform_skew2" onchange="app.applyStyle(this);">
-                                        <option value="0deg" selected>0</option>
-                                        <option value="10deg">10</option>
-                                        <option value="20deg">20</option>
-                                        <option value="30deg">30</option>
-                                        <option value="40deg">40</option>
-                                        <option value="50deg">50</option>
-                                        <option value="60deg">60</option>
-                                        <option value="70deg">70</option>
-                                        <option value="80deg">80</option>
-                                        <option value="90deg">90</option>
-                                        <option value="100deg">100</option>
-                                        <option value="110deg">110</option>
-                                        <option value="120deg">120</option>
-                                        <option value="130deg">130</option>
-                                        <option value="140deg">140</option>
-                                        <option value="150deg">150</option>
-                                        <option value="160deg">160</option>
-                                        <option value="170deg">170</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Skew X:</td>
-                                <td>
-                                    <select id="transform_skewX1" name="transform_skewX1" onchange="app.applyStyle(this);">
-                                        <option value="0deg" selected>0</option>
-                                        <option value="10deg">10</option>
-                                        <option value="20deg">20</option>
-                                        <option value="30deg">30</option>
-                                        <option value="40deg">40</option>
-                                        <option value="50deg">50</option>
-                                        <option value="60deg">60</option>
-                                        <option value="70deg">70</option>
-                                        <option value="80deg">80</option>
-                                        <option value="90deg">90</option>
-                                        <option value="100deg">100</option>
-                                        <option value="110deg">110</option>
-                                        <option value="120deg">120</option>
-                                        <option value="130deg">130</option>
-                                        <option value="140deg">140</option>
-                                        <option value="150deg">150</option>
-                                        <option value="160deg">160</option>
-                                        <option value="170deg">170</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="transform_skewX2" name="transform_skewX2" onchange="app.applyStyle(this);">
-                                        <option value="0deg" selected>0</option>
-                                        <option value="10deg">10</option>
-                                        <option value="20deg">20</option>
-                                        <option value="30deg">30</option>
-                                        <option value="40deg">40</option>
-                                        <option value="50deg">50</option>
-                                        <option value="60deg">60</option>
-                                        <option value="70deg">70</option>
-                                        <option value="80deg">80</option>
-                                        <option value="90deg">90</option>
-                                        <option value="100deg">100</option>
-                                        <option value="110deg">110</option>
-                                        <option value="120deg">120</option>
-                                        <option value="130deg">130</option>
-                                        <option value="140deg">140</option>
-                                        <option value="150deg">150</option>
-                                        <option value="160deg">160</option>
-                                        <option value="170deg">170</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Skew Y:</td>
-                                <td>
-                                    <select id="transform_skewY1" name="transform_skewY1" onchange="app.applyStyle(this);">
-                                        <option value="0deg" selected>0</option>
-                                        <option value="10deg">10</option>
-                                        <option value="20deg">20</option>
-                                        <option value="30deg">30</option>
-                                        <option value="40deg">40</option>
-                                        <option value="50deg">50</option>
-                                        <option value="60deg">60</option>
-                                        <option value="70deg">70</option>
-                                        <option value="80deg">80</option>
-                                        <option value="90deg">90</option>
-                                        <option value="100deg">100</option>
-                                        <option value="110deg">110</option>
-                                        <option value="120deg">120</option>
-                                        <option value="130deg">130</option>
-                                        <option value="140deg">140</option>
-                                        <option value="150deg">150</option>
-                                        <option value="160deg">160</option>
-                                        <option value="170deg">170</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="transform_skewY2" name="transform_skewY2" onchange="app.applyStyle(this);">
-                                        <option value="0deg" selected>0</option>
-                                        <option value="10deg">10</option>
-                                        <option value="20deg">20</option>
-                                        <option value="30deg">30</option>
-                                        <option value="40deg">40</option>
-                                        <option value="50deg">50</option>
-                                        <option value="60deg">60</option>
-                                        <option value="70deg">70</option>
-                                        <option value="80deg">80</option>
-                                        <option value="90deg">90</option>
-                                        <option value="100deg">100</option>
-                                        <option value="110deg">110</option>
-                                        <option value="120deg">120</option>
-                                        <option value="130deg">130</option>
-                                        <option value="140deg">140</option>
-                                        <option value="150deg">150</option>
-                                        <option value="160deg">160</option>
-                                        <option value="170deg">170</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Translate:</td>
-                                <td>
-                                    <select id="transform_translate1" name="transform_translate1" onchange="app.applyStyle(this);">
-                                        <option value="-100%">-100</option>
-                                        <option value="-90%">-90</option>
-                                        <option value="-80%">-80</option>
-                                        <option value="-70%">-70</option>
-                                        <option value="-60%">-60</option>
-                                        <option value="-50%">-50</option>
-                                        <option value="-40%">-40</option>
-                                        <option value="-30%">-30</option>
-                                        <option value="-20%">-20</option>
-                                        <option value="-10%">-10</option>
-                                        <option value="0%" selected>0</option>
-                                        <option value="10%">10</option>
-                                        <option value="20%">20</option>
-                                        <option value="30%">30</option>
-                                        <option value="40%">40</option>
-                                        <option value="50%">50</option>
-                                        <option value="60%">60</option>
-                                        <option value="70%">70</option>
-                                        <option value="80%">80</option>
-                                        <option value="90%">90</option>
-                                        <option value="100%">100</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="transform_translate2" name="transform_translate2" onchange="app.applyStyle(this);">
-                                        <option value="-100%">-100</option>
-                                        <option value="-90%">-90</option>
-                                        <option value="-80%">-80</option>
-                                        <option value="-70%">-70</option>
-                                        <option value="-60%">-60</option>
-                                        <option value="-50%">-50</option>
-                                        <option value="-40%">-40</option>
-                                        <option value="-30%">-30</option>
-                                        <option value="-20%">-20</option>
-                                        <option value="-10%">-10</option>
-                                        <option value="0%" selected>0</option>
-                                        <option value="10%">10</option>
-                                        <option value="20%">20</option>
-                                        <option value="30%">30</option>
-                                        <option value="40%">40</option>
-                                        <option value="50%">50</option>
-                                        <option value="60%">60</option>
-                                        <option value="70%">70</option>
-                                        <option value="80%">80</option>
-                                        <option value="90%">90</option>
-                                        <option value="100%">100</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Translate X:</td>
-                                <td>
-                                    <select id="transform_translateX1" name="transform_translateX1" onchange="app.applyStyle(this);">
-                                        <option value="-100%">-100</option>
-                                        <option value="-90%">-90</option>
-                                        <option value="-80%">-80</option>
-                                        <option value="-70%">-70</option>
-                                        <option value="-60%">-60</option>
-                                        <option value="-50%">-50</option>
-                                        <option value="-40%">-40</option>
-                                        <option value="-30%">-30</option>
-                                        <option value="-20%">-20</option>
-                                        <option value="-10%">-10</option>
-                                        <option value="0%" selected>0</option>
-                                        <option value="10%">10</option>
-                                        <option value="20%">20</option>
-                                        <option value="30%">30</option>
-                                        <option value="40%">40</option>
-                                        <option value="50%">50</option>
-                                        <option value="60%">60</option>
-                                        <option value="70%">70</option>
-                                        <option value="80%">80</option>
-                                        <option value="90%">90</option>
-                                        <option value="100%">100</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="transform_translateX2" name="transform_translateX2" onchange="app.applyStyle(this);">
-                                        <option value="-100%">-100</option>
-                                        <option value="-90%">-90</option>
-                                        <option value="-80%">-80</option>
-                                        <option value="-70%">-70</option>
-                                        <option value="-60%">-60</option>
-                                        <option value="-50%">-50</option>
-                                        <option value="-40%">-40</option>
-                                        <option value="-30%">-30</option>
-                                        <option value="-20%">-20</option>
-                                        <option value="-10%">-10</option>
-                                        <option value="0%" selected>0</option>
-                                        <option value="10%">10</option>
-                                        <option value="20%">20</option>
-                                        <option value="30%">30</option>
-                                        <option value="40%">40</option>
-                                        <option value="50%">50</option>
-                                        <option value="60%">60</option>
-                                        <option value="70%">70</option>
-                                        <option value="80%">80</option>
-                                        <option value="90%">90</option>
-                                        <option value="100%">100</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Translate Y:</td>
-                                <td>
-                                    <select id="transform_translateY1" name="transform_translateY1" onchange="app.applyStyle(this);">
-                                        <option value="-100%">-100</option>
-                                        <option value="-90%">-90</option>
-                                        <option value="-80%">-80</option>
-                                        <option value="-70%">-70</option>
-                                        <option value="-60%">-60</option>
-                                        <option value="-50%">-50</option>
-                                        <option value="-40%">-40</option>
-                                        <option value="-30%">-30</option>
-                                        <option value="-20%">-20</option>
-                                        <option value="-10%">-10</option>
-                                        <option value="0%" selected>0</option>
-                                        <option value="10%">10</option>
-                                        <option value="20%">20</option>
-                                        <option value="30%">30</option>
-                                        <option value="40%">40</option>
-                                        <option value="50%">50</option>
-                                        <option value="60%">60</option>
-                                        <option value="70%">70</option>
-                                        <option value="80%">80</option>
-                                        <option value="90%">90</option>
-                                        <option value="100%">100</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="transform_translateY2" name="transform_translateY2" onchange="app.applyStyle(this);">
-                                        <option value="-100%">-100</option>
-                                        <option value="-90%">-90</option>
-                                        <option value="-80%">-80</option>
-                                        <option value="-70%">-70</option>
-                                        <option value="-60%">-60</option>
-                                        <option value="-50%">-50</option>
-                                        <option value="-40%">-40</option>
-                                        <option value="-30%">-30</option>
-                                        <option value="-20%">-20</option>
-                                        <option value="-10%">-10</option>
-                                        <option value="0%" selected>0</option>
-                                        <option value="10%">10</option>
-                                        <option value="20%">20</option>
-                                        <option value="30%">30</option>
-                                        <option value="40%">40</option>
-                                        <option value="50%">50</option>
-                                        <option value="60%">60</option>
-                                        <option value="70%">70</option>
-                                        <option value="80%">80</option>
-                                        <option value="90%">90</option>
-                                        <option value="100%">100</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                    </fieldset>
-                </td>
-                <td valign="top">
-                    <fieldset>
-                        <legend>Effects</legend>
-                        <input type="button" class="button" id="effect-slideLeft" name="effect" value="slideLeft" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-slideRight" name="effect" value="slideRight" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-slideUp" name="effect" value="slideUp" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-slideDown" name="effect" value="slideDown" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-tossLeft" name="effect" value="tossLeft" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-tossRight" name="effect" value="tossRight" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-tossUp" name="effect" value="tossUp" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-tossDown" name="effect" value="tossDown" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-flipLeft" name="effect" value="flipLeft" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-flipRight" name="effect" value="flipRight" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-flipUp" name="effect" value="flipUp" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-flipDown" name="effect" value="flipDown" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-pushForward" name="effect" value="pushForward" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-pushBackward" name="effect" value="pushBackward" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-fadeIn" name="effect" value="fadeIn" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-fadeOut" name="effect" value="fadeOut" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-drain" name="effect" value="drain" onclick="app.applyEffect(this);"><br>
-                        <input type="button" class="button" id="effect-phantomZone" name="effect" value="phantomZone" onclick="app.applyEffect(this);"><br>
-                    </fieldset>
-                </td>
-                <td valign="top">
-                    <fieldset>
-                        <legend>Animation Settings</legend>
-                        <table border="0" cellpadding="5" cellspacing="0">
-                            <tr>
-                                <td align="right">Delay:</td>
-                                <td><input type="text" id="delay1" name="delay" value="0ms" size="4" style="text-align: right;"></td>
-                                <td><input type="text" id="delay2" name="delay" value="0ms" size="4" style="text-align: right;"></td>
-                            </tr>
-                            <tr>
-                                <td align="right">Duration:</td>
-                                <td><input type="text" id="duration1" name="duration" value="2500ms" size="4" style="text-align: right;"></td>
-                                <td><input type="text" id="duration2" name="duration" value="2500ms" size="4" style="text-align: right;"></td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Timing Function:</td>
-                                <td>
-                                    <select id="timing1" name="timing-elem1" size="10">
-                                        <option value="linear">linear</option>
-                                        <option value="ease" selected>ease</option>
-                                        <option value="ease-in">ease-in</option>
-                                        <option value="ease-out">ease-out</option>
-                                        <option value="ease-in-out">ease-in-out</option>
-                                        <option value="easeInQuad">easeInQuad</option>
-                                        <option value="easeInCubic">easeInCubic</option>
-                                        <option value="easeInQuart">easeInQuart</option>
-                                        <option value="easeInQuint">easeInQuint</option>
-                                        <option value="easeInSine">easeInSine</option>
-                                        <option value="easeInExpo">easeInExpo</option>
-                                        <option value="easeInCirc">easeInCirc</option>
-                                        <option value="easeInBack">easeInBack</option>
-                                        <option value="easeOutQuad">easeOutQuad</option>
-                                        <option value="easeOutCubic">easeOutCubic</option>
-                                        <option value="easeOutQuart">easeOutQuart</option>
-                                        <option value="easeOutQuint">easeOutQuint</option>
-                                        <option value="easeOutSine">easeOutSine</option>
-                                        <option value="easeOutExpo">easeOutExpo</option>
-                                        <option value="easeOutCirc">easeOutCirc</option>
-                                        <option value="easeOutBack">easeOutBack</option>
-                                        <option value="easeInOutQuad">easeInOutQuad</option>
-                                        <option value="easeInOutCubic">easeInOutCubic</option>
-                                        <option value="easeInOutQuart">easeInOutQuart</option>
-                                        <option value="easeInOutQuint">easeInOutQuint</option>
-                                        <option value="easeInOutSine">easeInOutSine</option>
-                                        <option value="easeInOutExpo">easeInOutExpo</option>
-                                        <option value="easeInOutCirc">easeInOutCirc</option>
-                                        <option value="easeInOutBack">easeInOutBack</option>
-                                        <option value="bounce">bounce</option>
-                                        <option value="random">random</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="timing2" name="timing-elem2" size="10">
-                                        <option value="linear">linear</option>
-                                        <option value="ease" selected>ease</option>
-                                        <option value="ease-in">ease-in</option>
-                                        <option value="ease-out">ease-out</option>
-                                        <option value="ease-in-out">ease-in-out</option>
-                                        <option value="easeInQuad">easeInQuad</option>
-                                        <option value="easeInCubic">easeInCubic</option>
-                                        <option value="easeInQuart">easeInQuart</option>
-                                        <option value="easeInQuint">easeInQuint</option>
-                                        <option value="easeInSine">easeInSine</option>
-                                        <option value="easeInExpo">easeInExpo</option>
-                                        <option value="easeInCirc">easeInCirc</option>
-                                        <option value="easeInBack">easeInBack</option>
-                                        <option value="easeOutQuad">easeOutQuad</option>
-                                        <option value="easeOutCubic">easeOutCubic</option>
-                                        <option value="easeOutQuart">easeOutQuart</option>
-                                        <option value="easeOutQuint">easeOutQuint</option>
-                                        <option value="easeOutSine">easeOutSine</option>
-                                        <option value="easeOutExpo">easeOutExpo</option>
-                                        <option value="easeOutCirc">easeOutCirc</option>
-                                        <option value="easeOutBack">easeOutBack</option>
-                                        <option value="easeInOutQuad">easeInOutQuad</option>
-                                        <option value="easeInOutCubic">easeInOutCubic</option>
-                                        <option value="easeInOutQuart">easeInOutQuart</option>
-                                        <option value="easeInOutQuint">easeInOutQuint</option>
-                                        <option value="easeInOutSine">easeInOutSine</option>
-                                        <option value="easeInOutExpo">easeInOutExpo</option>
-                                        <option value="easeInOutCirc">easeInOutCirc</option>
-                                        <option value="easeInOutBack">easeInOutBack</option>
-                                        <option value="bounce">bounce</option>
-                                        <option value="random">random</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right">Iteration Count:</td>
-                                <td><input type="text" id="iteration1" name="iteration" value="1" size="4" style="text-align: right;"></td>
-                                <td><input type="text" id="iteration2" name="iteration" value="1" size="4" style="text-align: right;"></td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Direction:</td>
-                                <td>
-                                    <select id="direction1" name="direction">
-                                        <option value="normal" selected>normal</option>
-                                        <option value="alternate">alternate</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="direction2" name="direction">
-                                        <option value="normal" selected>normal</option>
-                                        <option value="alternate">alternate</option>
-                                    </select>
-                                </td>
-                            </tr>
-<!--
-                            <tr>
-                                <td align="right" valign="top">Fill Mode:</td>
-                                <td>
-                                    <select id="fillmode1" name="fillmode">
-                                        <option value="none" selected>none</option>
-                                        <option value="forwards">forwards</option>
-                                        <option value="backwards">backwards</option>
-                                        <option value="both">both</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="fillmode2" name="fillmode">
-                                        <option value="none" selected>none</option>
-                                        <option value="forwards">forwards</option>
-                                        <option value="backwards">backwards</option>
-                                        <option value="both">both</option>
-                                    </select>
-                                </td>
-                            </tr>
--->
-                            <tr>
-                                <td align="right" valign="top">Play State:</td>
-                                <td>
-                                    <select id="playstate1" name="playstate1">
-                                        <option value="running" selected>running</option>
-                                        <option value="paused">paused</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="playstate2" name="playstate2">
-                                        <option value="running" selected>running</option>
-                                        <option value="paused">paused</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                    </fieldset>
-                </td>
-                <td valign="top">
-                    <fieldset>
-                        <legend>Custom Settings (for Slide)</legend>
-                        <table border="0" cellpadding="5" cellspacing="0">
-                            <tr>
-                                <td align="right" valign="top">Move:</td>
-                                <td>
-                                    <select id="move1" name="move1">
-                                        <option value="">none</option>
-                                        <option value="left" selected>left</option>
-                                        <option value="right">right</option>
-                                        <option value="up">up</option>
-                                        <option value="down">down</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="move2" name="move2">
-                                        <option value="">none</option>
-                                        <option value="left" selected>left</option>
-                                        <option value="right">right</option>
-                                        <option value="up">up</option>
-                                        <option value="down">down</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Rotate:</td>
-                                <td>
-                                    <select id="rotate1" name="rotate1">
-                                        <option value="-720%">-720</option>
-                                        <option value="-675%">-675</option>
-                                        <option value="-630%">-630</option>
-                                        <option value="-585%">-585</option>
-                                        <option value="-540%">-540</option>
-                                        <option value="-495%">-495</option>
-                                        <option value="-450%">-450</option>
-                                        <option value="-405%">-405</option>
-                                        <option value="-360%">-360</option>
-                                        <option value="-315%">-315</option>
-                                        <option value="-270%">-270</option>
-                                        <option value="-225%">-225</option>
-                                        <option value="-180%">-180</option>
-                                        <option value="-135%">-135</option>
-                                        <option value="-90%">-90</option>
-                                        <option value="-45%">-45</option>
-                                        <option value="0%" selected>0</option>
-                                        <option value="45%">45</option>
-                                        <option value="90%">90</option>
-                                        <option value="135%">135</option>
-                                        <option value="180%">180</option>
-                                        <option value="225%">225</option>
-                                        <option value="270%">270</option>
-                                        <option value="315%">315</option>
-                                        <option value="360%">360</option>
-                                        <option value="405%">405</option>
-                                        <option value="450%">450</option>
-                                        <option value="495%">495</option>
-                                        <option value="540%">540</option>
-                                        <option value="585%">585</option>
-                                        <option value="630%">630</option>
-                                        <option value="675%">675</option>
-                                        <option value="720%">720</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="rotate2" name="rotate2">
-                                        <option value="-720%">-720</option>
-                                        <option value="-675%">-675</option>
-                                        <option value="-630%">-630</option>
-                                        <option value="-585%">-585</option>
-                                        <option value="-540%">-540</option>
-                                        <option value="-495%">-495</option>
-                                        <option value="-450%">-450</option>
-                                        <option value="-405%">-405</option>
-                                        <option value="-360%">-360</option>
-                                        <option value="-315%">-315</option>
-                                        <option value="-270%">-270</option>
-                                        <option value="-225%">-225</option>
-                                        <option value="-180%">-180</option>
-                                        <option value="-135%">-135</option>
-                                        <option value="-90%">-90</option>
-                                        <option value="-45%">-45</option>
-                                        <option value="0%" selected>0</option>
-                                        <option value="45%">45</option>
-                                        <option value="90%">90</option>
-                                        <option value="135%">135</option>
-                                        <option value="180%">180</option>
-                                        <option value="225%">225</option>
-                                        <option value="270%">270</option>
-                                        <option value="315%">315</option>
-                                        <option value="360%">360</option>
-                                        <option value="405%">405</option>
-                                        <option value="450%">450</option>
-                                        <option value="495%">495</option>
-                                        <option value="540%">540</option>
-                                        <option value="585%">585</option>
-                                        <option value="630%">630</option>
-                                        <option value="675%">675</option>
-                                        <option value="720%">720</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Flip:</td>
-                                <td>
-                                    <select id="flip1" name="flip1">
-                                        <option value="" selected>none</option>
-                                        <option value="left">left</option>
-                                        <option value="right">right</option>
-                                        <option value="up">up</option>
-                                        <option value="down">down</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="flip2" name="flip2">
-                                        <option value="" selected>none</option>
-                                        <option value="left">left</option>
-                                        <option value="right">right</option>
-                                        <option value="up">up</option>
-                                        <option value="down">down</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Fade:</td>
-                                <td>
-                                    <select id="fade1" name="fade1">
-                                        <option value="" selected>none</option>
-                                        <option value="in">in</option>
-                                        <option value="out">out</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="fade2" name="fade2">
-                                        <option value="" selected>none</option>
-                                        <option value="in">in</option>
-                                        <option value="out">out</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Scale:</td>
-                                <td>
-                                    <select id="scale1" name="scale1">
-                                        <option value="1%">1</option>
-                                        <option value="10%">10</option>
-                                        <option value="20%">20</option>
-                                        <option value="30%">30</option>
-                                        <option value="40%">40</option>
-                                        <option value="50%">50</option>
-                                        <option value="60%">60</option>
-                                        <option value="70%">70</option>
-                                        <option value="80%">80</option>
-                                        <option value="90%">90</option>
-                                        <option value="100%"selected>100</option>
-                                        <option value="110%">110</option>
-                                        <option value="120%">120</option>
-                                        <option value="130%">130</option>
-                                        <option value="140%">140</option>
-                                        <option value="150%">150</option>
-                                        <option value="160%">160</option>
-                                        <option value="170%">170</option>
-                                        <option value="180%">180</option>
-                                        <option value="190%">190</option>
-                                        <option value="200%">200</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="scale2" name="scale2">
-                                        <option value="1%">1</option>
-                                        <option value="10%">10</option>
-                                        <option value="20%">20</option>
-                                        <option value="30%">30</option>
-                                        <option value="40%">40</option>
-                                        <option value="50%">50</option>
-                                        <option value="60%">60</option>
-                                        <option value="70%">70</option>
-                                        <option value="80%">80</option>
-                                        <option value="90%">90</option>
-                                        <option value="100%"selected>100</option>
-                                        <option value="110%">110</option>
-                                        <option value="120%">120</option>
-                                        <option value="130%">130</option>
-                                        <option value="140%">140</option>
-                                        <option value="150%">150</option>
-                                        <option value="160%">160</option>
-                                        <option value="170%">170</option>
-                                        <option value="180%">180</option>
-                                        <option value="190%">190</option>
-                                        <option value="200%">200</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Overshoot:</td>
-                                <td>
-                                    <select id="overshoot1" name="overshoot1">
-                                        <option value="0%" selected>0</option>
-                                        <option value="10%">10</option>
-                                        <option value="20%">20</option>
-                                        <option value="30%">30</option>
-                                        <option value="40%">40</option>
-                                        <option value="50%">50</option>
-                                        <option value="60%">60</option>
-                                        <option value="70%">70</option>
-                                        <option value="80%">80</option>
-                                        <option value="90%">90</option>
-                                        <option value="100%">100</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="overshoot2" name="overshoot2">
-                                        <option value="0%">0</option>
-                                        <option value="10%" selected>10</option>
-                                        <option value="20%">20</option>
-                                        <option value="30%">30</option>
-                                        <option value="40%">40</option>
-                                        <option value="50%">50</option>
-                                        <option value="60%">60</option>
-                                        <option value="70%">70</option>
-                                        <option value="80%">80</option>
-                                        <option value="90%">90</option>
-                                        <option value="100%">100</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Randomness:</td>
-                                <td>
-                                    <select id="randomness1" name="randomness1">
-                                        <option value="0%" selected>0</option>
-                                        <option value="10%">10</option>
-                                        <option value="20%">20</option>
-                                        <option value="30%">30</option>
-                                        <option value="40%">40</option>
-                                        <option value="50%">50</option>
-                                        <option value="60%">60</option>
-                                        <option value="70%">70</option>
-                                        <option value="80%">80</option>
-                                        <option value="90%">90</option>
-                                        <option value="100%">100</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="randomness2" name="randomness2">
-                                        <option value="0%"selected>0</option>
-                                        <option value="10%">10</option>
-                                        <option value="20%">20</option>
-                                        <option value="30%">30</option>
-                                        <option value="40%">40</option>
-                                        <option value="50%">50</option>
-                                        <option value="60%">60</option>
-                                        <option value="70%">70</option>
-                                        <option value="80%">80</option>
-                                        <option value="90%">90</option>
-                                        <option value="100%">100</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                    </fieldset>
+        <div id="settingsDiv" style="background-color: #EEE; overflow: auto;">
+            <table border="0" cellpadding="5" cellspacing="0">
+                <tr>
+                    <td colspan="2">
 
-                    <fieldset>
-                        <legend>3D Settings (for Flip)</legend>
-                        <table border="0" cellpadding="5" cellspacing="0">
-                            <tr>
-                                <td align="right" valign="top">Perspective (px):</td>
-                                <td>
-                                    <select id="perspective1" name="perspective1">
-                                        <option value="none">none</option>
-                                        <option value="100">100</option>
-                                        <option value="250">250</option>
-                                        <option value="500">500</option>
-                                        <option value="750">750</option>
-                                        <option value="1000" selected>1000</option>
-                                        <option value="1500">1500</option>
-                                        <option value="1750">1750</option>
-                                        <option value="2000">2000</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="perspective2" name="perspective2">
-                                        <option value="none">none</option>
-                                        <option value="100">100</option>
-                                        <option value="250">250</option>
-                                        <option value="500">500</option>
-                                        <option value="750">750</option>
-                                        <option value="1000" selected>1000</option>
-                                        <option value="1500">1500</option>
-                                        <option value="1750">1750</option>
-                                        <option value="2000">2000</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Perspective Origin:</td>
-                                <td>
-                                    <select id="perspective_origin1" name="perspective_origin1">
-                                        <option value="top-left">top-left</option>
-                                        <option value="top">top</option>
-                                        <option value="top-right">top-right</option>
-                                        <option value="left">left</option>
-                                        <option value="center" selected>center</option>
-                                        <option value="right">right</option>
-                                        <option value="bottom-left">bottom-left</option>
-                                        <option value="bottom">bottom</option>
-                                        <option value="bottom-right">bottom-right</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="perspective_origin2" name="perspective_origin2">
-                                        <option value="top-left">top-left</option>
-                                        <option value="top">top</option>
-                                        <option value="top-right">top-right</option>
-                                        <option value="left">left</option>
-                                        <option value="center" selected>center</option>
-                                        <option value="right">right</option>
-                                        <option value="bottom-left">bottom-left</option>
-                                        <option value="bottom">bottom</option>
-                                        <option value="bottom-right">bottom-right</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" valign="top">Backface Visibility:</td>
-                                <td>
-                                    <select id="backface_visibility1" name="backface_visibility1">
-                                        <option value="visible" selected>visible</option>
-                                        <option value="hidden">hidden</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="backface_visibility2" name="backface_visibility2">
-                                        <option value="visible" selected>visible</option>
-                                        <option value="hidden">hidden</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                    </fieldset>
-                </td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td colspan="4" align="center">
-                    <textarea id="json" style="width: 100%; height: 200px;"></textarea>
-                </td>
-            </tr>
-        </table>
+                    </td>
+                    <td colspan="4" align="center">
+                        <input type="button" class="apply" id="effect-slide" name="effect" value="Apply Settings" onclick="app.applyEffect(this);">
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" rowspan="2">
+                        <fieldset>
+                            <legend>Transform Settings</legend>
+                            <table border="0" cellpadding="5" cellspacing="0">
+                                <tr>
+                                    <td align="right" valign="top">Perspective (px):</td>
+                                    <td>
+                                        <select id="transform_perspective1" name="transform_perspective1" onchange="app.applyStyle(this);">
+                                            <option value="none">none</option>
+                                            <option value="100">100</option>
+                                            <option value="250">250</option>
+                                            <option value="500">500</option>
+                                            <option value="750">750</option>
+                                            <option value="1000" selected>1000</option>
+                                            <option value="1500">1500</option>
+                                            <option value="1750">1750</option>
+                                            <option value="2000">2000</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="transform_perspective2" name="transform_perspective2" onchange="app.applyStyle(this);">
+                                            <option value="none">none</option>
+                                            <option value="100">100</option>
+                                            <option value="250">250</option>
+                                            <option value="500">500</option>
+                                            <option value="750">750</option>
+                                            <option value="1000" selected>1000</option>
+                                            <option value="1500">1500</option>
+                                            <option value="1750">1750</option>
+                                            <option value="2000">2000</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Rotate:</td>
+                                    <td>
+                                        <select id="transform_rotate1" name="transform_rotate1" onchange="app.applyStyle(this);">
+                                            <option value="0deg" selected>0</option>
+                                            <option value="10deg">10</option>
+                                            <option value="20deg">20</option>
+                                            <option value="30deg">30</option>
+                                            <option value="40deg">40</option>
+                                            <option value="50deg">50</option>
+                                            <option value="60deg">60</option>
+                                            <option value="70deg">70</option>
+                                            <option value="80deg">80</option>
+                                            <option value="90deg">90</option>
+                                            <option value="100deg">100</option>
+                                            <option value="110deg">110</option>
+                                            <option value="120deg">120</option>
+                                            <option value="130deg">130</option>
+                                            <option value="140deg">140</option>
+                                            <option value="150deg">150</option>
+                                            <option value="160deg">160</option>
+                                            <option value="170deg">170</option>
+                                            <option value="180deg">180</option>
+                                            <option value="225deg">225</option>
+                                            <option value="270deg">270</option>
+                                            <option value="315deg">315</option>
+                                            <option value="360deg">360</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="transform_rotate2" name="transform_rotate2" onchange="app.applyStyle(this);">
+                                            <option value="0deg" selected>0</option>
+                                            <option value="10deg">10</option>
+                                            <option value="20deg">20</option>
+                                            <option value="30deg">30</option>
+                                            <option value="40deg">40</option>
+                                            <option value="50deg">50</option>
+                                            <option value="60deg">60</option>
+                                            <option value="70deg">70</option>
+                                            <option value="80deg">80</option>
+                                            <option value="90deg">90</option>
+                                            <option value="100deg">100</option>
+                                            <option value="110deg">110</option>
+                                            <option value="120deg">120</option>
+                                            <option value="130deg">130</option>
+                                            <option value="140deg">140</option>
+                                            <option value="150deg">150</option>
+                                            <option value="160deg">160</option>
+                                            <option value="170deg">170</option>
+                                            <option value="180deg">180</option>
+                                            <option value="225deg">225</option>
+                                            <option value="270deg">270</option>
+                                            <option value="315deg">315</option>
+                                            <option value="360deg">360</option>
+                                        </select>
+                                    </td>
+                                </tr>
+    <!--
+                                <tr>
+                                    <td align="right" valign="top">Rotate X:</td>
+                                    <td>
+                                        <select id="transform_rotateX1" name="transform_rotateX1" onchange="app.applyStyle(this);">
+                                            <option value="0deg" selected>0</option>
+                                            <option value="10deg">10</option>
+                                            <option value="20deg">20</option>
+                                            <option value="30deg">30</option>
+                                            <option value="40deg">40</option>
+                                            <option value="50deg">50</option>
+                                            <option value="60deg">60</option>
+                                            <option value="70deg">70</option>
+                                            <option value="80deg">80</option>
+                                            <option value="90deg">90</option>
+                                            <option value="100deg">100</option>
+                                            <option value="110deg">110</option>
+                                            <option value="120deg">120</option>
+                                            <option value="130deg">130</option>
+                                            <option value="140deg">140</option>
+                                            <option value="150deg">150</option>
+                                            <option value="160deg">160</option>
+                                            <option value="170deg">170</option>
+                                            <option value="180deg">180</option>
+                                            <option value="225deg">225</option>
+                                            <option value="270deg">270</option>
+                                            <option value="315deg">315</option>
+                                            <option value="360deg">360</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="transform_rotateX2" name="transform_rotateX2" onchange="app.applyStyle(this);">
+                                            <option value="0deg" selected>0</option>
+                                            <option value="10deg">10</option>
+                                            <option value="20deg">20</option>
+                                            <option value="30deg">30</option>
+                                            <option value="40deg">40</option>
+                                            <option value="50deg">50</option>
+                                            <option value="60deg">60</option>
+                                            <option value="70deg">70</option>
+                                            <option value="80deg">80</option>
+                                            <option value="90deg">90</option>
+                                            <option value="100deg">100</option>
+                                            <option value="110deg">110</option>
+                                            <option value="120deg">120</option>
+                                            <option value="130deg">130</option>
+                                            <option value="140deg">140</option>
+                                            <option value="150deg">150</option>
+                                            <option value="160deg">160</option>
+                                            <option value="170deg">170</option>
+                                            <option value="180deg">180</option>
+                                            <option value="225deg">225</option>
+                                            <option value="270deg">270</option>
+                                            <option value="315deg">315</option>
+                                            <option value="360deg">360</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Rotate Y:</td>
+                                    <td>
+                                        <select id="transform_rotateY1" name="transform_rotateY1" onchange="app.applyStyle(this);">
+                                            <option value="0deg" selected>0</option>
+                                            <option value="10deg">10</option>
+                                            <option value="20deg">20</option>
+                                            <option value="30deg">30</option>
+                                            <option value="40deg">40</option>
+                                            <option value="50deg">50</option>
+                                            <option value="60deg">60</option>
+                                            <option value="70deg">70</option>
+                                            <option value="80deg">80</option>
+                                            <option value="90deg">90</option>
+                                            <option value="100deg">100</option>
+                                            <option value="110deg">110</option>
+                                            <option value="120deg">120</option>
+                                            <option value="130deg">130</option>
+                                            <option value="140deg">140</option>
+                                            <option value="150deg">150</option>
+                                            <option value="160deg">160</option>
+                                            <option value="170deg">170</option>
+                                            <option value="180deg">180</option>
+                                            <option value="225deg">225</option>
+                                            <option value="270deg">270</option>
+                                            <option value="315deg">315</option>
+                                            <option value="360deg">360</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="transform_rotateY2" name="transform_rotateY2" onchange="app.applyStyle(this);">
+                                            <option value="0deg" selected>0</option>
+                                            <option value="10deg">10</option>
+                                            <option value="20deg">20</option>
+                                            <option value="30deg">30</option>
+                                            <option value="40deg">40</option>
+                                            <option value="50deg">50</option>
+                                            <option value="60deg">60</option>
+                                            <option value="70deg">70</option>
+                                            <option value="80deg">80</option>
+                                            <option value="90deg">90</option>
+                                            <option value="100deg">100</option>
+                                            <option value="110deg">110</option>
+                                            <option value="120deg">120</option>
+                                            <option value="130deg">130</option>
+                                            <option value="140deg">140</option>
+                                            <option value="150deg">150</option>
+                                            <option value="160deg">160</option>
+                                            <option value="170deg">170</option>
+                                            <option value="180deg">180</option>
+                                            <option value="225deg">225</option>
+                                            <option value="270deg">270</option>
+                                            <option value="315deg">315</option>
+                                            <option value="360deg">360</option>
+                                        </select>
+                                    </td>
+                                </tr>
+    -->
+                                <tr>
+                                    <td align="right" valign="top">Scale:</td>
+                                    <td>
+                                        <select id="transform_scale1" name="transform_scale1" onchange="app.applyStyle(this);">
+                                            <option value="0.10">10</option>
+                                            <option value="0.20">20</option>
+                                            <option value="0.30">30</option>
+                                            <option value="0.40">40</option>
+                                            <option value="0.50">50</option>
+                                            <option value="0.60">60</option>
+                                            <option value="0.70">70</option>
+                                            <option value="0.80">80</option>
+                                            <option value="0.90">90</option>
+                                            <option value="1" selected>100</option>
+                                            <option value="1.5">150</option>
+                                            <option value="2">200</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="transform_scale2" name="transform_scale2" onchange="app.applyStyle(this);">
+                                            <option value="0.10">10</option>
+                                            <option value="0.20">20</option>
+                                            <option value="0.30">30</option>
+                                            <option value="0.40">40</option>
+                                            <option value="0.50">50</option>
+                                            <option value="0.60">60</option>
+                                            <option value="0.70">70</option>
+                                            <option value="0.80">80</option>
+                                            <option value="0.90">90</option>
+                                            <option value="1" selected>100</option>
+                                            <option value="1.5">150</option>
+                                            <option value="2">200</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Scale X:</td>
+                                    <td>
+                                        <select id="transform_scaleX1" name="transform_scaleX1" onchange="app.applyStyle(this);">
+                                            <option value="0.10">10</option>
+                                            <option value="0.20">20</option>
+                                            <option value="0.30">30</option>
+                                            <option value="0.40">40</option>
+                                            <option value="0.50">50</option>
+                                            <option value="0.60">60</option>
+                                            <option value="0.70">70</option>
+                                            <option value="0.80">80</option>
+                                            <option value="0.90">90</option>
+                                            <option value="1" selected>100</option>
+                                            <option value="1.5">150</option>
+                                            <option value="2">200</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="transform_scaleX2" name="transform_scaleX2" onchange="app.applyStyle(this);">
+                                            <option value="0.10">10</option>
+                                            <option value="0.20">20</option>
+                                            <option value="0.30">30</option>
+                                            <option value="0.40">40</option>
+                                            <option value="0.50">50</option>
+                                            <option value="0.60">60</option>
+                                            <option value="0.70">70</option>
+                                            <option value="0.80">80</option>
+                                            <option value="0.90">90</option>
+                                            <option value="1" selected>100</option>
+                                            <option value="1.5">150</option>
+                                            <option value="2">200</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Scale Y:</td>
+                                    <td>
+                                        <select id="transform_scaleY1" name="transform_scaleY1" onchange="app.applyStyle(this);">
+                                            <option value="0.10">10</option>
+                                            <option value="0.20">20</option>
+                                            <option value="0.30">30</option>
+                                            <option value="0.40">40</option>
+                                            <option value="0.50">50</option>
+                                            <option value="0.60">60</option>
+                                            <option value="0.70">70</option>
+                                            <option value="0.80">80</option>
+                                            <option value="0.90">90</option>
+                                            <option value="1" selected>100</option>
+                                            <option value="1.5">150</option>
+                                            <option value="2">200</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="transform_scaleY2" name="transform_scaleY2" onchange="app.applyStyle(this);">
+                                            <option value="0.10">10</option>
+                                            <option value="0.20">20</option>
+                                            <option value="0.30">30</option>
+                                            <option value="0.40">40</option>
+                                            <option value="0.50">50</option>
+                                            <option value="0.60">60</option>
+                                            <option value="0.70">70</option>
+                                            <option value="0.80">80</option>
+                                            <option value="0.90">90</option>
+                                            <option value="1" selected>100</option>
+                                            <option value="1.5">150</option>
+                                            <option value="2">200</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Skew:</td>
+                                    <td>
+                                        <select id="transform_skew1" name="transform_skew1" onchange="app.applyStyle(this);">
+                                            <option value="0deg" selected>0</option>
+                                            <option value="10deg">10</option>
+                                            <option value="20deg">20</option>
+                                            <option value="30deg">30</option>
+                                            <option value="40deg">40</option>
+                                            <option value="50deg">50</option>
+                                            <option value="60deg">60</option>
+                                            <option value="70deg">70</option>
+                                            <option value="80deg">80</option>
+                                            <option value="90deg">90</option>
+                                            <option value="100deg">100</option>
+                                            <option value="110deg">110</option>
+                                            <option value="120deg">120</option>
+                                            <option value="130deg">130</option>
+                                            <option value="140deg">140</option>
+                                            <option value="150deg">150</option>
+                                            <option value="160deg">160</option>
+                                            <option value="170deg">170</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="transform_skew2" name="transform_skew2" onchange="app.applyStyle(this);">
+                                            <option value="0deg" selected>0</option>
+                                            <option value="10deg">10</option>
+                                            <option value="20deg">20</option>
+                                            <option value="30deg">30</option>
+                                            <option value="40deg">40</option>
+                                            <option value="50deg">50</option>
+                                            <option value="60deg">60</option>
+                                            <option value="70deg">70</option>
+                                            <option value="80deg">80</option>
+                                            <option value="90deg">90</option>
+                                            <option value="100deg">100</option>
+                                            <option value="110deg">110</option>
+                                            <option value="120deg">120</option>
+                                            <option value="130deg">130</option>
+                                            <option value="140deg">140</option>
+                                            <option value="150deg">150</option>
+                                            <option value="160deg">160</option>
+                                            <option value="170deg">170</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Skew X:</td>
+                                    <td>
+                                        <select id="transform_skewX1" name="transform_skewX1" onchange="app.applyStyle(this);">
+                                            <option value="0deg" selected>0</option>
+                                            <option value="10deg">10</option>
+                                            <option value="20deg">20</option>
+                                            <option value="30deg">30</option>
+                                            <option value="40deg">40</option>
+                                            <option value="50deg">50</option>
+                                            <option value="60deg">60</option>
+                                            <option value="70deg">70</option>
+                                            <option value="80deg">80</option>
+                                            <option value="90deg">90</option>
+                                            <option value="100deg">100</option>
+                                            <option value="110deg">110</option>
+                                            <option value="120deg">120</option>
+                                            <option value="130deg">130</option>
+                                            <option value="140deg">140</option>
+                                            <option value="150deg">150</option>
+                                            <option value="160deg">160</option>
+                                            <option value="170deg">170</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="transform_skewX2" name="transform_skewX2" onchange="app.applyStyle(this);">
+                                            <option value="0deg" selected>0</option>
+                                            <option value="10deg">10</option>
+                                            <option value="20deg">20</option>
+                                            <option value="30deg">30</option>
+                                            <option value="40deg">40</option>
+                                            <option value="50deg">50</option>
+                                            <option value="60deg">60</option>
+                                            <option value="70deg">70</option>
+                                            <option value="80deg">80</option>
+                                            <option value="90deg">90</option>
+                                            <option value="100deg">100</option>
+                                            <option value="110deg">110</option>
+                                            <option value="120deg">120</option>
+                                            <option value="130deg">130</option>
+                                            <option value="140deg">140</option>
+                                            <option value="150deg">150</option>
+                                            <option value="160deg">160</option>
+                                            <option value="170deg">170</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Skew Y:</td>
+                                    <td>
+                                        <select id="transform_skewY1" name="transform_skewY1" onchange="app.applyStyle(this);">
+                                            <option value="0deg" selected>0</option>
+                                            <option value="10deg">10</option>
+                                            <option value="20deg">20</option>
+                                            <option value="30deg">30</option>
+                                            <option value="40deg">40</option>
+                                            <option value="50deg">50</option>
+                                            <option value="60deg">60</option>
+                                            <option value="70deg">70</option>
+                                            <option value="80deg">80</option>
+                                            <option value="90deg">90</option>
+                                            <option value="100deg">100</option>
+                                            <option value="110deg">110</option>
+                                            <option value="120deg">120</option>
+                                            <option value="130deg">130</option>
+                                            <option value="140deg">140</option>
+                                            <option value="150deg">150</option>
+                                            <option value="160deg">160</option>
+                                            <option value="170deg">170</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="transform_skewY2" name="transform_skewY2" onchange="app.applyStyle(this);">
+                                            <option value="0deg" selected>0</option>
+                                            <option value="10deg">10</option>
+                                            <option value="20deg">20</option>
+                                            <option value="30deg">30</option>
+                                            <option value="40deg">40</option>
+                                            <option value="50deg">50</option>
+                                            <option value="60deg">60</option>
+                                            <option value="70deg">70</option>
+                                            <option value="80deg">80</option>
+                                            <option value="90deg">90</option>
+                                            <option value="100deg">100</option>
+                                            <option value="110deg">110</option>
+                                            <option value="120deg">120</option>
+                                            <option value="130deg">130</option>
+                                            <option value="140deg">140</option>
+                                            <option value="150deg">150</option>
+                                            <option value="160deg">160</option>
+                                            <option value="170deg">170</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Translate:</td>
+                                    <td>
+                                        <select id="transform_translate1" name="transform_translate1" onchange="app.applyStyle(this);">
+                                            <option value="-100%">-100</option>
+                                            <option value="-90%">-90</option>
+                                            <option value="-80%">-80</option>
+                                            <option value="-70%">-70</option>
+                                            <option value="-60%">-60</option>
+                                            <option value="-50%">-50</option>
+                                            <option value="-40%">-40</option>
+                                            <option value="-30%">-30</option>
+                                            <option value="-20%">-20</option>
+                                            <option value="-10%">-10</option>
+                                            <option value="0%" selected>0</option>
+                                            <option value="10%">10</option>
+                                            <option value="20%">20</option>
+                                            <option value="30%">30</option>
+                                            <option value="40%">40</option>
+                                            <option value="50%">50</option>
+                                            <option value="60%">60</option>
+                                            <option value="70%">70</option>
+                                            <option value="80%">80</option>
+                                            <option value="90%">90</option>
+                                            <option value="100%">100</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="transform_translate2" name="transform_translate2" onchange="app.applyStyle(this);">
+                                            <option value="-100%">-100</option>
+                                            <option value="-90%">-90</option>
+                                            <option value="-80%">-80</option>
+                                            <option value="-70%">-70</option>
+                                            <option value="-60%">-60</option>
+                                            <option value="-50%">-50</option>
+                                            <option value="-40%">-40</option>
+                                            <option value="-30%">-30</option>
+                                            <option value="-20%">-20</option>
+                                            <option value="-10%">-10</option>
+                                            <option value="0%" selected>0</option>
+                                            <option value="10%">10</option>
+                                            <option value="20%">20</option>
+                                            <option value="30%">30</option>
+                                            <option value="40%">40</option>
+                                            <option value="50%">50</option>
+                                            <option value="60%">60</option>
+                                            <option value="70%">70</option>
+                                            <option value="80%">80</option>
+                                            <option value="90%">90</option>
+                                            <option value="100%">100</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Translate X:</td>
+                                    <td>
+                                        <select id="transform_translateX1" name="transform_translateX1" onchange="app.applyStyle(this);">
+                                            <option value="-100%">-100</option>
+                                            <option value="-90%">-90</option>
+                                            <option value="-80%">-80</option>
+                                            <option value="-70%">-70</option>
+                                            <option value="-60%">-60</option>
+                                            <option value="-50%">-50</option>
+                                            <option value="-40%">-40</option>
+                                            <option value="-30%">-30</option>
+                                            <option value="-20%">-20</option>
+                                            <option value="-10%">-10</option>
+                                            <option value="0%" selected>0</option>
+                                            <option value="10%">10</option>
+                                            <option value="20%">20</option>
+                                            <option value="30%">30</option>
+                                            <option value="40%">40</option>
+                                            <option value="50%">50</option>
+                                            <option value="60%">60</option>
+                                            <option value="70%">70</option>
+                                            <option value="80%">80</option>
+                                            <option value="90%">90</option>
+                                            <option value="100%">100</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="transform_translateX2" name="transform_translateX2" onchange="app.applyStyle(this);">
+                                            <option value="-100%">-100</option>
+                                            <option value="-90%">-90</option>
+                                            <option value="-80%">-80</option>
+                                            <option value="-70%">-70</option>
+                                            <option value="-60%">-60</option>
+                                            <option value="-50%">-50</option>
+                                            <option value="-40%">-40</option>
+                                            <option value="-30%">-30</option>
+                                            <option value="-20%">-20</option>
+                                            <option value="-10%">-10</option>
+                                            <option value="0%" selected>0</option>
+                                            <option value="10%">10</option>
+                                            <option value="20%">20</option>
+                                            <option value="30%">30</option>
+                                            <option value="40%">40</option>
+                                            <option value="50%">50</option>
+                                            <option value="60%">60</option>
+                                            <option value="70%">70</option>
+                                            <option value="80%">80</option>
+                                            <option value="90%">90</option>
+                                            <option value="100%">100</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Translate Y:</td>
+                                    <td>
+                                        <select id="transform_translateY1" name="transform_translateY1" onchange="app.applyStyle(this);">
+                                            <option value="-100%">-100</option>
+                                            <option value="-90%">-90</option>
+                                            <option value="-80%">-80</option>
+                                            <option value="-70%">-70</option>
+                                            <option value="-60%">-60</option>
+                                            <option value="-50%">-50</option>
+                                            <option value="-40%">-40</option>
+                                            <option value="-30%">-30</option>
+                                            <option value="-20%">-20</option>
+                                            <option value="-10%">-10</option>
+                                            <option value="0%" selected>0</option>
+                                            <option value="10%">10</option>
+                                            <option value="20%">20</option>
+                                            <option value="30%">30</option>
+                                            <option value="40%">40</option>
+                                            <option value="50%">50</option>
+                                            <option value="60%">60</option>
+                                            <option value="70%">70</option>
+                                            <option value="80%">80</option>
+                                            <option value="90%">90</option>
+                                            <option value="100%">100</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="transform_translateY2" name="transform_translateY2" onchange="app.applyStyle(this);">
+                                            <option value="-100%">-100</option>
+                                            <option value="-90%">-90</option>
+                                            <option value="-80%">-80</option>
+                                            <option value="-70%">-70</option>
+                                            <option value="-60%">-60</option>
+                                            <option value="-50%">-50</option>
+                                            <option value="-40%">-40</option>
+                                            <option value="-30%">-30</option>
+                                            <option value="-20%">-20</option>
+                                            <option value="-10%">-10</option>
+                                            <option value="0%" selected>0</option>
+                                            <option value="10%">10</option>
+                                            <option value="20%">20</option>
+                                            <option value="30%">30</option>
+                                            <option value="40%">40</option>
+                                            <option value="50%">50</option>
+                                            <option value="60%">60</option>
+                                            <option value="70%">70</option>
+                                            <option value="80%">80</option>
+                                            <option value="90%">90</option>
+                                            <option value="100%">100</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </td>
+                    <td valign="top" rowspan="2">
+                        <fieldset>
+                            <legend>Effects</legend>
+                            <input type="button" class="button" id="effect-slideLeft" name="effect" value="slideLeft" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-slideRight" name="effect" value="slideRight" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-slideUp" name="effect" value="slideUp" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-slideDown" name="effect" value="slideDown" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-tossLeft" name="effect" value="tossLeft" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-tossRight" name="effect" value="tossRight" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-tossUp" name="effect" value="tossUp" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-tossDown" name="effect" value="tossDown" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-flipLeft" name="effect" value="flipLeft" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-flipRight" name="effect" value="flipRight" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-flipUp" name="effect" value="flipUp" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-flipDown" name="effect" value="flipDown" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-pushForward" name="effect" value="pushForward" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-pushBackward" name="effect" value="pushBackward" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-fadeIn" name="effect" value="fadeIn" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-fadeOut" name="effect" value="fadeOut" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-drain" name="effect" value="drain" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-phantomZone" name="effect" value="phantomZone" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-pageFlipLeft" name="effect" value="pageFlipLeft" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-pageFlipRight" name="effect" value="pageFlipRight" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-pageFlipUp" name="effect" value="pageFlipUp" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-pageFlipDown" name="effect" value="pageFlipDown" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-twirlLeft" name="effect" value="twirlLeft" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-twirlRight" name="effect" value="twirlRight" onclick="app.applyEffect(this);"><br>
+                        </fieldset>
+                    </td>
+                    <td valign="top">
+                        <fieldset>
+                            <legend>Animation Settings</legend>
+                            <table border="0" cellpadding="5" cellspacing="0">
+                                <tr>
+                                    <td align="right">Delay:</td>
+                                    <td><input type="text" id="delay1" name="delay" value="0ms" size="4" style="text-align: right;"></td>
+                                    <td><input type="text" id="delay2" name="delay" value="0ms" size="4" style="text-align: right;"></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">Duration:</td>
+                                    <td><input type="text" id="duration1" name="duration" value="2500ms" size="4" style="text-align: right;"></td>
+                                    <td><input type="text" id="duration2" name="duration" value="2500ms" size="4" style="text-align: right;"></td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Timing Function:</td>
+                                    <td>
+                                        <select id="timing1" name="timing-elem1" size="10">
+                                            <option value="linear">linear</option>
+                                            <option value="ease" selected>ease</option>
+                                            <option value="ease-in">ease-in</option>
+                                            <option value="ease-out">ease-out</option>
+                                            <option value="ease-in-out">ease-in-out</option>
+                                            <option value="easeInQuad">easeInQuad</option>
+                                            <option value="easeInCubic">easeInCubic</option>
+                                            <option value="easeInQuart">easeInQuart</option>
+                                            <option value="easeInQuint">easeInQuint</option>
+                                            <option value="easeInSine">easeInSine</option>
+                                            <option value="easeInExpo">easeInExpo</option>
+                                            <option value="easeInCirc">easeInCirc</option>
+                                            <option value="easeInBack">easeInBack</option>
+                                            <option value="easeOutQuad">easeOutQuad</option>
+                                            <option value="easeOutCubic">easeOutCubic</option>
+                                            <option value="easeOutQuart">easeOutQuart</option>
+                                            <option value="easeOutQuint">easeOutQuint</option>
+                                            <option value="easeOutSine">easeOutSine</option>
+                                            <option value="easeOutExpo">easeOutExpo</option>
+                                            <option value="easeOutCirc">easeOutCirc</option>
+                                            <option value="easeOutBack">easeOutBack</option>
+                                            <option value="easeInOutQuad">easeInOutQuad</option>
+                                            <option value="easeInOutCubic">easeInOutCubic</option>
+                                            <option value="easeInOutQuart">easeInOutQuart</option>
+                                            <option value="easeInOutQuint">easeInOutQuint</option>
+                                            <option value="easeInOutSine">easeInOutSine</option>
+                                            <option value="easeInOutExpo">easeInOutExpo</option>
+                                            <option value="easeInOutCirc">easeInOutCirc</option>
+                                            <option value="easeInOutBack">easeInOutBack</option>
+                                            <option value="bounce">bounce</option>
+                                            <option value="random">random</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="timing2" name="timing-elem2" size="10">
+                                            <option value="linear">linear</option>
+                                            <option value="ease" selected>ease</option>
+                                            <option value="ease-in">ease-in</option>
+                                            <option value="ease-out">ease-out</option>
+                                            <option value="ease-in-out">ease-in-out</option>
+                                            <option value="easeInQuad">easeInQuad</option>
+                                            <option value="easeInCubic">easeInCubic</option>
+                                            <option value="easeInQuart">easeInQuart</option>
+                                            <option value="easeInQuint">easeInQuint</option>
+                                            <option value="easeInSine">easeInSine</option>
+                                            <option value="easeInExpo">easeInExpo</option>
+                                            <option value="easeInCirc">easeInCirc</option>
+                                            <option value="easeInBack">easeInBack</option>
+                                            <option value="easeOutQuad">easeOutQuad</option>
+                                            <option value="easeOutCubic">easeOutCubic</option>
+                                            <option value="easeOutQuart">easeOutQuart</option>
+                                            <option value="easeOutQuint">easeOutQuint</option>
+                                            <option value="easeOutSine">easeOutSine</option>
+                                            <option value="easeOutExpo">easeOutExpo</option>
+                                            <option value="easeOutCirc">easeOutCirc</option>
+                                            <option value="easeOutBack">easeOutBack</option>
+                                            <option value="easeInOutQuad">easeInOutQuad</option>
+                                            <option value="easeInOutCubic">easeInOutCubic</option>
+                                            <option value="easeInOutQuart">easeInOutQuart</option>
+                                            <option value="easeInOutQuint">easeInOutQuint</option>
+                                            <option value="easeInOutSine">easeInOutSine</option>
+                                            <option value="easeInOutExpo">easeInOutExpo</option>
+                                            <option value="easeInOutCirc">easeInOutCirc</option>
+                                            <option value="easeInOutBack">easeInOutBack</option>
+                                            <option value="bounce">bounce</option>
+                                            <option value="random">random</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">Iteration Count:</td>
+                                    <td><input type="text" id="iteration1" name="iteration" value="1" size="4" style="text-align: right;"></td>
+                                    <td><input type="text" id="iteration2" name="iteration" value="1" size="4" style="text-align: right;"></td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Direction:</td>
+                                    <td>
+                                        <select id="direction1" name="direction">
+                                            <option value="normal" selected>normal</option>
+                                            <option value="alternate">alternate</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="direction2" name="direction">
+                                            <option value="normal" selected>normal</option>
+                                            <option value="alternate">alternate</option>
+                                        </select>
+                                    </td>
+                                </tr>
+    <!--
+                                <tr>
+                                    <td align="right" valign="top">Fill Mode:</td>
+                                    <td>
+                                        <select id="fillmode1" name="fillmode">
+                                            <option value="none" selected>none</option>
+                                            <option value="forwards">forwards</option>
+                                            <option value="backwards">backwards</option>
+                                            <option value="both">both</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="fillmode2" name="fillmode">
+                                            <option value="none" selected>none</option>
+                                            <option value="forwards">forwards</option>
+                                            <option value="backwards">backwards</option>
+                                            <option value="both">both</option>
+                                        </select>
+                                    </td>
+                                </tr>
+    -->
+                                <tr>
+                                    <td align="right" valign="top">Play State:</td>
+                                    <td>
+                                        <select id="playstate1" name="playstate1">
+                                            <option value="running" selected>running</option>
+                                            <option value="paused">paused</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="playstate2" name="playstate2">
+                                            <option value="running" selected>running</option>
+                                            <option value="paused">paused</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </td>
+                    <td valign="top">
+                        <fieldset>
+                            <legend>Custom Settings (for Slide)</legend>
+                            <table border="0" cellpadding="5" cellspacing="0">
+                                <tr>
+                                    <td align="right" valign="top">Move:</td>
+                                    <td>
+                                        <select id="move1" name="move1">
+                                            <option value="">none</option>
+                                            <option value="left" selected>left</option>
+                                            <option value="right">right</option>
+                                            <option value="up">up</option>
+                                            <option value="down">down</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="move2" name="move2">
+                                            <option value="">none</option>
+                                            <option value="left" selected>left</option>
+                                            <option value="right">right</option>
+                                            <option value="up">up</option>
+                                            <option value="down">down</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Rotate:</td>
+                                    <td>
+                                        <select id="rotate1" name="rotate1">
+                                            <option value="-720%">-720</option>
+                                            <option value="-675%">-675</option>
+                                            <option value="-630%">-630</option>
+                                            <option value="-585%">-585</option>
+                                            <option value="-540%">-540</option>
+                                            <option value="-495%">-495</option>
+                                            <option value="-450%">-450</option>
+                                            <option value="-405%">-405</option>
+                                            <option value="-360%">-360</option>
+                                            <option value="-315%">-315</option>
+                                            <option value="-270%">-270</option>
+                                            <option value="-225%">-225</option>
+                                            <option value="-180%">-180</option>
+                                            <option value="-135%">-135</option>
+                                            <option value="-90%">-90</option>
+                                            <option value="-45%">-45</option>
+                                            <option value="0%" selected>0</option>
+                                            <option value="45%">45</option>
+                                            <option value="90%">90</option>
+                                            <option value="135%">135</option>
+                                            <option value="180%">180</option>
+                                            <option value="225%">225</option>
+                                            <option value="270%">270</option>
+                                            <option value="315%">315</option>
+                                            <option value="360%">360</option>
+                                            <option value="405%">405</option>
+                                            <option value="450%">450</option>
+                                            <option value="495%">495</option>
+                                            <option value="540%">540</option>
+                                            <option value="585%">585</option>
+                                            <option value="630%">630</option>
+                                            <option value="675%">675</option>
+                                            <option value="720%">720</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="rotate2" name="rotate2">
+                                            <option value="-720%">-720</option>
+                                            <option value="-675%">-675</option>
+                                            <option value="-630%">-630</option>
+                                            <option value="-585%">-585</option>
+                                            <option value="-540%">-540</option>
+                                            <option value="-495%">-495</option>
+                                            <option value="-450%">-450</option>
+                                            <option value="-405%">-405</option>
+                                            <option value="-360%">-360</option>
+                                            <option value="-315%">-315</option>
+                                            <option value="-270%">-270</option>
+                                            <option value="-225%">-225</option>
+                                            <option value="-180%">-180</option>
+                                            <option value="-135%">-135</option>
+                                            <option value="-90%">-90</option>
+                                            <option value="-45%">-45</option>
+                                            <option value="0%" selected>0</option>
+                                            <option value="45%">45</option>
+                                            <option value="90%">90</option>
+                                            <option value="135%">135</option>
+                                            <option value="180%">180</option>
+                                            <option value="225%">225</option>
+                                            <option value="270%">270</option>
+                                            <option value="315%">315</option>
+                                            <option value="360%">360</option>
+                                            <option value="405%">405</option>
+                                            <option value="450%">450</option>
+                                            <option value="495%">495</option>
+                                            <option value="540%">540</option>
+                                            <option value="585%">585</option>
+                                            <option value="630%">630</option>
+                                            <option value="675%">675</option>
+                                            <option value="720%">720</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Flip:</td>
+                                    <td>
+                                        <select id="flip1" name="flip1">
+                                            <option value="" selected>none</option>
+                                            <option value="left">left</option>
+                                            <option value="right">right</option>
+                                            <option value="up">up</option>
+                                            <option value="down">down</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="flip2" name="flip2">
+                                            <option value="" selected>none</option>
+                                            <option value="left">left</option>
+                                            <option value="right">right</option>
+                                            <option value="up">up</option>
+                                            <option value="down">down</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Fade:</td>
+                                    <td>
+                                        <select id="fade1" name="fade1">
+                                            <option value="" selected>none</option>
+                                            <option value="in">in</option>
+                                            <option value="out">out</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="fade2" name="fade2">
+                                            <option value="" selected>none</option>
+                                            <option value="in">in</option>
+                                            <option value="out">out</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Scale:</td>
+                                    <td>
+                                        <select id="scale1" name="scale1">
+                                            <option value="1%">1</option>
+                                            <option value="10%">10</option>
+                                            <option value="20%">20</option>
+                                            <option value="30%">30</option>
+                                            <option value="40%">40</option>
+                                            <option value="50%">50</option>
+                                            <option value="60%">60</option>
+                                            <option value="70%">70</option>
+                                            <option value="80%">80</option>
+                                            <option value="90%">90</option>
+                                            <option value="100%"selected>100</option>
+                                            <option value="110%">110</option>
+                                            <option value="120%">120</option>
+                                            <option value="130%">130</option>
+                                            <option value="140%">140</option>
+                                            <option value="150%">150</option>
+                                            <option value="160%">160</option>
+                                            <option value="170%">170</option>
+                                            <option value="180%">180</option>
+                                            <option value="190%">190</option>
+                                            <option value="200%">200</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="scale2" name="scale2">
+                                            <option value="1%">1</option>
+                                            <option value="10%">10</option>
+                                            <option value="20%">20</option>
+                                            <option value="30%">30</option>
+                                            <option value="40%">40</option>
+                                            <option value="50%">50</option>
+                                            <option value="60%">60</option>
+                                            <option value="70%">70</option>
+                                            <option value="80%">80</option>
+                                            <option value="90%">90</option>
+                                            <option value="100%"selected>100</option>
+                                            <option value="110%">110</option>
+                                            <option value="120%">120</option>
+                                            <option value="130%">130</option>
+                                            <option value="140%">140</option>
+                                            <option value="150%">150</option>
+                                            <option value="160%">160</option>
+                                            <option value="170%">170</option>
+                                            <option value="180%">180</option>
+                                            <option value="190%">190</option>
+                                            <option value="200%">200</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Overshoot:</td>
+                                    <td>
+                                        <select id="overshoot1" name="overshoot1">
+                                            <option value="0%" selected>0</option>
+                                            <option value="10%">10</option>
+                                            <option value="20%">20</option>
+                                            <option value="30%">30</option>
+                                            <option value="40%">40</option>
+                                            <option value="50%">50</option>
+                                            <option value="60%">60</option>
+                                            <option value="70%">70</option>
+                                            <option value="80%">80</option>
+                                            <option value="90%">90</option>
+                                            <option value="100%">100</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="overshoot2" name="overshoot2">
+                                            <option value="0%">0</option>
+                                            <option value="10%" selected>10</option>
+                                            <option value="20%">20</option>
+                                            <option value="30%">30</option>
+                                            <option value="40%">40</option>
+                                            <option value="50%">50</option>
+                                            <option value="60%">60</option>
+                                            <option value="70%">70</option>
+                                            <option value="80%">80</option>
+                                            <option value="90%">90</option>
+                                            <option value="100%">100</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Randomness:</td>
+                                    <td>
+                                        <select id="randomness1" name="randomness1">
+                                            <option value="0%" selected>0</option>
+                                            <option value="10%">10</option>
+                                            <option value="20%">20</option>
+                                            <option value="30%">30</option>
+                                            <option value="40%">40</option>
+                                            <option value="50%">50</option>
+                                            <option value="60%">60</option>
+                                            <option value="70%">70</option>
+                                            <option value="80%">80</option>
+                                            <option value="90%">90</option>
+                                            <option value="100%">100</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="randomness2" name="randomness2">
+                                            <option value="0%"selected>0</option>
+                                            <option value="10%">10</option>
+                                            <option value="20%">20</option>
+                                            <option value="30%">30</option>
+                                            <option value="40%">40</option>
+                                            <option value="50%">50</option>
+                                            <option value="60%">60</option>
+                                            <option value="70%">70</option>
+                                            <option value="80%">80</option>
+                                            <option value="90%">90</option>
+                                            <option value="100%">100</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>3D Settings (for Flip)</legend>
+                            <table border="0" cellpadding="5" cellspacing="0">
+                                <tr>
+                                    <td align="right" valign="top">Perspective (px):</td>
+                                    <td>
+                                        <select id="perspective1" name="perspective1">
+                                            <option value="none">none</option>
+                                            <option value="100">100</option>
+                                            <option value="250">250</option>
+                                            <option value="500">500</option>
+                                            <option value="750">750</option>
+                                            <option value="1000" selected>1000</option>
+                                            <option value="1500">1500</option>
+                                            <option value="1750">1750</option>
+                                            <option value="2000">2000</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="perspective2" name="perspective2">
+                                            <option value="none">none</option>
+                                            <option value="100">100</option>
+                                            <option value="250">250</option>
+                                            <option value="500">500</option>
+                                            <option value="750">750</option>
+                                            <option value="1000" selected>1000</option>
+                                            <option value="1500">1500</option>
+                                            <option value="1750">1750</option>
+                                            <option value="2000">2000</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Perspective Origin:</td>
+                                    <td>
+                                        <select id="perspective_origin1" name="perspective_origin1">
+                                            <option value="top-left">top-left</option>
+                                            <option value="top">top</option>
+                                            <option value="top-right">top-right</option>
+                                            <option value="left">left</option>
+                                            <option value="center" selected>center</option>
+                                            <option value="right">right</option>
+                                            <option value="bottom-left">bottom-left</option>
+                                            <option value="bottom">bottom</option>
+                                            <option value="bottom-right">bottom-right</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="perspective_origin2" name="perspective_origin2">
+                                            <option value="top-left">top-left</option>
+                                            <option value="top">top</option>
+                                            <option value="top-right">top-right</option>
+                                            <option value="left">left</option>
+                                            <option value="center" selected>center</option>
+                                            <option value="right">right</option>
+                                            <option value="bottom-left">bottom-left</option>
+                                            <option value="bottom">bottom</option>
+                                            <option value="bottom-right">bottom-right</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top">Backface Visibility:</td>
+                                    <td>
+                                        <select id="backface_visibility1" name="backface_visibility1">
+                                            <option value="visible" selected>visible</option>
+                                            <option value="hidden">hidden</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="backface_visibility2" name="backface_visibility2">
+                                            <option value="visible" selected>visible</option>
+                                            <option value="hidden">hidden</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" valign="top" align="center">
+                        <textarea id="json" style="width: 99%; height: 200px;"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
 <!--
         <script src="js/alice-min.js"></script>
@@ -1202,16 +1209,19 @@
 
         <script src="app.js"></script>
         <script type="text/javascript">
+        document.getElementById("settingsDiv").style.height = parseInt((window.innerHeight - document.getElementById("testDiv").clientHeight) - 60, 10) + "px";
+
         alice.init();
         alice.slide({
-            elems: ["elem1"],
-            move: "left", // left | right | up | down
+            elems: ["elem1", "elem2"],
+            //move: "left", // left | right | up | down
             //move: {direction: "left", end: "100px"},
             //move: {direction: "left", start: "1024px", end: "100px"},
             //move: {direction: "right", start: "100px", end: "1024px"},
             //move: {direction: "up", start: "800px", end: "10px"},
             //move: {direction: "down", start: "10px", end: "800px"},
             //move: {direction: "left", start: "100%", end: "10%"},
+            move: {direction: "right", start: "-100%", end: "0%"},
             //move: {direction: "right", start: "0%", end: "90%"},
             //move: {direction: "up", start: "100%", end: "10%"},
             //move: {direction: "down", start: "0%", end: "90%"},
@@ -1221,10 +1231,11 @@
             },
             timing: "linear"
         });
-
+/*
         alice.fadeOut({
             elems: ["elem2"]
         });
+*/
         </script>
     </body>
 </html>

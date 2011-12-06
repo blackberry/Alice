@@ -215,6 +215,24 @@ app.applyEffect = function (param) {
             case "phantomZone":
                 ret = alice.phantomZone(p);
                 break;
+            case "pageFlipLeft":
+                ret = alice.pageFlipLeft(p);
+                break;
+            case "pageFlipRight":
+                ret = alice.pageFlipRight(p);
+                break;
+            case "pageFlipUp":
+                ret = alice.pageFlipUp(p);
+                break;
+            case "pageFlipDown":
+                ret = alice.pageFlipDown(p);
+                break;
+            case "twirlLeft":
+                ret = alice.twirlLeft(p);
+                break;
+            case "twirlRight":
+                ret = alice.twirlRight(p);
+                break;
             default:
                 ret = alice.slide(p);
                 break;

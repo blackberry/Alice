@@ -26,6 +26,11 @@ describe('_duration', function () {
     it('{value: "1s"} returns ' + expectedStr, function () {
         expect(alice._duration({value: "1s"})).toEqual(expected);
     });
+/*
+    it('"" returns ' + expectedStr, function () {
+        expect(alice._duration("")).toEqual(expected);
+    });
+*/
 });
 
 describe('_coords', function () {

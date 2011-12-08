@@ -616,3 +616,42 @@ alice.twirlRight = function (params) {
     alice.slide(p);
     return p;
 };
+
+/**
+ *
+ */
+alice.raceFlag = function (params) {
+    "use strict";
+    var p = params;
+
+    // Set presets
+    p.move = "up";
+    p.rotate = -720;
+    p.flip = "down";
+    p.perspectiveOrigin = "top-right";
+    //console.info("raceFlag", p);
+
+    alice.slide(p);
+    return p;
+};
+
+/**
+ *
+ */
+alice.hinge = function (params) {
+    "use strict";
+    var p = params;
+
+    // Set presets
+    p.duration = "1s";
+    p.timing = "linear";
+    p.iteration = 5;
+    p.direction = "alternate";
+    p.move = "none";
+    p.rotate = 45;
+    p.perspectiveOrigin = "top-left";
+    //console.info("hinge", p);
+
+    alice.slide(p);
+    return p;
+};

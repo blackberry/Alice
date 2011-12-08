@@ -233,6 +233,12 @@ app.applyEffect = function (param) {
             case "twirlRight":
                 ret = alice.twirlRight(p);
                 break;
+            case "raceFlag":
+                ret = alice.raceFlag(p);
+                break;
+            case "hinge":
+                ret = alice.hinge(p);
+                break;
             default:
                 ret = alice.slide(p);
                 break;

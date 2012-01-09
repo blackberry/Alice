@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <title>Chaining</title>
+        <link href="favicon.ico" rel="icon" type="image/x-icon">
+        <style type="text/css">
+        body, select {
+            font: 8pt Arial, sans-serif;
+        }
+
+        .card {
+            float: left;
+            background: transparent;
+            border: 1px dashed #CCC;
+            text-align: center;
+        }
+
+        input {
+            font: 8pt Arial, sans-serif;
+            width: 90px;
+            float: left;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>Chaining Effects</h1>
+
+        <p>This is a demo of chained effects that have a 2 sec. delay.</p>
+
+        <!-- Test Elements -->
+        <div id="aces" style="clear: both;">
+            <div id="elem1" class="card"><img src="samples/images/cards/ace_clubs.png" width="105" height="143"><p>Ace of Clubs</p></div>
+            <div id="elem2" class="card"><img src="samples/images/cards/ace_diamonds.png" width="105" height="143"><p>Ace of Diamonds</p></div>
+            <div id="elem3" class="card"><img src="samples/images/cards/ace_hearts.png" width="105" height="143"><p>Ace of Hearts</p></div>
+            <div id="elem4" class="card"><img src="samples/images/cards/ace_spades.png" width="105" height="143"><p>Ace of Spades</p></div>
+        </div>
+        <div id="kings" style="clear: both;">
+            <div id="elem5" class="card"><img src="samples/images/cards/king_clubs.png" width="105" height="143"></div>
+            <div id="elem6" class="card"><img src="samples/images/cards/king_diamonds.png" width="105" height="143"></div>
+            <div id="elem7" class="card"><img src="samples/images/cards/king_hearts.png" width="105" height="143"></div>
+            <div id="elem8" class="card"><img src="samples/images/cards/king_spades.png" width="105" height="143"></div>
+        </div>
+        <div id="queens" style="clear: both;">
+            <div id="elem9" class="card"><img src="samples/images/cards/queen_clubs.png" width="105" height="143"></div>
+            <div id="elem10" class="card"><img src="samples/images/cards/queen_diamonds.png" width="105" height="143"></div>
+            <div id="elem11" class="card"><img src="samples/images/cards/queen_hearts.png" width="105" height="143"></div>
+            <div id="elem12" class="card"><img src="samples/images/cards/queen_spades.png" width="105" height="143"></div>
+        </div>
+        <div id="jacks" style="clear: both;">
+            <div id="elem13" class="card"><img src="samples/images/cards/jack_clubs.png" width="105" height="143"></div>
+            <div id="elem14" class="card"><img src="samples/images/cards/jack_diamonds.png" width="105" height="143"></div>
+            <div id="elem15" class="card"><img src="samples/images/cards/jack_hearts.png" width="105" height="143"></div>
+            <div id="elem16" class="card"><img src="samples/images/cards/jack_spades.png" width="105" height="143"></div>
+        </div>
+
+        <!-- Add jWorkflow for Chaining -->
+        <script src="libs/jworkflow/jworkflow-min-0.6.0.js"></script>
+
+        <script src="js/src/alice.core.js"></script>
+        <script src="js/src/alice.plugins.slide.js"></script>
+        <script type="text/javascript">
+        var aces = ["elem1", "elem2", "elem3", "elem4"];
+        var kings = ["elem5", "elem6", "elem7", "elem8"];
+        var queens = ["elem9", "elem10", "elem11", "elem12"];
+        var jacks = ["elem13", "elem14", "elem15", "elem16"];
+
+        var a = alice.init();
+
+        // Chained style
+        a.slideLeft({
+            "elems": aces,
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000).slideRight({
+            "elems": aces,
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000).slideDown({
+            "elems": aces,
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000).slideUp({
+            "elems": aces,
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).start();
+
+        var b = alice.init();
+
+        //
+        b.delay(4000);
+        b.tossLeft({
+            "elems": kings,
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        });
+
+        b.delay(2000);
+        b.tossRight({
+            "elems": kings,
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        });
+
+        b.delay(2000);
+        b.tossDown({
+            "elems": kings,
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        });
+
+        b.delay(2000);
+        b.tossUp({
+            "elems": kings,
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        });
+
+        b.start();
+
+        var c = alice.init();
+
+        c.delay(8000);
+        c.spinLeft({
+            "elems": queens,
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        });
+
+        c.delay(2000);
+        c.spinRight({
+            "elems": queens,
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        });
+
+        c.delay(2000);
+        c.spinDown({
+            "elems": queens,
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        });
+
+        c.delay(2000);
+        c.spinUp({
+            "elems": queens,
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        });
+
+        c.start();
+
+/*
+        document.getElementById("effect-pushForward").addEventListener("click", function () {
+            alice.pushForward({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-pushBackward").addEventListener("click", function () {
+            alice.pushBackward({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-fadeIn").addEventListener("click", function () {
+            alice.fadeIn({
+                "elems": elems,
+                "duration": {
+                    "value": "2000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-fadeOut").addEventListener("click", function () {
+            alice.fadeOut({
+                "elems": elems,
+                "duration": {
+                    "value": "2000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-drain").addEventListener("click", function () {
+            alice.drain({
+                "elems": elems,
+                "duration": {
+                    "value": "3000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-phantomZone").addEventListener("click", function () {
+            alice.phantomZone({
+                "elems": elems,
+                "duration": {
+                    "value": "4000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-pageFlipLeft").addEventListener("click", function () {
+            alice.pageFlipLeft({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-pageFlipRight").addEventListener("click", function () {
+            alice.pageFlipRight({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-pageFlipUp").addEventListener("click", function () {
+            alice.pageFlipUp({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-pageFlipDown").addEventListener("click", function () {
+            alice.pageFlipDown({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-twirlFromLeft").addEventListener("click", function () {
+            alice.twirlFromLeft({
+                "elems": elems,
+                "duration": {
+                    "value": "2000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-twirlFromRight").addEventListener("click", function () {
+            alice.twirlFromRight({
+                "elems": elems,
+                "duration": {
+                    "value": "2000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-raceFlag").addEventListener("click", function () {
+            alice.raceFlag({
+                "elems": elems,
+                "duration": {
+                    "value": "2000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-hinge").addEventListener("click", function () {
+            alice.hinge({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-wobble").addEventListener("click", function () {
+            alice.wobble({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-dance").addEventListener("click", function () {
+            alice.dance({
+                "elems": elems,
+                "duration": {
+                    "value": "2000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-pendulum").addEventListener("click", function () {
+            alice.pendulum({
+                "elems": elems,
+                "delay": {
+                    "value": "0ms",
+                    "offset": "50ms"
+                },
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-bounce").addEventListener("click", function () {
+            alice.bounce({
+                "elems": elems,
+                "delay": {
+                    "value": "0ms",
+                    "offset": "50ms"
+                },
+            });
+        }, false);
+
+        document.getElementById("effect-custom").addEventListener("click", function () {
+            alice.slide({
+                "elems": elems,
+                "delay": {
+                    "value": "0ms"
+                },
+                "duration": {
+                    "value": "2500ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                },
+                "timing": "random",
+                "iteration": "1",
+                "direction": "normal",
+                "playstate": "running",
+                "move": "left",
+                "rotate": "-135%",
+                "flip": "",
+                "fade": "in",
+                "scale": "99%",
+                "overshoot": "10%",
+                "perspective": "1000",
+                "perspectiveOrigin": "center",
+                "backfaceVisibility": "visible"
+            });
+        }, false);
+*/
+        </script>
+    </body>
+</html>

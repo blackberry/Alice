@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <title>Sample</title>
+        <link href="favicon.ico" rel="icon" type="image/x-icon">
+        <style type="text/css">
+        body, select {
+            font: 8pt Arial, sans-serif;
+        }
+
+        .card {
+            float: left;
+            background: transparent;
+            border: 1px dashed #CCC;
+            text-align: center;
+        }
+
+        input {
+            font: 8pt Arial, sans-serif;
+            width: 90px;
+            float: left;
+        }
+        </style>
+    </head>
+    <body>
+        <div>
+            <input type="button" id="effect-slideLeft" name="effect" value="slideLeft">
+            <input type="button" id="effect-slideRight" name="effect" value="slideRight">
+            <input type="button" id="effect-slideUp" name="effect" value="slideUp">
+            <input type="button" id="effect-slideDown" name="effect" value="slideDown">
+            <input type="button" id="effect-tossLeft" name="effect" value="tossLeft">
+            <input type="button" id="effect-tossRight" name="effect" value="tossRight">
+            <input type="button" id="effect-tossUp" name="effect" value="tossUp">
+            <input type="button" id="effect-tossDown" name="effect" value="tossDown">
+            <input type="button" id="effect-spinLeft" name="effect" value="spinLeft">
+            <input type="button" id="effect-spinRight" name="effect" value="spinRight">
+            <input type="button" id="effect-spinUp" name="effect" value="spinUp">
+            <input type="button" id="effect-spinDown" name="effect" value="spinDown">
+            <input type="button" id="effect-pushForward" name="effect" value="pushForward">
+            <input type="button" id="effect-pushBackward" name="effect" value="pushBackward">
+            <input type="button" id="effect-fadeIn" name="effect" value="fadeIn">
+            <input type="button" id="effect-fadeOut" name="effect" value="fadeOut">
+            <input type="button" id="effect-drain" name="effect" value="drain">
+            <input type="button" id="effect-phantomZone" name="effect" value="phantomZone">
+            <input type="button" id="effect-pageFlipLeft" name="effect" value="pageFlipLeft">
+            <input type="button" id="effect-pageFlipRight" name="effect" value="pageFlipRight">
+            <input type="button" id="effect-pageFlipUp" name="effect" value="pageFlipUp">
+            <input type="button" id="effect-pageFlipDown" name="effect" value="pageFlipDown">
+            <input type="button" id="effect-twirlFromLeft" name="effect" value="twirlFromLeft">
+            <input type="button" id="effect-twirlFromRight" name="effect" value="twirlFromRight">
+            <input type="button" id="effect-raceFlag" name="effect" value="raceFlag">
+            <input type="button" id="effect-hinge" name="effect" value="hinge">
+            <input type="button" id="effect-wobble" name="effect" value="wobble">
+            <input type="button" id="effect-dance" name="effect" value="dance">
+            <input type="button" id="effect-pendulum" name="effect" value="pendulum">
+            <input type="button" id="effect-bounce" name="effect" value="bounce">
+
+            <input type="button" id="effect-custom" name="effect" value="slide (custom)">
+        </div>
+
+        <!-- Test Elements -->
+        <div style="clear: both;">
+            <div id="elem1" class="card"><img src="samples/images/cards/ace_clubs.png" width="35" height="48"></div>
+            <div id="elem2" class="card"><img src="samples/images/cards/ace_diamonds.png" width="35" height="48"></div>
+            <div id="elem3" class="card"><img src="samples/images/cards/ace_hearts.png" width="35" height="48"></div>
+            <div id="elem4" class="card"><img src="samples/images/cards/ace_spades.png" width="35" height="48"></div>
+        </div>
+        <div style="clear: both;">
+            <div id="elem5" class="card"><img src="samples/images/cards/king_clubs.png" width="70" height="95"></div>
+            <div id="elem6" class="card"><img src="samples/images/cards/king_diamonds.png" width="70" height="95"></div>
+            <div id="elem7" class="card"><img src="samples/images/cards/king_hearts.png" width="70" height="95"></div>
+            <div id="elem8" class="card"><img src="samples/images/cards/king_spades.png" width="70" height="95"></div>
+        </div>
+        <div style="clear: both;">
+            <div id="elem9" class="card"><img src="samples/images/cards/queen_clubs.png" width="105" height="143"></div>
+            <div id="elem10" class="card"><img src="samples/images/cards/queen_diamonds.png" width="105" height="143"></div>
+            <div id="elem11" class="card"><img src="samples/images/cards/queen_hearts.png" width="105" height="143"></div>
+            <div id="elem12" class="card"><img src="samples/images/cards/queen_spades.png" width="105" height="143"></div>
+        </div>
+        <div style="clear: both;">
+            <div id="elem13" class="card"><img src="samples/images/cards/jack_clubs.png"><p>Jack of Clubs</p></div>
+            <div id="elem14" class="card"><img src="samples/images/cards/jack_diamonds.png"><p>Jack of Diamonds</p></div>
+            <div id="elem15" class="card"><img src="samples/images/cards/jack_hearts.png"><p>Jack of Hearts</p></div>
+            <div id="elem16" class="card"><img src="samples/images/cards/jack_spades.png"><p>Jack of Spades</p></div>
+        </div>
+        <div style="clear: both;">
+            <div id="elem17" class="card"><img src="samples/images/cards/10_clubs.png" width="175" height="238"></div>
+            <div id="elem18" class="card"><img src="samples/images/cards/10_diamonds.png" width="175" height="238"></div>
+            <div id="elem19" class="card"><img src="samples/images/cards/10_hearts.png" width="175" height="238"></div>
+            <div id="elem20" class="card"><img src="samples/images/cards/10_spades.png" width="175" height="238"></div>
+        </div>
+
+<!--
+        <script src="libs/jworkflow/jworkflow-min-0.6.0.js"></script>
+-->
+        <script src="js/src/alice.core.js"></script>
+        <script src="js/src/alice.plugins.slide.js"></script>
+        <script type="text/javascript">
+        var a = alice.init();
+
+        var elems = ["elem1", "elem2", "elem3", "elem4", "elem5", "elem6", "elem7", "elem8", "elem9", "elem10", "elem11", "elem12", "elem13", "elem14", "elem15", "elem16", "elem17", "elem18", "elem19", "elem20"];
+
+        document.getElementById("effect-slideLeft").addEventListener("click", function () {
+            a.slideLeft({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-slideRight").addEventListener("click", function () {
+            a.slideRight({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-slideUp").addEventListener("click", function () {
+            a.slideUp({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-slideDown").addEventListener("click", function () {
+            a.slideDown({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-tossLeft").addEventListener("click", function () {
+            a.tossLeft({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-tossRight").addEventListener("click", function () {
+            a.tossRight({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-tossUp").addEventListener("click", function () {
+            a.tossUp({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-tossDown").addEventListener("click", function () {
+            a.tossDown({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-spinLeft").addEventListener("click", function () {
+            a.spinLeft({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-spinRight").addEventListener("click", function () {
+            a.spinRight({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-spinUp").addEventListener("click", function () {
+            a.spinUp({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-spinDown").addEventListener("click", function () {
+            a.spinDown({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-pushForward").addEventListener("click", function () {
+            a.pushForward({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-pushBackward").addEventListener("click", function () {
+            a.pushBackward({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-fadeIn").addEventListener("click", function () {
+            a.fadeIn({
+                "elems": elems,
+                "duration": {
+                    "value": "2000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-fadeOut").addEventListener("click", function () {
+            a.fadeOut({
+                "elems": elems,
+                "duration": {
+                    "value": "2000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-drain").addEventListener("click", function () {
+            a.drain({
+                "elems": elems,
+                "duration": {
+                    "value": "3000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-phantomZone").addEventListener("click", function () {
+            a.phantomZone({
+                "elems": elems,
+                "duration": {
+                    "value": "4000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-pageFlipLeft").addEventListener("click", function () {
+            a.pageFlipLeft({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-pageFlipRight").addEventListener("click", function () {
+            a.pageFlipRight({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-pageFlipUp").addEventListener("click", function () {
+            a.pageFlipUp({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-pageFlipDown").addEventListener("click", function () {
+            a.pageFlipDown({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-twirlFromLeft").addEventListener("click", function () {
+            a.twirlFromLeft({
+                "elems": elems,
+                "duration": {
+                    "value": "2000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-twirlFromRight").addEventListener("click", function () {
+            a.twirlFromRight({
+                "elems": elems,
+                "duration": {
+                    "value": "2000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-raceFlag").addEventListener("click", function () {
+            a.raceFlag({
+                "elems": elems,
+                "duration": {
+                    "value": "2000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-hinge").addEventListener("click", function () {
+            a.hinge({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-wobble").addEventListener("click", function () {
+            a.wobble({
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-dance").addEventListener("click", function () {
+            a.dance({
+                "elems": elems,
+                "duration": {
+                    "value": "2000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-pendulum").addEventListener("click", function () {
+            a.pendulum({
+                "elems": elems,
+/*
+                "delay": {
+                    "value": "0ms",
+                    "offset": "50ms"
+                },
+*/
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
+            });
+        }, false);
+
+        document.getElementById("effect-bounce").addEventListener("click", function () {
+            a.bounce({
+                "elems": elems,
+                "delay": {
+                    "value": "0ms",
+                    "offset": "50ms"
+                },
+            });
+        }, false);
+
+        document.getElementById("effect-custom").addEventListener("click", function () {
+            a.slide({
+                "elems": elems,
+                "delay": {
+                    "value": "0ms"
+                },
+                "duration": {
+                    "value": "2500ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                },
+                "timing": "random",
+                "iteration": "1",
+                "direction": "normal",
+                "playstate": "running",
+                "move": "left",
+                "rotate": "-135%",
+                "flip": "",
+                "fade": "in",
+                "scale": "99%",
+                "overshoot": "10%",
+                "perspective": "1000",
+                "perspectiveOrigin": "center",
+                "backfaceVisibility": "visible"
+            });
+        }, false);
+        </script>
+    </body>
+</html>

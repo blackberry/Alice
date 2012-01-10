@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <title>Sample</title>
+        <title>AliceJS: Sample</title>
         <link href="favicon.ico" rel="icon" type="image/x-icon">
         <style type="text/css">
         body, select {
@@ -12,19 +12,18 @@
         .card {
             float: left;
             background: transparent;
-            border: 1px dashed #CCC;
+            /*border: 1px dashed #CCC;*/
             text-align: center;
         }
 
         input {
             font: 8pt Arial, sans-serif;
             width: 90px;
-            float: left;
         }
         </style>
     </head>
     <body>
-        <div>
+        <div style="border: 1px solid #0F0; background-color: #CCFFCC;">
             <input type="button" id="effect-slideLeft" name="effect" value="slideLeft">
             <input type="button" id="effect-slideRight" name="effect" value="slideRight">
             <input type="button" id="effect-slideUp" name="effect" value="slideUp">
@@ -50,12 +49,14 @@
             <input type="button" id="effect-twirlFromLeft" name="effect" value="twirlFromLeft">
             <input type="button" id="effect-twirlFromRight" name="effect" value="twirlFromRight">
             <input type="button" id="effect-raceFlag" name="effect" value="raceFlag">
+        </div>
+        <div style="border: 1px solid #FF0; background-color: #FFFFCC;">
             <input type="button" id="effect-hinge" name="effect" value="hinge">
             <input type="button" id="effect-wobble" name="effect" value="wobble">
             <input type="button" id="effect-dance" name="effect" value="dance">
             <input type="button" id="effect-pendulum" name="effect" value="pendulum">
             <input type="button" id="effect-bounce" name="effect" value="bounce">
-
+            <input type="button" id="effect-bounce-delay" name="effect" value="bounce-delay">
             <input type="button" id="effect-custom" name="effect" value="slide (custom)">
         </div>
 
@@ -427,6 +428,12 @@
         }, false);
 
         document.getElementById("effect-bounce").addEventListener("click", function () {
+            a.bounce({
+                "elems": elems
+            });
+        }, false);
+
+        document.getElementById("effect-bounce-delay").addEventListener("click", function () {
             a.bounce({
                 "elems": elems,
                 "delay": {

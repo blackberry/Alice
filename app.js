@@ -1,4 +1,20 @@
 /*jslint devel: true, browser: true, white: true, nomen: true */
+/*global alice: false */
+
+var a = alice.init();
+
+a.slideLeft({
+    "elems": ["elem1", "elem2"],
+    "duration": {
+        "value": "1000ms",
+        "randomness": "0%",
+        "offset": "150ms"
+    }
+});
+
+if (typeof jWorkflow != "undefined") {
+    a.start();
+}
 
 var app = {
 
@@ -13,56 +29,56 @@ app.serialize = function (obj) {
 
     if (obj !== undefined) {
         switch (obj.constructor) {
-            case "Array":
-                vArr = "[";
-                for (i = 0; i < obj.length; i += 1) {
-                    if (i > 0) {
-                        vArr += ",";
-                    }
-                    vArr += this.serialize(obj[i]);
+        case "Array":
+            vArr = "[";
+            for (i = 0; i < obj.length; i += 1) {
+                if (i > 0) {
+                    vArr += ",";
                 }
-                vArr += "]";
-                return vArr;
-            case "String":
-                val = '"' + obj + '"';
-                return val;
-            case "Number":
-                val = isFinite(obj) ? obj.toString() : null;
-                return val;
-            case "Date":
-                val = "#" + obj + "#";
-                return val;
-            default:
-                if (typeof obj === "object") {
-                    vObj = [];
+                vArr += this.serialize(obj[i]);
+            }
+            vArr += "]";
+            return vArr;
+        case "String":
+            val = '"' + obj + '"';
+            return val;
+        case "Number":
+            val = isFinite(obj) ? obj.toString() : null;
+            return val;
+        case "Date":
+            val = "#" + obj + "#";
+            return val;
+        default:
+            if (typeof obj === "object") {
+                vObj = [];
 
-                    for (attr in obj) {
-                        //console.warn(attr, typeof obj[attr], obj[attr]);
-                        if (obj.hasOwnProperty(attr)) {
-                            if (attr === "elems") {
-                                vObj.push('"' + attr + '": ["' + obj[attr].id + '"]');
+                for (attr in obj) {
+                    //console.warn(attr, typeof obj[attr], obj[attr]);
+                    if (obj.hasOwnProperty(attr)) {
+                        if (attr === "elems") {
+                            vObj.push('"' + attr + '": ["' + obj[attr].id + '"]');
+                        }
+                        else if (typeof obj[attr] !== "function") {
+                            if (typeof obj[attr] === "object" || typeof obj[attr] === "number") {
+                                vObj.push('"' + attr + '": ' + this.serialize(obj[attr]));
                             }
-                            else if (typeof obj[attr] !== "function") {
-                                if (typeof obj[attr] === "object" || typeof obj[attr] === "number") {
-                                    vObj.push('"' + attr + '": ' + this.serialize(obj[attr]));
-                                }
-                                else {
-                                    vObj.push('"' + attr + '": "' + this.serialize(obj[attr]) + '"');
-                                }
+                            else {
+                                vObj.push('"' + attr + '": "' + this.serialize(obj[attr]) + '"');
                             }
                         }
                     }
+                }
 
-                    if (vObj.length > 0) {
-                        return "{" + vObj.join(",") + "}";
-                    }
-                    else {
-                        return "{}";
-                    }
+                if (vObj.length > 0) {
+                    return "{" + vObj.join(",") + "}";
                 }
                 else {
-                    return obj.toString();
+                    return "{}";
                 }
+            }
+            else {
+                return obj.toString();
+            }
         }
     }
 
@@ -74,13 +90,7 @@ app.serialize = function (obj) {
  */
 app.applyStyle = function () {
     "use strict";
-    var i, j, elem, container, perspective, transform,
-        transformFunctions = [
-            "rotate", "rotateX", "rotateY",
-            "scale", "scaleX", "scaleY",
-            "skew", "skewX", "skewY",
-            "translate", "translateX", "translateY"
-        ];
+    var i, j, elem, container, perspective, transform, transformFunctions = ["rotate", "rotateX", "rotateY", "scale", "scaleX", "scaleY", "skew", "skewX", "skewY", "translate", "translateX", "translateY"];
 
     for (i = 1; i <= 2; i += 1) {
         elem = document.getElementById("elem" + i);
@@ -101,7 +111,9 @@ app.applyStyle = function () {
             }
         }
 
-        console.log(elem.id + ": perspective=" + perspective + ", transform=" + transform);
+        if (a.debug) {
+            console.log(elem.id + ": perspective=" + perspective + ", transform=" + transform);
+        }
 
         if ("MozTransform" in elem.style) {
             container.style.MozPerspective = perspective;
@@ -122,7 +134,7 @@ app.applyStyle = function () {
  */
 app.applyEffect = function (param) {
     "use strict";
-    console.log("Applying " + param.value);
+    //console.info("applyEffect " + param.value, param);
 
     if (document.getElementById("json")) {
         document.getElementById("json").innerHTML = "";
@@ -154,101 +166,115 @@ app.applyEffect = function (param) {
             scale: document.getElementById("scale" + i).value,
             overshoot: document.getElementById("overshoot" + i).value,
             //randomness: document.getElementById("randomness" + i).value,
-
             perspective: document.getElementById("perspective" + i).value,
             perspectiveOrigin: document.getElementById("perspective_origin" + i).value,
             backfaceVisibility: document.getElementById("backface_visibility" + i).value
         };
 
         switch (param.value) {
-            case "slideLeft":
-                ret = alice.slideLeft(p);
-                break;
-            case "slideRight":
-                ret = alice.slideRight(p);
-                break;
-            case "slideUp":
-                ret = alice.slideUp(p);
-                break;
-            case "slideDown":
-                ret = alice.slideDown(p);
-                break;
-            case "tossLeft":
-                ret = alice.tossLeft(p);
-                break;
-            case "tossRight":
-                ret = alice.tossRight(p);
-                break;
-            case "tossUp":
-                ret = alice.tossUp(p);
-                break;
-            case "tossDown":
-                ret = alice.tossDown(p);
-                break;
-            case "flipLeft":
-                ret = alice.flipLeft(p);
-                break;
-            case "flipRight":
-                ret = alice.flipRight(p);
-                break;
-            case "flipUp":
-                ret = alice.flipUp(p);
-                break;
-            case "flipDown":
-                ret = alice.flipDown(p);
-                break;
-            case "pushForward":
-                ret = alice.pushForward(p);
-                break;
-            case "pushBackward":
-                ret = alice.pushBackward(p);
-                break;
-            case "fadeIn":
-                ret = alice.fadeIn(p);
-                break;
-            case "fadeOut":
-                ret = alice.fadeOut(p);
-                break;
-            case "drain":
-                ret = alice.drain(p);
-                break;
-            case "phantomZone":
-                ret = alice.phantomZone(p);
-                break;
-            case "pageFlipLeft":
-                ret = alice.pageFlipLeft(p);
-                break;
-            case "pageFlipRight":
-                ret = alice.pageFlipRight(p);
-                break;
-            case "pageFlipUp":
-                ret = alice.pageFlipUp(p);
-                break;
-            case "pageFlipDown":
-                ret = alice.pageFlipDown(p);
-                break;
-            case "twirlLeft":
-                ret = alice.twirlLeft(p);
-                break;
-            case "twirlRight":
-                ret = alice.twirlRight(p);
-                break;
-            case "raceFlag":
-                ret = alice.raceFlag(p);
-                break;
-            case "hinge":
-                ret = alice.hinge(p);
-                break;
-            default:
-                ret = alice.slide(p);
-                break;
+        case "slideLeft":
+            ret = a.slideLeft(p);
+            break;
+        case "slideRight":
+            ret = a.slideRight(p);
+            break;
+        case "slideUp":
+            ret = a.slideUp(p);
+            break;
+        case "slideDown":
+            ret = a.slideDown(p);
+            break;
+        case "tossLeft":
+            ret = a.tossLeft(p);
+            break;
+        case "tossRight":
+            ret = a.tossRight(p);
+            break;
+        case "tossUp":
+            ret = a.tossUp(p);
+            break;
+        case "tossDown":
+            ret = a.tossDown(p);
+            break;
+        case "spinLeft":
+            ret = a.spinLeft(p);
+            break;
+        case "spinRight":
+            ret = a.spinRight(p);
+            break;
+        case "spinUp":
+            ret = a.spinUp(p);
+            break;
+        case "spinDown":
+            ret = a.spinDown(p);
+            break;
+        case "pushForward":
+            ret = a.pushForward(p);
+            break;
+        case "pushBackward":
+            ret = a.pushBackward(p);
+            break;
+        case "fadeIn":
+            ret = a.fadeIn(p);
+            break;
+        case "fadeOut":
+            ret = a.fadeOut(p);
+            break;
+        case "drain":
+            ret = a.drain(p);
+            break;
+        case "phantomZone":
+            ret = a.phantomZone(p);
+            break;
+        case "pageFlipLeft":
+            ret = a.pageFlipLeft(p);
+            break;
+        case "pageFlipRight":
+            ret = a.pageFlipRight(p);
+            break;
+        case "pageFlipUp":
+            ret = a.pageFlipUp(p);
+            break;
+        case "pageFlipDown":
+            ret = a.pageFlipDown(p);
+            break;
+        case "twirlFromLeft":
+            ret = a.twirlFromLeft(p);
+            break;
+        case "twirlFromRight":
+            ret = a.twirlFromRight(p);
+            break;
+        case "raceFlag":
+            ret = a.raceFlag(p);
+            break;
+        case "hinge":
+            ret = a.hinge(p);
+            break;
+        case "wobble":
+            ret = a.wobble(p);
+            break;
+        case "dance":
+            ret = a.dance(p);
+            break;
+        case "pendulum":
+            ret = a.pendulum(p);
+            break;
+        case "bounce":
+            ret = a.bounce(p);
+            break;
+        default:
+            ret = a.slide(p);
+            break;
+        }
+
+        if (typeof jWorkflow != "undefined") {
+            a.start();
         }
 
         //console.warn(ret, this.serialize(ret));
-
         if (document.getElementById("json")) {
             //document.getElementById("json").innerHTML += JSON.stringify(ret) + "\n\n";
-            document.getElementById("json").innerHTML += this.serialize(ret) + "\n\n";
+            document.getElementById("json").innerHTML += "alice.slide(" + this.serialize(ret) + ");" + "\n\n";
         }
     }
 };

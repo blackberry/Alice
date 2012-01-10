@@ -2,10 +2,12 @@
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <title>AliceJS Tester</title>
+        <title>AliceJS: Tester</title>
+        <link href="favicon.ico" rel="icon" type="image/x-icon">
         <style type="text/css">
         body, select {
             font: 8pt Arial, sans-serif;
+            overflow: hidden;
         }
 
         legend, label, .label {
@@ -686,10 +688,10 @@
                             <input type="button" class="button" id="effect-tossRight" name="effect" value="tossRight" onclick="app.applyEffect(this);"><br>
                             <input type="button" class="button" id="effect-tossUp" name="effect" value="tossUp" onclick="app.applyEffect(this);"><br>
                             <input type="button" class="button" id="effect-tossDown" name="effect" value="tossDown" onclick="app.applyEffect(this);"><br>
-                            <input type="button" class="button" id="effect-flipLeft" name="effect" value="flipLeft" onclick="app.applyEffect(this);"><br>
-                            <input type="button" class="button" id="effect-flipRight" name="effect" value="flipRight" onclick="app.applyEffect(this);"><br>
-                            <input type="button" class="button" id="effect-flipUp" name="effect" value="flipUp" onclick="app.applyEffect(this);"><br>
-                            <input type="button" class="button" id="effect-flipDown" name="effect" value="flipDown" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-spinLeft" name="effect" value="spinLeft" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-spinRight" name="effect" value="spinRight" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-spinUp" name="effect" value="spinUp" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-spinDown" name="effect" value="spinDown" onclick="app.applyEffect(this);"><br>
                             <input type="button" class="button" id="effect-pushForward" name="effect" value="pushForward" onclick="app.applyEffect(this);"><br>
                             <input type="button" class="button" id="effect-pushBackward" name="effect" value="pushBackward" onclick="app.applyEffect(this);"><br>
                             <input type="button" class="button" id="effect-fadeIn" name="effect" value="fadeIn" onclick="app.applyEffect(this);"><br>
@@ -700,10 +702,15 @@
                             <input type="button" class="button" id="effect-pageFlipRight" name="effect" value="pageFlipRight" onclick="app.applyEffect(this);"><br>
                             <input type="button" class="button" id="effect-pageFlipUp" name="effect" value="pageFlipUp" onclick="app.applyEffect(this);"><br>
                             <input type="button" class="button" id="effect-pageFlipDown" name="effect" value="pageFlipDown" onclick="app.applyEffect(this);"><br>
-                            <input type="button" class="button" id="effect-twirlLeft" name="effect" value="twirlLeft" onclick="app.applyEffect(this);"><br>
-                            <input type="button" class="button" id="effect-twirlRight" name="effect" value="twirlRight" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-twirlFromLeft" name="effect" value="twirlFromLeft" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-twirlFromRight" name="effect" value="twirlFromRight" onclick="app.applyEffect(this);"><br>
                             <input type="button" class="button" id="effect-raceFlag" name="effect" value="raceFlag" onclick="app.applyEffect(this);"><br>
+                            <br>
                             <input type="button" class="button" id="effect-hinge" name="effect" value="hinge" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-wobble" name="effect" value="wobble" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-dance" name="effect" value="dance" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-pendulum" name="effect" value="pendulum" onclick="app.applyEffect(this);"><br>
+                            <input type="button" class="button" id="effect-bounce" name="effect" value="bounce" onclick="app.applyEffect(this);"><br>
                         </fieldset>
                     </td>
                     <td valign="top">
@@ -753,7 +760,7 @@
                                             <option value="easeInOutExpo">easeInOutExpo</option>
                                             <option value="easeInOutCirc">easeInOutCirc</option>
                                             <option value="easeInOutBack">easeInOutBack</option>
-                                            <option value="bounce">bounce</option>
+                                            <option value="custom">custom</option>
                                             <option value="random">random</option>
                                         </select>
                                     </td>
@@ -788,7 +795,7 @@
                                             <option value="easeInOutExpo">easeInOutExpo</option>
                                             <option value="easeInOutCirc">easeInOutCirc</option>
                                             <option value="easeInOutBack">easeInOutBack</option>
-                                            <option value="bounce">bounce</option>
+                                            <option value="custom">custom</option>
                                             <option value="random">random</option>
                                         </select>
                                     </td>
@@ -1205,39 +1212,14 @@
 <!--
         <script src="js/alice-min.js"></script>
         <script src="js/alice.js"></script>
+        <script src="libs/jworkflow/jworkflow-min-0.6.0.js"></script>
 -->
         <script src="js/src/alice.core.js"></script>
-        <script src="js/src/alice.slide.js"></script>
+        <script src="js/src/alice.plugins.slide.js"></script>
 
         <script src="app.js"></script>
         <script type="text/javascript">
         document.getElementById("settingsDiv").style.height = parseInt((window.innerHeight - document.getElementById("testDiv").clientHeight) - 60, 10) + "px";
-
-        alice.init();
-        alice.slide({
-            elems: ["elem1", "elem2"],
-            //move: "left", // left | right | up | down
-            //move: {direction: "left", end: "100px"},
-            //move: {direction: "left", start: "1024px", end: "100px"},
-            //move: {direction: "right", start: "100px", end: "1024px"},
-            //move: {direction: "up", start: "800px", end: "10px"},
-            //move: {direction: "down", start: "10px", end: "800px"},
-            //move: {direction: "left", start: "100%", end: "10%"},
-            move: {direction: "right", start: "-100%", end: "0%"},
-            //move: {direction: "right", start: "0%", end: "90%"},
-            //move: {direction: "up", start: "100%", end: "10%"},
-            //move: {direction: "down", start: "0%", end: "90%"},
-            duration: {
-                value: 1000,
-                randomness: "0%"
-            },
-            timing: "linear"
-        });
-/*
-        alice.fadeOut({
-            elems: ["elem2"]
-        });
-*/
         </script>
     </body>
 </html>

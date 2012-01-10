@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <title>Chaining</title>
+        <title>AliceJS: Chaining</title>
         <link href="favicon.ico" rel="icon" type="image/x-icon">
         <style type="text/css">
         body, select {
@@ -53,6 +53,12 @@
             <div id="elem15" class="card"><img src="samples/images/cards/jack_hearts.png" width="105" height="143"></div>
             <div id="elem16" class="card"><img src="samples/images/cards/jack_spades.png" width="105" height="143"></div>
         </div>
+        <div id="tens" style="clear: both;">
+            <div id="elem17" class="card"><img src="samples/images/cards/10_clubs.png" width="105" height="143"></div>
+            <div id="elem18" class="card"><img src="samples/images/cards/10_diamonds.png" width="105" height="143"></div>
+            <div id="elem19" class="card"><img src="samples/images/cards/10_hearts.png" width="105" height="143"></div>
+            <div id="elem20" class="card"><img src="samples/images/cards/10_spades.png" width="105" height="143"></div>
+        </div>
 
         <!-- Add jWorkflow for Chaining -->
         <script src="libs/jworkflow/jworkflow-min-0.6.0.js"></script>
@@ -64,8 +70,10 @@
         var kings = ["elem5", "elem6", "elem7", "elem8"];
         var queens = ["elem9", "elem10", "elem11", "elem12"];
         var jacks = ["elem13", "elem14", "elem15", "elem16"];
+        var tens = ["elem17", "elem18", "elem19", "elem20"];
 
         var a = alice.init();
+        //var a = alice.init({"elems": aces});
 
         // Chained style
         a.slideLeft({
@@ -187,6 +195,94 @@
 
         c.start();
 
+        var d = alice.init();
+
+        d.delay(12000);
+        d.pageFlipLeft({
+            "elems": jacks,
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        });
+
+        d.delay(2000);
+        d.pageFlipRight({
+            "elems": jacks,
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        });
+
+        d.delay(2000);
+        d.pageFlipDown({
+            "elems": jacks,
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        });
+
+        d.delay(2000);
+        d.pageFlipUp({
+            "elems": jacks,
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        });
+
+        d.start();
+
+        var e = alice.init();
+
+        e.delay(16000);
+        e.drain({
+            "elems": tens,
+            "duration": {
+                "value": "3000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        });
+
+        e.delay(2000);
+        e.phantomZone({
+            "elems": tens,
+            "duration": {
+                "value": "4000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        });
+
+        e.delay(2000);
+        e.twirlFromRight({
+            "elems": tens,
+            "duration": {
+                "value": "2000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        });
+
+        e.delay(2000);
+        e.raceFlag({
+            "elems": tens,
+            "duration": {
+                "value": "2000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        });
+
+        e.start();
+
 /*
         document.getElementById("effect-pushForward").addEventListener("click", function () {
             alice.pushForward({
@@ -223,105 +319,6 @@
 
         document.getElementById("effect-fadeOut").addEventListener("click", function () {
             alice.fadeOut({
-                "elems": elems,
-                "duration": {
-                    "value": "2000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-drain").addEventListener("click", function () {
-            alice.drain({
-                "elems": elems,
-                "duration": {
-                    "value": "3000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-phantomZone").addEventListener("click", function () {
-            alice.phantomZone({
-                "elems": elems,
-                "duration": {
-                    "value": "4000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-pageFlipLeft").addEventListener("click", function () {
-            alice.pageFlipLeft({
-                "elems": elems,
-                "duration": {
-                    "value": "1000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-pageFlipRight").addEventListener("click", function () {
-            alice.pageFlipRight({
-                "elems": elems,
-                "duration": {
-                    "value": "1000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-pageFlipUp").addEventListener("click", function () {
-            alice.pageFlipUp({
-                "elems": elems,
-                "duration": {
-                    "value": "1000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-pageFlipDown").addEventListener("click", function () {
-            alice.pageFlipDown({
-                "elems": elems,
-                "duration": {
-                    "value": "1000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-twirlFromLeft").addEventListener("click", function () {
-            alice.twirlFromLeft({
-                "elems": elems,
-                "duration": {
-                    "value": "2000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-twirlFromRight").addEventListener("click", function () {
-            alice.twirlFromRight({
-                "elems": elems,
-                "duration": {
-                    "value": "2000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-raceFlag").addEventListener("click", function () {
-            alice.raceFlag({
                 "elems": elems,
                 "duration": {
                     "value": "2000ms",

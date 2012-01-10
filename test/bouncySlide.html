@@ -133,7 +133,69 @@
         </div>
 
         <script type="text/javascript">
-        console.log(document.getElementById("track1").clientWidth);
+        //console.log(document.getElementById("track1").clientWidth);
+
+if (!Number.prototype.roundTo) {
+    Number.prototype.roundTo = function (precision) {
+        var power = Math.pow(10, precision || 0);
+        //return String(Math.round(this * power) / power);
+        return (Math.round(this * power) / power);
+    };
+}
+
+
+        function generate (params) {
+            var i = 100,
+                p = 0,
+                x = params.len,
+                sx = params.elasticity.roundTo(2),
+                sy = (1 - sx).roundTo(2),
+                //sx = params.elasticity.toFixed(2),
+                //sy = (1 - sx).toFixed(2),
+                cnt = 0,
+                css = "";
+/*
+    var date = new Date();
+    var time = date.getTime();
+
+    sx = Math.sin(time / 200) * 0.1 + 0.9;
+    sy = -1 * Math.sin(time / 200) * 0.1 + 0.9;
+*/
+            css = "@-webkit-keyframes aliceSquishLeft {" + "\n";
+
+            while (i > 0) {
+                cnt++;
+
+                css += "\t" + p + "% {" + "\n";
+                if (cnt % 2) {
+                    css += "\t\t" + "-webkit-transform: scaleX(1) scaleY(1) translateX(" + x + "px);" + "\n";
+                    css += "\t\t" + "-webkit-animation-timing-function: ease-in;" + "\n";
+
+                    x = parseInt(x * params.pct, 10);
+                }
+                else {
+                    css += "\t\t" + "-webkit-transform: scaleX(" + sx + ") scaleY(" + sy + ") translateX(-20px);" + "\n";
+                    css += "\t\t" + "-webkit-animation-timing-function: ease-out;" + "\n";
+
+                    sx = (sx + ((1 - params.elasticity) * params.elasticity)).roundTo(2);
+                    sy = (1 - sx).roundTo(2);
+                    //sx = (sx + ((1 - params.elasticity) * params.elasticity)).toFixed(2);
+                    //sy = (1 - sx).toFixed(2);
+                }
+                css += "\t" + "}" + "\n";
+
+                i = parseInt(i * params.pct, 10);
+                p = 100 - i;
+            }
+
+            css += "}" + "\n";
+            console.log(css);
+        }
+
+        //generate(0.75);
+        //generate({pct: 0.65, len: window.innerWidth, impact: false});
+        generate({pct: 0.65, elasticity: 0.65, len: 512, impact: false});
+        //generate(0.25);
         </script>
     </body>
 </html>

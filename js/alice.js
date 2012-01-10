@@ -32,6 +32,7 @@ var alice = (function () {
             prefix: "",
             prefixJS: "",
 
+            elems: null,
             plugins: {},
 
             debug: false,
@@ -591,9 +592,9 @@ var alice = (function () {
                     this.prefixJS = "";
                 }
 
-                if (this.debug) {
+                //if (this.debug) {
                     console.log("prefix=" + this.prefix, "prefixJS=" + this.prefixJS);
-                }
+                //}
 
                 return;
             },
@@ -700,8 +701,14 @@ var alice = (function () {
             init: function (params) {
                 console.info("Initializing " + this.name + " (" + this.description + ") " + this.version);
 
+                //_private();
+
                 this._prefix();
-                _private();
+
+                if (params && params.elems) {
+                    this.elems = this._elements(params.elems);
+                    //console.log(this.elems);
+                }
 
                 // Add optional support for jWorkflow (see https://github.com/tinyhippos/jWorkflow)
                 if (typeof jWorkflow !== "undefined") {
@@ -820,8 +827,7 @@ alice.plugins.slide = function (params) {
 
         // Initialize variables
 
-        //elems = this._elements(params.elems),
-        elems = alice._elements(params.elems),
+        //elems = alice._elements(params.elems),
 
         delay = getValue(params.delay, 0),
         duration = getValue(params.duration, 2000),
@@ -835,13 +841,11 @@ alice.plugins.slide = function (params) {
         perspectiveOrigin = params.perspectiveOrigin || "center",
         backfaceVisibility = params.backfaceVisibility || "visible",
 
-        //overshoot = this._percentage(params.overshoot) || 0,
         overshoot = alice._percentage(params.overshoot) || 0,
         //overShootPercent = 100 - overshoot * 100,
         overShootPercent = 85,
 
         rotate = params.rotate || 0,
-        //rotateStart = this._percentage(rotate) * 100,
         rotateStart = alice._percentage(rotate) * 100,
         rotateOver = overshoot * 100,
         rotateEnd = 0,
@@ -856,7 +860,6 @@ alice.plugins.slide = function (params) {
         fadeStart = (fade && fade === "out") ? 1 : 0,
         fadeEnd = (fade && fade === "out") ? 0 : 1,
 
-        //scale = this._percentage(params.scale) || 1,
         scale = alice._percentage(params.scale) || 1,
 
         move = "",
@@ -866,7 +869,14 @@ alice.plugins.slide = function (params) {
         posEnd = params.posEnd || 0,
         over = posEnd + (sign * Math.floor(posEnd * overshoot)),
 
-        container, elem, i, animId, css, transformStart, transformOver, transformEnd, boxShadowStart, boxShadowEnd, dir, size, shadowSize;
+        container, elems, elem, i, animId, css, transformStart, transformOver, transformEnd, boxShadowStart, boxShadowEnd, dir, size, shadowSize;
+
+    if (alice.elems !== null) {
+        elems = alice.elems;
+    }
+    else {
+        elems = alice._elements(params.elems);
+    }
 
     // Loop through elements
     if (elems && elems.length > 0) {

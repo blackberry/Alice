@@ -592,9 +592,9 @@ var alice = (function () {
                     this.prefixJS = "";
                 }
 
-                if (this.debug) {
+                //if (this.debug) {
                     console.log("prefix=" + this.prefix, "prefixJS=" + this.prefixJS);
-                }
+                //}
 
                 return;
             },

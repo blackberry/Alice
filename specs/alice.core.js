@@ -124,6 +124,7 @@ describe('_coords', function () {
 });
 
 describe('_easing', function () {
+    // Standard
     it('"linear" returns ' + JSON.stringify({p1: 0.250, p2: 0.250, p3: 0.750, p4: 0.750}), function () {
         expect(alice._easing("linear")).toEqual({p1: 0.250, p2: 0.250, p3: 0.750, p4: 0.750});
     });
@@ -140,6 +141,7 @@ describe('_easing', function () {
         expect(alice._easing("ease-in-out")).toEqual({p1: 0.420, p2: 0.000, p3: 0.580, p4: 1.000});
     });
 
+    // Penner
     it('"easeInQuad" returns ' + JSON.stringify({p1: 0.550, p2: 0.085, p3: 0.680, p4: 0.530}), function () {
         expect(alice._easing("easeInQuad")).toEqual({p1: 0.550, p2: 0.085, p3: 0.680, p4: 0.530});
     });
@@ -213,14 +215,17 @@ describe('_easing', function () {
         expect(alice._easing("easeInOutBack")).toEqual({p1: 0.680, p2: -0.550, p3: 0.265, p4: 1.550});
     });
 
-    it('"bounce" returns ' + JSON.stringify({p1: 0.000, p2: 0.350, p3: 0.500, p4: 1.300}), function () {
-        expect(alice._easing("bounce")).toEqual({p1: 0.000, p2: 0.350, p3: 0.500, p4: 1.300});
+    // Custom
+    it('"custom" returns ' + JSON.stringify({p1: 0.000, p2: 0.350, p3: 0.500, p4: 1.300}), function () {
+        expect(alice._easing("custom")).toEqual({p1: 0.000, p2: 0.350, p3: 0.500, p4: 1.300});
     });
 
+    // Random
     it('"random" does not return ' + JSON.stringify({p1: 0.250, p2: 0.100, p3: 0.250, p4: 1.000}), function () {
         expect(alice._easing("random")).not.toEqual({p1: 0.250, p2: 0.100, p3: 0.250, p4: 1.000});
     });
 
+    // Default
     it('"" returns ' + JSON.stringify({p1: 0.250, p2: 0.100, p3: 0.250, p4: 1.000}), function () {
         expect(alice._easing("")).toEqual({p1: 0.250, p2: 0.100, p3: 0.250, p4: 1.000});
     });

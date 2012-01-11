@@ -72,8 +72,9 @@
         var jacks = ["elem13", "elem14", "elem15", "elem16"];
         var tens = ["elem17", "elem18", "elem19", "elem20"];
 
+        // Aces
+
         var a = alice.init();
-        //var a = alice.init({"elems": aces});
 
         // Chained style
         a.slideLeft({
@@ -105,6 +106,39 @@
                 "offset": "150ms"
             }
         }).start();
+
+/*
+        var a = alice.init({"elems": aces});
+
+        // Chained style
+        a.slideLeft({
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000).slideRight({
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000).slideDown({
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000).slideUp({
+            "duration": {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).start();
+*/
+
+        // Kings
 
         var b = alice.init();
 
@@ -151,6 +185,8 @@
 
         b.start();
 
+        // Queens
+
         var c = alice.init();
 
         c.delay(8000);
@@ -194,6 +230,8 @@
         });
 
         c.start();
+
+        // Jacks
 
         var d = alice.init();
 
@@ -239,6 +277,8 @@
 
         d.start();
 
+        // Tens
+
         var e = alice.init();
 
         e.delay(16000);
@@ -282,137 +322,6 @@
         });
 
         e.start();
-
-/*
-        document.getElementById("effect-pushForward").addEventListener("click", function () {
-            alice.pushForward({
-                "elems": elems,
-                "duration": {
-                    "value": "1000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-pushBackward").addEventListener("click", function () {
-            alice.pushBackward({
-                "elems": elems,
-                "duration": {
-                    "value": "1000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-fadeIn").addEventListener("click", function () {
-            alice.fadeIn({
-                "elems": elems,
-                "duration": {
-                    "value": "2000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-fadeOut").addEventListener("click", function () {
-            alice.fadeOut({
-                "elems": elems,
-                "duration": {
-                    "value": "2000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-hinge").addEventListener("click", function () {
-            alice.hinge({
-                "elems": elems,
-                "duration": {
-                    "value": "1000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-wobble").addEventListener("click", function () {
-            alice.wobble({
-                "elems": elems,
-                "duration": {
-                    "value": "1000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-dance").addEventListener("click", function () {
-            alice.dance({
-                "elems": elems,
-                "duration": {
-                    "value": "2000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-pendulum").addEventListener("click", function () {
-            alice.pendulum({
-                "elems": elems,
-                "delay": {
-                    "value": "0ms",
-                    "offset": "50ms"
-                },
-                "duration": {
-                    "value": "1000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                }
-            });
-        }, false);
-
-        document.getElementById("effect-bounce").addEventListener("click", function () {
-            alice.bounce({
-                "elems": elems,
-                "delay": {
-                    "value": "0ms",
-                    "offset": "50ms"
-                },
-            });
-        }, false);
-
-        document.getElementById("effect-custom").addEventListener("click", function () {
-            alice.slide({
-                "elems": elems,
-                "delay": {
-                    "value": "0ms"
-                },
-                "duration": {
-                    "value": "2500ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                },
-                "timing": "random",
-                "iteration": "1",
-                "direction": "normal",
-                "playstate": "running",
-                "move": "left",
-                "rotate": "-135%",
-                "flip": "",
-                "fade": "in",
-                "scale": "99%",
-                "overshoot": "10%",
-                "perspective": "1000",
-                "perspectiveOrigin": "center",
-                "backfaceVisibility": "visible"
-            });
-        }, false);
-*/
         </script>
     </body>
 </html>

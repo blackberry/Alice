@@ -12,9 +12,11 @@ a.slideLeft({
     }
 });
 
-if (typeof jWorkflow != "undefined") {
+if (typeof jWorkflow !== "undefined") {
     a.start();
 }
+
+//----------------------------------------------------------------------------
 
 var app = {
 
@@ -53,7 +55,7 @@ app.serialize = function (obj) {
                 vObj = [];
 
                 for (attr in obj) {
-                    //console.warn(attr, typeof obj[attr], obj[attr]);
+                    //console.log(attr, typeof obj[attr], obj[attr]);
                     if (obj.hasOwnProperty(attr)) {
                         if (attr === "elems") {
                             vObj.push('"' + attr + '": ["' + obj[attr].id + '"]');
@@ -267,11 +269,10 @@ app.applyEffect = function (param) {
             break;
         }
 
-        if (typeof jWorkflow != "undefined") {
+        if (typeof jWorkflow !== "undefined") {
             a.start();
         }
 
-        //console.warn(ret, this.serialize(ret));
         if (document.getElementById("json")) {
             //document.getElementById("json").innerHTML += JSON.stringify(ret) + "\n\n";
             document.getElementById("json").innerHTML += "alice.slide(" + this.serialize(ret) + ");" + "\n\n";

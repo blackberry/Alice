@@ -592,9 +592,9 @@ var alice = (function () {
                     this.prefixJS = "";
                 }
 
-                //if (this.debug) {
+                if (this.debug) {
                     console.log("prefix=" + this.prefix, "prefixJS=" + this.prefixJS);
-                //}
+                }
 
                 return;
             },
@@ -710,9 +710,10 @@ var alice = (function () {
                     //console.log(this.elems);
                 }
 
-                // Add optional support for jWorkflow (see https://github.com/tinyhippos/jWorkflow)
+                // Add optional support for jWorkflow (https://github.com/tinyhippos/jWorkflow)
                 if (typeof jWorkflow !== "undefined") {
-                    console.warn("jWorkflow: enabled");
+                    console.log("jWorkflow: enabled");
+
                     var id = (params && params.id) ? params.id : '',
 
                         workflow = jWorkflow.order(),
@@ -724,7 +725,7 @@ var alice = (function () {
                             },
                             start: function () {
                                 workflow.start(function () {
-                                    console.info("core.animation.start");
+                                    console.info("workflow.start");
                                 });
                             }
                         };
@@ -743,7 +744,7 @@ var alice = (function () {
                     return animation;
                 }
                 else {
-                    console.warn("jWorkflow: disabled");
+                    console.log("jWorkflow: disabled");
                 }
 
                 return core.plugins;

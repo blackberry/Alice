@@ -40,7 +40,7 @@ alice.plugins.slide = function (params) {
         },
 
         getValue = function (obj, val) {
-            //console.warn("typeof", obj, typeof obj);
+            //console.log("typeof", obj, typeof obj);
             if (obj) {
                 if (obj.value) {
                     return obj.value;
@@ -54,6 +54,7 @@ alice.plugins.slide = function (params) {
             }
         },
 
+/*
         setSize = function (elem) {
             console.info("setSize");
             if (elem.children[0]) {
@@ -67,10 +68,9 @@ alice.plugins.slide = function (params) {
                 };
             }
         },
+*/
 
         // Initialize variables
-
-        //elems = alice._elements(params.elems),
 
         delay = getValue(params.delay, 0),
         duration = getValue(params.duration, 2000),
@@ -85,7 +85,6 @@ alice.plugins.slide = function (params) {
         backfaceVisibility = params.backfaceVisibility || "visible",
 
         overshoot = alice._percentage(params.overshoot) || 0,
-        //overShootPercent = 100 - overshoot * 100,
         overShootPercent = 85,
 
         rotate = params.rotate || 0,
@@ -117,7 +116,7 @@ alice.plugins.slide = function (params) {
     if (alice.elems !== null) {
         elems = alice.elems;
     }
-    else {
+    else if (params.elems) {
         elems = alice._elements(params.elems);
     }
 
@@ -130,25 +129,27 @@ alice.plugins.slide = function (params) {
             //setSize(elem);
 
             if (params.delay && params.delay.offset) {
-                //console.warn(duration, params.duration.offset);
+                //console.log(duration, params.duration.offset);
                 delay = parseInt(delay, 10) + parseInt(params.delay.offset, 10);
                 delay = delay + "ms";
             }
 
             if (params.duration && params.duration.offset) {
-                //console.warn(duration, params.duration.offset);
+                //console.log(duration, params.duration.offset);
                 duration = parseInt(duration, 10) + parseInt(params.duration.offset, 10);
                 duration = duration + "ms";
             }
 
             if (alice.debug) {
-                console.warn("delay=" + delay, "duration=" + duration);
+                console.log("delay=" + delay, "duration=" + duration);
             }
 
             // Generate animation ID
             animId = alice.id + "-slide-" + (new Date()).getTime() + "-" + Math.floor(Math.random() * 1000000);
 
-            //console.log(elem, elem.style, elem.clientWidth, elem.clientHeight);
+            if (alice.debug) {
+                console.log(elem, elem.style, elem.clientWidth, elem.clientHeight);
+            }
 
             // Configure settings
             if (params.move) {
@@ -191,7 +192,7 @@ alice.plugins.slide = function (params) {
                     over = posEnd + (sign * Math.floor(posEnd * overshoot));
 
                     if (alice.debug) {
-                        console.warn(alice._docHeight(), window.innerHeight, window.pageYOffset, container.clientHeight);
+                        console.log(alice._docHeight(), window.innerHeight, window.pageYOffset, container.clientHeight);
                     }
                     break;
                 }
@@ -224,11 +225,10 @@ alice.plugins.slide = function (params) {
             if (scale > 1) {
                 shadowSize = Math.round(scale * 10);
                 boxShadowStart = " 0px 0px 0px rgba(0, 0, 0, 1)";
-                //boxShadowEnd = " 30px 30px 30px rgba(0, 0, 0, 0.5)";
                 boxShadowEnd = " " + shadowSize + "px " + shadowSize + "px " + shadowSize + "px rgba(0, 0, 0, 0.5)";
 
                 if (alice.debug) {
-                    console.warn("scale=" + scale, shadowSize);
+                    console.log("scale=" + scale, shadowSize);
                 }
             }
 
@@ -261,9 +261,7 @@ alice.plugins.slide = function (params) {
 
             css += "}" + "\n";
 
-            if (alice.debug) {
-                console.log(css);
-            }
+            console.log(css);
 
             // Insert keyframe rule
             alice._keyframeInsert(css);
@@ -284,8 +282,6 @@ alice.plugins.slide = function (params) {
             elem.style[alice.prefixJS + "BackfaceVisibility"] = backfaceVisibility;
 
             elem.style[alice.prefixJS + "AnimationName"] = animId;
-            //elem.style[alice.prefixJS + "AnimationDelay"] = alice._duration(delay);
-            //elem.style[alice.prefixJS + "AnimationDuration"] = alice._duration(duration);
             elem.style[alice.prefixJS + "AnimationDelay"] = formatDuration(delay);
             elem.style[alice.prefixJS + "AnimationDuration"] = formatDuration(duration);
             elem.style[alice.prefixJS + "AnimationTimingFunction"] = formatEasing(timing);
@@ -299,8 +295,7 @@ alice.plugins.slide = function (params) {
             elem.style[alice.prefixJS + "BoxShadow"] = (scale > 1) ? boxShadowEnd : "";
 
             if (alice.debug) {
-                //console.log(elem.id + ": " + elem.style.cssText);
-                console.log(elem.id, elem.style, elem.style[alice.prefixJS + "AnimationDuration"], elem.style[alice.prefixJS + "AnimationTimingFunction"]);
+                console.log(elem.id, alice.prefixJS, elem.style, elem.style.cssText, elem.style[alice.prefixJS + "AnimationDuration"], elem.style[alice.prefixJS + "AnimationTimingFunction"]);
             }
         }
     }

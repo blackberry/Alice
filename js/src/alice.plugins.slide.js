@@ -261,7 +261,7 @@ alice.plugins.slide = function (params) {
 
             css += "}" + "\n";
 
-            console.log(css);
+            //console.log(css);
 
             // Insert keyframe rule
             alice._keyframeInsert(css);

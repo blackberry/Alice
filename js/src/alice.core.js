@@ -690,6 +690,7 @@ var alice = (function () {
                 //this.style[this.prefixJS + "AnimationFillMode"] = "";
                 this.style[this.prefixJS + "AnimationPlayState"] = "";
 
+                // TODO: add evt.animationName to a delete queue
                 alice._keyframeDelete(evt.animationName);
 
                 return;
@@ -721,6 +722,12 @@ var alice = (function () {
                         animation = {
                             delay: function (ms) {
                                 workflow.chill(ms);
+                                return animation;
+                            },
+                            log: function (msg) {
+                                workflow.andThen(function () {
+                                    console.log(msg);
+                                });
                                 return animation;
                             },
                             start: function () {

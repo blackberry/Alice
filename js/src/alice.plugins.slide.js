@@ -20,7 +20,7 @@ alice.plugins.slide = function (params) {
             return dVal;
         },
 
-       formatCoords = function (c) {
+        formatCoords = function (c) {
             var cObj = alice._coords(c),
                 cVal = cObj.x + " " + cObj.y;
 
@@ -71,7 +71,6 @@ alice.plugins.slide = function (params) {
 */
 
         // Initialize variables
-
         delay = getValue(params.delay, 0),
         duration = getValue(params.duration, 2000),
 
@@ -95,6 +94,9 @@ alice.plugins.slide = function (params) {
         flip = params.flip || null,
         flipStart = 0,
         flipEnd = (flip && (flip === "right" || flip === "up")) ? 360 : -360,
+        //flipEnd = (flip && (flip === "right" || flip === "up")) ? 405 : -405,
+        //flipEnd = (flip && (flip === "right" || flip === "up")) ? 180 : -180,
+        //flipEnd = (flip && (flip === "right" || flip === "up")) ? 90 : -90,
         flipOver = Math.floor((1 + overshoot) * flipEnd),
         flipAxis = (flip && (flip === "left" || flip === "right")) ? "Y" : "X",
 
@@ -266,14 +268,6 @@ alice.plugins.slide = function (params) {
             // Insert keyframe rule
             alice._keyframeInsert(css);
 
-            // Add listener to clear animation after it's done
-            if ("MozAnimation" in elem.style) {
-                elem.addEventListener("animationend", alice._clearAnimation, false);
-            }
-            else {
-                elem.addEventListener(alice.prefixJS + "AnimationEnd", alice._clearAnimation, false);
-            }
-
             // Apply perspective to parent container
             container.style[alice.prefixJS + "Perspective"] = perspective;
             container.style[alice.prefixJS + "PerspectiveOrigin"] = formatCoords(perspectiveOrigin); // alice._coords();
@@ -293,6 +287,14 @@ alice.plugins.slide = function (params) {
             elem.style[alice.prefixJS + "Transform"] = transformEnd;
             elem.style.opacity = (fade) ? fadeEnd : "";
             elem.style[alice.prefixJS + "BoxShadow"] = (scale > 1) ? boxShadowEnd : "";
+
+            // Add listener to clear animation after it's done
+            if ("MozAnimation" in elem.style) {
+                elem.addEventListener("animationend", alice._clearAnimation, false);
+            }
+            else {
+                elem.addEventListener(alice.prefixJS + "AnimationEnd", alice._clearAnimation, false);
+            }
 
             if (alice.debug) {
                 console.log(elem.id, alice.prefixJS, elem.style, elem.style.cssText, elem.style[alice.prefixJS + "AnimationDuration"], elem.style[alice.prefixJS + "AnimationTimingFunction"]);
@@ -555,7 +557,6 @@ alice.plugins.drain = function (params) {
     p.fade = "out";
     p.scale = 1;
     //console.info("drain", p);
-
     alice.plugins.slide(p);
     return p;
 };
@@ -574,7 +575,6 @@ alice.plugins.phantomZone = function (params) {
     p.fade = "out";
     p.scale = 1;
     //console.info("phantomZone", p);
-
     alice.plugins.slide(p);
     return p;
 };
@@ -794,4 +794,3 @@ alice.plugins.bounce = function (params) {
 };
 
 //----------------------------------------------------------------------------
-

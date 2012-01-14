@@ -94,9 +94,7 @@ alice.plugins.slide = function (params) {
         flip = params.flip || null,
         flipStart = 0,
         flipEnd = (flip && (flip === "right" || flip === "up")) ? 360 : -360,
-        //flipEnd = (flip && (flip === "right" || flip === "up")) ? 405 : -405,
         //flipEnd = (flip && (flip === "right" || flip === "up")) ? 180 : -180,
-        //flipEnd = (flip && (flip === "right" || flip === "up")) ? 90 : -90,
         flipOver = Math.floor((1 + overshoot) * flipEnd),
         flipAxis = (flip && (flip === "left" || flip === "right")) ? "Y" : "X",
 

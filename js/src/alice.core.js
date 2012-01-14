@@ -690,7 +690,7 @@ var alice = (function () {
                 //this.style[this.prefixJS + "AnimationFillMode"] = "";
                 this.style[this.prefixJS + "AnimationPlayState"] = "";
 
-                // TODO: add evt.animationName to a delete queue
+                // TODO: add evt.animationName to a delete queue?
                 alice._keyframeDelete(evt.animationName);
 
                 return;

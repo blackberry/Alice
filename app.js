@@ -27,6 +27,7 @@ var app = {
  */
 app.serialize = function (obj) {
     "use strict";
+
     var val, vArr, vObj, i, attr;
 
     if (obj !== undefined) {
@@ -92,6 +93,7 @@ app.serialize = function (obj) {
  */
 app.applyStyle = function () {
     "use strict";
+
     var i, j, elem, container, perspective, transform, transformFunctions = ["rotate", "rotateX", "rotateY", "scale", "scaleX", "scaleY", "skew", "skewX", "skewY", "translate", "translateX", "translateY"];
 
     for (i = 1; i <= 2; i += 1) {
@@ -136,6 +138,7 @@ app.applyStyle = function () {
  */
 app.applyEffect = function (param) {
     "use strict";
+
     //console.info("applyEffect " + param.value, param);
 
     if (document.getElementById("json")) {

@@ -1,6 +1,21 @@
 /*jslint devel: true, browser: true, white: true, nomen: true */
 /*global jWorkflow: false */
 
+/* Copyright 2011-2012 Research In Motion Limited.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 /* ===========================================================================
  * AliceJS
  *
@@ -28,6 +43,7 @@ var alice = (function () {
             name: "AliceJS",
             description: "A Lightweight Independent CSS Engine",
             version: "0.2",
+            build: "20120118-1415",
 
             prefix: "",
             prefixJS: "",
@@ -697,6 +713,26 @@ var alice = (function () {
             },
 
             /**
+             * Merge options
+             */
+            _mergeOptions: function (defaults, options) {
+                //console.info("_mergeOptions", defaults, options);
+                if (options) {
+                    for (var name in defaults) {
+                        if (!options.hasOwnProperty(name)) {
+                            options[name] = defaults[name];
+                        }
+                    }
+                }
+                else {
+                    options = defaults;
+                }
+                //console.warn(options);
+
+                return options;
+            },
+
+            /**
              * Initialize
              */
             init: function (params) {
@@ -760,10 +796,6 @@ var alice = (function () {
 
     return core;
 }());
-
-//----------------------------------------------------------------------------
-
-/*jslint devel: true, browser: true, white: true, nomen: true */
 
 /* ===========================================================================
  * alice.plugins.slide.js
@@ -1077,483 +1109,423 @@ alice.plugins.slide = function (params) {
  *
  */
 alice.plugins.slideLeft = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        move: "left"
+    }, params);
 
-    // Set presets
-    p.move = "left";
-    //console.info("slideLeft", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.slideRight = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        move: "right"
+    }, params);
 
-    // Set presets
-    p.move = "right";
-    //console.info("slideRight", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.slideUp = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        move: "up"
+    }, params);
 
-    // Set presets
-    p.move = "up";
-    //console.info("slideUp", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.slideDown = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        move: "down"
+    }, params);
 
-    // Set presets
-    p.move = "down";
-    //console.info("slideDown", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.tossLeft = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        move: "left",
+        rotate: 720,
+        fade: "in"
+    }, params);
 
-    // Set presets
-    p.move = "left";
-    p.rotate = 720;
-    p.fade = "in";
-    //console.info("tossLeft", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.tossRight = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        move: "right",
+        rotate: -720,
+        fade: "in"
+    }, params);
 
-    // Set presets
-    p.move = "right";
-    p.rotate = -720;
-    p.fade = "in";
-    //console.info("tossRight", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.tossUp = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        move: "up",
+        rotate: -720,
+        fade: "in"
+    }, params);
 
-    // Set presets
-    p.move = "up";
-    p.rotate = -720;
-    p.fade = "in";
-    //console.info("tossUp", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.tossDown = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        move: "down",
+        rotate: 720,
+        fade: "in"
+    }, params);
 
-    // Set presets
-    p.move = "down";
-    p.rotate = 720;
-    p.fade = "in";
-    //console.info("tossDown", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.spinLeft = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        flip: "left"
+    }, params);
 
-    // Set presets
-    p.flip = "left";
-    //console.info("spinLeft", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.spinRight = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        flip: "right"
+    }, params);
 
-    // Set presets
-    p.flip = "right";
-    //console.info("spinRight", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.spinUp = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        flip: "up"
+    }, params);
 
-    // Set presets
-    p.flip = "up";
-    //console.info("spinUp", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.spinDown = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        flip: "down"
+    }, params);
 
-    // Set presets
-    p.flip = "down";
-    //console.info("spinDown", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.pushForward = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        scale: "150%"
+    }, params);
 
-    // Set presets
-    p.scale = "150%";
-    //console.info("pushForward", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.pushBackward = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        scale: "50%"
+    }, params);
 
-    // Set presets
-    p.scale = "50%";
-    //console.info("pushBackward", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.fadeIn = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        move: "none",
+        fade: "in"
+    }, params);
 
-    // Set presets
-    p.move = "none";
-    p.fade = "in";
-    //console.info("fadeIn", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.fadeOut = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        move: "none",
+        fade: "out"
+    }, params);
 
-    // Set presets
-    p.move = "none";
-    p.fade = "out";
-    //console.info("fadeOut", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.drain = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        move: "none",
+        rotate: -720,
+        fade: "out",
+        scale: 1
+    }, params);
 
-    // Set presets
-    p.move = "none";
-    p.rotate = -720;
-    p.fade = "out";
-    p.scale = 1;
-    //console.info("drain", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.phantomZone = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        move: "none",
+        rotate: -720,
+        flip: "left",
+        fade: "out",
+        scale: 1
+    }, params);
 
-    // Set presets
-    p.move = "none";
-    p.rotate = -720;
-    p.flip = "left";
-    p.fade = "out";
-    p.scale = 1;
-    //console.info("phantomZone", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.pageFlipLeft = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        flip: "left",
+        perspectiveOrigin: "left"
+    }, params);
 
-    // Set presets
-    p.flip = "left";
-    p.perspectiveOrigin = "left";
-    //console.info("pageFlipLeft", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.pageFlipRight = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        flip: "right",
+        perspectiveOrigin: "right"
+    }, params);
 
-    // Set presets
-    p.flip = "right";
-    p.perspectiveOrigin = "right";
-    //console.info("pageFlipRight", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.pageFlipUp = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        flip: "up",
+        perspectiveOrigin: "top"
+    }, params);
 
-    // Set presets
-    p.flip = "up";
-    p.perspectiveOrigin = "top";
-    //console.info("pageFlipUp", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.pageFlipDown = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        flip: "down",
+        perspectiveOrigin: "bottom"
+    }, params);
 
-    // Set presets
-    p.flip = "down";
-    p.perspectiveOrigin = "bottom";
-    //console.info("pageFlipDown", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.twirlFromLeft = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        move: "none",
+        rotate: -135,
+        flip: "left",
+        perspectiveOrigin: "left"
+    }, params);
 
-    // Set presets
-    p.move = "none";
-    p.rotate = -135;
-    p.flip = "left";
-    p.perspectiveOrigin = "left";
-    //console.info("twirlFromLeft", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.twirlFromRight = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        move: "none",
+        rotate: 135,
+        flip: "right",
+        perspectiveOrigin: "right"
+    }, params);
 
-    // Set presets
-    p.move = "none";
-    p.rotate = 135;
-    p.flip = "right";
-    p.perspectiveOrigin = "right";
-    //console.info("twirlFromRight", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.raceFlag = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        move: "up",
+        rotate: -720,
+        flip: "down",
+        perspectiveOrigin: "top-right"
+    }, params);
 
-    // Set presets
-    p.move = "up";
-    p.rotate = -720;
-    p.flip = "down";
-    p.perspectiveOrigin = "top-right";
-    //console.info("raceFlag", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.hinge = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        duration: "1s",
+        timing: "linear",
+        iteration: "infinite",
+        direction: "alternate",
+        move: "none",
+        rotate: 45,
+        overshoot: 0,
+        perspectiveOrigin: "top-left"
+    }, params);
 
-    // Set presets
-    p.duration = "1s";
-    p.timing = "linear";
-    p.iteration = "infinite";
-    p.direction = "alternate";
-    p.move = "none";
-    p.rotate = 45;
-    p.overshoot = 0;
-    p.perspectiveOrigin = "top-left";
-    //console.info("hinge", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.wobble = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        duration: "200ms",
+        timing: "linear",
+        iteration: "infinite",
+        direction: "alternate",
+        move: "none",
+        rotate: 5,
+        overshoot: 0,
+        perspectiveOrigin: "center"
+    }, params);
 
-    // Set presets
-    p.duration = "200ms";
-    p.timing = "linear";
-    p.iteration = "infinite";
-    p.direction = "alternate";
-    p.move = "none";
-    p.rotate = 10;
-    p.overshoot = 0;
-    p.perspectiveOrigin = "center";
-    //console.info("wobble", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.dance = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        duration: "500ms",
+        timing: "easeInOutBack",
+        iteration: "infinite",
+        direction: "alternate",
+        move: "none",
+        rotate: 45,
+        overshoot: 0,
+        perspectiveOrigin: "center"
+    }, params);
 
-    // Set presets
-    p.duration = "500ms";
-    p.timing = "easeInOutBack";
-    p.iteration = "infinite";
-    p.direction = "alternate";
-    p.move = "none";
-    p.rotate = 45;
-    p.overshoot = 0;
-    p.perspectiveOrigin = "center";
-    //console.info("dance", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.pendulum = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        duration: "1000ms",
+        timing: "ease-in-out",
+        iteration: "infinite",
+        direction: "alternate",
+        move: "none",
+        rotate: 45,
+        overshoot: 0,
+        perspectiveOrigin: "top"
+    }, params);
 
-    // Set presets
-    p.duration = "1s";
-    p.timing = "ease-in-out";
-    p.iteration = "infinite";
-    p.direction = "alternate";
-    p.move = "none";
-    p.rotate = 45;
-    p.overshoot = 0;
-    p.perspectiveOrigin = "top";
-    //console.info("hinge", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 /**
  *
  */
 alice.plugins.bounce = function (params) {
-    "use strict";
-    var p = params;
+    var opts = alice._mergeOptions({
+        scale: "125%",
+        duration: "500ms",
+        timing: "easeOutSine",
+        iteration: "infinite",
+        direction: "alternate",
+        move: "none"
+    }, params);
 
-    // Set presets
-    p.scale = "125%";
-    p.duration = "500ms";
-    p.timing = "easeOutSine";
-    p.iteration = "infinite";
-    p.direction = "alternate";
-    p.move = "none";
-    //console.info("bounce", p);
-    alice.plugins.slide(p);
-    return p;
+    alice.plugins.slide(opts);
+    return opts;
 };
 
 //----------------------------------------------------------------------------

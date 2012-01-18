@@ -1,6 +1,21 @@
 /*jslint devel: true, browser: true, white: true, nomen: true */
 /*global jWorkflow: false */
 
+/* Copyright 2011-2012 Research In Motion Limited.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 /* ===========================================================================
  * AliceJS
  *
@@ -28,6 +43,7 @@ var alice = (function () {
             name: "AliceJS",
             description: "A Lightweight Independent CSS Engine",
             version: "0.2",
+            build: "20120118-1415",
 
             prefix: "",
             prefixJS: "",
@@ -694,6 +710,26 @@ var alice = (function () {
                 alice._keyframeDelete(evt.animationName);
 
                 return;
+            },
+
+            /**
+             * Merge options
+             */
+            _mergeOptions: function (defaults, options) {
+                //console.info("_mergeOptions", defaults, options);
+                if (options) {
+                    for (var name in defaults) {
+                        if (!options.hasOwnProperty(name)) {
+                            options[name] = defaults[name];
+                        }
+                    }
+                }
+                else {
+                    options = defaults;
+                }
+                //console.warn(options);
+
+                return options;
             },
 
             /**

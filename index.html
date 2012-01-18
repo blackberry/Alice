@@ -1,4 +1,19 @@
 <!DOCTYPE html>
+<!--
+    Copyright 2011-2012 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -14,6 +29,14 @@
             font-weight: bold;
         }
 
+        .button {
+            width: 100%;
+        }
+
+        .apply {
+            font: bold 14pt Arial, sans-serif;
+        }
+
         #elem1, #elem2 {
             background-color: #CCC;
             border-radius: 10px;
@@ -22,43 +45,55 @@
             width: 100px;
         }
 
-        .button {
+        #testDiv {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 255px;
+            z-index: 1;
         }
 
-        .apply {
-            font: bold 14pt Arial, sans-serif;
+        #settingsDiv {
+            background-color: #EEE;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 380px;
+            overflow-y: auto;
+            z-index: 0;
         }
         </style>
     </head>
     <body>
         <!-- Test Elements -->
         <div id="testDiv">
-            <h1>AliceJS Tester</h1>
+            <div style="padding: 0px;">
+                <h1>AliceJS Tester</h1>
 
-            <div id="container1">
-                <div id="elem1">
-                    <img src="samples/images/vehicles/front_loader.png"><p>Front End Loader</p>
+                <div id="container1">
+                    <div id="elem1">
+                        <img src="samples/images/vehicles/front_loader.png"><p>Front End Loader</p>
+                    </div>
                 </div>
-            </div>
-            <br>
+                <br>
 
-            <div id="container2">
-                <div id="elem2">
-                    <img src="samples/images/vehicles/muscle_car.png"><p>Muscle Car</p>
+                <div id="container2">
+                    <div id="elem2">
+                        <img src="samples/images/vehicles/muscle_car.png"><p>Muscle Car</p>
+                    </div>
                 </div>
             </div>
             <br>
         </div>
 
         <!-- Settings -->
-        <div id="settingsDiv" style="background-color: #EEE; overflow: auto;">
+        <div id="settingsDiv">
             <table border="0" cellpadding="5" cellspacing="0">
                 <tr>
-                    <td colspan="2">
-
-                    </td>
-                    <td colspan="4" align="center">
+                    <td colspan="2">&nbsp;</td>
+                    <td colspan="2" align="center">
                         <input type="button" class="apply" id="effect-slide" name="effect" value="Apply Settings" onclick="app.applyEffect(this);">
                     </td>
                 </tr>
@@ -153,122 +188,6 @@
                                         </select>
                                     </td>
                                 </tr>
-    <!--
-                                <tr>
-                                    <td align="right" valign="top">Rotate X:</td>
-                                    <td>
-                                        <select id="transform_rotateX1" name="transform_rotateX1" onchange="app.applyStyle(this);">
-                                            <option value="0deg" selected>0</option>
-                                            <option value="10deg">10</option>
-                                            <option value="20deg">20</option>
-                                            <option value="30deg">30</option>
-                                            <option value="40deg">40</option>
-                                            <option value="50deg">50</option>
-                                            <option value="60deg">60</option>
-                                            <option value="70deg">70</option>
-                                            <option value="80deg">80</option>
-                                            <option value="90deg">90</option>
-                                            <option value="100deg">100</option>
-                                            <option value="110deg">110</option>
-                                            <option value="120deg">120</option>
-                                            <option value="130deg">130</option>
-                                            <option value="140deg">140</option>
-                                            <option value="150deg">150</option>
-                                            <option value="160deg">160</option>
-                                            <option value="170deg">170</option>
-                                            <option value="180deg">180</option>
-                                            <option value="225deg">225</option>
-                                            <option value="270deg">270</option>
-                                            <option value="315deg">315</option>
-                                            <option value="360deg">360</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select id="transform_rotateX2" name="transform_rotateX2" onchange="app.applyStyle(this);">
-                                            <option value="0deg" selected>0</option>
-                                            <option value="10deg">10</option>
-                                            <option value="20deg">20</option>
-                                            <option value="30deg">30</option>
-                                            <option value="40deg">40</option>
-                                            <option value="50deg">50</option>
-                                            <option value="60deg">60</option>
-                                            <option value="70deg">70</option>
-                                            <option value="80deg">80</option>
-                                            <option value="90deg">90</option>
-                                            <option value="100deg">100</option>
-                                            <option value="110deg">110</option>
-                                            <option value="120deg">120</option>
-                                            <option value="130deg">130</option>
-                                            <option value="140deg">140</option>
-                                            <option value="150deg">150</option>
-                                            <option value="160deg">160</option>
-                                            <option value="170deg">170</option>
-                                            <option value="180deg">180</option>
-                                            <option value="225deg">225</option>
-                                            <option value="270deg">270</option>
-                                            <option value="315deg">315</option>
-                                            <option value="360deg">360</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="right" valign="top">Rotate Y:</td>
-                                    <td>
-                                        <select id="transform_rotateY1" name="transform_rotateY1" onchange="app.applyStyle(this);">
-                                            <option value="0deg" selected>0</option>
-                                            <option value="10deg">10</option>
-                                            <option value="20deg">20</option>
-                                            <option value="30deg">30</option>
-                                            <option value="40deg">40</option>
-                                            <option value="50deg">50</option>
-                                            <option value="60deg">60</option>
-                                            <option value="70deg">70</option>
-                                            <option value="80deg">80</option>
-                                            <option value="90deg">90</option>
-                                            <option value="100deg">100</option>
-                                            <option value="110deg">110</option>
-                                            <option value="120deg">120</option>
-                                            <option value="130deg">130</option>
-                                            <option value="140deg">140</option>
-                                            <option value="150deg">150</option>
-                                            <option value="160deg">160</option>
-                                            <option value="170deg">170</option>
-                                            <option value="180deg">180</option>
-                                            <option value="225deg">225</option>
-                                            <option value="270deg">270</option>
-                                            <option value="315deg">315</option>
-                                            <option value="360deg">360</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select id="transform_rotateY2" name="transform_rotateY2" onchange="app.applyStyle(this);">
-                                            <option value="0deg" selected>0</option>
-                                            <option value="10deg">10</option>
-                                            <option value="20deg">20</option>
-                                            <option value="30deg">30</option>
-                                            <option value="40deg">40</option>
-                                            <option value="50deg">50</option>
-                                            <option value="60deg">60</option>
-                                            <option value="70deg">70</option>
-                                            <option value="80deg">80</option>
-                                            <option value="90deg">90</option>
-                                            <option value="100deg">100</option>
-                                            <option value="110deg">110</option>
-                                            <option value="120deg">120</option>
-                                            <option value="130deg">130</option>
-                                            <option value="140deg">140</option>
-                                            <option value="150deg">150</option>
-                                            <option value="160deg">160</option>
-                                            <option value="170deg">170</option>
-                                            <option value="180deg">180</option>
-                                            <option value="225deg">225</option>
-                                            <option value="270deg">270</option>
-                                            <option value="315deg">315</option>
-                                            <option value="360deg">360</option>
-                                        </select>
-                                    </td>
-                                </tr>
-    -->
                                 <tr>
                                     <td align="right" valign="top">Scale:</td>
                                     <td>
@@ -820,27 +739,6 @@
                                         </select>
                                     </td>
                                 </tr>
-    <!--
-                                <tr>
-                                    <td align="right" valign="top">Fill Mode:</td>
-                                    <td>
-                                        <select id="fillmode1" name="fillmode">
-                                            <option value="none" selected>none</option>
-                                            <option value="forwards">forwards</option>
-                                            <option value="backwards">backwards</option>
-                                            <option value="both">both</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select id="fillmode2" name="fillmode">
-                                            <option value="none" selected>none</option>
-                                            <option value="forwards">forwards</option>
-                                            <option value="backwards">backwards</option>
-                                            <option value="both">both</option>
-                                        </select>
-                                    </td>
-                                </tr>
-    -->
                                 <tr>
                                     <td align="right" valign="top">Play State:</td>
                                     <td>
@@ -1218,7 +1116,7 @@
 
         <script src="app.js"></script>
         <script type="text/javascript">
-        document.getElementById("settingsDiv").style.height = parseInt((window.innerHeight - document.getElementById("testDiv").clientHeight) - 60, 10) + "px";
+        document.getElementById("settingsDiv").style.height = parseInt((window.innerHeight - document.getElementById("testDiv").clientHeight), 10) + "px";
         </script>
     </body>
 </html>

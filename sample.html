@@ -1,4 +1,19 @@
 <!DOCTYPE html>
+<!--
+    Copyright 2011-2012 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -381,7 +396,7 @@
                 "duration": {
                     "value": "1000ms",
                     "randomness": "0%",
-                    "offset": "150ms"
+                    "offset": "5ms"
                 }
             });
         }, false);
@@ -390,9 +405,9 @@
             a.wobble({
                 "elems": elems,
                 "duration": {
-                    "value": "1000ms",
+                    "value": "100ms",
                     "randomness": "0%",
-                    "offset": "150ms"
+                    "offset": "5ms"
                 }
             });
         }, false);
@@ -401,9 +416,9 @@
             a.dance({
                 "elems": elems,
                 "duration": {
-                    "value": "2000ms",
+                    "value": "500ms",
                     "randomness": "0%",
-                    "offset": "150ms"
+                    "offset": "5ms"
                 }
             });
         }, false);
@@ -411,23 +426,22 @@
         document.getElementById("effect-pendulum").addEventListener("click", function () {
             a.pendulum({
                 "elems": elems,
-/*
-                "delay": {
-                    "value": "0ms",
-                    "offset": "50ms"
-                },
-*/
                 "duration": {
                     "value": "1000ms",
                     "randomness": "0%",
-                    "offset": "150ms"
+                    "offset": "5ms"
                 }
             });
         }, false);
 
         document.getElementById("effect-bounce").addEventListener("click", function () {
             a.bounce({
-                "elems": elems
+                "elems": elems,
+                "duration": {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "5ms"
+                }
             });
         }, false);
 
@@ -435,7 +449,7 @@
             a.bounce({
                 "elems": elems,
                 "delay": {
-                    "value": "0ms",
+                    "value": "2500ms",
                     "offset": "50ms"
                 },
             });

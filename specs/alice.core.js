@@ -284,3 +284,36 @@ describe('_percentage', function () {
         expect(alice._percentage("")).not.toEqual(isNaN());
     });
 });
+
+describe('oppositeNumber', function () {
+    it('5 returns -5', function () {
+        expect(alice.format.oppositeNumber(5)).toEqual(-5);
+    });
+    it('05 returns -5', function () {
+        expect(alice.format.oppositeNumber(05)).toEqual(-5);
+    });
+    it('5.0 returns -5', function () {
+        expect(alice.format.oppositeNumber(5.0)).toEqual(-5);
+    });
+    it('+5 returns -5', function () {
+        expect(alice.format.oppositeNumber(+5)).toEqual(-5);
+    });
+    it('-5 returns 5', function () {
+        expect(alice.format.oppositeNumber(-5)).toEqual(5);
+    });
+    it('-05 returns 5', function () {
+        expect(alice.format.oppositeNumber(-05)).toEqual(5);
+    });
+    it('-5.0 returns 5', function () {
+        expect(alice.format.oppositeNumber(-5.0)).toEqual(5);
+    });
+    it('0 returns 0', function () {
+        expect(alice.format.oppositeNumber(0)).toEqual(0);
+    });
+    it('+0 returns 0', function () {
+        expect(alice.format.oppositeNumber(+0)).toEqual(0);
+    });
+    it('-0 returns 0', function () {
+        expect(alice.format.oppositeNumber(-0)).toEqual(0);
+    });
+});

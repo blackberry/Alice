@@ -34,21 +34,25 @@
 var alice = (function () {
     "use strict";
 
-    var _private = function () {
+    var
+/*
+        _private = function () {
             //console.info("_private"); // TODO: future use?
         },
-
+*/
         core = {
             id: "alice",
             name: "AliceJS",
             description: "A Lightweight Independent CSS Engine",
             version: "0.2",
-            build: "20120118-1415",
+            build: "20120123-1600",
 
             prefix: "",
             prefixJS: "",
 
             elems: null,
+
+            format: {},
             plugins: {},
 
             debug: false,
@@ -629,8 +633,6 @@ var alice = (function () {
              *
              */
             _pixel: function (p, w) {
-                var pct;
-
                 if (typeof p === "number") {
                     // integers: 0, 1, 1024, ... n
                     if (p % 1 === 0) {
@@ -715,10 +717,12 @@ var alice = (function () {
             /**
              * Merge options
              */
+/*
             _mergeOptions: function (defaults, options) {
                 //console.info("_mergeOptions", defaults, options);
                 if (options) {
-                    for (var name in defaults) {
+                    var name;
+                    for (name in defaults) {
                         if (!options.hasOwnProperty(name)) {
                             options[name] = defaults[name];
                         }
@@ -731,6 +735,7 @@ var alice = (function () {
 
                 return options;
             },
+*/
 
             /**
              * Initialize
@@ -796,6 +801,54 @@ var alice = (function () {
 
     return core;
 }());
+
+alice.format = {
+    /**
+     *
+     */
+    duration: function (d) {
+        "use strict";
+        var dObj = alice._duration(d),
+            dVal = alice._randomize(dObj.value, dObj.randomness) + "ms";
+        return dVal;
+    },
+
+    /**
+     *
+     */
+    coords: function (c) {
+        "use strict";
+        var cObj = alice._coords(c),
+            cVal = cObj.x + " " + cObj.y;
+        return cVal;
+    },
+
+    /**
+     *
+     */
+    easing: function (e) {
+        "use strict";
+        var eObj = alice._easing(e),
+            eVal = "cubic-bezier(" + eObj.p1 + ", " + eObj.p2 + ", " + eObj.p3 + ", " + eObj.p4 + ")";
+        return eVal;
+    },
+
+    /**
+     *
+     */
+    oppositeNumber: function (n) {
+        "use strict";
+        return -n;
+    },
+
+    /**
+     *
+     */
+    getValue: function (obj, val) {
+        "use strict";
+        return obj && obj.value ? obj.value : obj ? obj : val;
+    }
+};
 
 //----------------------------------------------------------------------------
 

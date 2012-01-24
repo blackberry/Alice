@@ -10,7 +10,7 @@
  */
 
 var alice=(function(){"use strict";var
-core={id:"alice",name:"AliceJS",description:"A Lightweight Independent CSS Engine",version:"0.2",build:"20120123-1600",prefix:"",prefixJS:"",elems:null,format:{},plugins:{},debug:false,_elements:function(params){var elems=[],i;if(typeof params==="string"){elems.push(document.getElementById(params));}
+core={id:"alice",name:"AliceJS",description:"A Lightweight Independent CSS Engine",version:"0.2",build:"20120124-1200",prefix:"",prefixJS:"",elems:null,format:{},plugins:{},debug:false,_elements:function(params){var elems=[],i;if(typeof params==="string"){elems.push(document.getElementById(params));}
 else if(typeof params==="object"){if(params.length===undefined){elems.push(params);}
 else if(params.length===1){elems.push(document.getElementById(params[0]));}
 else if(params.length>0){for(i=0;i<params.length;i+=1){if(document.getElementById(params[i])){elems.push(document.getElementById(params[i]));}

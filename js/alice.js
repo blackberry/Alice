@@ -45,7 +45,7 @@ var alice = (function () {
             name: "AliceJS",
             description: "A Lightweight Independent CSS Engine",
             version: "0.2",
-            build: "20120123-1600",
+            build: "20120124-1200",
 
             prefix: "",
             prefixJS: "",

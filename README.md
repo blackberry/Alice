@@ -29,7 +29,7 @@ This library and the sample code is Open Source under the [Apache 2.0 License](h
     c. Specific effect(s):
 
             <script src="js/alice/src/alice.core.js"></script>
-            <script src="js/alice/src/alice.rotate.js"></script>
+            <script src="js/alice/src/alice.plugins.cheshire.js"></script>
 
 3. Create your HTML markup. For example:
 
@@ -49,34 +49,31 @@ This library and the sample code is Open Source under the [Apache 2.0 License](h
                 <div class="card"><span>A</span></div>
             </div>
 
-4. Apply Alice's effects by specifying the ID of your target DIV and some parameters. These options will apply a "card fanning" effect to your DIVs.
+4. Apply Alice's effects by specifying the ID of your target DIV and some parameters. These options will apply a "slide (left)" effect to your DIVs.
 
             <script type="text/javascript">
-            alice.rotate("deck", "-145", {
-                origin: "0% 100%", // bottom-left corner
-                timing: 6000, // ms
-                angle_offset: 18,
-                iteration: 'infinite',
-                direction: 'alternate',
-                easing: "cubic-bezier(0.33333,0.6667,0.66667,1)" // bounce
+            var a = alice.init(),
+                deck = document.getElementById("deck").children;
+
+            a.slide(deck, "left", "", {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
             });
             </script>
 
 5. Add optional CSS styling to your DIVs:
 
             <style type="text/css">
-            .cards {
-                position: relative;
-                width: 150px;
-                margin: 0 auto;
-            }
             .card {
-                background-color: #FFFFFF;
-                border: 3px solid #C0C0C0;
+                float: left;
+                background: transparent;
+                border: 1px solid #CCC;
                 border-radius: 20px;
-                width: 150px;
-                height: 200px;
+                width: 75px;
+                height: 100px;
                 padding: 10px;
+                text-align: center;
             }
             </style>
 

@@ -77,14 +77,16 @@ var sniffer = {
         this.checkProperty();
         this.calcScore();
 
+        var div, s;
+
         if (this.score !== 1) {
-            var div = document.createElement('div');
+            div = document.createElement('div');
             div.innerHTML     = '';
             div.innerHTML    += 'It appears your browser does not support <b>' + this.fail + '</b> of the CSS3 properties used by AliceJS. Please use a <b>WebKit-based</b> browser like Chrome, Safari or the PlayBook Browser.';
             //div.innerHTML    += ' (' + this.pass + '/' + this.total + ' properties)';
             //div.innerHTML    += ' (Your browser has ' + (this.score * 100).toFixed(0) + '% support)';
 
-            var s = div.style;
+            s = div.style;
             s.position        = 'absolute';
             s.width           = '50%';
             s.top             = '0';
@@ -102,30 +104,36 @@ var sniffer = {
 
     // change property to JavaSript string, skip first string for W3C properties (true)
     convertString: function (string, bool) {
-        var subStr = string.split("-");
-        var bucket = [];
-        for (var i = 0; i < subStr.length; i++) {
+        var subStr = string.split("-"),
+            bucket = [],
+            i, firstStr, tempStr, newStr;
+
+        for (i = 0; i < subStr.length; i++) {
             if (bool) {
-                var firstStr = subStr[0];
+                firstStr = subStr[0];
                 bucket.push(firstStr);
                 bool = false;
             }
             else {
-                var tempStr = subStr[i].charAt(0).toUpperCase() + subStr[i].slice(1);
+                tempStr = subStr[i].charAt(0).toUpperCase() + subStr[i].slice(1);
                 bucket.push(tempStr);
             }
         }
-        var newStr = bucket.join("");
+
+        newStr = bucket.join("");
         return newStr;
     },
 
     // confirm if property exists
     checkProperty: function () {
-        var el = document.createElement('div');
-        for (var prop in this.properties) {
-            var w3c = sniffer.convertString(prop, true); // boxFlex
-            var moz = 'Moz' + sniffer.convertString(prop); // MozBoxFlex
-            var webkit = 'webkit' + sniffer.convertString(prop); // webkitBoxFlex
+        var el = document.createElement('div'),
+            prop, w3c, moz, webkit;
+
+        for (prop in this.properties) {
+            w3c = sniffer.convertString(prop, true); // boxFlex
+            moz = 'Moz' + sniffer.convertString(prop); // MozBoxFlex
+            webkit = 'webkit' + sniffer.convertString(prop); // webkitBoxFlex
+
             if (typeof (el.style[w3c]) === 'string') { // too verbose
                 this.properties[prop] = true;
             }
@@ -146,8 +154,11 @@ var sniffer = {
         this.total = 0;
         this.pass = 0;
         this.fail = 0;
-        for (var prop in this.properties) {
-            this.properties[prop] === true ? this.pass++ : this.fail++;
+
+        var prop, bool;
+
+        for (prop in this.properties) {
+            bool = (this.properties[prop] === true) ? this.pass++ : this.fail++;
             this.total++;
         }
         this.score = this.pass / this.total;

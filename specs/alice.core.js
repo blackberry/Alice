@@ -13,6 +13,11 @@
  * limitations under the License.
  */
 
+/* ===========================================================================
+ * alice.core.js
+ * ===========================================================================
+ */
+
 describe('_duration', function () {
     var expected = {value: 1000, randomness: 0},
         expectedStr = JSON.stringify(expected);

@@ -5,5 +5,5 @@
     <author rim:copyright="2012">Research In Motion Limited</author>
     <icon rim:hover="false" src="images/app_icon.png"/>
     <icon rim:hover="true" src="images/app_icon.png"/>
-    <content src="demos/index.html"/>
+    <content src="index.html"/>
 </widget>

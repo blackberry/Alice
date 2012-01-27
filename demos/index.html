@@ -34,7 +34,30 @@
         <div id="container">
             <div id="card1" class="card-edge">
                 <div>
-                    <h1>AliceJS Demos</h1>
+                    <h1 class="seo">AliceJS Demos</h1>
+
+                    <!-- AliceJS Logo (CSS Sprites) -->
+
+                    <div id="logo">
+                        <div>
+                            <div id="logo-alice-img"></div>
+                        </div>
+                        <div id="logo-alice-txt-alice">
+                            <div id="logo-alice-txt-a"></div>
+                            <div id="logo-alice-txt-l"></div>
+                            <div id="logo-alice-txt-i"></div>
+                            <div id="logo-alice-txt-c"></div>
+                            <div id="logo-alice-txt-e"></div>
+                        </div>
+                        <div id="logo-alice-txt-js">
+                            <div id="logo-alice-txt-j"></div>
+                            <div id="logo-alice-txt-s"></div>
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+
+                    <!-- Overview -->
+
                     <p><b><a href="../index.html">AliceJS</a></b> <i>(<u>A</u> <u>L</u>ightweight <u>I</u>ndependent <u>C</u>SS <u>E</u>ngine)</i> is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.</p>
                 </div>
 
@@ -162,21 +185,6 @@
                 </div>
                 <div class="spacer"></div>
 
-                <!-- Push -->
-                <a name="push"></a>
-                <div class="card">
-                    <div id="my_push" class="icon">
-                        <a href="fx/push.html"><img src="../images/rabbit.png" alt="Push" title="Push"></a>
-                        <span>Push</span>
-                    </div>
-                    <p><a href="fx/push.html">Push</a> - The "push" effect...</p>
-                    <div class="code">
-                        <pre class="prettyprint lang-js linenums">
-                        </pre>
-                    </div>
-                </div>
-                <div class="spacer"></div>
-
                 <!-- Race Flag -->
                 <a name="raceFlag"></a>
                 <div class="card">
@@ -267,13 +275,29 @@
                 </div>
                 <div class="spacer"></div>
 
+                <!-- Zoom -->
+                <a name="zoom"></a>
+                <div class="card">
+                    <div id="my_zoom" class="icon">
+                        <a href="fx/zoom.html"><img src="../images/rabbit.png" alt="Zoom" title="Zoom"></a>
+                        <span>Zoom</span>
+                    </div>
+                    <p><a href="fx/zoom.html">Zoom</a> - The "zoom" effect...</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js linenums">
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- More Demos -->
                 <div>
                     <h2>More Demos</h2>
                 </div>
 
                 <ul>
-                    <li><a href="sample.html">Sample</a></li>
-                    <li><a href="tester.html">Tester</a></li>
+                    <li><a href="sampler.html">Sampler</a></li>
+                    <li><a href="builder.html">Builder</a></li>
                     <li><a href="chaining.html">Chaining Effects</a></li>
                     <li><a href="stack.html">Stack</a></li>
                 </ul>
@@ -303,7 +327,6 @@
         <script type="text/javascript" src="../libs/sniffer.js"></script>
 
         <!-- AliceJS -->
-
         <script src="../js/src/alice.core.js"></script>
         <script src="../js/src/alice.plugins.cheshire.js"></script>
 <!--
@@ -327,7 +350,7 @@
         //a.dance("my_dance", "25%", "2000ms", "ease-in-out", "3000ms", "infinite", "alternate");
 
         //a.drain("my_drain");
-        a.drain("my_drain", "", "", "", "", "infinite", "");
+        a.drain("my_drain", "", "", "", "", "", "infinite", "");
 
         //a.fade("my_fadeIn", "in");
         a.fade("my_fadeIn", "in", "", "", "", "infinite", "");
@@ -347,14 +370,10 @@
         //a.pendulum("my_pendulum", "", "10", "", "linear");
 
         //a.phantomZone("my_phantomZone");
-        //a.phantomZone("my_phantomZone", -720, "left", "20s");
-        //a.phantomZone("my_phantomZone", 720, "left", "20s");
-        //a.phantomZone("my_phantomZone", 720, "right", "20s");
-        a.phantomZone("my_phantomZone", "", "", "", "", "", "infinite", "");
-
-        //a.push("my_push");
-        //a.push("my_push", "50%");
-        a.push("my_push", "", "", "", "", "", "infinite");
+        //a.phantomZone("my_phantomZone", "", -720, "left", "20s");
+        //a.phantomZone("my_phantomZone", "", 720, "left", "20s");
+        //a.phantomZone("my_phantomZone", "", 720, "right", "20s");
+        a.phantomZone("my_phantomZone", "", "", "", "", "", "", "infinite", "");
 
         //a.raceFlag("my_raceFlag");
         a.raceFlag("my_raceFlag", "", "", "", "", "", "infinite");
@@ -392,6 +411,10 @@
         //a.twirl("my_twirlFromLeft", "right", "5000", "", "", "infinite");
 
         a.wobble("my_wobble");
+
+        //a.zoom("my_zoom");
+        //a.zoom("my_zoom", {from: "100%", to: "50%"});
+        a.zoom("my_zoom", "", "", "", "", "", "infinite");
         </script>
     </body>
 </html>

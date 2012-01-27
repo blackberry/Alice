@@ -45,7 +45,7 @@ var alice = (function () {
             name: "AliceJS",
             description: "A Lightweight Independent CSS Engine",
             version: "0.2",
-            build: "20120124-1200",
+            build: "20120127-1600",
 
             prefix: "",
             prefixJS: "",
@@ -53,6 +53,7 @@ var alice = (function () {
             elems: null,
 
             format: {},
+            helper: {},
             plugins: {},
 
             debug: false,
@@ -60,15 +61,15 @@ var alice = (function () {
             /**
              * Returns array of elements
              */
-            _elements: function (params) {
-                //console.info("_elements", params, typeof params);
+            elements: function (params) {
+                //console.info("elements", params, typeof params);
                 var elems = [],
                     i;
 
                 if (typeof params === "string") {
                     elems.push(document.getElementById(params)); // "myId1"
                 }
-                else if (typeof params === "object") { // TODO: check for DOMElement?
+                else if (typeof params === "object") {
                     if (params.length === undefined) {
                         elems.push(params); // myElem1
                     }
@@ -109,7 +110,7 @@ var alice = (function () {
             /**
              * Returns random number +/- the factor
              */
-            _randomize: function (num, factor) {
+            randomize: function (num, factor) {
                 var f, r;
 
                 if (typeof factor === "string" && factor.indexOf("%") > -1) {
@@ -121,58 +122,75 @@ var alice = (function () {
 
                 r = num + num * ((Math.random() * 2 * f) - f);
 
+                //console.log(num, factor, r);
                 return Math.floor(r);
             },
 
             /**
              * Returns duration in milliseconds
              */
-            _duration: function (params) {
-                //console.info("_duration", params, typeof params);
+            duration: function (params) {
+                //console.info("duration", params, typeof params);
                 var dur,
-                    rnd = params.randomness || 0,
-
-                    parseDurStr = function (d) {
-                        var pd;
-                        if (d.indexOf("ms") > -1) {
-                            pd = parseInt(d, 10); // "2000ms"
-                        }
-                        else if (d.indexOf("s") > -1) {
-                            pd = parseFloat(d, 10) * 1000; // "2s", "1.5s"
+                    parseNum = function (num) {
+                        var val;
+                        if (num < 100) {
+                            val = num * 1000; // 1, 1.5, 10, 10.25, 99
                         }
                         else {
-                            pd = parseInt(d, 10); // "2000"
+                            val = num; // 100, 1000, 1500
                         }
-                        return pd;
+                        return val;
+                    },
+                    parseStr = function (str) {
+                        var val;
+                        if (str.indexOf("ms") > -1) {
+                            val = parseInt(str, 10); // "1000ms", "1500ms"
+                        }
+                        else if (str.indexOf("s") > -1) {
+                            val = parseFloat(str, 10) * 1000; // "1s", "1.5s"
+                        }
+                        else {
+                            val = parseInt(str, 10); // "1000"
+                        }
+                        return val;
+                    },
+                    parseObj = function (obj) {
+                        var val;
+                        if (obj.value) {
+                            if (typeof obj.value === "string") {
+                                val = parseStr(obj.value);
+                            }
+                            else {
+                                val = parseNum(obj.value); // {value: 2000}
+                            }
+                        }
+                        return val;
                     };
 
-                if (typeof params === "number") {
-                    dur = params; // 2000
-                }
-                else if (typeof params === "string") {
-                    dur = parseDurStr(params);
-                }
-                else if (typeof params === "object") {
-                    if (typeof params.value === "string") {
-                        dur = parseDurStr(params.value);
-                    }
-                    else {
-                        dur = parseInt(params.value, 10); // {value: 2000}
-                    }
+                switch (typeof params) {
+                case "number":
+                    dur = parseNum(params);
+                    break;
+                case "string":
+                    dur = parseStr(params);
+                    break;
+                case "object":
+                    dur = parseObj(params);
+                    break;
+                default:
+                    dur = params;
                 }
 
-                //console.log("dur=" + dur);
-                return {
-                    value: dur,
-                    randomness: rnd
-                };
+                //console.log(dur);
+                return dur;
             },
 
             /**
              * Returns x and y coordinates as percentages
              */
-            _coords: function (params) {
-                //console.info("_coords", params);
+            coords: function (params) {
+                //console.info("coords", params);
                 if (params === undefined || params === null) {
                     return {
                         x: "50%",
@@ -311,7 +329,7 @@ var alice = (function () {
             /**
              * Returns cubic bezier function
              */
-            _easing: function (params) {
+            easing: function (params) {
                 switch (params) {
                 // Standard
                 case "linear":
@@ -551,8 +569,8 @@ var alice = (function () {
             /**
              * Returns percentage in decimal form
              */
-            _percentage: function (params) {
-                //console.info("_percentage", params);
+            percentage: function (params) {
+                //console.info("percentage", params);
                 var pct;
 
                 if (typeof params === "string") {
@@ -584,7 +602,7 @@ var alice = (function () {
             /**
              * Set vendor prefix
              */
-            _prefix: function () {
+            vendorPrefix: function () {
                 var el = document.createElement("div");
 
                 // Safari 4+, iOS Safari 3.2+, Chrome 2+, and Android 2.1+
@@ -622,7 +640,7 @@ var alice = (function () {
             /**
              * Get the document height
              */
-            _docHeight: function () {
+            docHeight: function () {
                 var D = document;
 
                 return Math.max(
@@ -632,7 +650,7 @@ var alice = (function () {
             /**
              *
              */
-            _pixel: function (p, w) {
+            pixel: function (p, w) {
                 if (typeof p === "number") {
                     // integers: 0, 1, 1024, ... n
                     if (p % 1 === 0) {
@@ -656,7 +674,7 @@ var alice = (function () {
             /**
              * Insert CSS keyframe rule
              */
-            _keyframeInsert: function (rule) {
+            keyframeInsert: function (rule) {
                 if (document.styleSheets && document.styleSheets.length) {
                     try {
                         document.styleSheets[0].insertRule(rule, 0);
@@ -677,7 +695,7 @@ var alice = (function () {
             /**
              * Delete CSS keyframe rule
              */
-            _keyframeDelete: function (ruleName) {
+            keyframeDelete: function (ruleName) {
                 var cssrules = (document.all) ? "rules" : "cssRules",
                     i;
 
@@ -697,7 +715,7 @@ var alice = (function () {
             /**
              * Clear animation settings
              */
-            _clearAnimation: function (evt) {
+            clearAnimation: function (evt) {
                 //console.info("_clearAnimation", this, evt.srcElement.id, evt.animationName, evt.elapsedTime);
                 this.style[this.prefixJS + "AnimationName"] = "";
                 this.style[this.prefixJS + "AnimationDelay"] = "";
@@ -709,33 +727,10 @@ var alice = (function () {
                 this.style[this.prefixJS + "AnimationPlayState"] = "";
 
                 // TODO: add evt.animationName to a delete queue?
-                alice._keyframeDelete(evt.animationName);
+                alice.keyframeDelete(evt.animationName);
 
                 return;
             },
-
-            /**
-             * Merge options
-             */
-/*
-            _mergeOptions: function (defaults, options) {
-                //console.info("_mergeOptions", defaults, options);
-                if (options) {
-                    var name;
-                    for (name in defaults) {
-                        if (!options.hasOwnProperty(name)) {
-                            options[name] = defaults[name];
-                        }
-                    }
-                }
-                else {
-                    options = defaults;
-                }
-                //console.warn(options);
-
-                return options;
-            },
-*/
 
             /**
              * Initialize
@@ -745,10 +740,10 @@ var alice = (function () {
 
                 //_private();
 
-                this._prefix();
+                this.vendorPrefix();
 
                 if (params && params.elems) {
-                    this.elems = this._elements(params.elems);
+                    this.elems = this.elements(params.elems);
                     //console.log(this.elems);
                 }
 
@@ -802,15 +797,27 @@ var alice = (function () {
     return core;
 }());
 
+/**
+ *
+ */
 alice.format = {
     /**
      *
      */
-    duration: function (d) {
+    duration: function (params) {
         "use strict";
-        var dObj = alice._duration(d),
-            dVal = alice._randomize(dObj.value, dObj.randomness) + "ms";
-        return dVal;
+        var d = 0, r = 0, dur = 0;
+
+        d = alice.duration(params);
+        dur = d;
+
+        if (params.randomness) {
+            r = alice.randomize(d, alice.percentage(params.randomness));
+            dur = Math.abs(r);
+        }
+
+        //console.log(d, r, dur);
+        return dur + "ms";
     },
 
     /**
@@ -818,7 +825,7 @@ alice.format = {
      */
     coords: function (c) {
         "use strict";
-        var cObj = alice._coords(c),
+        var cObj = alice.coords(c),
             cVal = cObj.x + " " + cObj.y;
         return cVal;
     },
@@ -828,7 +835,7 @@ alice.format = {
      */
     easing: function (e) {
         "use strict";
-        var eObj = alice._easing(e),
+        var eObj = alice.easing(e),
             eVal = "cubic-bezier(" + eObj.p1 + ", " + eObj.p2 + ", " + eObj.p3 + ", " + eObj.p4 + ")";
         return eVal;
     },
@@ -839,14 +846,31 @@ alice.format = {
     oppositeNumber: function (n) {
         "use strict";
         return -n;
-    },
+    }
+};
 
+/**
+ *
+ */
+alice.helper = {
     /**
      *
      */
-    getValue: function (obj, val) {
-        "use strict";
-        return obj && obj.value ? obj.value : obj ? obj : val;
+    duration: function (param, calc, duration) {
+        if (param && param.offset) {
+            if (calc) {
+                calc = parseInt(calc, 10) + parseInt(param.offset, 10);
+            }
+            else {
+                calc = parseInt(alice.format.duration(duration), 10);
+            }
+            calc += "ms";
+            //console.log(duration, param.value, param.offset, calc);
+        }
+        else {
+            calc = parseInt(alice.format.duration(duration), 10) + "ms";
+        }
+        return calc;
     }
 };
 
@@ -885,9 +909,9 @@ alice.plugins.cheshire = function (params) {
     console.info("cheshire", params);
 
     var
-        // Initialize variables
-        delay = alice.format.getValue(params.delay, 0),
-        duration = alice.format.getValue(params.duration, 2000),
+        // Initialize variables and set defaults
+        delay = params.delay || "0ms",
+        duration = params.duration || "2000ms",
 
         timing = params.timing || "ease",
         iteration = params.iteration || 1,
@@ -898,11 +922,11 @@ alice.plugins.cheshire = function (params) {
         perspectiveOrigin = params.perspectiveOrigin || "center",
         backfaceVisibility = params.backfaceVisibility || "visible",
 
-        overshoot = alice._percentage(params.overshoot) || 0,
+        overshoot = alice.percentage(params.overshoot) || 0,
         overShootPercent = 85,
 
         rotate = params.rotate || 0,
-        rotateStart = alice._percentage(rotate) * 100,
+        rotateStart = alice.percentage(rotate) * 100,
         rotateOver = overshoot * 100,
         rotateEnd = 0,
 
@@ -918,10 +942,13 @@ alice.plugins.cheshire = function (params) {
         fadeStart = (fade && fade === "out") ? 1 : 0,
         fadeEnd = (fade && fade === "out") ? 0 : 1,
 
-        scale = alice._percentage(params.scale) || 1,
+        scaleFrom = (params.scale && params.scale.from) ? alice.percentage(params.scale.from) : 1,
+        scaleTo = (params.scale && params.scale.to) ? alice.percentage(params.scale.to) : 1,
 
-        //translateX = params.translateX || null,
-        //translateY = params.translateY || null,
+/*
+        translateX = params.translateX || null,
+        translateY = params.translateY || null,
+*/
 
         move = "",
         axis = "",
@@ -931,6 +958,7 @@ alice.plugins.cheshire = function (params) {
         over = posEnd + (sign * Math.floor(posEnd * overshoot)),
 
         // temporary variables
+        calc = {},
         container, elems, elem, i, animId, css, transformStart, transformOver, transformEnd, boxShadowStart, boxShadowEnd, dir, size, shadowSize;
 
     // TODO: use elems from init for chaining?
@@ -938,7 +966,7 @@ alice.plugins.cheshire = function (params) {
         elems = alice.elems;
     }
     else if (params.elems) {
-        elems = alice._elements(params.elems);
+        elems = alice.elements(params.elems);
     }
 
     // Loop through elements
@@ -947,30 +975,11 @@ alice.plugins.cheshire = function (params) {
             elem = elems[i];
             container = elem.parentElement || elem.parentNode;
 
-            //setSize(elem);
-
-            if (params.delay && params.delay.offset) {
-                //console.log(duration, params.duration.offset);
-                delay = parseInt(delay, 10) + parseInt(params.delay.offset, 10);
-                delay = delay + "ms";
-            }
-
-            if (params.duration && params.duration.offset) {
-                //console.log(duration, params.duration.offset);
-                duration = parseInt(duration, 10) + parseInt(params.duration.offset, 10);
-                duration = duration + "ms";
-            }
-
-            if (alice.debug) {
-                console.log("delay=" + delay, "duration=" + duration);
-            }
+            calc.delay = alice.helper.duration(params.delay, calc.delay, delay);
+            calc.duration = alice.helper.duration(params.duration, calc.duration, duration);
 
             // Generate animation ID
             animId = alice.id + "-cheshire-" + (new Date()).getTime() + "-" + Math.floor(Math.random() * 1000000);
-
-            if (alice.debug) {
-                console.log(elem, elem.style, elem.clientWidth, elem.clientHeight);
-            }
 
             // Configure settings
             if (params.move) {
@@ -981,8 +990,8 @@ alice.plugins.cheshire = function (params) {
                     axis = "X";
                     sign = -1;
                     size = window.innerWidth;
-                    posStart = (params.move.start) ? alice._pixel(params.move.start, size) : size;
-                    posEnd = (params.move.end) ? alice._pixel(params.move.end, size) : 0;
+                    posStart = (params.move.start) ? alice.pixel(params.move.start, size) : size;
+                    posEnd = (params.move.end) ? alice.pixel(params.move.end, size) : 0;
                     over = sign * Math.floor(posStart * overshoot);
                     break;
                 case "right":
@@ -990,8 +999,8 @@ alice.plugins.cheshire = function (params) {
                     axis = "X";
                     sign = 1;
                     size = document.body.offsetWidth - elem.clientWidth;
-                    posStart = (params.move.start) ? alice._pixel(params.move.start, size) : 0;
-                    posEnd = (params.move.end) ? alice._pixel(params.move.end, size) : size;
+                    posStart = (params.move.start) ? alice.pixel(params.move.start, size) : 0;
+                    posEnd = (params.move.end) ? alice.pixel(params.move.end, size) : size;
                     over = posEnd + (sign * Math.floor(posEnd * overshoot));
                     break;
                 case "up":
@@ -999,21 +1008,21 @@ alice.plugins.cheshire = function (params) {
                     axis = "Y";
                     sign = -1;
                     size = window.innerHeight;
-                    posStart = (params.move.start) ? alice._pixel(params.move.start, size) : size;
-                    posEnd = (params.move.end) ? alice._pixel(params.move.end, size) : 0;
+                    posStart = (params.move.start) ? alice.pixel(params.move.start, size) : size;
+                    posEnd = (params.move.end) ? alice.pixel(params.move.end, size) : 0;
                     over = sign * Math.floor(posStart * overshoot);
                     break;
                 case "down":
                     move = "Down";
                     axis = "Y";
                     sign = 1;
-                    size = alice._docHeight() - (container.clientHeight * 3);
-                    posStart = (params.move.start) ? alice._pixel(params.move.start, size) : 0;
-                    posEnd = (params.move.end) ? alice._pixel(params.move.end, size) : size;
+                    size = alice.docHeight() - (container.clientHeight * 3);
+                    posStart = (params.move.start) ? alice.pixel(params.move.start, size) : 0;
+                    posEnd = (params.move.end) ? alice.pixel(params.move.end, size) : size;
                     over = posEnd + (sign * Math.floor(posEnd * overshoot));
 
                     if (alice.debug) {
-                        console.log(alice._docHeight(), window.innerHeight, window.pageYOffset, container.clientHeight);
+                        console.log(alice.docHeight(), window.innerHeight, window.pageYOffset, container.clientHeight);
                     }
                     break;
                 }
@@ -1023,7 +1032,8 @@ alice.plugins.cheshire = function (params) {
             transformStart = "";
             transformStart += (flip) ? " rotate" + flipAxis + "(" + flipStart + "deg)" : " translate" + axis + "(" + posStart + "px)";
             transformStart += (rotate && rotate !== "0%") ? " rotate(" + rotateStart + "deg)" : "";
-            transformStart += (scale) ? " scale(1)" : "";
+            transformStart += " scale(" + scaleFrom + ")";
+
 /*
             if (translateX) {
                 transformStart += " translateX(" + translateX + ")";
@@ -1033,10 +1043,12 @@ alice.plugins.cheshire = function (params) {
                 transformStart += " translateY(" + translateY + ")";
             }
 */
+
             transformOver = "";
             transformOver += (flip) ? " rotate" + flipAxis + "(" + flipOver + "deg)" : " translate" + axis + "(" + over + "px)";
             transformOver += (rotate && rotate !== "0%") ? " rotate(" + rotateOver + "deg)" : "";
-            transformOver += (scale) ? " scale(" + scale + ")" : "";
+            transformOver += (scaleTo > 1) ? " scale(" + scaleTo + ")" : "";
+            transformOver += " scale(" + scaleTo + ")";
 
             transformEnd = "";
             transformEnd += (flip) ? " rotate" + flipAxis + "(" + flipEnd + "deg)" : " translate" + axis + "(" + posEnd + "px)";
@@ -1048,7 +1060,8 @@ alice.plugins.cheshire = function (params) {
                 transformEnd += (rotate && rotate !== "0%") ? " rotate(" + rotateEnd + "deg)" : "";
             }
 
-            transformEnd += (scale) ? " scale(" + scale + ")" : "";
+            transformEnd += " scale(" + scaleTo + ")";
+
 /*
             if (translateX) {
                 transformEnd += " translateX(" + translateX + ")";
@@ -1058,15 +1071,12 @@ alice.plugins.cheshire = function (params) {
                 transformEnd += " translateY(" + translateY + ")";
             }
 */
+
             // Generate box shadow
-            if (scale > 1) {
-                shadowSize = Math.round(scale * 10);
+            if (scaleTo > 1) {
+                shadowSize = Math.round(scaleTo * 10);
                 boxShadowStart = " 0px 0px 0px rgba(0, 0, 0, 1)";
                 boxShadowEnd = " " + shadowSize + "px " + shadowSize + "px " + shadowSize + "px rgba(0, 0, 0, 0.5)";
-
-                if (alice.debug) {
-                    console.log("scale=" + scale, shadowSize);
-                }
             }
 
             // Generate CSS for keyframe rule
@@ -1077,7 +1087,7 @@ alice.plugins.cheshire = function (params) {
             css += "\t\t" + " " + alice.prefix + "transform:" + transformStart + ";" + "\n";
             css += "\t\t" + " " + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
             css += (fade) ? "\t\t" + "opacity: " + fadeStart + ";" + "\n" : "";
-            css += (scale > 1) ? "\t\t" + alice.prefix + "box-shadow: " + boxShadowStart + ";" + "\n" : "";
+            css += (scaleTo > 1) ? "\t\t" + alice.prefix + "box-shadow: " + boxShadowStart + ";" + "\n" : "";
 
             css += "\t" + "}" + "\n";
 
@@ -1092,7 +1102,7 @@ alice.plugins.cheshire = function (params) {
             css += "\t\t" + " " + alice.prefix + "transform:" + transformEnd + ";" + "\n";
             css += "\t\t" + " " + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
             css += (fade) ? "\t\t" + "opacity: " + fadeEnd + ";" + "\n" : "";
-            css += (scale > 1) ? "\t\t" + alice.prefix + "box-shadow: " + boxShadowEnd + ";" + "\n" : "";
+            css += (scaleTo > 1) ? "\t\t" + alice.prefix + "box-shadow: " + boxShadowEnd + ";" + "\n" : "";
 
             css += "\t" + "}" + "\n";
 
@@ -1101,18 +1111,18 @@ alice.plugins.cheshire = function (params) {
             console.log(css);
 
             // Insert keyframe rule
-            alice._keyframeInsert(css);
+            alice.keyframeInsert(css);
 
             // Apply perspective to parent container
             container.style[alice.prefixJS + "Perspective"] = perspective;
-            container.style[alice.prefixJS + "PerspectiveOrigin"] = alice.format.coords(perspectiveOrigin); // alice._coords();
+            container.style[alice.prefixJS + "PerspectiveOrigin"] = alice.format.coords(perspectiveOrigin); // alice.coords();
 
             // Apply properties to elements
             elem.style[alice.prefixJS + "BackfaceVisibility"] = backfaceVisibility;
 
             elem.style[alice.prefixJS + "AnimationName"] = animId;
-            elem.style[alice.prefixJS + "AnimationDelay"] = alice.format.duration(delay);
-            elem.style[alice.prefixJS + "AnimationDuration"] = alice.format.duration(duration);
+            elem.style[alice.prefixJS + "AnimationDelay"] = calc.delay;
+            elem.style[alice.prefixJS + "AnimationDuration"] = calc.duration;
             elem.style[alice.prefixJS + "AnimationTimingFunction"] = alice.format.easing(timing);
             elem.style[alice.prefixJS + "AnimationIterationCount"] = iteration;
             elem.style[alice.prefixJS + "AnimationDirection"] = direction;
@@ -1121,14 +1131,14 @@ alice.plugins.cheshire = function (params) {
             // Apply styles from last key frame
             elem.style[alice.prefixJS + "Transform"] = transformEnd;
             elem.style.opacity = (fade) ? fadeEnd : "";
-            elem.style[alice.prefixJS + "BoxShadow"] = (scale > 1) ? boxShadowEnd : "";
+            elem.style[alice.prefixJS + "BoxShadow"] = (scaleTo > 1) ? boxShadowEnd : "";
 
             // Add listener to clear animation after it's done
             if ("MozAnimation" in elem.style) {
-                elem.addEventListener("animationend", alice._clearAnimation, false);
+                elem.addEventListener("animationend", alice.clearAnimation, false);
             }
             else {
-                elem.addEventListener(alice.prefixJS + "AnimationEnd", alice._clearAnimation, false);
+                elem.addEventListener(alice.prefixJS + "AnimationEnd", alice.clearAnimation, false);
             }
 
             if (alice.debug) {
@@ -1153,26 +1163,26 @@ alice.plugins.cheshire = function (params) {
  *     elems, <options>, duration, timing, delay, iteration, direction, playstate
  */
 
-/**
- * [bounce description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} scale     [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} direction [description]
- * @param  {[type]} playstate [description]
- * @return {[type]}
- */
+ /**
+  * [bounce description]
+  * @param  {[type]} elems     [description]
+  * @param  {[type]} scale     [description]
+  * @param  {[type]} duration  [description]
+  * @param  {[type]} timing    [description]
+  * @param  {[type]} delay     [description]
+  * @param  {[type]} iteration [description]
+  * @param  {[type]} direction [description]
+  * @param  {[type]} playstate [description]
+  * @return {[type]}
+  */
  alice.plugins.bounce = function (elems, scale, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
-    console.info("slide: ", arguments);
+    console.info("bounce: ", arguments);
 
     var opts = {
         elems: elems,
 
-        scale: scale || "125%",
+        scale: scale || {from: "100%", to: "125%"},
 
         duration: duration || "750ms",
         timing: timing || "easeOutSine",
@@ -1222,6 +1232,7 @@ alice.plugins.dance = function (elems, rotate, duration, timing, delay, iteratio
 /**
  * [drain description]
  * @param  {[type]} elems     [description]
+ * @param  {[type]} fade      [description]
  * @param  {[type]} rotate    [description]
  * @param  {[type]} duration  [description]
  * @param  {[type]} timing    [description]
@@ -1231,16 +1242,16 @@ alice.plugins.dance = function (elems, rotate, duration, timing, delay, iteratio
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.drain = function (elems, rotate, duration, timing, delay, iteration, direction, playstate) {
+alice.plugins.drain = function (elems, fade, rotate, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("drain: ", arguments);
 
     var opts = {
-        fade: "out",
-        scale: 1,
+        scale: (fade === "in") ? {from: "1%", to: "100%"} : {from: "100%", to: "1%"},
 
         elems: elems,
 
+        fade: fade || "out",
         rotate: rotate || -2880,
 
         duration: duration || "4500ms",
@@ -1416,6 +1427,7 @@ alice.plugins.pendulum = function (elems, rotate, overshoot, duration, timing, d
 /**
  * [phantomZone description]
  * @param  {[type]} elems     [description]
+ * @param  {[type]} fade      [description]
  * @param  {[type]} rotate    [description]
  * @param  {[type]} flip      [description]
  * @param  {[type]} duration  [description]
@@ -1426,55 +1438,20 @@ alice.plugins.pendulum = function (elems, rotate, overshoot, duration, timing, d
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.phantomZone = function (elems, rotate, flip, duration, timing, delay, iteration, direction, playstate) {
+alice.plugins.phantomZone = function (elems, fade, rotate, flip, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("phantomZone: ", arguments);
 
     var opts = {
-        fade: "out",
-        scale: 1,
+        scale: (fade === "in") ? {from: "1%", to: "100%"} : {from: "100%", to: "1%"},
 
         elems: elems,
 
+        fade: fade || "out",
         rotate: rotate || -720,
         flip: flip || "left",
 
         duration: duration || "5000ms",
-        timing: timing,
-        delay: delay,
-        iteration: iteration || 1,
-        direction: direction || "normal",
-        playstate: playstate
-    };
-
-    alice.plugins.cheshire(opts);
-    return opts;
-};
-
-/**
- * [push description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} scale     [description]
- * @param  {[type]} move      [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} direction [description]
- * @param  {[type]} playstate [description]
- * @return {[type]}
- */
-alice.plugins.push = function (elems, scale, move, duration, timing, delay, iteration, direction, playstate) {
-    "use strict";
-    console.info("push: ", arguments);
-
-    var opts = {
-        elems: elems,
-
-        scale: scale || "150%",
-        move: move || "none",
-
-        duration: duration,
         timing: timing,
         delay: delay,
         iteration: iteration || 1,
@@ -1679,11 +1656,10 @@ alice.plugins.twirl = function (elems, flip, duration, timing, delay, iteration,
  * @param  {[type]} timing    [description]
  * @param  {[type]} delay     [description]
  * @param  {[type]} iteration [description]
- * @param  {[type]} direction [description]
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.wobble = function (elems, rotate, duration, timing, delay, iteration, direction, playstate) {
+alice.plugins.wobble = function (elems, rotate, duration, timing, delay, iteration, playstate) {
     "use strict";
     console.info("wobble: ", arguments);
 
@@ -1698,7 +1674,43 @@ alice.plugins.wobble = function (elems, rotate, duration, timing, delay, iterati
         timing: timing || "linear",
         delay: delay || "0ms",
         iteration: iteration || "infinite",
-        direction: direction || "alternate",
+        direction: "alternate",
+        playstate: playstate
+    };
+
+    alice.plugins.cheshire(opts);
+    return opts;
+};
+
+/**
+ * [zoom description]
+ * @param  {[type]} elems     [description]
+ * @param  {[type]} scale     [description]
+ * @param  {[type]} move      [description]
+ * @param  {[type]} duration  [description]
+ * @param  {[type]} timing    [description]
+ * @param  {[type]} delay     [description]
+ * @param  {[type]} iteration [description]
+ * @param  {[type]} direction [description]
+ * @param  {[type]} playstate [description]
+ * @return {[type]}
+ */
+alice.plugins.zoom = function (elems, scale, move, duration, timing, delay, iteration, direction, playstate) {
+    "use strict";
+    console.info("zoom: ", arguments);
+
+    var opts = {
+        elems: elems,
+
+        scale: scale || {from: "100%", to: "150%"},
+
+        move: move || "none",
+
+        duration: duration,
+        timing: timing,
+        delay: delay,
+        iteration: iteration || 1,
+        direction: direction || "normal",
         playstate: playstate
     };
 
@@ -1707,3 +1719,4 @@ alice.plugins.wobble = function (elems, rotate, duration, timing, delay, iterati
 };
 
 //----------------------------------------------------------------------------
+

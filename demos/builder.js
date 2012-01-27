@@ -17,13 +17,13 @@
  */
 
 /* ===========================================================================
- * tester.js
+ * builder.js
  * ===========================================================================
  */
 
 var a = alice.init();
 
-a.slide(["elem1", "elem2"], "left", "", {
+a.slide("elem1", "left", "", {
     "value": "1000ms",
     "randomness": "0%",
     "offset": "150ms"
@@ -112,7 +112,7 @@ app.applyStyle = function () {
     var i, j, elem, container, perspective, transform,
         transformFunctions = ["rotate", "rotateX", "rotateY", "scale", "scaleX", "scaleY", "skew", "skewX", "skewY", "translate", "translateX", "translateY"];
 
-    for (i = 1; i <= 2; i += 1) {
+    for (i = 1; i <= 1; i += 1) {
         elem = document.getElementById("elem" + i);
         container = document.getElementById("container" + i);
 
@@ -163,7 +163,7 @@ app.applyEffect = function (param) {
 
     var i, p, ret;
 
-    for (i = 1; i <= 2; i += 1) {
+    for (i = 1; i <= 1; i += 1) {
         p = {
             elems: document.getElementById("elem" + i),
 
@@ -184,127 +184,160 @@ app.applyEffect = function (param) {
             rotate: document.getElementById("rotate" + i).value,
             flip: document.getElementById("flip" + i).value,
             fade: document.getElementById("fade" + i).value,
-            scale: document.getElementById("scale" + i).value,
+            scale: {
+                from: document.getElementById("scaleFrom" + i).value,
+                to: document.getElementById("scaleTo" + i).value
+            },
             overshoot: document.getElementById("overshoot" + i).value,
-            //randomness: document.getElementById("randomness" + i).value,
             perspective: document.getElementById("perspective" + i).value,
             perspectiveOrigin: document.getElementById("perspective_origin" + i).value,
             backfaceVisibility: document.getElementById("backface_visibility" + i).value
         };
 
         switch (param.value) {
-        case "slideLeft":
-            p.move = "left";
-            ret = a.slide(p.elems, p.move, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+        case "drain (in)":
+            p.fade = "in";
+            p.rotate = 720;
+            ret = a.drain(p.elems, p.fade, p.rotate, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
-        case "slideRight":
-            p.move = "right";
-            ret = a.slide(p.elems, p.move, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
-            break;
-        case "slideUp":
-            p.move = "up";
-            ret = a.slide(p.elems, p.move, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
-            break;
-        case "slideDown":
-            p.move = "down";
-            ret = a.slide(p.elems, p.move, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+        case "drain (out)":
+            p.fade = "out";
+            p.rotate = -720;
+            ret = a.drain(p.elems, p.fade, p.rotate, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
 
-        case "tossLeft":
-            p.move = "left";
-            ret = a.toss(p.elems, p.move, p.overshoot, p.perspectiveOrigin, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
-            break;
-        case "tossRight":
-            p.move = "right";
-            ret = a.toss(p.elems, p.move, p.overshoot, p.perspectiveOrigin, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
-            break;
-        case "tossUp":
-            p.move = "up";
-            ret = a.toss(p.elems, p.move, p.overshoot, p.perspectiveOrigin, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
-            break;
-        case "tossDown":
-            p.move = "down";
-            ret = a.toss(p.elems, p.move, p.overshoot, p.perspectiveOrigin, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
-            break;
-
-        case "spinLeft":
-            p.flip = "left";
-            ret = a.spin(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
-            break;
-        case "spinRight":
-            p.flip = "right";
-            ret = a.spin(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
-            break;
-        case "spinUp":
-            p.flip = "up";
-            ret = a.spin(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
-            break;
-        case "spinDown":
-            p.flip = "down";
-            ret = a.spin(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
-            break;
-
-        case "pushForward":
-            p.scale = "125%";
-            p.move = "left";
-            ret = a.push(p.elems, p.scale, p.move, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
-            break;
-        case "pushBackward":
-            p.scale = "75%";
-            p.move = "left";
-            ret = a.push(p.elems, p.scale, p.move, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
-            break;
-
-        case "fadeIn":
+        case "fade (in)":
             p.fade = "in";
             ret = a.fade(p.elems, p.fade, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
-        case "fadeOut":
+        case "fade (out)":
             p.fade = "out";
             ret = a.fade(p.elems, p.fade, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
 
-        case "drain":
-            p.rotate = -720;
-            ret = a.drain(p.elems, p.rotate, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
-            break;
-
-        case "phantomZone":
-            p.rotate = -720;
-            p.flip = "left";
-            ret = a.phantomZone(p.elems, p.rotate, p.flip, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
-            break;
-
-        case "pageFlipLeft":
+        case "pageFlip (left)":
             p.flip = "left";
             ret = a.pageFlip(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
-        case "pageFlipRight":
+        case "pageFlip (right)":
             p.flip = "right";
             ret = a.pageFlip(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
-        case "pageFlipUp":
+        case "pageFlip (up)":
             p.flip = "up";
             ret = a.pageFlip(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
-        case "pageFlipDown":
+        case "pageFlip (down)":
             p.flip = "down";
             ret = a.pageFlip(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
 
-        case "twirlFromLeft":
-            p.flip = "left";
-            ret = a.twirl(p.elems, p.flip, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
-            break;
-        case "twirlFromRight":
+        case "phantomZone (in)":
+            p.fade = "in";
+            p.rotate = 720;
             p.flip = "right";
-            ret = a.twirl(p.elems, p.flip, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.phantomZone(p.elems, p.fade, p.rotate, p.flip, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            break;
+        case "phantomZone (out)":
+            p.fade = "out";
+            p.rotate = -720;
+            p.flip = "left";
+            ret = a.phantomZone(p.elems, p.fade, p.rotate, p.flip, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
 
         case "raceFlag":
             p.rotate = -720;
             p.perspectiveOrigin = "top-right";
             ret = a.raceFlag(p.elems, p.rotate, p.perspectiveOrigin, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            break;
+
+        case "slide (left)":
+            p.move = "left";
+            ret = a.slide(p.elems, p.move, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            break;
+        case "slide (right)":
+            p.move = "right";
+            ret = a.slide(p.elems, p.move, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            break;
+        case "slide (up)":
+            p.move = "up";
+            ret = a.slide(p.elems, p.move, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            break;
+        case "slide (down)":
+            p.move = "down";
+            ret = a.slide(p.elems, p.move, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            break;
+
+        case "spin (left)":
+            p.flip = "left";
+            ret = a.spin(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
+            break;
+        case "spin (right)":
+            p.flip = "right";
+            ret = a.spin(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
+            break;
+        case "spin (up)":
+            p.flip = "up";
+            ret = a.spin(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
+            break;
+        case "spin (down)":
+            p.flip = "down";
+            ret = a.spin(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
+            break;
+
+        case "toss (left)":
+            p.move = "left";
+            ret = a.toss(p.elems, p.move, p.overshoot, p.perspectiveOrigin, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            break;
+        case "toss (right)":
+            p.move = "right";
+            ret = a.toss(p.elems, p.move, p.overshoot, p.perspectiveOrigin, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            break;
+        case "toss (up)":
+            p.move = "up";
+            ret = a.toss(p.elems, p.move, p.overshoot, p.perspectiveOrigin, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            break;
+        case "toss (down)":
+            p.move = "down";
+            ret = a.toss(p.elems, p.move, p.overshoot, p.perspectiveOrigin, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            break;
+
+        case "twirl (from left)":
+            p.flip = "left";
+            ret = a.twirl(p.elems, p.flip, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            break;
+        case "twirl (from right)":
+            p.flip = "right";
+            ret = a.twirl(p.elems, p.flip, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            break;
+
+        case "zoom (125%)":
+            p.scale = {from: "100%", to: "125%"};
+            p.move = "left";
+            ret = a.zoom(p.elems, p.scale, p.move, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            break;
+        case "zoom (75%)":
+            p.scale = {from: "100%", to: "75%"};
+            p.move = "left";
+            ret = a.zoom(p.elems, p.scale, p.move, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            break;
+
+        case "bounce":
+            p.scale = {from: "100%", to: "125%"};
+            p.duration = "500ms";
+            p.timing = "easeOutSine";
+            p.iteration = "infinite";
+            p.direction = "alternate";
+            ret = a.bounce(p.elems, p.scale, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            break;
+
+        case "dance":
+            p.duration = "500ms";
+            p.timing = "easeInOutBack";
+            p.iteration = "infinite";
+            p.direction = "alternate";
+            p.rotate = 45;
+            ret = a.dance(p.elems, p.rotate, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
 
         case "hinge":
@@ -317,24 +350,6 @@ app.applyEffect = function (param) {
             ret = a.hinge(p.elems, p.rotate, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
 
-        case "wobble":
-            p.duration = "200ms";
-            p.timing = "linear";
-            p.iteration = "infinite";
-            p.direction = "alternate";
-            p.rotate = 5;
-            ret = a.wobble(p.elems, p.rotate, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
-            break;
-
-        case "dance":
-            p.duration = "500ms";
-            p.timing = "easeInOutBack";
-            p.iteration = "infinite";
-            p.direction = "alternate";
-            p.rotate = 45;
-            ret = a.dance(p.elems, p.rotate, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
-            break;
-
         case "pendulum":
             p.duration = "1000ms";
             p.timing = "ease-in-out";
@@ -345,13 +360,13 @@ app.applyEffect = function (param) {
             ret = a.pendulum(p.elems, p.rotate, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
 
-        case "bounce":
-            p.scale = "125%";
-            p.duration = "500ms";
-            p.timing = "easeOutSine";
+        case "wobble":
+            p.duration = "200ms";
+            p.timing = "linear";
             p.iteration = "infinite";
             p.direction = "alternate";
-            ret = a.bounce(p.elems, p.scale, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            p.rotate = 5;
+            ret = a.wobble(p.elems, p.rotate, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
 
         default:

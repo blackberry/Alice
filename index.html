@@ -18,7 +18,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-        <title>AliceJS</title>
+        <title>AliceJS - (A Lightweight Independent CSS Engine)</title>
         <link href="favicon.ico" rel="icon" type="image/x-icon">
         <link rel="stylesheet" href="default.css">
         <style type="text/css">
@@ -27,18 +27,41 @@
     <body>
         <a href="http://github.com/blackberry/Alice"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
-        <div class="fineprint"><p id="version"></p></div>
+        <div class="fineprint"><p id="version">&nbsp;</p></div>
 
         <div id="container">
             <div id="card1" class="card-edge">
                 <div>
-                    <h1 id="logo">AliceJS</h1>
+                    <h1 class="seo">AliceJS - (A Lightweight Independent CSS Engine)</h1>
+
+                    <!-- AliceJS Logo (CSS Sprites) -->
+
+                    <div id="logo">
+                        <div>
+                            <div id="logo-alice-img"></div>
+                        </div>
+                        <div id="logo-alice-txt-alice">
+                            <div id="logo-alice-txt-a"></div>
+                            <div id="logo-alice-txt-l"></div>
+                            <div id="logo-alice-txt-i"></div>
+                            <div id="logo-alice-txt-c"></div>
+                            <div id="logo-alice-txt-e"></div>
+                        </div>
+                        <div id="logo-alice-txt-js">
+                            <div id="logo-alice-txt-j"></div>
+                            <div id="logo-alice-txt-s"></div>
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+
+                    <!-- Overview -->
 
                     <div style="text-align: center;">
                         <a href="demos/index.html" class="big button">View Demos</a>
                     </div>
 
                     <p><b>AliceJS</b> - <i>(A Lightweight Independent CSS Engine)</i> is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.</p>
+
                     <p>Created by Laurent Hasson (<a href="http://twitter.com/ldhasson" target="_blank">@ldhasson</a>, lhasson at rim dot com), and co-developed with Jim Ing (<a href="http://twitter.com/jim_ing" target="_blank">@jim_ing</a>, jing at rim dot com)</p>
 
                     <h2>Introduction</h2>
@@ -157,10 +180,39 @@ alice.wobble("MyDiv", 20, 5, "top-left", 1000, 10, "ease-in-out", -1);
 
         document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
 
-        var a = alice.init();
+        var a = alice.init(),
 
-        a.slide("logo", "left", "2%", "2000ms");
+            animateLogo = function () {
+                a.spin("logo-alice-img", "left", "", "3000ms");
+/*
+                a.phantomZone("logo-alice-img", "in", "", "", {
+                    "value": "3000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                });
+*/
+                a.slide(document.getElementById("logo-alice-txt-alice").children, "left", "0%", {
+                    value: "1000ms",
+                    randomness: "100%",
+                    offset: "250ms"
+                }, "easeOutQuint");
+/*
+                a.spin(document.getElementById("logo-alice-txt-js").children, "up", "10%", {
+                    value: "3000ms",
+                    randomness: "0%",
+                    offset: "250ms"
+                });
+*/
+                a.toss(document.getElementById("logo-alice-txt-js").children, "left", "10%", "", {
+                    value: "2000ms",
+                    randomness: "50%",
+                    offset: "250ms"
+                }, "ease-in-out");
+            };
 
+        document.getElementById("logo").addEventListener("click", animateLogo, false);
+
+        animateLogo();
         </script>
     </body>
 </html>

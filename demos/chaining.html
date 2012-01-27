@@ -17,7 +17,7 @@
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <title>AliceJS: Chaining</title>
+        <title>AliceJS Chaining</title>
         <link href="../favicon.ico" rel="icon" type="image/x-icon">
         <style type="text/css">
         body, select {
@@ -40,9 +40,9 @@
         </style>
     </head>
     <body>
-        <h1>Chaining Effects</h1>
+        <h1>AliceJS Chaining</h1>
 
-        <p>This is a demo of chained effects that have a 2 sec. delay.</p>
+        <p>This is a demo of chaining effects (using the jWorkflow library).</p>
 
         <!-- Test Elements -->
         <div id="aces" style="clear: both;">
@@ -180,11 +180,11 @@
 
         var e = alice.init();
 
-        e.delay(16000).drain(tens, "", {
+        e.delay(16000).drain(tens, "", "", {
             "value": "3000ms",
             "randomness": "0%",
             "offset": "150ms"
-        }).delay(2000).phantomZone(tens, "", "", {
+        }).delay(2000).phantomZone(tens, "", "", "", {
             "value": "4000ms",
             "randomness": "0%",
             "offset": "150ms"

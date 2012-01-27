@@ -45,7 +45,7 @@ var alice = (function () {
             name: "AliceJS",
             description: "A Lightweight Independent CSS Engine",
             version: "0.2",
-            build: "20120124-1200",
+            build: "20120127-1600",
 
             prefix: "",
             prefixJS: "",
@@ -53,6 +53,7 @@ var alice = (function () {
             elems: null,
 
             format: {},
+            helper: {},
             plugins: {},
 
             debug: false,
@@ -60,15 +61,15 @@ var alice = (function () {
             /**
              * Returns array of elements
              */
-            _elements: function (params) {
-                //console.info("_elements", params, typeof params);
+            elements: function (params) {
+                //console.info("elements", params, typeof params);
                 var elems = [],
                     i;
 
                 if (typeof params === "string") {
                     elems.push(document.getElementById(params)); // "myId1"
                 }
-                else if (typeof params === "object") { // TODO: check for DOMElement?
+                else if (typeof params === "object") {
                     if (params.length === undefined) {
                         elems.push(params); // myElem1
                     }
@@ -109,7 +110,7 @@ var alice = (function () {
             /**
              * Returns random number +/- the factor
              */
-            _randomize: function (num, factor) {
+            randomize: function (num, factor) {
                 var f, r;
 
                 if (typeof factor === "string" && factor.indexOf("%") > -1) {
@@ -121,58 +122,75 @@ var alice = (function () {
 
                 r = num + num * ((Math.random() * 2 * f) - f);
 
+                //console.log(num, factor, r);
                 return Math.floor(r);
             },
 
             /**
              * Returns duration in milliseconds
              */
-            _duration: function (params) {
-                //console.info("_duration", params, typeof params);
+            duration: function (params) {
+                //console.info("duration", params, typeof params);
                 var dur,
-                    rnd = params.randomness || 0,
-
-                    parseDurStr = function (d) {
-                        var pd;
-                        if (d.indexOf("ms") > -1) {
-                            pd = parseInt(d, 10); // "2000ms"
-                        }
-                        else if (d.indexOf("s") > -1) {
-                            pd = parseFloat(d, 10) * 1000; // "2s", "1.5s"
+                    parseNum = function (num) {
+                        var val;
+                        if (num < 100) {
+                            val = num * 1000; // 1, 1.5, 10, 10.25, 99
                         }
                         else {
-                            pd = parseInt(d, 10); // "2000"
+                            val = num; // 100, 1000, 1500
                         }
-                        return pd;
+                        return val;
+                    },
+                    parseStr = function (str) {
+                        var val;
+                        if (str.indexOf("ms") > -1) {
+                            val = parseInt(str, 10); // "1000ms", "1500ms"
+                        }
+                        else if (str.indexOf("s") > -1) {
+                            val = parseFloat(str, 10) * 1000; // "1s", "1.5s"
+                        }
+                        else {
+                            val = parseInt(str, 10); // "1000"
+                        }
+                        return val;
+                    },
+                    parseObj = function (obj) {
+                        var val;
+                        if (obj.value) {
+                            if (typeof obj.value === "string") {
+                                val = parseStr(obj.value);
+                            }
+                            else {
+                                val = parseNum(obj.value); // {value: 2000}
+                            }
+                        }
+                        return val;
                     };
 
-                if (typeof params === "number") {
-                    dur = params; // 2000
-                }
-                else if (typeof params === "string") {
-                    dur = parseDurStr(params);
-                }
-                else if (typeof params === "object") {
-                    if (typeof params.value === "string") {
-                        dur = parseDurStr(params.value);
-                    }
-                    else {
-                        dur = parseInt(params.value, 10); // {value: 2000}
-                    }
+                switch (typeof params) {
+                case "number":
+                    dur = parseNum(params);
+                    break;
+                case "string":
+                    dur = parseStr(params);
+                    break;
+                case "object":
+                    dur = parseObj(params);
+                    break;
+                default:
+                    dur = params;
                 }
 
-                //console.log("dur=" + dur);
-                return {
-                    value: dur,
-                    randomness: rnd
-                };
+                //console.log(dur);
+                return dur;
             },
 
             /**
              * Returns x and y coordinates as percentages
              */
-            _coords: function (params) {
-                //console.info("_coords", params);
+            coords: function (params) {
+                //console.info("coords", params);
                 if (params === undefined || params === null) {
                     return {
                         x: "50%",
@@ -311,7 +329,7 @@ var alice = (function () {
             /**
              * Returns cubic bezier function
              */
-            _easing: function (params) {
+            easing: function (params) {
                 switch (params) {
                 // Standard
                 case "linear":
@@ -551,8 +569,8 @@ var alice = (function () {
             /**
              * Returns percentage in decimal form
              */
-            _percentage: function (params) {
-                //console.info("_percentage", params);
+            percentage: function (params) {
+                //console.info("percentage", params);
                 var pct;
 
                 if (typeof params === "string") {
@@ -584,7 +602,7 @@ var alice = (function () {
             /**
              * Set vendor prefix
              */
-            _prefix: function () {
+            vendorPrefix: function () {
                 var el = document.createElement("div");
 
                 // Safari 4+, iOS Safari 3.2+, Chrome 2+, and Android 2.1+
@@ -622,7 +640,7 @@ var alice = (function () {
             /**
              * Get the document height
              */
-            _docHeight: function () {
+            docHeight: function () {
                 var D = document;
 
                 return Math.max(
@@ -632,7 +650,7 @@ var alice = (function () {
             /**
              *
              */
-            _pixel: function (p, w) {
+            pixel: function (p, w) {
                 if (typeof p === "number") {
                     // integers: 0, 1, 1024, ... n
                     if (p % 1 === 0) {
@@ -656,7 +674,7 @@ var alice = (function () {
             /**
              * Insert CSS keyframe rule
              */
-            _keyframeInsert: function (rule) {
+            keyframeInsert: function (rule) {
                 if (document.styleSheets && document.styleSheets.length) {
                     try {
                         document.styleSheets[0].insertRule(rule, 0);
@@ -677,7 +695,7 @@ var alice = (function () {
             /**
              * Delete CSS keyframe rule
              */
-            _keyframeDelete: function (ruleName) {
+            keyframeDelete: function (ruleName) {
                 var cssrules = (document.all) ? "rules" : "cssRules",
                     i;
 
@@ -697,7 +715,7 @@ var alice = (function () {
             /**
              * Clear animation settings
              */
-            _clearAnimation: function (evt) {
+            clearAnimation: function (evt) {
                 //console.info("_clearAnimation", this, evt.srcElement.id, evt.animationName, evt.elapsedTime);
                 this.style[this.prefixJS + "AnimationName"] = "";
                 this.style[this.prefixJS + "AnimationDelay"] = "";
@@ -709,33 +727,10 @@ var alice = (function () {
                 this.style[this.prefixJS + "AnimationPlayState"] = "";
 
                 // TODO: add evt.animationName to a delete queue?
-                alice._keyframeDelete(evt.animationName);
+                alice.keyframeDelete(evt.animationName);
 
                 return;
             },
-
-            /**
-             * Merge options
-             */
-/*
-            _mergeOptions: function (defaults, options) {
-                //console.info("_mergeOptions", defaults, options);
-                if (options) {
-                    var name;
-                    for (name in defaults) {
-                        if (!options.hasOwnProperty(name)) {
-                            options[name] = defaults[name];
-                        }
-                    }
-                }
-                else {
-                    options = defaults;
-                }
-                //console.warn(options);
-
-                return options;
-            },
-*/
 
             /**
              * Initialize
@@ -745,10 +740,10 @@ var alice = (function () {
 
                 //_private();
 
-                this._prefix();
+                this.vendorPrefix();
 
                 if (params && params.elems) {
-                    this.elems = this._elements(params.elems);
+                    this.elems = this.elements(params.elems);
                     //console.log(this.elems);
                 }
 
@@ -802,15 +797,27 @@ var alice = (function () {
     return core;
 }());
 
+/**
+ *
+ */
 alice.format = {
     /**
      *
      */
-    duration: function (d) {
+    duration: function (params) {
         "use strict";
-        var dObj = alice._duration(d),
-            dVal = alice._randomize(dObj.value, dObj.randomness) + "ms";
-        return dVal;
+        var d = 0, r = 0, dur = 0;
+
+        d = alice.duration(params);
+        dur = d;
+
+        if (params.randomness) {
+            r = alice.randomize(d, alice.percentage(params.randomness));
+            dur = Math.abs(r);
+        }
+
+        //console.log(d, r, dur);
+        return dur + "ms";
     },
 
     /**
@@ -818,7 +825,7 @@ alice.format = {
      */
     coords: function (c) {
         "use strict";
-        var cObj = alice._coords(c),
+        var cObj = alice.coords(c),
             cVal = cObj.x + " " + cObj.y;
         return cVal;
     },
@@ -828,7 +835,7 @@ alice.format = {
      */
     easing: function (e) {
         "use strict";
-        var eObj = alice._easing(e),
+        var eObj = alice.easing(e),
             eVal = "cubic-bezier(" + eObj.p1 + ", " + eObj.p2 + ", " + eObj.p3 + ", " + eObj.p4 + ")";
         return eVal;
     },
@@ -839,14 +846,31 @@ alice.format = {
     oppositeNumber: function (n) {
         "use strict";
         return -n;
-    },
+    }
+};
 
+/**
+ *
+ */
+alice.helper = {
     /**
      *
      */
-    getValue: function (obj, val) {
-        "use strict";
-        return obj && obj.value ? obj.value : obj ? obj : val;
+    duration: function (param, calc, duration) {
+        if (param && param.offset) {
+            if (calc) {
+                calc = parseInt(calc, 10) + parseInt(param.offset, 10);
+            }
+            else {
+                calc = parseInt(alice.format.duration(duration), 10);
+            }
+            calc += "ms";
+            //console.log(duration, param.value, param.offset, calc);
+        }
+        else {
+            calc = parseInt(alice.format.duration(duration), 10) + "ms";
+        }
+        return calc;
     }
 };
 

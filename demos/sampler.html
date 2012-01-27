@@ -17,7 +17,7 @@
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <title>AliceJS: Sample</title>
+        <title>AliceJS Sampler</title>
         <link href="../favicon.ico" rel="icon" type="image/x-icon">
         <style type="text/css">
         body, select {
@@ -40,40 +40,42 @@
     </head>
     <body>
         <div style="border: 1px solid #0F0; background-color: #CCFFCC;">
-            <input type="button" id="effect-slideLeft" name="effect" value="slide (left)">
-            <input type="button" id="effect-slideRight" name="effect" value="slide (right)">
-            <input type="button" id="effect-slideUp" name="effect" value="slide (up)">
-            <input type="button" id="effect-slideDown" name="effect" value="slide (down)">
-            <input type="button" id="effect-tossLeft" name="effect" value="toss (left)">
-            <input type="button" id="effect-tossRight" name="effect" value="toss (right)">
-            <input type="button" id="effect-tossUp" name="effect" value="toss (up)">
-            <input type="button" id="effect-tossDown" name="effect" value="toss (down)">
-            <input type="button" id="effect-spinLeft" name="effect" value="spin (left)">
-            <input type="button" id="effect-spinRight" name="effect" value="spin (right)">
-            <input type="button" id="effect-spinUp" name="effect" value="spin (up)">
-            <input type="button" id="effect-spinDown" name="effect" value="spin (down)">
-            <input type="button" id="effect-pushForward" name="effect" value="push (forward)">
-            <input type="button" id="effect-pushBackward" name="effect" value="push (backward)">
+            <input type="button" id="effect-drainIn" name="effect" value="drain (in)">
+            <input type="button" id="effect-drainOut" name="effect" value="drain (out)">
             <input type="button" id="effect-fadeIn" name="effect" value="fade (in)">
             <input type="button" id="effect-fadeOut" name="effect" value="fade (out)">
-            <input type="button" id="effect-drain" name="effect" value="drain">
-            <input type="button" id="effect-phantomZone" name="effect" value="phantomZone">
             <input type="button" id="effect-pageFlipLeft" name="effect" value="pageFlip (left)">
             <input type="button" id="effect-pageFlipRight" name="effect" value="pageFlip (right)">
             <input type="button" id="effect-pageFlipUp" name="effect" value="pageFlip (up)">
             <input type="button" id="effect-pageFlipDown" name="effect" value="pageFlip (down)">
+            <input type="button" id="effect-phantomZoneIn" name="effect" value="phantomZone (in)">
+            <input type="button" id="effect-phantomZoneOut" name="effect" value="phantomZone (out)">
+            <input type="button" id="effect-raceFlag" name="effect" value="raceFlag">
+            <input type="button" id="effect-slideLeft" name="effect" value="slide (left)">
+            <input type="button" id="effect-slideRight" name="effect" value="slide (right)">
+            <input type="button" id="effect-slideUp" name="effect" value="slide (up)">
+            <input type="button" id="effect-slideDown" name="effect" value="slide (down)">
+            <input type="button" id="effect-spinLeft" name="effect" value="spin (left)">
+            <input type="button" id="effect-spinRight" name="effect" value="spin (right)">
+            <input type="button" id="effect-spinUp" name="effect" value="spin (up)">
+            <input type="button" id="effect-spinDown" name="effect" value="spin (down)">
+            <input type="button" id="effect-tossLeft" name="effect" value="toss (left)">
+            <input type="button" id="effect-tossRight" name="effect" value="toss (right)">
+            <input type="button" id="effect-tossUp" name="effect" value="toss (up)">
+            <input type="button" id="effect-tossDown" name="effect" value="toss (down)">
             <input type="button" id="effect-twirlFromLeft" name="effect" value="twirl (from left)">
             <input type="button" id="effect-twirlFromRight" name="effect" value="twirl (from right)">
-            <input type="button" id="effect-raceFlag" name="effect" value="raceFlag">
+            <input type="button" id="effect-zoomForward" name="effect" value="zoom (125%)">
+            <input type="button" id="effect-zoomBackward" name="effect" value="zoom (75%)">
             <input type="button" id="effect-custom" name="effect" value="cheshire (custom)">
         </div>
         <div style="border: 1px solid #FF0; background-color: #FFFFCC;">
-            <input type="button" id="effect-hinge" name="effect" value="hinge">
-            <input type="button" id="effect-wobble" name="effect" value="wobble">
-            <input type="button" id="effect-dance" name="effect" value="dance">
-            <input type="button" id="effect-pendulum" name="effect" value="pendulum">
             <input type="button" id="effect-bounce" name="effect" value="bounce">
             <input type="button" id="effect-bounce-delay" name="effect" value="bounce-delay">
+            <input type="button" id="effect-dance" name="effect" value="dance">
+            <input type="button" id="effect-hinge" name="effect" value="hinge">
+            <input type="button" id="effect-pendulum" name="effect" value="pendulum">
+            <input type="button" id="effect-wobble" name="effect" value="wobble">
         </div>
 
         <!-- Test Elements -->
@@ -115,6 +117,94 @@
 
         var elems = ["elem1", "elem2", "elem3", "elem4", "elem5", "elem6", "elem7", "elem8", "elem9", "elem10", "elem11", "elem12", "elem13", "elem14", "elem15", "elem16", "elem17", "elem18", "elem19", "elem20"];
 
+        document.getElementById("effect-drainIn").addEventListener("click", function () {
+            a.drain(elems, "in", "", {
+                "value": "3000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            });
+        }, false);
+
+        document.getElementById("effect-drainOut").addEventListener("click", function () {
+            a.drain(elems, "out", "", {
+                "value": "3000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            });
+        }, false);
+
+        document.getElementById("effect-fadeIn").addEventListener("click", function () {
+            a.fade(elems, "in", {
+                "value": "2000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            });
+        }, false);
+
+        document.getElementById("effect-fadeOut").addEventListener("click", function () {
+            a.fade(elems, "out", {
+                "value": "2000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            });
+        }, false);
+
+        document.getElementById("effect-pageFlipLeft").addEventListener("click", function () {
+            a.pageFlip(elems, "left", "", {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            });
+        }, false);
+
+        document.getElementById("effect-pageFlipRight").addEventListener("click", function () {
+            a.pageFlip(elems, "right", "", {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            });
+        }, false);
+
+        document.getElementById("effect-pageFlipUp").addEventListener("click", function () {
+            a.pageFlip(elems, "up", "", {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            });
+        }, false);
+
+        document.getElementById("effect-pageFlipDown").addEventListener("click", function () {
+            a.pageFlip(elems, "down", "", {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            });
+        }, false);
+
+        document.getElementById("effect-phantomZoneIn").addEventListener("click", function () {
+            a.phantomZone(elems, "in", "", "", {
+                "value": "4000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            });
+        }, false);
+
+        document.getElementById("effect-phantomZoneOut").addEventListener("click", function () {
+            a.phantomZone(elems, "out", "", "", {
+                "value": "4000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            });
+        }, false);
+
+        document.getElementById("effect-raceFlag").addEventListener("click", function () {
+            a.raceFlag(elems, "", "", {
+                "value": "2000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            });
+        }, false);
+
         document.getElementById("effect-slideLeft").addEventListener("click", function () {
             a.slide(elems, "left", "", {
                 "value": "1000ms",
@@ -141,38 +231,6 @@
 
         document.getElementById("effect-slideDown").addEventListener("click", function () {
             a.slide(elems, "down", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            });
-        }, false);
-
-        document.getElementById("effect-tossLeft").addEventListener("click", function () {
-            a.toss(elems, "left", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            });
-        }, false);
-
-        document.getElementById("effect-tossRight").addEventListener("click", function () {
-            a.toss(elems, "right", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            });
-        }, false);
-
-        document.getElementById("effect-tossUp").addEventListener("click", function () {
-            a.toss(elems, "up", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            });
-        }, false);
-
-        document.getElementById("effect-tossDown").addEventListener("click", function () {
-            a.toss(elems, "down", "", "", {
                 "value": "1000ms",
                 "randomness": "0%",
                 "offset": "150ms"
@@ -211,81 +269,32 @@
             });
         }, false);
 
-        document.getElementById("effect-pushForward").addEventListener("click", function () {
-            a.push(elems, "125%", "", {
+        document.getElementById("effect-tossLeft").addEventListener("click", function () {
+            a.toss(elems, "left", "", "", {
                 "value": "1000ms",
                 "randomness": "0%",
                 "offset": "150ms"
             });
         }, false);
 
-        document.getElementById("effect-pushBackward").addEventListener("click", function () {
-            a.push(elems, "75%", "", {
+        document.getElementById("effect-tossRight").addEventListener("click", function () {
+            a.toss(elems, "right", "", "", {
                 "value": "1000ms",
                 "randomness": "0%",
                 "offset": "150ms"
             });
         }, false);
 
-        document.getElementById("effect-fadeIn").addEventListener("click", function () {
-            a.fade(elems, "in", {
-                "value": "2000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            });
-        }, false);
-
-        document.getElementById("effect-fadeOut").addEventListener("click", function () {
-            a.fade(elems, "out", {
-                "value": "2000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            });
-        }, false);
-
-        document.getElementById("effect-drain").addEventListener("click", function () {
-            a.drain(elems, "", {
-                "value": "3000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            });
-        }, false);
-
-        document.getElementById("effect-phantomZone").addEventListener("click", function () {
-            a.phantomZone(elems, "", "", {
-                "value": "4000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            });
-
-        }, false);
-
-        document.getElementById("effect-pageFlipLeft").addEventListener("click", function () {
-            a.pageFlip(elems, "left", "", {
+        document.getElementById("effect-tossUp").addEventListener("click", function () {
+            a.toss(elems, "up", "", "", {
                 "value": "1000ms",
                 "randomness": "0%",
                 "offset": "150ms"
             });
         }, false);
 
-        document.getElementById("effect-pageFlipRight").addEventListener("click", function () {
-            a.pageFlip(elems, "right", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            });
-        }, false);
-
-        document.getElementById("effect-pageFlipUp").addEventListener("click", function () {
-            a.pageFlip(elems, "up", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            });
-        }, false);
-
-        document.getElementById("effect-pageFlipDown").addEventListener("click", function () {
-            a.pageFlip(elems, "down", "", {
+        document.getElementById("effect-tossDown").addEventListener("click", function () {
+            a.toss(elems, "down", "", "", {
                 "value": "1000ms",
                 "randomness": "0%",
                 "offset": "150ms"
@@ -308,64 +317,23 @@
             });
         }, false);
 
-        document.getElementById("effect-raceFlag").addEventListener("click", function () {
-            a.raceFlag(elems, "", "", {
-                "value": "2000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            });
-        }, false);
-
-        document.getElementById("effect-hinge").addEventListener("click", function () {
-            a.hinge(elems, "", "", {
-                "value": "750ms",
-                "randomness": "0%",
-                "offset": "1ms"
-            });
-        }, false);
-
-        document.getElementById("effect-wobble").addEventListener("click", function () {
-            a.wobble(elems, "", {
-                "value": "150ms",
-                "randomness": "0%",
-                "offset": "1ms"
-            });
-        }, false);
-
-        document.getElementById("effect-dance").addEventListener("click", function () {
-            a.dance(elems, "", {
-                "value": "750ms",
-                "randomness": "0%",
-                "offset": "1ms"
-            });
-        }, false);
-
-        document.getElementById("effect-pendulum").addEventListener("click", function () {
-            a.pendulum(elems, "", "", {
+        document.getElementById("effect-zoomForward").addEventListener("click", function () {
+            a.zoom(elems, {from: "100%", to: "125%"}, "", {
                 "value": "1000ms",
                 "randomness": "0%",
-                "offset": "1ms"
+                "offset": "750ms"
             });
         }, false);
 
-        document.getElementById("effect-bounce").addEventListener("click", function () {
-            a.bounce(elems, "", {
+        document.getElementById("effect-zoomBackward").addEventListener("click", function () {
+            a.zoom(elems, {from: "100%", to: "75%"}, "", {
                 "value": "1000ms",
                 "randomness": "0%",
-                "offset": "1ms"
+                "offset": "750ms"
             });
         }, false);
 
-        document.getElementById("effect-bounce-delay").addEventListener("click", function () {
-            a.bounce(elems, "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "1ms"
-            }, "", {
-                "value": "2500ms",
-                "offset": "50ms"
-            });
-        }, false);
+        //---[ Custom ]-------------------------------------------------------
 
         document.getElementById("effect-custom").addEventListener("click", function () {
             a.cheshire({
@@ -391,6 +359,60 @@
                 "perspective": "1000",
                 "perspectiveOrigin": "center",
                 "backfaceVisibility": "visible"
+            });
+        }, false);
+
+        //---[ Continuous ]---------------------------------------------------
+
+        document.getElementById("effect-bounce").addEventListener("click", function () {
+            a.bounce(elems, "", {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "1ms"
+            });
+        }, false);
+
+        document.getElementById("effect-bounce-delay").addEventListener("click", function () {
+            a.bounce(elems, "", {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "1ms"
+            }, "", {
+                "value": "2500ms",
+                "randomness": "10%",
+                "offset": "250ms"
+            });
+        }, false);
+
+        document.getElementById("effect-dance").addEventListener("click", function () {
+            a.dance(elems, "", {
+                "value": "750ms",
+                "randomness": "0%",
+                "offset": "1ms"
+            });
+        }, false);
+
+        document.getElementById("effect-hinge").addEventListener("click", function () {
+            a.hinge(elems, "", "", {
+                "value": "750ms",
+                "randomness": "0%",
+                "offset": "1ms"
+            });
+        }, false);
+
+        document.getElementById("effect-pendulum").addEventListener("click", function () {
+            a.pendulum(elems, "", "", {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "1ms"
+            });
+        }, false);
+
+        document.getElementById("effect-wobble").addEventListener("click", function () {
+            a.wobble(elems, "", {
+                "value": "150ms",
+                "randomness": "0%",
+                "offset": "1ms"
             });
         }, false);
         </script>

@@ -150,14 +150,13 @@
         <script type="text/javascript">
         //console.log(document.getElementById("track1").clientWidth);
 
-if (!Number.prototype.roundTo) {
-    Number.prototype.roundTo = function (precision) {
-        var power = Math.pow(10, precision || 0);
-        //return String(Math.round(this * power) / power);
-        return (Math.round(this * power) / power);
-    };
-}
-
+        if (!Number.prototype.roundTo) {
+            Number.prototype.roundTo = function (precision) {
+                var power = Math.pow(10, precision || 0);
+                //return String(Math.round(this * power) / power);
+                return (Math.round(this * power) / power);
+            };
+        }
 
         function generate (params) {
             var i = 100,
@@ -170,11 +169,11 @@ if (!Number.prototype.roundTo) {
                 cnt = 0,
                 css = "";
 /*
-    var date = new Date();
-    var time = date.getTime();
+            var date = new Date();
+            var time = date.getTime();
 
-    sx = Math.sin(time / 200) * 0.1 + 0.9;
-    sy = -1 * Math.sin(time / 200) * 0.1 + 0.9;
+            sx = Math.sin(time / 200) * 0.1 + 0.9;
+            sy = -1 * Math.sin(time / 200) * 0.1 + 0.9;
 */
             css = "@-webkit-keyframes aliceSquishLeft {" + "\n";
 

@@ -37,7 +37,6 @@
                     <h1 class="seo">AliceJS Demos</h1>
 
                     <!-- AliceJS Logo (CSS Sprites) -->
-
                     <div id="logo">
                         <div>
                             <div id="logo-alice-img"></div>
@@ -57,7 +56,6 @@
                     <div style="clear: both;"></div>
 
                     <!-- Overview -->
-
                     <p><b><a href="../index.html">AliceJS</a></b> <i>(<u>A</u> <u>L</u>ightweight <u>I</u>ndependent <u>C</u>SS <u>E</u>ngine)</i> is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.</p>
                 </div>
 
@@ -69,12 +67,25 @@
                 <a name="bounce"></a>
                 <div class="card">
                     <div id="my_bounce" class="icon">
-                        <a href="fx/bounce.html"><img src="../images/rabbit.png" alt="Bounce" title="Bounce"></a>
+                        <img src="../images/rabbit.png" alt="Bounce" title="Bounce">
                         <span>Bounce</span>
                     </div>
-                    <p><a href="fx/bounce.html">Bounce</a> - The "bounce" effect simulates the bouncing of an object from a top view including a shadow.</p>
+                    <p>Bounce - The "bounce" effect simulates the bouncing of an object from a top view including a shadow.</p>
                     <div class="code">
-                        <pre class="prettyprint lang-js linenums">
+                        <pre class="prettyprint lang-js">
+/**
+ * [bounce description]
+ * @param  {[type]} elems     [description]
+ * @param  {[type]} scale     [description]
+ * @param  {[type]} duration  [description]
+ * @param  {[type]} timing    [description]
+ * @param  {[type]} delay     [description]
+ * @param  {[type]} iteration [description]
+ * @param  {[type]} direction [description]
+ * @param  {[type]} playstate [description]
+ * @return {[type]}
+ */
+a.bounce("my_bounce", 125, "750ms", "easeOutSine", "0ms", "infinite", "alternate", "running");
                         </pre>
                     </div>
                 </div>
@@ -84,12 +95,25 @@
                 <a name="dance"></a>
                 <div class="card">
                     <div id="my_dance" class="icon">
-                        <a href="fx/dance.html"><img src="../images/rabbit.png" alt="Dance" title="Dance"></a>
+                        <img src="../images/rabbit.png" alt="Dance" title="Dance">
                         <span>Dance</span>
                     </div>
-                    <p><a href="fx/dance.html">Dance</a> - The "dance" effect...</p>
+                    <p>Dance - The "dance" effect...</p>
                     <div class="code">
-                        <pre class="prettyprint lang-js linenums">
+                        <pre class="prettyprint lang-js">
+/**
+ * [dance description]
+ * @param  {[type]} elems     [description]
+ * @param  {[type]} rotate    [description]
+ * @param  {[type]} duration  [description]
+ * @param  {[type]} timing    [description]
+ * @param  {[type]} delay     [description]
+ * @param  {[type]} iteration [description]
+ * @param  {[type]} direction [description]
+ * @param  {[type]} playstate [description]
+ * @return {[type]}
+ */
+a.dance("my_dance", 45, "750ms", "easeInOutBack", "0ms", "infinite", "alternate", "running");
                         </pre>
                     </div>
                 </div>
@@ -99,12 +123,26 @@
                 <a name="drain"></a>
                 <div class="card">
                     <div id="my_drain" class="icon">
-                        <a href="fx/drain.html"><img src="../images/rabbit.png" alt="Drain" title="Drain"></a>
+                        <img src="../images/rabbit.png" alt="Drain" title="Drain">
                         <span>Drain</span>
                     </div>
-                    <p><a href="fx/drain.html">Drain</a> - The "drain" effect...</p>
+                    <p>Drain - The "drain" effect...</p>
                     <div class="code">
-                        <pre class="prettyprint lang-js linenums">
+                        <pre class="prettyprint lang-js">
+/**
+ * [drain description]
+ * @param  {[type]} elems     [description]
+ * @param  {[type]} fade      [description]
+ * @param  {[type]} rotate    [description]
+ * @param  {[type]} duration  [description]
+ * @param  {[type]} timing    [description]
+ * @param  {[type]} delay     [description]
+ * @param  {[type]} iteration [description]
+ * @param  {[type]} direction [description]
+ * @param  {[type]} playstate [description]
+ * @return {[type]}
+ */
+a.drain("my_drain", "out", -2880, "4500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
                         </pre>
                     </div>
                 </div>
@@ -113,13 +151,26 @@
                 <!-- Fade (in) -->
                 <a name="fadeIn"></a>
                 <div class="card">
-                    <div id="my_fadeIn" class="icon">
-                        <a href="fx/fade.html"><img src="../images/rabbit.png" alt="Fade (in)" title="Fade (in)"></a>
+                    <div id="my_fade" class="icon">
+                        <img src="../images/rabbit.png" alt="Fade (in)" title="Fade (in)">
                         <span>Fade (in)</span>
                     </div>
-                    <p><a href="fx/fade.html">Fade (in)</a> - The "fade (in)" effect...</p>
+                    <p>Fade (in) - The "fade (in)" effect...</p>
                     <div class="code">
-                        <pre class="prettyprint lang-js linenums">
+                        <pre class="prettyprint lang-js">
+/**
+ * [fade description]
+ * @param  {[type]} elems     [description]
+ * @param  {[type]} fade      [description]
+ * @param  {[type]} duration  [description]
+ * @param  {[type]} timing    [description]
+ * @param  {[type]} delay     [description]
+ * @param  {[type]} iteration [description]
+ * @param  {[type]} direction [description]
+ * @param  {[type]} playstate [description]
+ * @return {[type]}
+ */
+a.fade("my_fade", "in", "4500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
                         </pre>
                     </div>
                 </div>
@@ -129,12 +180,26 @@
                 <a name="hinge"></a>
                 <div class="card">
                     <div id="my_hinge" class="icon">
-                        <a href="fx/hinge.html"><img src="../images/rabbit.png" alt="Hinge" title="Hinge"></a>
+                        <img src="../images/rabbit.png" alt="Hinge" title="Hinge">
                         <span>Hinge</span>
                     </div>
-                    <p><a href="fx/hinge.html">Hinge</a> - The "hinge" effect...</p>
+                    <p>Hinge - The "hinge" effect...</p>
                     <div class="code">
-                        <pre class="prettyprint lang-js linenums">
+                        <pre class="prettyprint lang-js">
+/**
+ * [hinge description]
+ * @param  {[type]} elems     [description]
+ * @param  {[type]} rotate    [description]
+ * @param  {[type]} overshoot [description]
+ * @param  {[type]} duration  [description]
+ * @param  {[type]} timing    [description]
+ * @param  {[type]} delay     [description]
+ * @param  {[type]} iteration [description]
+ * @param  {[type]} direction [description]
+ * @param  {[type]} playstate [description]
+ * @return {[type]}
+ */
+a.hinge("my_hinge", 25, 0, "1000ms", "linear", "0ms", "infinite", "alternate", "running");
                         </pre>
                     </div>
                 </div>
@@ -143,13 +208,27 @@
                 <!-- Page Flip (left) -->
                 <a name="pageFlipLeft"></a>
                 <div class="card">
-                    <div id="my_pageFlipLeft" class="icon">
-                        <a href="fx/pageFlip.html"><img src="../images/rabbit.png" alt="Page Flip (left)" title="Page Flip (left)"></a>
+                    <div id="my_pageFlip" class="icon">
+                        <img src="../images/rabbit.png" alt="Page Flip (left)" title="Page Flip (left)">
                         <span>Page Flip (left)</span>
                     </div>
-                    <p><a href="fx/pageFlip.html">Page Flip (left)</a> - The "pageFlip (left)" effect...</p>
+                    <p>Page Flip (left) - The "pageFlip (left)" effect...</p>
                     <div class="code">
-                        <pre class="prettyprint lang-js linenums">
+                        <pre class="prettyprint lang-js">
+/**
+ * [pageFlip description]
+ * @param  {[type]} elems     [description]
+ * @param  {[type]} flip      [description]
+ * @param  {[type]} overshoot [description]
+ * @param  {[type]} duration  [description]
+ * @param  {[type]} timing    [description]
+ * @param  {[type]} delay     [description]
+ * @param  {[type]} iteration [description]
+ * @param  {[type]} direction [description]
+ * @param  {[type]} playstate [description]
+ * @return {[type]}
+ */
+a.pageFlip("my_pageFlip", "left", 0, "2500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
                         </pre>
                     </div>
                 </div>
@@ -159,12 +238,26 @@
                 <a name="pendulum"></a>
                 <div class="card">
                     <div id="my_pendulum" class="icon">
-                        <a href="fx/pendulum.html"><img src="../images/rabbit.png" alt="Pendulum" title="Pendulum"></a>
+                        <img src="../images/rabbit.png" alt="Pendulum" title="Pendulum">
                         <span>Pendulum</span>
                     </div>
-                    <p><a href="fx/pendulum.html">Pendulum</a> - The "pendulum" effect...</p>
+                    <p>Pendulum - The "pendulum" effect...</p>
                     <div class="code">
-                        <pre class="prettyprint lang-js linenums">
+                        <pre class="prettyprint lang-js">
+/**
+ * [pendulum description]
+ * @param  {[type]} elems     [description]
+ * @param  {[type]} rotate    [description]
+ * @param  {[type]} overshoot [description]
+ * @param  {[type]} duration  [description]
+ * @param  {[type]} timing    [description]
+ * @param  {[type]} delay     [description]
+ * @param  {[type]} iteration [description]
+ * @param  {[type]} direction [description]
+ * @param  {[type]} playstate [description]
+ * @return {[type]}
+ */
+a.pendulum("my_pendulum", 45, 0, "1000ms", "ease-in-out", "0ms", "infinite", "alternate", "running");
                         </pre>
                     </div>
                 </div>
@@ -174,12 +267,27 @@
                 <a name="phantomZone"></a>
                 <div class="card">
                     <div id="my_phantomZone" class="icon">
-                        <a href="fx/phantomZone.html"><img src="../images/rabbit.png" alt="Phantom Zone" title="Phantom Zone"></a>
+                        <img src="../images/rabbit.png" alt="Phantom Zone" title="Phantom Zone">
                         <span>Phantom Zone</span>
                     </div>
-                    <p><a href="fx/phantomZone.html">Phantom Zone</a> - The "phantomZone" effect...</p>
+                    <p>Phantom Zone - The "phantomZone" effect...</p>
                     <div class="code">
-                        <pre class="prettyprint lang-js linenums">
+                        <pre class="prettyprint lang-js">
+/**
+ * [phantomZone description]
+ * @param  {[type]} elems     [description]
+ * @param  {[type]} fade      [description]
+ * @param  {[type]} rotate    [description]
+ * @param  {[type]} flip      [description]
+ * @param  {[type]} duration  [description]
+ * @param  {[type]} timing    [description]
+ * @param  {[type]} delay     [description]
+ * @param  {[type]} iteration [description]
+ * @param  {[type]} direction [description]
+ * @param  {[type]} playstate [description]
+ * @return {[type]}
+ */
+a.phantomZone("my_phantomZone", "out", -720, "left", "5000ms", "ease", "0ms", "infinite", "normal", "running");
                         </pre>
                     </div>
                 </div>
@@ -189,12 +297,26 @@
                 <a name="raceFlag"></a>
                 <div class="card">
                     <div id="my_raceFlag" class="icon">
-                        <a href="fx/raceFlag.html"><img src="../images/rabbit.png" alt="Race Flag" title="Race Flag"></a>
+                        <img src="../images/rabbit.png" alt="Race Flag" title="Race Flag">
                         <span>Race Flag</span>
                     </div>
-                    <p><a href="fx/raceFlag.html">Race Flag</a> - The "raceFlag" effect...</p>
+                    <p>Race Flag - The "raceFlag" effect...</p>
                     <div class="code">
-                        <pre class="prettyprint lang-js linenums">
+                        <pre class="prettyprint lang-js">
+/**
+ * [raceFlag description]
+ * @param  {[type]} elems             [description]
+ * @param  {[type]} rotate            [description]
+ * @param  {[type]} perspectiveOrigin [description]
+ * @param  {[type]} duration          [description]
+ * @param  {[type]} timing            [description]
+ * @param  {[type]} delay             [description]
+ * @param  {[type]} iteration         [description]
+ * @param  {[type]} direction         [description]
+ * @param  {[type]} playstate         [description]
+ * @return {[type]}
+ */
+a.raceFlag("my_raceFlag", -720, "top-right", "3000ms", "ease", "0ms", "infinite", "normal", "running");
                         </pre>
                     </div>
                 </div>
@@ -203,13 +325,27 @@
                 <!-- Slide (left) -->
                 <a name="slideLeft"></a>
                 <div class="card">
-                    <div id="my_slideLeft" class="icon">
-                        <a href="fx/slide.html"><img src="../images/rabbit.png" alt="Slide (left)" title="Slide (left)"></a>
+                    <div id="my_slide" class="icon">
+                        <img src="../images/rabbit.png" alt="Slide (left)" title="Slide (left)">
                         <span>Slide (left)</span>
                     </div>
-                    <p><a href="fx/slide.html">Slide (left)</a> - The "slide (left)" effect...</p>
+                    <p>Slide (left) - The "slide (left)" effect...</p>
                     <div class="code">
-                        <pre class="prettyprint lang-js linenums">
+                        <pre class="prettyprint lang-js">
+/**
+ * [slide description]
+ * @param  {[type]} elems     [description]
+ * @param  {[type]} move      [description]
+ * @param  {[type]} overshoot [description]
+ * @param  {[type]} duration  [description]
+ * @param  {[type]} timing    [description]
+ * @param  {[type]} delay     [description]
+ * @param  {[type]} iteration [description]
+ * @param  {[type]} direction [description]
+ * @param  {[type]} playstate [description]
+ * @return {[type]}
+ */
+a.slide("my_slide", "left", 0, "3000ms", "ease", "0ms", "infinite", "alternate", "running");
                         </pre>
                     </div>
                 </div>
@@ -218,13 +354,26 @@
                 <!-- Spin (left) -->
                 <a name="spinLeft"></a>
                 <div class="card">
-                    <div id="my_spinLeft" class="icon">
-                        <a href="fx/spin.html"><img src="../images/rabbit.png" alt="Spin (left)" title="Spin (left)"></a>
+                    <div id="my_spin" class="icon">
+                        <img src="../images/rabbit.png" alt="Spin (left)" title="Spin (left)">
                         <span>Spin (left)</span>
                     </div>
-                    <p><a href="fx/spin.html">Spin (left)</a> - The "spin (left)" effect...</p>
+                    <p>Spin (left) - The "spin (left)" effect...</p>
                     <div class="code">
-                        <pre class="prettyprint lang-js linenums">
+                        <pre class="prettyprint lang-js">
+/**
+ * [spin description]
+ * @param  {[type]} elems     [description]
+ * @param  {[type]} flip      [description]
+ * @param  {[type]} overshoot [description]
+ * @param  {[type]} duration  [description]
+ * @param  {[type]} timing    [description]
+ * @param  {[type]} delay     [description]
+ * @param  {[type]} iteration [description]
+ * @param  {[type]} playstate [description]
+ * @return {[type]}
+ */
+a.spin("my_spin", "left", 0, "3000ms", "ease", "0ms", "infinite", "normal", "running");
                         </pre>
                     </div>
                 </div>
@@ -233,13 +382,28 @@
                 <!-- Toss (left) -->
                 <a name="tossLeft"></a>
                 <div class="card">
-                    <div id="my_tossLeft" class="icon">
+                    <div id="my_toss" class="icon">
                         <a href="fx/toss.html"><img src="../images/rabbit.png" alt="Toss (left)" title="Toss (left)"></a>
                         <span>Toss (left)</span>
                     </div>
                     <p><a href="fx/toss.html">Toss (left)</a> - The "toss (left)" effect...</p>
                     <div class="code">
-                        <pre class="prettyprint lang-js linenums">
+                        <pre class="prettyprint lang-js">
+/**
+ * [toss description]
+ * @param  {[type]} elems             [description]
+ * @param  {[type]} move              [description]
+ * @param  {[type]} overshoot         [description]
+ * @param  {[type]} perspectiveOrigin [description]
+ * @param  {[type]} duration          [description]
+ * @param  {[type]} timing            [description]
+ * @param  {[type]} delay             [description]
+ * @param  {[type]} iteration         [description]
+ * @param  {[type]} direction         [description]
+ * @param  {[type]} playstate         [description]
+ * @return {[type]}
+ */
+a.toss("my_toss", "left", 0, "center", "2500ms", "ease", "0ms", "infinite", "alternate", "running");
                         </pre>
                     </div>
                 </div>
@@ -248,13 +412,26 @@
                 <!-- Twirl (from left) -->
                 <a name="twirlFromLeft"></a>
                 <div class="card">
-                    <div id="my_twirlFromLeft" class="icon">
-                        <a href="fx/twirlFrom.html"><img src="../images/rabbit.png" alt="Twirl (from left)" title="Twirl (from left)"></a>
+                    <div id="my_twirl" class="icon">
+                        <img src="../images/rabbit.png" alt="Twirl (from left)" title="Twirl (from left)">
                         <span>Twirl (from left)</span>
                     </div>
-                    <p><a href="fx/twirlFrom.html">Twirl (from left)</a> - The "twirl (from left)" effect...</p>
+                    <p>Twirl (from left) - The "twirl (from left)" effect...</p>
                     <div class="code">
-                        <pre class="prettyprint lang-js linenums">
+                        <pre class="prettyprint lang-js">
+/**
+ * [twirl description]
+ * @param  {[type]} elems     [description]
+ * @param  {[type]} flip      [description]
+ * @param  {[type]} duration  [description]
+ * @param  {[type]} timing    [description]
+ * @param  {[type]} delay     [description]
+ * @param  {[type]} iteration [description]
+ * @param  {[type]} direction [description]
+ * @param  {[type]} playstate [description]
+ * @return {[type]}
+ */
+a.twirl("my_twirl", "left", "3000ms", "ease", "0ms", "infinite", "normal", "running");
                         </pre>
                     </div>
                 </div>
@@ -269,7 +446,19 @@
                     </div>
                     <p><a href="fx/wobble.html">Wobble</a> - The "wobble" effect...</p>
                     <div class="code">
-                        <pre class="prettyprint lang-js linenums">
+                        <pre class="prettyprint lang-js">
+/**
+ * [wobble description]
+ * @param  {[type]} elems     [description]
+ * @param  {[type]} rotate    [description]
+ * @param  {[type]} duration  [description]
+ * @param  {[type]} timing    [description]
+ * @param  {[type]} delay     [description]
+ * @param  {[type]} iteration [description]
+ * @param  {[type]} playstate [description]
+ * @return {[type]}
+ */
+a.wobble("my_wobble", 5, "200ms", "linear", "0ms", "infinite", "alternate", "running");
                         </pre>
                     </div>
                 </div>
@@ -279,12 +468,28 @@
                 <a name="zoom"></a>
                 <div class="card">
                     <div id="my_zoom" class="icon">
-                        <a href="fx/zoom.html"><img src="../images/rabbit.png" alt="Zoom" title="Zoom"></a>
+                        <img src="../images/rabbit.png" alt="Zoom" title="Zoom">
                         <span>Zoom</span>
                     </div>
-                    <p><a href="fx/zoom.html">Zoom</a> - The "zoom" effect...</p>
+                    <p>Zoom - The "zoom" effect...</p>
                     <div class="code">
-                        <pre class="prettyprint lang-js linenums">
+                        <pre class="prettyprint lang-js">
+/**
+ * [zoom description]
+ * @param  {[type]} elems     [description]
+ * @param  {[type]} scale     [description]
+ * @param  {[type]} move      [description]
+ * @param  {[type]} duration  [description]
+ * @param  {[type]} timing    [description]
+ * @param  {[type]} delay     [description]
+ * @param  {[type]} iteration [description]
+ * @param  {[type]} direction [description]
+ * @param  {[type]} playstate [description]
+ * @return {[type]}
+ */
+a.zoom("my_zoom", {
+    from: "1%", to: "125%"
+}, "none", "5000ms", "ease", "0ms", "infinite", "normal", "running");
                         </pre>
                     </div>
                 </div>
@@ -303,23 +508,11 @@
                 </ul>
             </div>
         </div>
-<!--
-        <pre class="prettyprint linenums">
-            <code class="language-css">
--webkit-animation-timing-function: ease-in;
-            </code>
-        </pre>
--->
+
         <div class="fineprint"><p>Copyright &copy; 2011-2012 Research In Motion Limited. &bull; <a href="../license.txt">License</a> &bull; <a href="../credits.html">Credits</a></p></div>
 
         <!-- Syntax Highlighting -->
-<!--
-        <link rel="stylesheet" type="text/css" href="../libs/prettify/prettify.css">
-        <link rel="stylesheet" type="text/css" href="../libs/prettify/themes/sons-of-obsidian.css">
-        <link rel="stylesheet" type="text/css" href="../libs/prettify/themes/desert.css">
         <link rel="stylesheet" type="text/css" href="../libs/prettify/themes/sunburst.css">
--->
-        <link rel="stylesheet" type="text/css" href="../libs/prettify/themes/sons-of-obsidian.css">
         <script type="text/javascript" src="../libs/prettify/prettify.js"></script>
         <script type="text/javascript" src="../libs/prettify/lang-css.js"></script>
 
@@ -336,85 +529,41 @@
         prettyPrint();
         sniffer.init();
 
-        var a = alice.init();
-
         document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
 
-        a.bounce("my_bounce");
-        //a.bounce("my_bounce", "200%");
-        //a.bounce("my_bounce", "75%");
+        var a = alice.init();
 
-        a.dance("my_dance");
-        //a.dance("my_dance", "45%", "750ms");
-        //a.dance("my_dance", "25%");
-        //a.dance("my_dance", "25%", "2000ms", "ease-in-out", "3000ms", "infinite", "alternate");
+        a.bounce("my_bounce", 125, "750ms", "easeOutSine", "0ms", "infinite", "alternate", "running");
 
-        //a.drain("my_drain");
-        a.drain("my_drain", "", "", "", "", "", "infinite", "");
+        a.dance("my_dance", 45, "750ms", "easeInOutBack", "0ms", "infinite", "alternate", "running");
 
-        //a.fade("my_fadeIn", "in");
-        a.fade("my_fadeIn", "in", "", "", "", "infinite", "");
-        //a.fade("my_fadeIn", "out", "", "", "", "infinite", "");
+        a.drain("my_drain", "out", -2880, "4500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
 
-        a.hinge("my_hinge");
-        //a.hinge("my_hinge", "90");
-        //a.hinge("my_hinge", "", "10", "", "linear");
+        a.fade("my_fade", "in", "4500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
 
-        a.pageFlip("my_pageFlipLeft", "left", "", "", "", "", "infinite", "");
-        //a.pageFlip("my_pageFlipLeft", "right", "", "", "", "", "infinite", "");
-        //a.pageFlip("my_pageFlipLeft", "up", "10", "", "", "", "infinite", "");
-        //a.pageFlip("my_pageFlipLeft", "down", "10", "", "", "", "infinite", "");
+        a.hinge("my_hinge", 25, 0, "1000ms", "linear", "0ms", "infinite", "alternate", "running");
 
-        a.pendulum("my_pendulum");
-        //a.pendulum("my_pendulum", "90");
-        //a.pendulum("my_pendulum", "", "10", "", "linear");
+        a.pageFlip("my_pageFlip", "left", 0, "2500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
 
-        //a.phantomZone("my_phantomZone");
-        //a.phantomZone("my_phantomZone", "", -720, "left", "20s");
-        //a.phantomZone("my_phantomZone", "", 720, "left", "20s");
-        //a.phantomZone("my_phantomZone", "", 720, "right", "20s");
-        a.phantomZone("my_phantomZone", "", "", "", "", "", "", "infinite", "");
+        a.pendulum("my_pendulum", 45, 0, "1000ms", "ease-in-out", "0ms", "infinite", "alternate", "running");
 
-        //a.raceFlag("my_raceFlag");
-        a.raceFlag("my_raceFlag", "", "", "", "", "", "infinite");
-        //a.raceFlag("my_raceFlag", 720, "left");
+        a.phantomZone("my_phantomZone", "out", -720, "left", "5000ms", "ease", "0ms", "infinite", "normal", "running");
 
-        //a.slide("my_slideLeft", "left");
-        //a.slide("my_slideLeft", "left", "10%");
-        //a.slide("my_slideLeft", "left", "10%", "3000ms", "ease", "0ms", "1", "normal");
-        a.slide("my_slideLeft", "left", "0%", "3000ms", "ease", "0ms", "infinite", "alternate");
-        //a.slide("my_slideLeft", "right", "0%", "3000ms", "ease", "0ms", "infinite", "alternate");
-        //a.slide("my_slideLeft", "up", "0%", "3000ms", "ease", "0ms", "infinite", "alternate");
-        //a.slide("my_slideLeft", "down", "0%", "3000ms", "ease", "0ms", "infinite", "alternate");
+        a.raceFlag("my_raceFlag", -720, "top-right", "3000ms", "ease", "0ms", "infinite", "normal", "running");
 
-        //a.spin("my_spinLeft", "left");
-        //a.spin("my_spinLeft", "left", "10%");
-        //a.spin("my_spinLeft", "left", "10%", "3000ms", "ease", "0ms", "1");
-        a.spin("my_spinLeft", "left", "0%", "3000ms", "ease", "0ms", "infinite");
-        //a.spin("my_spinLeft", "right", "0%", "3000ms", "ease", "0ms", "infinite");
-        //a.spin("my_spinLeft", "up", "0%", "3000ms", "ease", "0ms", "infinite");
-        //a.spin("my_spinLeft", "down", "0%", "3000ms", "ease", "0ms", "infinite");
+        a.slide("my_slide", "left", 0, "3000ms", "ease", "0ms", "infinite", "alternate", "running");
 
-        //a.toss("my_tossLeft", "left");
-        //a.toss("my_tossLeft", "left", "10%");
-        //a.toss("my_tossLeft", "left", "10%", "", "2500ms", "ease", "0ms", "1", "normal");
-        //a.toss("my_tossLeft", "left", "0%", "", "2500ms", "ease", "0ms", "infinite", "alternate");
-        a.toss("my_tossLeft", "left", "0%", "center", "2500ms", "ease", "0ms", "infinite", "alternate");
-        //a.toss("my_tossLeft", "left", "0%", "top-right", "2500ms", "ease", "0ms", "infinite", "alternate");
-        //a.toss("my_tossLeft", "right", "0%", "", "2500ms", "ease", "0ms", "infinite", "alternate");
-        //a.toss("my_tossLeft", "up", "0%", "", "2500ms", "ease", "0ms", "infinite", "alternate");
-        //a.toss("my_tossLeft", "down", "0%", "", "2500ms", "ease", "0ms", "infinite", "alternate");
+        a.spin("my_spin", "left", 0, "3000ms", "ease", "0ms", "infinite", "normal", "running");
 
-        //a.twirl("my_twirlFromLeft");
-        a.twirl("my_twirlFromLeft", "", "", "", "", "infinite");
-        //a.twirl("my_twirlFromLeft", "right");
-        //a.twirl("my_twirlFromLeft", "right", "5000", "", "", "infinite");
+        a.toss("my_toss", "left", 0, "center", "2500ms", "ease", "0ms", "infinite", "alternate", "running");
 
-        a.wobble("my_wobble");
+        a.twirl("my_twirl", "left", "3000ms", "ease", "0ms", "infinite", "normal", "running");
 
-        //a.zoom("my_zoom");
-        //a.zoom("my_zoom", {from: "100%", to: "50%"});
-        a.zoom("my_zoom", "", "", "", "", "", "infinite");
+        a.wobble("my_wobble", 5, "200ms", "linear", "0ms", "infinite", "alternate", "running");
+
+        a.zoom("my_zoom", {
+            from: "1%", to: "125%"
+        }, "none", "5000ms", "ease", "0ms", "infinite", "normal", "running");
         </script>
     </body>
 </html>

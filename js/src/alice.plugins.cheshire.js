@@ -1,6 +1,10 @@
 /*jslint devel: true, browser: true, white: true, nomen: true */
 
-/* Copyright 2011-2012 Research In Motion Limited.
+/* ===========================================================================
+ * alice.plugins.cheshire.js
+ * ===========================================================================
+ *
+ * Copyright 2011-2012 Research In Motion Limited.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,11 +17,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-
-/* ===========================================================================
- * alice.plugins.cheshire.js
- * ===========================================================================
  */
 
 /**
@@ -206,8 +205,8 @@ alice.plugins.cheshire = function (params) {
             css += "@" + alice.prefix + "keyframes " + animId + " {\n";
 
             css += "\t" + "0% {" + "\n";
-            css += "\t\t" + " " + alice.prefix + "transform:" + transformStart + ";" + "\n";
-            css += "\t\t" + " " + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
+            css += "\t\t" + alice.prefix + "transform:" + transformStart + ";" + "\n";
+            css += "\t\t" + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
             css += (fade) ? "\t\t" + "opacity: " + fadeStart + ";" + "\n" : "";
             css += (scaleTo > 1) ? "\t\t" + alice.prefix + "box-shadow: " + boxShadowStart + ";" + "\n" : "";
 
@@ -215,14 +214,14 @@ alice.plugins.cheshire = function (params) {
 
             if (overshoot !== 0) {
                 css += "\t" + overShootPercent + "% {\n";
-                css += "\t\t" + " " + alice.prefix + "transform:" + transformOver + ";" + "\n";
-                css += "\t\t" + " " + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
+                css += "\t\t" + alice.prefix + "transform:" + transformOver + ";" + "\n";
+                css += "\t\t" + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
                 css += "\t" + "}" + "\n";
             }
 
             css += "\t" + "100% {" + "\n";
-            css += "\t\t" + " " + alice.prefix + "transform:" + transformEnd + ";" + "\n";
-            css += "\t\t" + " " + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
+            css += "\t\t" + alice.prefix + "transform:" + transformEnd + ";" + "\n";
+            css += "\t\t" + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
             css += (fade) ? "\t\t" + "opacity: " + fadeEnd + ";" + "\n" : "";
             css += (scaleTo > 1) ? "\t\t" + alice.prefix + "box-shadow: " + boxShadowEnd + ";" + "\n" : "";
 
@@ -301,10 +300,21 @@ alice.plugins.cheshire = function (params) {
     "use strict";
     console.info("bounce: ", arguments);
 
+    var scaleObj = {from: "100%", to: "125%"}; // default
+    if (scale) {
+        if (typeof scale === "object") {
+            scaleObj = scale;
+        }
+        else {
+            scaleObj.to = scale;
+        }
+    }
+
     var opts = {
         elems: elems,
 
-        scale: scale || {from: "100%", to: "125%"},
+        //scale: scale || {from: "100%", to: "125%"},
+        scale: scaleObj,
 
         duration: duration || "750ms",
         timing: timing || "easeOutSine",
@@ -821,10 +831,21 @@ alice.plugins.zoom = function (elems, scale, move, duration, timing, delay, iter
     "use strict";
     console.info("zoom: ", arguments);
 
+    var scaleObj = {from: "100%", to: "125%"}; // default
+    if (scale) {
+        if (typeof scale === "object") {
+            scaleObj = scale;
+            //scaleObj = {from: alice.percentage(scale.from), to: alice.percentage(scale.to)};
+        }
+        else {
+            scaleObj.to = scale;
+        }
+    }
+
     var opts = {
         elems: elems,
 
-        scale: scale || {from: "100%", to: "150%"},
+        scale: scaleObj,
 
         move: move || "none",
 

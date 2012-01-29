@@ -35,7 +35,6 @@
                     <h1 class="seo">AliceJS - (A Lightweight Independent CSS Engine)</h1>
 
                     <!-- AliceJS Logo (CSS Sprites) -->
-
                     <div id="logo">
                         <div>
                             <div id="logo-alice-img"></div>
@@ -55,7 +54,6 @@
                     <div style="clear: both;"></div>
 
                     <!-- Overview -->
-
                     <div style="text-align: center;">
                         <a href="demos/index.html" class="big button">View Demos</a>
                     </div>
@@ -78,7 +76,7 @@
 
                     <h2>Implementation</h2>
 
-                    <pre class="prettyprint lang-html linenums">
+                    <pre class="prettyprint lang-html">
 &lt;div id=&quot;DIV1&quot;&gt;HERE IS ONE DIV&lt;/div&gt;
 &lt;img id=&quot;IMG1&quot; src=&quot;/myimg.gif&quot;&gt;
 &lt;script src=&quot;/alice/alice.core.js&quot;&gt;&lt;/script&gt;
@@ -106,12 +104,12 @@
                     <p>AliceJS is composed exclusively of JS files in a single folder, without image, CSS or any other dependencies. There is an "alice.core.js" file that contains common code and utilities, and then each effect has its own additional JS file, for example, "alice.wobble.js". The goal is to keep each animation separate which makes it easy for a developer to create a minified build with only what is needed and nothing else. AliceJS is lean and right now, the gzipped minified version containing the entire library is about 5K only!</p>
                     <p>The syntax for AliceJS is also kept minimal and in line with CSS, which we believe to be really simple and easy to grasp. For example:</p>
 
-                    <pre class="prettyprint lang-js linenums">
+                    <pre class="prettyprint lang-js">
 alice.wobble("MyDiv", 20, 5, "top-left", 1000, 10, "ease-in-out", -1);
                     </pre>
 
                     <p>This can be thought of as:</p>
-                    <pre class="prettyprint language-css linenums">
+                    <pre class="prettyprint language-css">
 #MyDiv {
     animate-wobble: 20 5% top-left 1000ms 10% ease-in-out infinite;
 }
@@ -119,7 +117,7 @@ alice.wobble("MyDiv", 20, 5, "top-left", 1000, 10, "ease-in-out", -1);
 
                     <p>Or more detailed:</p>
 
-                    <pre class="prettyprint language-css linenums">
+                    <pre class="prettyprint language-css">
 #MyDiv {
   animate-wobble-rotation: 20;
   animate-wobble-rotation-ramdomness: 5%;
@@ -163,7 +161,7 @@ alice.wobble("MyDiv", 20, 5, "top-left", 1000, 10, "ease-in-out", -1);
         <div class="fineprint"><p>Copyright &copy; 2011-2012 Research In Motion Limited. &bull; <a href="license.txt">License</a> &bull; <a href="credits.html">Credits</a></p></div>
 
         <!-- Syntax Highlighting -->
-        <link rel="stylesheet" type="text/css" href="libs/prettify/themes/sons-of-obsidian.css">
+        <link rel="stylesheet" type="text/css" href="libs/prettify/themes/sunburst.css">
         <script type="text/javascript" src="libs/prettify/prettify.js"></script>
         <script type="text/javascript" src="libs/prettify/lang-css.js"></script>
 
@@ -184,25 +182,13 @@ alice.wobble("MyDiv", 20, 5, "top-left", 1000, 10, "ease-in-out", -1);
 
             animateLogo = function () {
                 a.spin("logo-alice-img", "left", "", "3000ms");
-/*
-                a.phantomZone("logo-alice-img", "in", "", "", {
-                    "value": "3000ms",
-                    "randomness": "0%",
-                    "offset": "150ms"
-                });
-*/
+
                 a.slide(document.getElementById("logo-alice-txt-alice").children, "left", "0%", {
                     value: "1000ms",
                     randomness: "100%",
                     offset: "250ms"
                 }, "easeOutQuint");
-/*
-                a.spin(document.getElementById("logo-alice-txt-js").children, "up", "10%", {
-                    value: "3000ms",
-                    randomness: "0%",
-                    offset: "250ms"
-                });
-*/
+
                 a.toss(document.getElementById("logo-alice-txt-js").children, "left", "10%", "", {
                     value: "2000ms",
                     randomness: "50%",

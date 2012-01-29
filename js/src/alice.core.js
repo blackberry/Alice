@@ -1,7 +1,17 @@
 /*jslint devel: true, browser: true, white: true, nomen: true */
 /*global jWorkflow: false */
 
-/* Copyright 2011-2012 Research In Motion Limited.
+/* ===========================================================================
+ * AliceJS
+ *
+ * @description
+ * A Lightweight Independent CSS Engine
+ *
+ * @author Laurent Hasson (@ldhasson)
+ * @author Jim Ing (@jim_ing)
+ * ===========================================================================
+ *
+ * Copyright 2011-2012 Research In Motion Limited.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,17 +26,6 @@
  * limitations under the License.
  */
 
-/* ===========================================================================
- * AliceJS
- *
- * @description
- * A Lightweight Independent CSS Engine
- *
- * @author Laurent Hasson (@ldhasson)
- * @author Jim Ing (@jim_ing)
- * ===========================================================================
- */
-
 /**
  * @description
  *
@@ -34,18 +33,12 @@
 var alice = (function () {
     "use strict";
 
-    var
-/*
-        _private = function () {
-            //console.info("_private"); // TODO: future use?
-        },
-*/
-        core = {
+    var core = {
             id: "alice",
             name: "AliceJS",
             description: "A Lightweight Independent CSS Engine",
             version: "0.2",
-            build: "20120127-1600",
+            build: "20120128-2300",
 
             prefix: "",
             prefixJS: "",
@@ -192,134 +185,63 @@ var alice = (function () {
             coords: function (params) {
                 //console.info("coords", params);
                 if (params === undefined || params === null) {
-                    return {
-                        x: "50%",
-                        y: "50%"
-                    }; // center
+                    return {x: "50%", y: "50%"}; // center
                 }
 
                 if (typeof params === "string") {
                     switch (params) {
+                    // standard
                     case "top-left":
-                        return {
-                            x: "0%",
-                            y: "0%"
-                        };
+                        return {x: "0%", y: "0%"};
                     case "top-center":
-                        return {
-                            x: "50%",
-                            y: "0%"
-                        };
+                        return {x: "50%", y: "0%"};
                     case "top-right":
-                        return {
-                            x: "100%",
-                            y: "0%"
-                        };
+                        return {x: "100%", y: "0%"};
                     case "middle-left":
-                        return {
-                            x: "0%",
-                            y: "50%"
-                        };
+                        return {x: "0%", y: "50%"};
                     case "middle-center":
-                        return {
-                            x: "50%",
-                            y: "50%"
-                        };
+                        return {x: "50%", y: "50%"};
                     case "middle-right":
-                        return {
-                            x: "100%",
-                            y: "50%"
-                        };
+                        return {x: "100%", y: "50%"};
                     case "bottom-left":
-                        return {
-                            x: "0%",
-                            y: "100%"
-                        };
+                        return {x: "0%", y: "100%"};
                     case "bottom-center":
-                        return {
-                            x: "50%",
-                            y: "100%"
-                        };
+                        return {x: "50%", y: "100%"};
                     case "bottom-right":
-                        return {
-                            x: "100%",
-                            y: "100%"
-                        };
+                        return {x: "100%", y: "100%"};
 
                     // shortcuts
                     case "top":
-                        return {
-                            x: "50%",
-                            y: "0%"
-                        };
+                        return {x: "50%", y: "0%"};
                     case "left":
-                        return {
-                            x: "0%",
-                            y: "50%"
-                        };
+                        return {x: "0%", y: "50%"};
                     case "center":
-                        return {
-                            x: "50%",
-                            y: "50%"
-                        };
+                        return {x: "50%", y: "50%"};
                     case "right":
-                        return {
-                            x: "100%",
-                            y: "50%"
-                        };
+                        return {x: "100%", y: "50%"};
                     case "bottom":
-                        return {
-                            x: "50%",
-                            y: "100%"
-                        };
+                        return {x: "50%", y: "100%"};
 
                     // compass shortcuts
                     case "NW":
-                        return {
-                            x: "0%",
-                            y: "0%"
-                        };
+                        return {x: "0%", y: "0%"};
                     case "N":
-                        return {
-                            x: "50%",
-                            y: "0%"
-                        };
+                        return {x: "50%", y: "0%"};
                     case "NE":
-                        return {
-                            x: "100%",
-                            y: "0%"
-                        };
+                        return {x: "100%", y: "0%"};
                     case "W":
-                        return {
-                            x: "0%",
-                            y: "50%"
-                        };
+                        return {x: "0%", y: "50%"};
                     case "E":
-                        return {
-                            x: "100%",
-                            y: "50%"
-                        };
+                        return {x: "100%", y: "50%"};
                     case "SW":
-                        return {
-                            x: "0%",
-                            y: "100%"
-                        };
+                        return {x: "0%", y: "100%"};
                     case "S":
-                        return {
-                            x: "50%",
-                            y: "100%"
-                        };
+                        return {x: "50%", y: "100%"};
                     case "SE":
-                        return {
-                            x: "100%",
-                            y: "100%"
-                        };
+                        return {x: "100%", y: "100%"};
 
                     default:
-                        return {
-                            x: "50%",
-                            y: "50%"
-                        }; // center
+                        return {x: "50%", y: "50%"}; // center
                     }
                 }
 
@@ -333,219 +255,69 @@ var alice = (function () {
                 switch (params) {
                 // Standard
                 case "linear":
-                    return {
-                        p1: 0.250,
-                        p2: 0.250,
-                        p3: 0.750,
-                        p4: 0.750
-                    };
+                    return {p1: 0.250, p2: 0.250, p3: 0.750, p4: 0.750};
                 case "ease":
-                    return {
-                        p1: 0.250,
-                        p2: 0.100,
-                        p3: 0.250,
-                        p4: 1.000
-                    };
+                    return {p1: 0.250, p2: 0.100, p3: 0.250, p4: 1.000};
                 case "ease-in":
-                    return {
-                        p1: 0.420,
-                        p2: 0.000,
-                        p3: 1.000,
-                        p4: 1.000
-                    };
+                    return {p1: 0.420, p2: 0.000, p3: 1.000, p4: 1.000};
                 case "ease-out":
-                    return {
-                        p1: 0.000,
-                        p2: 0.000,
-                        p3: 0.580,
-                        p4: 1.000
-                    };
+                    return {p1: 0.000, p2: 0.000, p3: 0.580, p4: 1.000};
                 case "ease-in-out":
-                    return {
-                        p1: 0.420,
-                        p2: 0.000,
-                        p3: 0.580,
-                        p4: 1.000
-                    };
+                    return {p1: 0.420, p2: 0.000, p3: 0.580, p4: 1.000};
 
                 // Penner Equations (approximate)
                 case "easeInQuad":
-                    return {
-                        p1: 0.550,
-                        p2: 0.085,
-                        p3: 0.680,
-                        p4: 0.530
-                    };
+                    return {p1: 0.550, p2: 0.085, p3: 0.680, p4: 0.530};
                 case "easeInCubic":
-                    return {
-                        p1: 0.550,
-                        p2: 0.055,
-                        p3: 0.675,
-                        p4: 0.190
-                    };
+                    return {p1: 0.550, p2: 0.055, p3: 0.675, p4: 0.190};
                 case "easeInQuart":
-                    return {
-                        p1: 0.895,
-                        p2: 0.030,
-                        p3: 0.685,
-                        p4: 0.220
-                    };
+                    return {p1: 0.895, p2: 0.030, p3: 0.685, p4: 0.220};
                 case "easeInQuint":
-                    return {
-                        p1: 0.755,
-                        p2: 0.050,
-                        p3: 0.855,
-                        p4: 0.060
-                    };
+                    return {p1: 0.755, p2: 0.050, p3: 0.855, p4: 0.060};
                 case "easeInSine":
-                    return {
-                        p1: 0.470,
-                        p2: 0.000,
-                        p3: 0.745,
-                        p4: 0.715
-                    };
+                    return {p1: 0.470, p2: 0.000, p3: 0.745, p4: 0.715};
                 case "easeInExpo":
-                    return {
-                        p1: 0.950,
-                        p2: 0.050,
-                        p3: 0.795,
-                        p4: 0.035
-                    };
+                    return {p1: 0.950, p2: 0.050, p3: 0.795, p4: 0.035};
                 case "easeInCirc":
-                    return {
-                        p1: 0.600,
-                        p2: 0.040,
-                        p3: 0.980,
-                        p4: 0.335
-                    };
+                    return {p1: 0.600, p2: 0.040, p3: 0.980, p4: 0.335};
                 case "easeInBack":
-                    return {
-                        p1: 0.600,
-                        p2: -0.280,
-                        p3: 0.735,
-                        p4: 0.045
-                    };
+                    return {p1: 0.600, p2: -0.280, p3: 0.735, p4: 0.045};
                 case "easeOutQuad":
-                    return {
-                        p1: 0.250,
-                        p2: 0.460,
-                        p3: 0.450,
-                        p4: 0.940
-                    };
+                    return {p1: 0.250, p2: 0.460, p3: 0.450, p4: 0.940};
                 case "easeOutCubic":
-                    return {
-                        p1: 0.215,
-                        p2: 0.610,
-                        p3: 0.355,
-                        p4: 1.000
-                    };
+                    return {p1: 0.215, p2: 0.610, p3: 0.355, p4: 1.000};
                 case "easeOutQuart":
-                    return {
-                        p1: 0.165,
-                        p2: 0.840,
-                        p3: 0.440,
-                        p4: 1.000
-                    };
+                    return {p1: 0.165, p2: 0.840, p3: 0.440, p4: 1.000};
                 case "easeOutQuint":
-                    return {
-                        p1: 0.230,
-                        p2: 1.000,
-                        p3: 0.320,
-                        p4: 1.000
-                    };
+                    return {p1: 0.230, p2: 1.000, p3: 0.320, p4: 1.000};
                 case "easeOutSine":
-                    return {
-                        p1: 0.390,
-                        p2: 0.575,
-                        p3: 0.565,
-                        p4: 1.000
-                    };
+                    return {p1: 0.390, p2: 0.575, p3: 0.565, p4: 1.000};
                 case "easeOutExpo":
-                    return {
-                        p1: 0.190,
-                        p2: 1.000,
-                        p3: 0.220,
-                        p4: 1.000
-                    };
+                    return {p1: 0.190, p2: 1.000, p3: 0.220, p4: 1.000};
                 case "easeOutCirc":
-                    return {
-                        p1: 0.075,
-                        p2: 0.820,
-                        p3: 0.165,
-                        p4: 1.000
-                    };
+                    return {p1: 0.075, p2: 0.820, p3: 0.165, p4: 1.000};
                 case "easeOutBack":
-                    return {
-                        p1: 0.175,
-                        p2: 0.885,
-                        p3: 0.320,
-                        p4: 1.275
-                    };
+                    return {p1: 0.175, p2: 0.885, p3: 0.320, p4: 1.275};
                 case "easeInOutQuad":
-                    return {
-                        p1: 0.455,
-                        p2: 0.030,
-                        p3: 0.515,
-                        p4: 0.955
-                    };
+                    return {p1: 0.455, p2: 0.030, p3: 0.515, p4: 0.955};
                 case "easeInOutCubic":
-                    return {
-                        p1: 0.645,
-                        p2: 0.045,
-                        p3: 0.355,
-                        p4: 1.000
-                    };
+                    return {p1: 0.645, p2: 0.045, p3: 0.355, p4: 1.000};
                 case "easeInOutQuart":
-                    return {
-                        p1: 0.770,
-                        p2: 0.000,
-                        p3: 0.175,
-                        p4: 1.000
-                    };
+                    return {p1: 0.770, p2: 0.000, p3: 0.175, p4: 1.000};
                 case "easeInOutQuint":
-                    return {
-                        p1: 0.860,
-                        p2: 0.000,
-                        p3: 0.070,
-                        p4: 1.000
-                    };
+                    return {p1: 0.860, p2: 0.000, p3: 0.070, p4: 1.000};
                 case "easeInOutSine":
-                    return {
-                        p1: 0.445,
-                        p2: 0.050,
-                        p3: 0.550,
-                        p4: 0.950
-                    };
+                    return {p1: 0.445, p2: 0.050, p3: 0.550, p4: 0.950};
                 case "easeInOutExpo":
-                    return {
-                        p1: 1.000,
-                        p2: 0.000,
-                        p3: 0.000,
-                        p4: 1.000
-                    };
+                    return {p1: 1.000, p2: 0.000, p3: 0.000, p4: 1.000};
                 case "easeInOutCirc":
-                    return {
-                        p1: 0.785,
-                        p2: 0.135,
-                        p3: 0.150,
-                        p4: 0.860
-                    };
+                    return {p1: 0.785, p2: 0.135, p3: 0.150, p4: 0.860};
                 case "easeInOutBack":
-                    return {
-                        p1: 0.680,
-                        p2: -0.550,
-                        p3: 0.265,
-                        p4: 1.550
-                    };
+                    return {p1: 0.680, p2: -0.550, p3: 0.265, p4: 1.550};
 
                 // Custom
                 case "custom":
-                    return {
-                        p1: 0.000,
-                        p2: 0.350,
-                        p3: 0.500,
-                        p4: 1.300
-                    };
+                    return {p1: 0.000, p2: 0.350, p3: 0.500, p4: 1.300};
 
                 // Random (between 0 and 1)
                 case "random":
@@ -557,12 +329,7 @@ var alice = (function () {
                     };
 
                 default:
-                    return {
-                        p1: 0.250,
-                        p2: 0.100,
-                        p3: 0.250,
-                        p4: 1.000
-                    }; // ease
+                    return {p1: 0.250, p2: 0.100, p3: 0.250, p4: 1.000}; // ease
                 }
             },
 
@@ -574,8 +341,8 @@ var alice = (function () {
                 var pct;
 
                 if (typeof params === "string") {
-                    if (params.indexOf("%") > -1) {
-                        pct = parseInt(params, 10) / 100; // "5%"
+                    if (params.indexOf("%") > -1 || params.indexOf("°") > -1) {
+                        pct = parseInt(params, 10) / 100; // "5%" or "5°"
                     }
                     else {
                         if (params >= 1 || params <= -1) {
@@ -737,8 +504,6 @@ var alice = (function () {
              */
             init: function (params) {
                 console.info("Initializing " + this.name + " (" + this.description + ") " + this.version);
-
-                //_private();
 
                 this.vendorPrefix();
 

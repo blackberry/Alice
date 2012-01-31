@@ -115,7 +115,7 @@ legend {
     /*border: 1px dotted #CCC;*/
     float: left;
     text-align: center;
-    width: 96px;
+    min-width: 96px;
     min-height: 96px;
     font: 8pt Arial, sans-serif;
     margin: 20px;

@@ -152,7 +152,7 @@ alice.plugins.cheshire = function (params) {
             // Generate transforms
             transformStart = "";
             transformStart += (flip) ? " rotate" + flipAxis + "(" + flipStart + "deg)" : " translate" + axis + "(" + posStart + "px)";
-            transformStart += (rotate && rotate !== "0%") ? " rotate(" + rotateStart + "deg)" : "";
+            transformStart += (rotate && parseInt(rotate, 10) !== 0) ? " rotate(" + rotateStart + "deg)" : "";
             transformStart += " scale(" + scaleFrom + ")";
 
 /*
@@ -167,7 +167,7 @@ alice.plugins.cheshire = function (params) {
 
             transformOver = "";
             transformOver += (flip) ? " rotate" + flipAxis + "(" + flipOver + "deg)" : " translate" + axis + "(" + over + "px)";
-            transformOver += (rotate && rotate !== "0%") ? " rotate(" + rotateOver + "deg)" : "";
+            transformOver += (rotate && parseInt(rotate, 10) !== 0) ? " rotate(" + rotateOver + "deg)" : "";
             transformOver += (scaleTo > 1) ? " scale(" + scaleTo + ")" : "";
             transformOver += " scale(" + scaleTo + ")";
 
@@ -178,7 +178,7 @@ alice.plugins.cheshire = function (params) {
                 transformEnd += " rotate(" + alice.format.oppositeNumber(rotateStart) + "deg)";
             }
             else {
-                transformEnd += (rotate && rotate !== "0%") ? " rotate(" + rotateEnd + "deg)" : "";
+                transformEnd += (rotate && parseInt(rotate, 10) !== 0) ? " rotate(" + rotateEnd + "deg)" : "";
             }
 
             transformEnd += " scale(" + scaleTo + ")";
@@ -263,6 +263,7 @@ alice.plugins.cheshire = function (params) {
             }
 
             if (alice.debug) {
+                console.log(css);
                 console.log(elem.id, alice.prefixJS, elem.style, elem.style.cssText, elem.style[alice.prefixJS + "AnimationDuration"], elem.style[alice.prefixJS + "AnimationTimingFunction"]);
             }
         }

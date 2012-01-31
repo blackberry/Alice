@@ -158,7 +158,7 @@ alice.wobble("MyDiv", 20, 5, "top-left", 1000, 10, "ease-in-out", -1);
             </div>
         </div>
 
-        <div class="fineprint"><p>Copyright &copy; 2011-2012 Research In Motion Limited. &bull; <a href="license.txt">License</a> &bull; <a href="credits.html">Credits</a></p></div>
+        <div class="fineprint"><p>Copyright &copy; 2011-2012 Research In Motion Limited &bull; <a href="license.txt">License</a> &bull; <a href="credits.html">Credits</a></p></div>
 
         <!-- Syntax Highlighting -->
         <link rel="stylesheet" type="text/css" href="libs/prettify/themes/sunburst.css">
@@ -199,6 +199,20 @@ alice.wobble("MyDiv", 20, 5, "top-left", 1000, 10, "ease-in-out", -1);
         document.getElementById("logo").addEventListener("click", animateLogo, false);
 
         animateLogo();
+
+        // Google Analytics
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28534102-1']);
+        _gaq.push(['_setDomainName', 'github.com']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
         </script>
     </body>
 </html>

@@ -205,7 +205,7 @@
                     </td>
                     <td valign="top">
                         <fieldset>
-                            <legend>Custom Settings (for cheshire)</legend>
+                            <legend>Custom Settings</legend>
                             <table border="0" cellpadding="5" cellspacing="0">
                                 <tr>
                                     <td align="right" valign="top">Move:</td>
@@ -381,7 +381,7 @@
                         </fieldset>
 
                         <fieldset>
-                            <legend>3D Settings (for Flip)</legend>
+                            <legend>3D Settings</legend>
                             <table border="0" cellpadding="5" cellspacing="0">
                                 <tr>
                                     <td align="right" valign="top">Perspective (px):</td>
@@ -412,7 +412,11 @@
                                             <option value="bottom-left">bottom-left</option>
                                             <option value="bottom">bottom</option>
                                             <option value="bottom-right">bottom-right</option>
+                                            <option value="custom">custom</option>
                                         </select>
+                                        <br>
+                                        <input type="number" id="perspectiveOriginX-setting" step="50" min="-400" max="400" value="" size="2" placeholder="x%" style="display: none;">
+                                        <input type="number" id="perspectiveOriginY-setting" step="50" min="-400" max="400" value="" size="2" placeholder="y%" style="display: none;">
                                     </td>
                                 </tr>
                                 <tr>
@@ -446,6 +450,10 @@
         <script src="builder.js"></script>
         <script type="text/javascript">
         document.getElementById("settingsDiv").style.height = parseInt((window.innerHeight - document.getElementById("testDiv").clientHeight), 10) + "px";
+
+        document.getElementById("perspective_origin1").addEventListener("change", function () {
+            app.handleChange(this, ['perspectiveOriginX-setting', 'perspectiveOriginY-setting']);
+        }, false);
         </script>
     </body>
 </html>

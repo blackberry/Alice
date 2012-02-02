@@ -37,6 +37,7 @@ var sniffer = {
         'border-bottom-right-radius': false,
 
         // Box
+/*
         'box-align': false,
         'box-direction': false,
         'box-flex': false,
@@ -48,13 +49,16 @@ var sniffer = {
         'box-reflect': false,
         'box-shadow': false,
         'box-sizing': false,
+*/
 
         // Color
         'opacity': false,
 
         // Text
+/*
         'text-shadow': false,
         'text-stroke': false,
+*/
 
         // 2D/3D Transform
         'backface-visibility': false,
@@ -162,6 +166,9 @@ var sniffer = {
         var prop, bool;
 
         for (prop in this.properties) {
+            if (this.properties[prop] === false) {
+                console.warn('The "' + prop + '" property is not supported');
+            }
             bool = (this.properties[prop] === true) ? this.pass++ : this.fail++;
             this.total++;
         }

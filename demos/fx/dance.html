@@ -79,24 +79,67 @@
         sniffer.init();
 
         settings.insertHTML("settings", {
-            delay: "0ms",
-            duration: "750ms",
+            delay: {
+                min: 0,
+                max: 10000,
+                value: 0,
+                step: 250
+            },
+            duration: {
+                min: 50,
+                max: 5000,
+                value: 750,
+                step: 50
+            },
             timing: "easeInOutBack",
             iteration: "infinite",
             direction: "alternate",
 
             move: "none",
-            rotate: "20",
-            flip: "none",
-            fade: "none",
+            rotate: {
+                min: 0,
+                max: 720,
+                value: 20,
+                step: 1
+            },
+            flip: "",
+            fade: "",
             scaleFrom: "100%",
             scaleTo: "100%",
-            overshoot: "0%",
-            randomness: "0%",
+            overshoot: {
+                min: 0,
+                max: 100,
+                value: 0,
+                step: 1
+            },
+            randomness: {
+                min: 0,
+                max: 100,
+                value: 0,
+                step: 1
+            },
 
             perspective: "none",
             perspectiveOrigin: "center",
             backfaceVisibility: "visible"
+        }, {
+            delay: false,
+            duration: true,
+            timing: true,
+            iteration: false,
+            direction: false,
+
+            move: false,
+            rotate: true,
+            flip: false,
+            fade: false,
+            scale: false,
+            overshoot: false,
+            randomness: true,
+
+            perspective: false,
+            perspectiveOrigin: true,
+            backfaceVisibility: false
         });
 
         var a = alice.init();
@@ -137,6 +180,8 @@
                 a.cheshire(p);
             }, false);
         }
+
+        settings.animate();
         </script>
     </body>
 </html>

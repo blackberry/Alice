@@ -123,13 +123,37 @@ settings.generateOptions = function (opts, selected) {
 };
 
 /**
+ * [animate description]
+ * @return {[type]}
+ */
+settings.animate = function () {
+    document.getElementById("settings-button-start").click();
+};
+
+/**
+ * [updateValue description]
+ * @param  {[type]} srcElem  [description]
+ * @param  {[type]} targetID [description]
+ * @param  {[type]} unit     [description]
+ * @return {[type]}
+ */
+settings.updateValue = function (srcElem, targetID, unit) {
+    var val = parseInt(srcElem.value, 10);
+    val += (unit) ? unit : "";
+    document.getElementById(targetID).value = val;
+    this.animate();
+};
+
+/**
  * [insertHTML description]
  * @param  {[type]} targetID [description]
  * @param  {[type]} params   [description]
+ * @param  {[type]} show     [description]
  * @return {[type]}
  */
-settings.insertHTML = function (targetID, params) {
-    var html = '';
+settings.insertHTML = function (targetID, params, show) {
+    var html = '',
+        hidden = '';
 
     html += '<div id="settings-button">';
     html += '    <button id="settings-button-toggle" role="button">Hide Settings</button>';
@@ -139,146 +163,243 @@ settings.insertHTML = function (targetID, params) {
     html += '    <tr>';
     html += '        <td valign="top">';
     html += '            <fieldset>';
-    html += '                <legend>Animation Settings</legend>';
+    html += '                <legend>Settings</legend>';
     html += '                <table border="0" cellpadding="5" cellspacing="0">';
+
+    if (show.delay) {
+        var delayUpdate = "settings.updateValue(this, 'delay-setting')";
+
+        html += '                <tr>';
+        html += '                    <td align="right">Delay:</td>';
+        html += '                      <td>';
+        html += '                          <input type="range" id="delay-slider" min="' + params.delay.min + '" max="' + params.delay.max + '" value="' + parseInt(params.delay.value, 10) + '" step="' + params.delay.step + '" onchange="' + delayUpdate + '">';
+        html += '                          <input type="text" id="delay-setting" value="' + parseInt(params.delay.value, 10) + '" size="2">';
+        html += '                      </td>';
+        html += '                </tr>';
+    }
+    else {
+        hidden += '<input type="hidden" id="delay-setting" value="' + params.delay.value + '">';
+    }
+
+    if (show.duration) {
+        var durationUpdate = "settings.updateValue(this, 'duration-setting')";
+
+        html += '                <tr>';
+        html += '                    <td align="right">Duration:</td>';
+        html += '                      <td>';
+        html += '                          <input type="range" id="duration-slider" min="' + params.duration.min + '" max="' + params.duration.max + '" value="' + parseInt(params.duration.value, 10) + '" step="' + params.duration.step + '" onchange="' + durationUpdate + '">';
+        html += '                          <input type="text" id="duration-setting" value="' + parseInt(params.duration.value, 10) + '" size="2">';
+        html += '                      </td>';
+        html += '                </tr>';
+    }
+    else {
+        hidden += '<input type="hidden" id="duration-setting" value="' + params.delay.value + '">';
+    }
+
+    if (show.timing) {
+        html += '                <tr>';
+        html += '                    <td align="right" valign="top">Timing Function:</td>';
+        html += '                    <td>';
+        html += '                        <select id="timing-setting" onchange="settings.animate();">';
+        html += settings.generateOptions(settings.timingOpts, params.timing);
+        html += '                        </select>';
+        html += '                    </td>';
+        html += '                </tr>';
+    }
+    else {
+        hidden += '<input type="hidden" id="timing-setting" value="' + params.timing + '">';
+    }
+
+    if (show.iteration) {
+        html += '                <tr>';
+        html += '                    <td align="right">Iteration Count:</td>';
+        html += '                    <td><input type="text" id="iteration-setting" value="' + params.iteration + '" size="4" onchange="settings.animate();"></td>';
+        html += '                </tr>';
+    }
+    else {
+        hidden += '<input type="hidden" id="iteration-setting" value="' + params.iteration + '">';
+    }
+
+    if (show.direction) {
+        html += '                <tr>';
+        html += '                    <td align="right" valign="top">Direction:</td>';
+        html += '                    <td>';
+        html += '                        <select id="direction-setting" onchange="settings.animate();">';
+        html += settings.generateOptions(settings.directionOpts, params.direction);
+        html += '                        </select>';
+        html += '                    </td>';
+        html += '                </tr>';
+    }
+    else {
+        hidden += '<input type="hidden" id="direction-setting" value="' + params.direction + '">';
+    }
+
+    if (show.move) {
+        html += '                <tr>';
+        html += '                    <td align="right" valign="top">Move:</td>';
+        html += '                    <td>';
+        html += '                        <select id="move-setting" onchange="settings.animate();">';
+        html += settings.generateOptions(settings.moveOpts, params.move);
+        html += '                        </select>';
+        html += '                    </td>';
+        html += '                </tr>';
+    }
+    else {
+        hidden += '<input type="hidden" id="move-setting" value="' + params.move + '">';
+    }
+
+    if (show.rotate) {
+        var rotateUpdate = "settings.updateValue(this, 'rotate-setting')";
+
+        html += '                <tr>';
+        html += '                    <td align="right">Rotate:</td>';
+        html += '                      <td>';
+        html += '                          <input type="range" id="rotate-slider" min="' + params.rotate.min + '" max="' + params.rotate.max + '" value="' + parseInt(params.rotate.value, 10) + '" step="' + params.rotate.step + '" onchange="' + rotateUpdate + '">';
+        html += '                          <input type="text" id="rotate-setting" value="' + parseInt(params.rotate.value, 10) + '" size="2">';
+        html += '                      </td>';
+        html += '                </tr>';
+    }
+    else {
+        hidden += '<input type="hidden" id="rotate-setting" value="' + params.rotate.value + '">';
+    }
+
+    if (show.flip) {
+        html += '                <tr>';
+        html += '                    <td align="right" valign="top">Flip:</td>';
+        html += '                    <td>';
+        html += '                        <select id="flip-setting" onchange="settings.animate();">';
+        html += settings.generateOptions(settings.flipOpts, params.flip);
+        html += '                        </select>';
+        html += '                    </td>';
+        html += '                </tr>';
+    }
+    else {
+        hidden += '<input type="hidden" id="flip-setting" value="' + params.flip + '">';
+    }
+
+    if (show.fade) {
+        html += '                <tr>';
+        html += '                    <td align="right" valign="top">Fade:</td>';
+        html += '                    <td>';
+        html += '                        <select id="fade-setting" onchange="settings.animate();">';
+        html += settings.generateOptions(settings.fadeOpts, params.fade);
+        html += '                        </select>';
+        html += '                    </td>';
+        html += '                </tr>';
+    }
+    else {
+        hidden += '<input type="hidden" id="fade-setting" value="' + params.fade + '">';
+    }
+
+    if (show.scale) {
+        html += '                <tr>';
+        html += '                    <td align="right" valign="top">Scale:</td>';
+        html += '                    <td>';
+        html += '                        <select id="scaleFrom-setting" onchange="settings.animate();">';
+        html += settings.generateOptions(settings.scaleOpts, params.scaleFrom);
+        html += '                        </select>';
+        html += '                        <span>to</span>';
+        html += '                        <select id="scaleTo-setting" onchange="settings.animate();">';
+        html += settings.generateOptions(settings.scaleOpts, params.scaleTo);
+        html += '                        </select>';
+        html += '                    </td>';
+        html += '                </tr>';
+    }
+    else {
+        hidden += '<input type="hidden" id="scaleFrom-setting" value="' + params.scaleFrom + '"><input type="hidden" id="scaleTo-setting" value="' + params.scaleTo + '">';
+    }
+
+    if (show.overshoot) {
+        var overshootUpdate = "settings.updateValue(this, 'overshoot-setting')";
+
+        html += '                <tr>';
+        html += '                    <td align="right">Overshoot:</td>';
+        html += '                      <td>';
+        html += '                          <input type="range" id="overshoot-slider" min="' + params.overshoot.min + '" max="' + params.overshoot.max + '" value="' + parseInt(params.overshoot.value, 10) + '" step="' + params.overshoot.step + '" onchange="' + overshootUpdate + '">';
+        html += '                          <input type="text" id="overshoot-setting" value="' + parseInt(params.overshoot.value, 10) + '" size="2">';
+        html += '                      </td>';
+        html += '                </tr>';
+    }
+    else {
+        hidden += '<input type="hidden" id="overshoot-setting" value="' + params.overshoot.value + '">';
+    }
+
+    if (show.randomness) {
+        var randomnessUpdate = "settings.updateValue(this, 'randomness-setting')";
+
+        html += '                <tr>';
+        html += '                    <td align="right">Randomness:</td>';
+        html += '                      <td>';
+        html += '                          <input type="range" id="randomness-slider" min="' + params.randomness.min + '" max="' + params.randomness.max + '" value="' + parseInt(params.randomness.value, 10) + '" step="' + params.randomness.step + '" onchange="' + randomnessUpdate + '">';
+        html += '                          <input type="text" id="randomness-setting" value="' + parseInt(params.randomness.value, 10) + '" size="2">';
+        html += '                      </td>';
+        html += '                </tr>';
+    }
+    else {
+        hidden += '<input type="hidden" id="randomness-setting" value="' + params.randomness.value + '">';
+    }
+
+    if (show.perspective) {
+        html += '                <tr>';
+        html += '                    <td align="right" valign="top">Perspective (px):</td>';
+        html += '                    <td>';
+        html += '                        <select id="perspective-setting" onchange="settings.animate();">';
+        html += settings.generateOptions(settings.perspectiveOpts, params.perspective);
+        html += '                        </select>';
+        html += '                    </td>';
+        html += '                </tr>';
+    }
+    else {
+        hidden += '<input type="hidden" id="perspective-setting" value="' + params.perspective + '">';
+    }
+
+    if (show.perspectiveOrigin) {
+        html += '                <tr>';
+        html += '                    <td align="right" valign="top">Perspective Origin:</td>';
+        html += '                    <td>';
+        html += '                        <select id="perspectiveOrigin-setting" onchange="settings.animate();">';
+        html += settings.generateOptions(settings.perspectiveOriginOpts, params.perspectiveOrigin);
+        html += '                        </select>';
+        html += '                        <br>';
+        html += '                        <input type="number" id="perspectiveOriginX-setting" min="-1000" max="1000" value="0" step="50" size="2" placeholder="x%" style="display: none;" onchange="settings.animate();" onclick="settings.animate();">';
+        html += '                        <input type="number" id="perspectiveOriginY-setting" min="-1000" max="1000" value="0" step="50" size="2" placeholder="y%" style="display: none;" onchange="settings.animate();" onclick="settings.animate();">';
+        html += '                    </td>';
+        html += '                </tr>';
+    }
+    else {
+        hidden += '<input type="hidden" id="perspectiveOrigin-setting" value="' + params.perspectiveOrigin + '">';
+    }
+
+    if (show.backfaceVisibility) {
+        html += '                <tr>';
+        html += '                    <td align="right" valign="top">Backface Visibility:</td>';
+        html += '                    <td>';
+        html += '                        <select id="backfaceVisibility-setting" onchange="settings.animate();">';
+        html += settings.generateOptions(settings.backfaceVisibilityOpts, params.backfaceVisibility);
+        html += '                        </select>';
+        html += '                    </td>';
+        html += '                </tr>';
+    }
+    else {
+        hidden += '<input type="hidden" id="backfaceVisibility-setting" value="' + params.backfaceVisibility + '">';
+    }
+
     html += '                <tr>';
-    html += '                    <td align="right">Delay:</td>';
-    html += '                    <td><input type="text" id="delay-setting" value="' + params.delay + '" size="4" style="text-align: right;"></td>';
-    html += '                </tr>';
-    html += '                <tr>';
-    html += '                    <td align="right">Duration:</td>';
-    html += '                    <td><input type="text" id="duration-setting" value="' + params.duration + '" size="4" style="text-align: right;"></td>';
-    html += '                </tr>';
-    html += '                <tr>';
-    html += '                    <td align="right" valign="top">Timing Function:</td>';
+    html += '                    <td>&nbsp;</td>';
     html += '                    <td>';
-    html += '                        <select id="timing-setting">';
-    html += settings.generateOptions(settings.timingOpts, params.timing);
-    html += '                        </select>';
+    html += '                        <input type="button" id="settings-button-start" value="Start">';
+    html += '                        <input type="button" id="settings-button-stop" value="Stop">';
     html += '                    </td>';
     html += '                </tr>';
-    html += '                <tr>';
-    html += '                    <td align="right">Iteration Count:</td>';
-    html += '                    <td><input type="text" id="iteration-setting" value="' + params.iteration + '" size="4" style="text-align: right;"></td>';
-    html += '                </tr>';
-    html += '                <tr>';
-    html += '                    <td align="right" valign="top">Direction:</td>';
-    html += '                    <td>';
-    html += '                        <select id="direction-setting">';
-    html += settings.generateOptions(settings.directionOpts, params.direction);
-    html += '                        </select>';
-    html += '                    </td>';
-    html += '                </tr>';
-    html += '                </table>';
-    html += '            </fieldset>';
-    html += '            <div style="text-align: center;">';
-    html += '                <br>';
-    html += '                <input type="button" id="settings-button-start" value="Start">';
-    html += '                <input type="button" id="settings-button-stop" value="Stop">';
-    html += '            </div>';
-    html += '        </td>';
-    html += '        <td valign="top">';
-    html += '            <fieldset>';
-    html += '                <legend>Effect Settings</legend>';
-    html += '                <table border="0" cellpadding="5" cellspacing="0">';
-    html += '                <tr>';
-    html += '                    <td align="right" valign="top">Move:</td>';
-    html += '                    <td>';
-    html += '                        <select id="move-setting">';
-    html += settings.generateOptions(settings.moveOpts, params.move);
-    html += '                        </select>';
-    html += '                    </td>';
-    html += '                </tr>';
-    html += '                <tr>';
-    html += '                    <td align="right" valign="top">Rotate:</td>';
-    html += '                    <td>';
-    html += '                        <select id="rotate-setting">';
-    html += settings.generateOptions(settings.rotateOpts, params.rotate);
-    html += '                        </select>';
-    html += '                    </td>';
-    html += '                </tr>';
-    html += '                <tr>';
-    html += '                    <td align="right" valign="top">Flip:</td>';
-    html += '                    <td>';
-    html += '                        <select id="flip-setting">';
-    html += settings.generateOptions(settings.flipOpts, params.flip);
-    html += '                        </select>';
-    html += '                    </td>';
-    html += '                </tr>';
-    html += '                <tr>';
-    html += '                    <td align="right" valign="top">Fade:</td>';
-    html += '                    <td>';
-    html += '                        <select id="fade-setting">';
-    html += settings.generateOptions(settings.fadeOpts, params.fade);
-    html += '                        </select>';
-    html += '                    </td>';
-    html += '                </tr>';
-    html += '                <tr>';
-    html += '                    <td align="right" valign="top">Scale:</td>';
-    html += '                    <td>';
-    html += '                        <select id="scaleFrom-setting">';
-    html += settings.generateOptions(settings.scaleOpts, params.scaleFrom);
-    html += '                        </select>';
-    html += '                        <span>to</span>';
-    html += '                        <select id="scaleTo-setting">';
-    html += settings.generateOptions(settings.scaleOpts, params.scaleTo);
-    html += '                        </select>';
-    html += '                    </td>';
-    html += '                </tr>';
-    html += '                <tr>';
-    html += '                    <td align="right" valign="top">Overshoot:</td>';
-    html += '                    <td>';
-    html += '                        <select id="overshoot-setting">';
-    html += settings.generateOptions(settings.overshootOpts, params.overshoot);
-    html += '                        </select>';
-    html += '                    </td>';
-    html += '                </tr>';
-    html += '                <tr>';
-    html += '                    <td align="right" valign="top">Randomness:</td>';
-    html += '                    <td>';
-    html += '                        <select id="randomness-setting">';
-    html += settings.generateOptions(settings.randomnessOpts, params.randomness);
-    html += '                        </select>';
-    html += '                    </td>';
-    html += '                </tr>';
-    html += '                </table>';
-    html += '            </fieldset>';
-    html += '            <fieldset>';
-    html += '                <legend>3D Settings</legend>';
-    html += '                <table border="0" cellpadding="5" cellspacing="0">';
-    html += '                <tr>';
-    html += '                    <td align="right" valign="top">Perspective (px):</td>';
-    html += '                    <td>';
-    html += '                        <select id="perspective-setting">';
-    html += settings.generateOptions(settings.perspectiveOpts, params.perspective);
-    html += '                        </select>';
-    html += '                    </td>';
-    html += '                </tr>';
-    html += '                <tr>';
-    html += '                    <td align="right" valign="top">Perspective Origin:</td>';
-    html += '                    <td>';
-    html += '                        <select id="perspectiveOrigin-setting">';
-    html += settings.generateOptions(settings.perspectiveOriginOpts, params.perspectiveOrigin);
-    html += '                        </select>';
-    html += '                        <br>';
-    html += '                        <input type="number" id="perspectiveOriginX-setting" step="50" min="-400" max="400" value="" size="2" placeholder="x%" style="display: none;">';
-    html += '                        <input type="number" id="perspectiveOriginY-setting" step="50" min="-400" max="400" value="" size="2" placeholder="y%" style="display: none;">';
-    html += '                    </td>';
-    html += '                </tr>';
-    html += '                <tr>';
-    html += '                    <td align="right" valign="top">Backface Visibility:</td>';
-    html += '                    <td>';
-    html += '                        <select id="backfaceVisibility-setting">';
-    html += settings.generateOptions(settings.backfaceVisibilityOpts, params.backfaceVisibility);
-    html += '                        </select>';
-    html += '                    </td>';
-    html += '                </tr>';
+
     html += '                </table>';
     html += '            </fieldset>';
     html += '        </td>';
     html += '    </tr>';
     html += '    </table>';
     html += '</div>';
+
+    html += hidden;
 
     //console.log(html);
     if (document.getElementById(targetID)) {

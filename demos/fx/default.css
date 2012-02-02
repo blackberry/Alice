@@ -68,15 +68,21 @@
     background: -o-linear-gradient(top, #E6E6E6, gainsboro);
 }
 
-#settings-button-start, #settings-button-stop {
-    font: normal normal bold 14pt Arial, sans-serif;
-    padding: 10px;
-}
-
 #settings-content {
     padding: 10px;
     background: rgba(0, 176, 228, 0.95);
     border-radius: 10px;
+}
+
+#settings-content input, #settings-content select {
+    font: 8pt Arial, sans-serif;
+    vertical-align: middle;
+    text-align: left;
+}
+
+#settings-button-start, #settings-button-stop {
+    font: normal normal bold 12pt Arial, sans-serif;
+    padding: 5px;
 }
 
 body {

@@ -384,3 +384,14 @@ app.applyEffect = function (param) {
         }
     }
 };
+
+/**
+ *
+ */
+app.handleChange = function (elem, ids) {
+    var state;
+    for (var i = 0; i < ids.length; i++) {
+        state = (elem.value === "custom") ? "block" : "none";
+        document.getElementById(ids[i]).style.display = state;
+    }
+};

@@ -79,24 +79,67 @@
         sniffer.init();
 
         settings.insertHTML("settings", {
-            delay: "0ms",
-            duration: "4500ms",
+            delay: {
+                min: 0,
+                max: 10000,
+                value: 0,
+                step: 250
+            },
+            duration: {
+                min: 50,
+                max: 10000,
+                value: 4500,
+                step: 50
+            },
             timing: "ease-in-out",
             iteration: "1",
             direction: "normal",
 
             move: "none",
-            rotate: "-2880",
-            flip: "none",
+            rotate: {
+                min: -3600,
+                max: 3600,
+                value: -2880,
+                step: 45
+            },
+            flip: "",
             fade: "out",
             scaleFrom: "100%",
             scaleTo: "1%",
-            overshoot: "0%",
-            randomness: "0%",
+            overshoot: {
+                min: 0,
+                max: 100,
+                value: 0,
+                step: 1
+            },
+            randomness: {
+                min: 0,
+                max: 100,
+                value: 0,
+                step: 1
+            },
 
             perspective: "none",
             perspectiveOrigin: "center",
             backfaceVisibility: "visible"
+        }, {
+            delay: false,
+            duration: true,
+            timing: true,
+            iteration: false,
+            direction: false,
+
+            move: false,
+            rotate: true,
+            flip: false,
+            fade: false,
+            scale: false,
+            overshoot: false,
+            randomness: true,
+
+            perspective: false,
+            perspectiveOrigin: true,
+            backfaceVisibility: false
         });
 
         var a = alice.init();
@@ -137,6 +180,8 @@
                 a.cheshire(p);
             }, false);
         }
+
+        settings.animate();
         </script>
     </body>
 </html>

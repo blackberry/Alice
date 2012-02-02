@@ -229,13 +229,13 @@ alice.plugins.cheshire = function (params) {
 
             css += "}" + "\n";
 
-            console.log(css);
+            //console.log(css);
 
             // Insert keyframe rule
             alice.keyframeInsert(css);
 
             // Apply perspective to parent container
-            container.style[alice.prefixJS + "Perspective"] = perspective;
+            container.style[alice.prefixJS + "Perspective"] = perspective + "px";
             container.style[alice.prefixJS + "PerspectiveOrigin"] = alice.format.coords(perspectiveOrigin); // alice.coords();
 
             // Apply properties to elements
@@ -264,7 +264,8 @@ alice.plugins.cheshire = function (params) {
 
             if (alice.debug) {
                 console.log(css);
-                console.log(elem.id, alice.prefixJS, elem.style, elem.style.cssText, elem.style[alice.prefixJS + "AnimationDuration"], elem.style[alice.prefixJS + "AnimationTimingFunction"]);
+                //console.log(container.style);
+                //console.log(elem.id, alice.prefixJS, elem.style, elem.style.cssText, elem.style[alice.prefixJS + "AnimationDuration"], elem.style[alice.prefixJS + "AnimationTimingFunction"]);
             }
         }
     }

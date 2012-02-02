@@ -79,24 +79,67 @@
         sniffer.init();
 
         settings.insertHTML("settings", {
-            delay: "0ms",
-            duration: "3000ms",
+            delay: {
+                min: 0,
+                max: 10000,
+                value: 0,
+                step: 250
+            },
+            duration: {
+                min: 50,
+                max: 10000,
+                value: 3000,
+                step: 50
+            },
             timing: "ease",
             iteration: "1",
             direction: "normal",
 
             move: "left",
-            rotate: "0",
-            flip: "none",
-            fade: "none",
+            rotate: {
+                min: -720,
+                max: 720,
+                value: 0,
+                step: 1
+            },
+            flip: "",
+            fade: "",
             scaleFrom: "100%",
             scaleTo: "100%",
-            overshoot: "0%",
-            randomness: "0%",
+            overshoot: {
+                min: 0,
+                max: 100,
+                value: 0,
+                step: 1
+            },
+            randomness: {
+                min: 0,
+                max: 100,
+                value: 0,
+                step: 1
+            },
 
             perspective: "none",
             perspectiveOrigin: "center",
             backfaceVisibility: "visible"
+        }, {
+            delay: false,
+            duration: true,
+            timing: true,
+            iteration: false,
+            direction: false,
+
+            move: true,
+            rotate: false,
+            flip: false,
+            fade: false,
+            scale: false,
+            overshoot: true,
+            randomness: true,
+
+            perspective: false,
+            perspectiveOrigin: false,
+            backfaceVisibility: false
         });
 
         var a = alice.init();
@@ -137,6 +180,8 @@
                 a.cheshire(p);
             }, false);
         }
+
+        settings.animate();
         </script>
     </body>
 </html>

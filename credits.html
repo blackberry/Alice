@@ -1,5 +1,6 @@
+<!DOCTYPE html>
 <!--
-    Copyright 2011 Research In Motion Limited.
+    Copyright 2011-2012 Research In Motion Limited.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -13,7 +14,6 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -45,25 +45,9 @@
             text-align: center;
         }
         </style>
-	<!-- Start of Google Analytics code -->
-	<script type="text/javascript">
-	  
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-28534102-1']);
-	  _gaq.push(['_setDomainName', 'github.com']);
-	  _gaq.push(['_trackPageview']);
-	  
-	  (function() {
-	  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-	  
-	</script>
-	<!-- End of Google Analytics code -->
     </head>
     <body>
-        <h1><a href="demos.html"><img src="images/back_btn.png" style="vertical-align: middle; margin-right: 10px;"></a>Credits</h1>
+        <h1><a href="index.html"><img src="images/back_btn.png" style="vertical-align: middle; margin-right: 10px;"></a>Credits</h1>
 
         <div id="content"></div>
         <div>&nbsp;</div>
@@ -151,6 +135,20 @@
         html += '</table>';
 
         document.getElementById('content').innerHTML = html;
+
+        // Google Analytics
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28534102-1']);
+        _gaq.push(['_setDomainName', 'github.com']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
         </script>
     </body>
 </html>

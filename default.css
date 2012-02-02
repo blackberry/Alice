@@ -1,4 +1,8 @@
-/* Copyright 2011 Research In Motion Limited.
+/* ===========================================================================
+ * default.css
+ * ===========================================================================
+ *
+ * Copyright 2011-2012 Research In Motion Limited.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,13 +17,6 @@
  * limitations under the License.
  */
 
-/* ===========================================================================
- * default.css
- *
- * @author Jim Ing
- * ===========================================================================
- */
-
 body {
     background-color: #4E7BA1;
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -27,11 +24,65 @@ body {
     padding: 20px;
 }
 
-h1 {
+.seo {
+    border: 1px dotted #CCC;
+    display: none;
+    height: 0;
     text-indent: -9999px;
-    width: 492px;
+}
+
+/* Logo sprite */
+
+#logo-alice-img {
+    background: transparent url('images/logo_header_plain_sprite.png') no-repeat 0px 0px;
+    float: left;
+    width: 120px;
     height: 150px;
-    background: transparent url("images/logo_header_plain.png") no-repeat scroll;
+}
+
+#logo-alice-txt-a {
+    background: transparent url('images/logo_header_plain_sprite.png') no-repeat -120px 0px;
+    float: left;
+    width: 114px;
+    height: 150px;
+    margin-left: -30px;
+}
+#logo-alice-txt-l {
+    background: transparent url('images/logo_header_plain_sprite.png') no-repeat -234px 0px;
+    float: left;
+    width: 45px;
+    height: 150px;
+}
+#logo-alice-txt-i {
+    background: transparent url('images/logo_header_plain_sprite.png') no-repeat -279px 0px;
+    float: left;
+    width: 36px;
+    height: 150px;
+}
+#logo-alice-txt-c {
+    background: transparent url('images/logo_header_plain_sprite.png') no-repeat -315px 0px;
+    float: left;
+    width: 52px;
+    height: 150px;
+}
+#logo-alice-txt-e {
+    background: transparent url('images/logo_header_plain_sprite.png') no-repeat -367px 0px;
+    float: left;
+    width: 51px;
+    height: 150px;
+}
+#logo-alice-txt-j {
+    background: transparent url('images/logo_header_plain_sprite.png') no-repeat -418px 0px;
+    float: left;
+    width: 52px;
+    height: 150px;
+}
+#logo-alice-txt-s {
+    background: transparent url('images/logo_header_plain_sprite.png') no-repeat -470px 0px;
+    float: left;
+    width: 55px;
+    height: 150px;
+    margin-left: -7px;
 }
 
 a:hover {
@@ -61,7 +112,7 @@ img {
     border: 1px solid #B5B8BA;
     border-radius: 15px;
     box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.75);
-    height: 250px;
+    min-height: 250px;
 }
 
 .spacer {
@@ -71,7 +122,7 @@ img {
 .icon {
     margin: 20px;
     width: 96px;
-    height: 96px;
+    height: 116px;
     border-radius: 5px;
     text-align: center;
     float: left;

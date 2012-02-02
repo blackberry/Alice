@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--
+    Copyright 2011-2012 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <title>AliceJS Toss</title>
+        <link href="../../favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="default.css">
+        <style type="text/css">
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1><a href="../../index.html">AliceJS</a> &gt; <a href="../index.html#toss">Demos</a> &gt; Toss</h1>
+            <p></p>
+        </div>
+
+        <div id="settings">
+        </div>
+
+        <div class="table">
+            <div id="cards" class="cards">
+                <figure class="card"><img src="../common/images/cards/10_clubs.png"><figcaption>Ten of Clubs</figcaption></figure>
+                <figure class="card"><img src="../common/images/cards/10_diamonds.png"><figcaption>Ten of Diamonds</figcaption></figure>
+                <figure class="card"><img src="../common/images/cards/10_hearts.png"><figcaption>Ten of Hearts</figcaption></figure>
+                <figure class="card"><img src="../common/images/cards/10_spades.png"><figcaption>Ten of Spades</figcaption></figure>
+
+                <figure class="card"><img src="../common/images/cards/jack_clubs.png"><figcaption>Jack of Clubs</figcaption></figure>
+                <figure class="card"><img src="../common/images/cards/jack_diamonds.png"><figcaption>Jack of Diamonds</figcaption></figure>
+                <figure class="card"><img src="../common/images/cards/jack_hearts.png"><figcaption>Jack of Hearts</figcaption></figure>
+                <figure class="card"><img src="../common/images/cards/jack_spades.png"><figcaption>Jack of Spades</figcaption></figure>
+
+                <figure class="card"><img src="../common/images/cards/queen_clubs.png"><figcaption>Queen of Clubs</figcaption></figure>
+                <figure class="card"><img src="../common/images/cards/queen_diamonds.png"><figcaption>Queen of Diamonds</figcaption></figure>
+                <figure class="card"><img src="../common/images/cards/queen_hearts.png"><figcaption>Queen of Hearts</figcaption></figure>
+                <figure class="card"><img src="../common/images/cards/queen_spades.png"><figcaption>Queen of Spades</figcaption></figure>
+
+                <figure class="card"><img src="../common/images/cards/king_clubs.png"><figcaption>King of Clubs</figcaption></figure>
+                <figure class="card"><img src="../common/images/cards/king_diamonds.png"><figcaption>King of Diamonds</figcaption></figure>
+                <figure class="card"><img src="../common/images/cards/king_hearts.png"><figcaption>King of Hearts</figcaption></figure>
+                <figure class="card"><img src="../common/images/cards/king_spades.png"><figcaption>King of Spades</figcaption></figure>
+
+                <figure class="card"><img src="../common/images/cards/ace_clubs.png"><figcaption>Ace of Clubs</figcaption></figure>
+                <figure class="card"><img src="../common/images/cards/ace_diamonds.png"><figcaption>Ace of Diamonds</figcaption></figure>
+                <figure class="card"><img src="../common/images/cards/ace_hearts.png"><figcaption>Ace of Hearts</figcaption></figure>
+                <figure class="card"><img src="../common/images/cards/ace_spades.png"><figcaption>Ace of Spades</figcaption></figure>
+
+                <figure class="card"><img src="../common/images/cards/joker_red.png"><figcaption>Red Joker</figcaption></figure>
+                <figure class="card"><img src="../common/images/cards/joker_black.png"><figcaption>Black Joker</figcaption></figure>
+            </div>
+        </div>
+
+        <div class="fineprint"><p class="copyright">Copyright &copy; 2011-2012 Research In Motion Limited</p></div>
+
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../../libs/sniffer.js"></script>
+
+        <!-- AliceJS -->
+        <script src="../../js/src/alice.core.js"></script>
+        <script src="../../js/src/alice.plugins.cheshire.js"></script>
+
+        <script src="settings.js"></script>
+        <script type="text/javascript">
+        sniffer.init();
+
+        settings.insertHTML("settings", {
+            delay: {
+                min: 0,
+                max: 10000,
+                value: 0,
+                step: 250
+            },
+            duration: {
+                min: 50,
+                max: 10000,
+                value: 2500,
+                step: 50
+            },
+            timing: "ease",
+            iteration: "1",
+            direction: "normal",
+
+            move: "up",
+            rotate: {
+                min: -720,
+                max: 720,
+                value: -720,
+                step: 1
+            },
+            flip: "",
+            fade: "in",
+            scaleFrom: "100%",
+            scaleTo: "100%",
+            overshoot: {
+                min: 0,
+                max: 100,
+                value: 0,
+                step: 1
+            },
+            randomness: {
+                min: 0,
+                max: 100,
+                value: 10,
+                step: 1
+            },
+
+            perspective: "none",
+            perspectiveOrigin: "center",
+            backfaceVisibility: "visible"
+        }, {
+            delay: false,
+            duration: true,
+            timing: true,
+            iteration: false,
+            direction: false,
+
+            move: false,
+            rotate: true,
+            flip: false,
+            fade: false,
+            scale: false,
+            overshoot: false,
+            randomness: true,
+
+            perspective: false,
+            perspectiveOrigin: true,
+            backfaceVisibility: false
+        });
+
+        var a = alice.init();
+
+        document.getElementById("settings-button-toggle").addEventListener("click", function () {
+            var settingsContent = document.getElementById("settings-content").style,
+                button = document.getElementById("settings-button-toggle");
+
+            if (settingsContent.display == "none") {
+                button.innerHTML = "Hide Settings";
+                settingsContent.display = "block";
+                a.slide("settings-content", "left", "5%", "1000ms");
+            }
+            else {
+                button.innerHTML = "Show Settings";
+                //a.slide("settings-content", "right");
+                settingsContent.display = "none";
+            }
+        }, false);
+
+        document.getElementById("perspectiveOrigin-setting").addEventListener("change", function () {
+            settings.handleChange(this, ['perspectiveOriginX-setting', 'perspectiveOriginY-setting']);
+        }, false);
+
+        document.getElementById("settings-button-start").addEventListener("click", function () {
+            var p = settings.applyEffect(document.getElementById("cards").children, "running");
+            a.cheshire(p);
+        }, false);
+
+        document.getElementById("settings-button-stop").addEventListener("click", function () {
+            var p = settings.applyEffect(document.getElementById("cards").children, "paused");
+            a.cheshire(p);
+        }, false);
+
+        for (var i = 0; i < document.getElementById("cards").children.length; i++) {
+            document.getElementById("cards").children[i].addEventListener("click", function () {
+                var p = settings.applyEffect(this, "running");
+                a.cheshire(p);
+            }, false);
+        }
+
+        settings.animate();
+        </script>
+    </body>
+</html>

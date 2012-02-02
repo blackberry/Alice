@@ -1,4 +1,8 @@
-/* Copyright 2011 Research In Motion Limited.
+/* ===========================================================================
+ * credits.json
+ * ===========================================================================
+ *
+ * Copyright 2011-2012 Research In Motion Limited.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,302 +17,332 @@
  * limitations under the License.
  */
 
-var groups = [
-    {
-        path   : "demos/common/images/cards",
+var groups = [{
+    path: "demos/common/images/cards",
+    license: "Public Domain",
+    source: "Nicu",
+    url: "http://nicubunu.ro/cards/",
+    credit: "",
+    width: 64,
+    height: 86,
+
+    items: [{
+        filename: "back_pattern_blue.png"
+    }, {
+        filename: "back_pattern_red.png"
+    }, {
+        filename: "back_plain_blue.png"
+    }, {
+        filename: "back_plain_red.png"
+    }, {
+        filename: "back_suits_blue.png"
+    }, {
+        filename: "back_suits_red.png"
+    }, {
+        filename: "2_clubs.png"
+    }, {
+        filename: "2_diamonds.png"
+    }, {
+        filename: "2_hearts.png"
+    }, {
+        filename: "2_spades.png"
+    }, {
+        filename: "3_clubs.png"
+    }, {
+        filename: "3_diamonds.png"
+    }, {
+        filename: "3_hearts.png"
+    }, {
+        filename: "3_spades.png"
+    }, {
+        filename: "4_clubs.png"
+    }, {
+        filename: "4_diamonds.png"
+    }, {
+        filename: "4_hearts.png"
+    }, {
+        filename: "4_spades.png"
+    }, {
+        filename: "5_clubs.png"
+    }, {
+        filename: "5_diamonds.png"
+    }, {
+        filename: "5_hearts.png"
+    }, {
+        filename: "5_spades.png"
+    }, {
+        filename: "6_clubs.png"
+    }, {
+        filename: "6_diamonds.png"
+    }, {
+        filename: "6_hearts.png"
+    }, {
+        filename: "6_spades.png"
+    }, {
+        filename: "7_clubs.png"
+    }, {
+        filename: "7_diamonds.png"
+    }, {
+        filename: "7_hearts.png"
+    }, {
+        filename: "7_spades.png"
+    }, {
+        filename: "8_clubs.png"
+    }, {
+        filename: "8_diamonds.png"
+    }, {
+        filename: "8_hearts.png"
+    }, {
+        filename: "8_spades.png"
+    }, {
+        filename: "9_clubs.png"
+    }, {
+        filename: "9_diamonds.png"
+    }, {
+        filename: "9_hearts.png"
+    }, {
+        filename: "9_spades.png"
+    }, {
+        filename: "10_clubs.png"
+    }, {
+        filename: "10_diamonds.png"
+    }, {
+        filename: "10_hearts.png"
+    }, {
+        filename: "10_spades.png"
+    }, {
+        filename: "jack_clubs.png"
+    }, {
+        filename: "jack_diamonds.png"
+    }, {
+        filename: "jack_hearts.png"
+    }, {
+        filename: "jack_spades.png"
+    }, {
+        filename: "queen_clubs.png"
+    }, {
+        filename: "queen_diamonds.png"
+    }, {
+        filename: "queen_hearts.png"
+    }, {
+        filename: "queen_spades.png"
+    }, {
+        filename: "king_clubs.png"
+    }, {
+        filename: "king_diamonds.png"
+    }, {
+        filename: "king_hearts.png"
+    }, {
+        filename: "king_spades.png"
+    }, {
+        filename: "ace_clubs.png"
+    }, {
+        filename: "ace_diamonds.png"
+    }, {
+        filename: "ace_hearts.png"
+    }, {
+        filename: "ace_spades.png"
+    }, {
+        filename: "joker_black.png"
+    }, {
+        filename: "joker_red.png"
+    }]
+}, {
+    path: "demos/common/images/photos",
+    license: "Public Domain",
+    width: 128,
+    height: 96,
+
+    items: [{
+        filename: "aerogel_flower.jpg",
+        desc: "Flower on Aerogel over a flame",
+        source: "Wikimedia",
+        url: "http://commons.wikimedia.org/wiki/File:Aerogelflower.jpg",
+        credit: "NASA/JPL"
+    }, {
+        filename: "aurora_borealis.jpg",
+        desc: "The Aurora Borealis (Northern Lights) shines above Bear Lake",
+        source: "Wikimedia",
+        url: "http://commons.wikimedia.org/wiki/File:Polarlicht_2.jpg",
+        credit: "USAF and Joshua Strang"
+    }, {
+        filename: "buzz_aldrin_moon.jpg",
+        desc: "Buzz Aldrin on the Moon",
+        source: "Wikimedia",
+        url: "http://commons.wikimedia.org/wiki/File:Aldrin_Apollo_11.jpg",
+        credit: "NASA"
+    }, {
+        filename: "cartwheel_galaxy.jpg",
+        desc: "Cartwheel Galaxy from the Chandra X-ray Observatory",
+        source: "Flickr",
+        url: "http://www.flickr.com/photos/smithsonian/2940633427/",
+        credit: "Composite: NASA/JPL/Caltech/P.Ap"
+    }, {
+        filename: "earth_western_hemisphere.jpg",
+        desc: "Earth Western Hemisphere",
+        source: "Wikimedia",
+        url: "http://commons.wikimedia.org/wiki/File:Earth_Western_Hemisphere.jpg",
+        credit: "NASA"
+    }, {
+        filename: "hurricane_katrina.jpg",
+        desc: "Hurricane Katrina",
+        source: "Wikimedia",
+        url: "http://commons.wikimedia.org/wiki/File:Katrina1615z-050829-1kg12.jpg",
+        credit: "NOAA"
+    }, {
+        filename: "mars_rover.jpg",
+        desc: "Artist's concept of Rover on Mars",
+        source: "Wikimedia",
+        url: "http://commons.wikimedia.org/wiki/File:NASA_Mars_Rover.jpg",
+        credit: "NASA/JPL"
+    }, {
+        filename: "orion_iss.jpg",
+        desc: "Artist's concept of the Orion spacecraft approaching the ISS",
+        source: "Wikimedia",
+        url: "http://commons.wikimedia.org/wiki/File:Orion_ISS_4_(05-2007).jpg",
+        credit: "NASA"
+    }, {
+        filename: "shuttle_cockpit.jpg",
+        desc: "The 'glass cockpit' installed on the Space Shuttle",
+        source: "Wikimedia",
+        url: "http://commons.wikimedia.org/wiki/File:STSCPanel.jpg",
+        credit: "NASA"
+    }, {
+        filename: "solar_system.jpg",
+        desc: "Solar System",
+        source: "Wikimedia",
+        url: "http://commons.wikimedia.org/wiki/File:Solar_sys2.png",
+        credit: "NASA"
+    }]
+}, {
+    path: "demos/common/videos",
+    license: "Public Domain",
+    source: "NASA",
+    url: "",
+    credit: "",
+    width: 128,
+    height: 72,
+
+    items: [{
+        filename: "last_shuttle_liftoff.m4v",
+        desc: "A Lifeline Home: Goddard's Final Shuttle Mission",
+        source: "NASA",
+        url: "http://svs.gsfc.nasa.gov/vis/a010000/a010700/a010778/",
+        credit: "NASA/Goddard Space Flight Center Scientific Visualization Studio"
+    }, {
+        filename: "lunar_eclipse.m4v",
+        desc: "Lunar Eclipse Essentials",
+        source: "NASA",
+        url: "http://svs.gsfc.nasa.gov/vis/a010000/a010700/a010787/",
+        credit: "NASA/Goddard Space Flight Center Scientific Visualization Studio"
+    }, {
+        filename: "tgf_antimatter.m4v",
+        desc: "Terrestrial Gamma-ray Flashes Create Antimatter",
+        source: "NASA",
+        url: "http://svs.gsfc.nasa.gov/vis/a010000/a010700/a010706/",
+        credit: "NASA/Goddard Space Flight Center/J. Dwyer/Florida Inst. of Technology"
+    }]
+}, {
+    path: "images/backgrounds",
+
+    items: [{
+        filename: "black_canvas.jpg",
+        desc: "Black canvas fabric texture",
+        source: "Photos Public Domain",
+        url: "http://www.photos-public-domain.com/2011/04/05/black-canvas-fabric-texture/",
+        license: "Public Domain and Creative Commons CC0",
+        width: 128,
+        height: 85
+    }, {
+        filename: "wave_header.jpg",
+        desc: "Header background",
+        source: "Public Domain Pictures",
+        url: "http://www.publicdomainpictures.net/view-image.php?image=2958&picture=abstract-background",
         license: "Public Domain",
-        source : "Nicu",
-        url    : "http://nicubunu.ro/cards/",
-        credit : "",
-        width  : 64,
-        height : 86,
+        width: 128,
+        height: 15
+    }]
+}, {
+    path: "images",
 
-        items: [
-            { filename: "back_pattern_blue.png" },
-            { filename: "back_pattern_red.png" },
-            { filename: "back_plain_blue.png" },
-            { filename: "back_plain_red.png" },
-            { filename: "back_suits_blue.png" },
-            { filename: "back_suits_red.png" },
-            { filename: "2_clubs.png" },
-            { filename: "2_diamonds.png" },
-            { filename: "2_hearts.png" },
-            { filename: "2_spades.png" },
-            { filename: "3_clubs.png" },
-            { filename: "3_diamonds.png" },
-            { filename: "3_hearts.png" },
-            { filename: "3_spades.png" },
-            { filename: "4_clubs.png" },
-            { filename: "4_diamonds.png" },
-            { filename: "4_hearts.png" },
-            { filename: "4_spades.png" },
-            { filename: "5_clubs.png" },
-            { filename: "5_diamonds.png" },
-            { filename: "5_hearts.png" },
-            { filename: "5_spades.png" },
-            { filename: "6_clubs.png" },
-            { filename: "6_diamonds.png" },
-            { filename: "6_hearts.png" },
-            { filename: "6_spades.png" },
-            { filename: "7_clubs.png" },
-            { filename: "7_diamonds.png" },
-            { filename: "7_hearts.png" },
-            { filename: "7_spades.png" },
-            { filename: "8_clubs.png" },
-            { filename: "8_diamonds.png" },
-            { filename: "8_hearts.png" },
-            { filename: "8_spades.png" },
-            { filename: "9_clubs.png" },
-            { filename: "9_diamonds.png" },
-            { filename: "9_hearts.png" },
-            { filename: "9_spades.png" },
-            { filename: "10_clubs.png" },
-            { filename: "10_diamonds.png" },
-            { filename: "10_hearts.png" },
-            { filename: "10_spades.png" },
-            { filename: "jack_clubs.png" },
-            { filename: "jack_diamonds.png" },
-            { filename: "jack_hearts.png" },
-            { filename: "jack_spades.png" },
-            { filename: "queen_clubs.png" },
-            { filename: "queen_diamonds.png" },
-            { filename: "queen_hearts.png" },
-            { filename: "queen_spades.png" },
-            { filename: "king_clubs.png" },
-            { filename: "king_diamonds.png" },
-            { filename: "king_hearts.png" },
-            { filename: "king_spades.png" },
-            { filename: "ace_clubs.png" },
-            { filename: "ace_diamonds.png" },
-            { filename: "ace_hearts.png" },
-            { filename: "ace_spades.png" },
-            { filename: "joker_black.png" },
-            { filename: "joker_red.png" }
-        ]
-    },
-    {
-        path   : "demos/common/images/photos",
+    items: [{
+        filename: "app_icon.png",
+        desc: "Application icon for PlayBook",
+        source: "Zorger",
+        url: "http://public-domain.zorger.com/alices-adventures-in-wonderland/012-girl-chasing-rabbit-down-hole-public-domain.php",
         license: "Public Domain",
-        width  : 128,
-        height : 96,
-
-        items: [
-            {
-                filename: "aerogel_flower.jpg",
-                desc    : "Flower on Aerogel over a flame",
-                source  : "Wikimedia",
-                url     : "http://commons.wikimedia.org/wiki/File:Aerogelflower.jpg",
-                credit  : "NASA/JPL"
-            },
-            {
-                filename: "aurora_borealis.jpg",
-                desc    : "The Aurora Borealis (Northern Lights) shines above Bear Lake",
-                source  : "Wikimedia",
-                url     : "http://commons.wikimedia.org/wiki/File:Polarlicht_2.jpg",
-                credit  : "USAF and Joshua Strang"
-            },
-            {
-                filename: "buzz_aldrin_moon.jpg",
-                desc    : "Buzz Aldrin on the Moon",
-                source  : "Wikimedia",
-                url     : "http://commons.wikimedia.org/wiki/File:Aldrin_Apollo_11.jpg",
-                credit  : "NASA"
-            },
-            {
-                filename: "cartwheel_galaxy.jpg",
-                desc    : "Cartwheel Galaxy from the Chandra X-ray Observatory",
-                source  : "Flickr",
-                url     : "http://www.flickr.com/photos/smithsonian/2940633427/",
-                credit  : "Composite: NASA/JPL/Caltech/P.Ap"
-            },
-            {
-                filename: "earth_western_hemisphere.jpg",
-                desc    : "Earth Western Hemisphere",
-                source  : "Wikimedia",
-                url     : "http://commons.wikimedia.org/wiki/File:Earth_Western_Hemisphere.jpg",
-                credit  : "NASA"
-            },
-            {
-                filename: "hurricane_katrina.jpg",
-                desc    : "Hurricane Katrina",
-                source  : "Wikimedia",
-                url     : "http://commons.wikimedia.org/wiki/File:Katrina1615z-050829-1kg12.jpg",
-                credit  : "NOAA"
-            },
-            {
-                filename: "mars_rover.jpg",
-                desc    : "Artist's concept of Rover on Mars",
-                source  : "Wikimedia",
-                url     : "http://commons.wikimedia.org/wiki/File:NASA_Mars_Rover.jpg",
-                credit  : "NASA/JPL"
-            },
-            {
-                filename: "orion_iss.jpg",
-                desc    : "Artist's concept of the Orion spacecraft approaching the ISS",
-                source  : "Wikimedia",
-                url     : "http://commons.wikimedia.org/wiki/File:Orion_ISS_4_(05-2007).jpg",
-                credit  : "NASA"
-            },
-            {
-                filename: "shuttle_cockpit.jpg",
-                desc    : "The 'glass cockpit' installed on the Space Shuttle",
-                source  : "Wikimedia",
-                url     : "http://commons.wikimedia.org/wiki/File:STSCPanel.jpg",
-                credit  : "NASA"
-            },
-            {
-                filename: "solar_system.jpg",
-                desc    : "Solar System",
-                source  : "Wikimedia",
-                url     : "http://commons.wikimedia.org/wiki/File:Solar_sys2.png",
-                credit  : "NASA"
-            }
-        ]
-    },
-    {
-        path   : "demos/common/videos",
+        width: 86,
+        height: 86
+    }, {
+        filename: "back_btn.png",
+        desc: "Back button",
+        source: "Clker",
+        url: "http://www.clker.com/clipart-10294.html",
         license: "Public Domain",
-        source : "NASA",
-        url    : "",
-        credit : "",
-        width  : 128,
-        height : 72,
+        width: 48,
+        height: 48
+    }, {
+        filename: "cheshire-131x96.png",
+        desc: "Cheshire Cat",
+        source: "Zorger",
+        url: "http://public-domain.zorger.com/alices-adventures-in-wonderland/008-cheshire-cat-on-tree-branch-public-domain.php",
+        license: "Public Domain",
+        width: 131,
+        height: 96
+    }, {
+        filename: "close_icon.png",
+        desc: "Close icon",
+        source: "Clker",
+        url: "http://www.clker.com/clipart-exit-closed-symbol.html",
+        license: "Public Domain",
+        width: 29,
+        height: 29
+    }, {
+        filename: "logo_plain.png",
+        desc: "Logo",
+        source: "Zorger",
+        url: "http://public-domain.zorger.com/alices-adventures-in-wonderland/012-girl-chasing-rabbit-down-hole-public-domain.php",
+        license: "Public Domain",
+        width: 128,
+        height: 53
+    }, {
+        filename: "logo_header_plain.png",
+        desc: "Logo for header",
+        source: "Zorger",
+        url: "http://public-domain.zorger.com/alices-adventures-in-wonderland/012-girl-chasing-rabbit-down-hole-public-domain.php",
+        license: "Public Domain",
+        width: 128,
+        height: 54
+    }, {
+        filename: "rabbit.png",
+        desc: "Rabbit",
+        source: "Clker",
+        url: "http://www.clker.com/clipart-running-rabbit.html",
+        license: "Public Domain",
+        width: 96,
+        height: 96
+    }]
+}, {
+    path: "lib/prettify",
 
-        items: [
-            {
-                filename: "last_shuttle_liftoff.m4v",
-                desc    : "A Lifeline Home: Goddard's Final Shuttle Mission",
-                source  : "NASA",
-                url     : "http://svs.gsfc.nasa.gov/vis/a010000/a010700/a010778/",
-                credit  : "NASA/Goddard Space Flight Center Scientific Visualization Studio"
-            },
-            {
-                filename: "lunar_eclipse.m4v",
-                desc    : "Lunar Eclipse Essentials",
-                source  : "NASA",
-                url     : "http://svs.gsfc.nasa.gov/vis/a010000/a010700/a010787/",
-                credit  : "NASA/Goddard Space Flight Center Scientific Visualization Studio"
-            },
-            {
-                filename: "tgf_antimatter.m4v",
-                desc    : "Terrestrial Gamma-ray Flashes Create Antimatter",
-                source  : "NASA",
-                url     : "http://svs.gsfc.nasa.gov/vis/a010000/a010700/a010706/",
-                credit  : "NASA/Goddard Space Flight Center/J. Dwyer/Florida Inst. of Technology"
-            }
-        ]
-    },
-    {
-        path   : "images/backgrounds",
+    items: [{
+        filename: "",
+        name: "Prettify",
+        desc: "JavaScript module and CSS file that allows syntax highlighting of source code snippets in an HTML page.",
+        source: "Google Code",
+        url: "http://code.google.com/p/google-code-prettify/",
+        license: "Apache License 2.0"
+    }]
+}, {
+    path: "./",
 
-        items: [
-            {
-                filename: "black_canvas.jpg",
-                desc    : "Black canvas fabric texture",
-                source  : "Photos Public Domain",
-                url     : "http://www.photos-public-domain.com/2011/04/05/black-canvas-fabric-texture/",
-                license : "Public Domain and Creative Commons CC0",
-                width   : 128,
-                height  : 85
-            },
-            {
-                filename: "wave_header.jpg",
-                desc    : "Header background",
-                source  : "Public Domain Pictures",
-                url     : "http://www.publicdomainpictures.net/view-image.php?image=2958&picture=abstract-background",
-                license : "Public Domain",
-                width   : 128,
-                height  : 15
-            }
-        ]
-    },
-    {
-        path   : "images",
-
-        items: [
-            {
-                filename: "app_icon.png",
-                desc    : "Application icon for PlayBook",
-                source  : "Zorger",
-                url     : "http://public-domain.zorger.com/alices-adventures-in-wonderland/012-girl-chasing-rabbit-down-hole-public-domain.php",
-                license : "Public Domain",
-                width   : 86,
-                height  : 86
-            },
-            {
-                filename: "back_btn.png",
-                desc    : "Back button",
-                source  : "Clker",
-                url     : "http://www.clker.com/clipart-10294.html",
-                license : "Public Domain",
-                width   : 48,
-                height  : 48
-            },
-            {
-                filename: "close_icon.png",
-                desc    : "Close icon",
-                source  : "Clker",
-                url     : "http://www.clker.com/clipart-exit-closed-symbol.html",
-                license : "Public Domain",
-                width   : 29,
-                height  : 29
-            },
-            {
-                filename: "logo_plain.png",
-                desc    : "Logo",
-                source  : "Zorger",
-                url     : "http://public-domain.zorger.com/alices-adventures-in-wonderland/012-girl-chasing-rabbit-down-hole-public-domain.php",
-                license : "Public Domain",
-                width   : 128,
-                height  : 53
-            },
-            {
-                filename: "logo_header_plain.png",
-                desc    : "Logo for header",
-                source  : "Zorger",
-                url     : "http://public-domain.zorger.com/alices-adventures-in-wonderland/012-girl-chasing-rabbit-down-hole-public-domain.php",
-                license : "Public Domain",
-                width   : 128,
-                height  : 54
-            },
-            {
-                filename: "rabbit.png",
-                desc    : "Rabbit",
-                source  : "Clker",
-                url     : "http://www.clker.com/clipart-running-rabbit.html",
-                license : "Public Domain",
-                width   : 96,
-                height  : 96
-            }
-        ]
-    },
-    {
-        path   : "lib/prettify",
-
-        items: [
-            {
-                filename: "",
-                name    : "Prettify",
-                desc    : "JavaScript module and CSS file that allows syntax highlighting of source code snippets in an HTML page.",
-                source  : "Google Code",
-                url     : "http://code.google.com/p/google-code-prettify/",
-                license : "Apache License 2.0"
-            }
-        ]
-    },
-    {
-        path   : "./",
-
-        items: [
-            {
-                filename: "favicon.ico",
-                desc    : "Favorite Icon",
-                source  : "AliceJS",
-                url     : "",
-                license : "Apache License 2.0",
-                width   : 16,
-                height  : 16
-            }
-        ]
-    }
-];
+    items: [{
+        filename: "favicon.ico",
+        desc: "Favorite Icon",
+        source: "AliceJS",
+        url: "",
+        license: "Apache License 2.0",
+        width: 16,
+        height: 16
+    }]
+}];

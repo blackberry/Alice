@@ -38,7 +38,7 @@ var alice = (function () {
             name: "AliceJS",
             description: "A Lightweight Independent CSS Engine",
             version: "0.2",
-            build: "20120201-2300",
+            build: "20120202-1500",
 
             prefix: "",
             prefixJS: "",
@@ -331,6 +331,60 @@ var alice = (function () {
                 default:
                     return {p1: 0.250, p2: 0.100, p3: 0.250, p4: 1.000}; // ease
                 }
+            },
+
+            /**
+             * Returns a flip object
+             */
+            flip: function (params, turns, overshoot) {
+                var numTurns = turns || 1,
+                    ret,
+                    parseNum = function (num) {
+                        return {start: 0, end: num, axis: "Y"};
+                    },
+                    parseStr = function (str) {
+                        if (params === "left") {
+                            return {start: 0, end: -360 * numTurns, axis: "Y"};
+                        }
+                        else if (params === "right") {
+                            return {start: 0, end: 360 * numTurns, axis: "Y"};
+                        }
+                        else if (params === "up") {
+                            return {start: 0, end: 360 * numTurns, axis: "X"};
+                        }
+                        else if (params === "down") {
+                            return {start: 0, end: -360 * numTurns, axis: "X"};
+                        }
+                    },
+                    parseObj = function (obj) {
+                        var val;
+                        if (obj.value) {
+                            if (typeof obj.value === "string") {
+                                val = parseStr(obj.value);
+                            }
+                            else {
+                                val = parseNum(obj.value); // {value: -180}
+                            }
+                        }
+                        return val;
+                    };
+
+                switch (typeof params) {
+                case "number":
+                    ret = parseNum(params);
+                    break;
+                case "string":
+                    ret = parseStr(params);
+                    break;
+                case "object":
+                    ret = parseObj(params);
+                    break;
+                default:
+                    ret = null;
+                }
+
+                //console.warn(params, ret);
+                return ret;
             },
 
             /**
@@ -694,13 +748,9 @@ alice.plugins.cheshire = function (params) {
         rotateOver = overshoot * 100,
         rotateEnd = 0,
 
-        flip = params.flip || null,
-        flipStart = 0,
-        flipEnd = (flip && (flip === "right" || flip === "up")) ? 360 : -360,
-        // TODO: non-360 causes flickering
-        //flipEnd = (flip && (flip === "right" || flip === "up")) ? 180 : -180,
-        flipOver = Math.floor((1 + overshoot) * flipEnd),
-        flipAxis = (flip && (flip === "left" || flip === "right")) ? "Y" : "X",
+        turns = params.turns || 1,
+
+        flip = alice.flip(params.flip, turns, overshoot),
 
         fade = (params.fade && params.fade !== "") ? params.fade : null,
         fadeStart = (fade && fade === "out") ? 1 : 0,
@@ -708,11 +758,6 @@ alice.plugins.cheshire = function (params) {
 
         scaleFrom = (params.scale && params.scale.from) ? alice.percentage(params.scale.from) : 1,
         scaleTo = (params.scale && params.scale.to) ? alice.percentage(params.scale.to) : 1,
-
-/*
-        translateX = params.translateX || null,
-        translateY = params.translateY || null,
-*/
 
         move = "",
         axis = "",
@@ -794,28 +839,18 @@ alice.plugins.cheshire = function (params) {
 
             // Generate transforms
             transformStart = "";
-            transformStart += (flip) ? " rotate" + flipAxis + "(" + flipStart + "deg)" : " translate" + axis + "(" + posStart + "px)";
+            transformStart += (flip) ? " rotate" + flip.axis + "(" + flip.start + "deg)" : " translate" + axis + "(" + posStart + "px)";
             transformStart += (rotate && parseInt(rotate, 10) !== 0) ? " rotate(" + rotateStart + "deg)" : "";
             transformStart += " scale(" + scaleFrom + ")";
 
-/*
-            if (translateX) {
-                transformStart += " translateX(" + translateX + ")";
-            }
-
-            if (translateY) {
-                transformStart += " translateY(" + translateY + ")";
-            }
-*/
-
             transformOver = "";
-            transformOver += (flip) ? " rotate" + flipAxis + "(" + flipOver + "deg)" : " translate" + axis + "(" + over + "px)";
+            transformOver += (flip) ? " rotate" + flip.axis + "(" + Math.floor((1 + overshoot) * flip.end) + "deg)" : " translate" + axis + "(" + over + "px)";
             transformOver += (rotate && parseInt(rotate, 10) !== 0) ? " rotate(" + rotateOver + "deg)" : "";
             transformOver += (scaleTo > 1) ? " scale(" + scaleTo + ")" : "";
             transformOver += " scale(" + scaleTo + ")";
 
             transformEnd = "";
-            transformEnd += (flip) ? " rotate" + flipAxis + "(" + flipEnd + "deg)" : " translate" + axis + "(" + posEnd + "px)";
+            transformEnd += (flip) ? " rotate" + flip.axis + "(" + flip.end + "deg)" : " translate" + axis + "(" + posEnd + "px)";
 
             if (move === "" && direction === "alternate") {
                 transformEnd += " rotate(" + alice.format.oppositeNumber(rotateStart) + "deg)";
@@ -825,16 +860,6 @@ alice.plugins.cheshire = function (params) {
             }
 
             transformEnd += " scale(" + scaleTo + ")";
-
-/*
-            if (translateX) {
-                transformEnd += " translateX(" + translateX + ")";
-            }
-
-            if (translateY) {
-                transformEnd += " translateY(" + translateY + ")";
-            }
-*/
 
             // Generate box shadow
             if (scaleTo > 1) {
@@ -1117,6 +1142,7 @@ alice.plugins.hinge = function (elems, rotate, overshoot, duration, timing, dela
  * [pageFlip description]
  * @param  {[type]} elems     [description]
  * @param  {[type]} flip      [description]
+ * @param  {[type]} turns     [description]
  * @param  {[type]} overshoot [description]
  * @param  {[type]} duration  [description]
  * @param  {[type]} timing    [description]
@@ -1126,7 +1152,7 @@ alice.plugins.hinge = function (elems, rotate, overshoot, duration, timing, dela
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.pageFlip = function (elems, flip, overshoot, duration, timing, delay, iteration, direction, playstate) {
+alice.plugins.pageFlip = function (elems, flip, turns, overshoot, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("pageFlip: ", arguments);
 
@@ -1150,6 +1176,7 @@ alice.plugins.pageFlip = function (elems, flip, overshoot, duration, timing, del
         elems: elems,
 
         flip: flip || "left",
+        turns: turns || 1,
         overshoot: overshoot || 0,
 
         duration: duration,
@@ -1316,6 +1343,7 @@ alice.plugins.slide = function (elems, move, overshoot, duration, timing, delay,
  * [spin description]
  * @param  {[type]} elems     [description]
  * @param  {[type]} flip      [description]
+ * @param  {[type]} turns     [description]
  * @param  {[type]} overshoot [description]
  * @param  {[type]} duration  [description]
  * @param  {[type]} timing    [description]
@@ -1324,7 +1352,7 @@ alice.plugins.slide = function (elems, move, overshoot, duration, timing, delay,
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.spin = function (elems, flip, overshoot, duration, timing, delay, iteration, playstate) {
+alice.plugins.spin = function (elems, flip, turns, overshoot, duration, timing, delay, iteration, playstate) {
     "use strict";
     console.info("spin: ", arguments);
 
@@ -1334,8 +1362,9 @@ alice.plugins.spin = function (elems, flip, overshoot, duration, timing, delay, 
 
         elems: elems,
 
-        flip: flip,
-        overshoot: overshoot,
+        flip: flip || "left",
+        turns: turns || 1,
+        overshoot: overshoot || 0,
 
         duration: duration,
         timing: timing,
@@ -1373,8 +1402,6 @@ alice.plugins.toss = function (elems, move, overshoot, perspectiveOrigin, durati
         elems: elems,
 
         move: move,
-        //translateX: translateX,
-        //translateY: translateY,
         overshoot: overshoot,
         perspectiveOrigin: perspectiveOrigin,
 
@@ -1427,25 +1454,25 @@ alice.plugins.twirl = function (elems, flip, duration, timing, delay, iteration,
 
 /**
  * [wobble description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} rotate    [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} playstate [description]
+ * @param  {[type]} elems             [description]
+ * @param  {[type]} rotate            [description]
+ * @param  {[type]} perspectiveOrigin [description]
+ * @param  {[type]} duration          [description]
+ * @param  {[type]} timing            [description]
+ * @param  {[type]} delay             [description]
+ * @param  {[type]} iteration         [description]
+ * @param  {[type]} playstate         [description]
  * @return {[type]}
  */
-alice.plugins.wobble = function (elems, rotate, duration, timing, delay, iteration, playstate) {
+alice.plugins.wobble = function (elems, rotate, perspectiveOrigin, duration, timing, delay, iteration, playstate) {
     "use strict";
     console.info("wobble: ", arguments);
 
     var opts = {
-        perspectiveOrigin: "center",
-
         elems: elems,
 
         rotate: rotate || 5,
+        perspectiveOrigin: perspectiveOrigin || "center",
 
         duration: duration || "200ms",
         timing: timing || "linear",

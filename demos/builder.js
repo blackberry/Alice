@@ -183,6 +183,7 @@ app.applyEffect = function (param) {
             move: document.getElementById("move" + i).value,
             rotate: document.getElementById("rotate" + i).value,
             flip: document.getElementById("flip" + i).value,
+            turns: document.getElementById("turns" + i).value,
             fade: document.getElementById("fade" + i).value,
             scale: {
                 from: document.getElementById("scaleFrom" + i).value,
@@ -217,19 +218,19 @@ app.applyEffect = function (param) {
 
         case "pageFlip (left)":
             p.flip = "left";
-            ret = a.pageFlip(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.pageFlip(p.elems, p.flip, p.turns, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
         case "pageFlip (right)":
             p.flip = "right";
-            ret = a.pageFlip(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.pageFlip(p.elems, p.flip, p.turns, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
         case "pageFlip (up)":
             p.flip = "up";
-            ret = a.pageFlip(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.pageFlip(p.elems, p.flip, p.turns, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
         case "pageFlip (down)":
             p.flip = "down";
-            ret = a.pageFlip(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.pageFlip(p.elems, p.flip, p.turns, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
 
         case "phantomZone (in)":
@@ -270,19 +271,19 @@ app.applyEffect = function (param) {
 
         case "spin (left)":
             p.flip = "left";
-            ret = a.spin(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
+            ret = a.spin(p.elems, p.flip, p.turns, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
             break;
         case "spin (right)":
             p.flip = "right";
-            ret = a.spin(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
+            ret = a.spin(p.elems, p.flip, p.turns, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
             break;
         case "spin (up)":
             p.flip = "up";
-            ret = a.spin(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
+            ret = a.spin(p.elems, p.flip, p.turns, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
             break;
         case "spin (down)":
             p.flip = "down";
-            ret = a.spin(p.elems, p.flip, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
+            ret = a.spin(p.elems, p.flip, p.turns, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
             break;
 
         case "toss (left)":
@@ -366,7 +367,8 @@ app.applyEffect = function (param) {
             p.iteration = "infinite";
             p.direction = "alternate";
             p.rotate = 5;
-            ret = a.wobble(p.elems, p.rotate, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            p.perspectiveOrigin = "center";
+            ret = a.wobble(p.elems, p.rotate, p.perspectiveOrigin, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
 
         default:

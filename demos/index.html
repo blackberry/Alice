@@ -56,7 +56,7 @@
                     <div style="clear: both;"></div>
 
                     <!-- Overview -->
-                    <p><b><a href="../index.html">AliceJS</a></b> <i>(<u>A</u> <u>L</u>ightweight <u>I</u>ndependent <u>C</u>SS <u>E</u>ngine)</i> is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.</p>
+                    <p><b><a href="../index.html">AliceJS</a></b> - <i>(A Lightweight Independent CSS Engine)</i> is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.</p>
                 </div>
 
                 <div>
@@ -219,6 +219,7 @@ a.hinge("my_hinge", 25, 0, "1000ms", "linear", "0ms", "infinite", "alternate", "
  * [pageFlip description]
  * @param  {[type]} elems     [description]
  * @param  {[type]} flip      [description]
+ * @param  {[type]} turns     [description]
  * @param  {[type]} overshoot [description]
  * @param  {[type]} duration  [description]
  * @param  {[type]} timing    [description]
@@ -228,7 +229,7 @@ a.hinge("my_hinge", 25, 0, "1000ms", "linear", "0ms", "infinite", "alternate", "
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-a.pageFlip("my_pageFlip", "left", 0, "2500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
+a.pageFlip("my_pageFlip", "left", 1, 0, "2500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
                         </pre>
                     </div>
                 </div>
@@ -365,6 +366,7 @@ a.slide("my_slide", "left", 0, "3000ms", "ease", "0ms", "infinite", "alternate",
  * [spin description]
  * @param  {[type]} elems     [description]
  * @param  {[type]} flip      [description]
+ * @param  {[type]} turns     [description]
  * @param  {[type]} overshoot [description]
  * @param  {[type]} duration  [description]
  * @param  {[type]} timing    [description]
@@ -373,7 +375,7 @@ a.slide("my_slide", "left", 0, "3000ms", "ease", "0ms", "infinite", "alternate",
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-a.spin("my_spin", "left", 0, "3000ms", "ease", "0ms", "infinite", "normal", "running");
+a.spin("my_spin", "left", 1, 0, "3000ms", "ease", "0ms", "infinite", "normal", "running");
                         </pre>
                     </div>
                 </div>
@@ -449,16 +451,17 @@ a.twirl("my_twirl", "left", "3000ms", "ease", "0ms", "infinite", "normal", "runn
                         <pre class="prettyprint lang-js">
 /**
  * [wobble description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} rotate    [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} playstate [description]
+ * @param  {[type]} elems             [description]
+ * @param  {[type]} rotate            [description]
+ * @param  {[type]} perspectiveOrigin [description]
+ * @param  {[type]} duration          [description]
+ * @param  {[type]} timing            [description]
+ * @param  {[type]} delay             [description]
+ * @param  {[type]} iteration         [description]
+ * @param  {[type]} playstate         [description]
  * @return {[type]}
  */
-a.wobble("my_wobble", 5, "200ms", "linear", "0ms", "infinite", "alternate", "running");
+a.wobble("my_wobble", 5, "center", "200ms", "linear", "0ms", "infinite", "alternate", "running");
                         </pre>
                     </div>
                 </div>
@@ -544,7 +547,7 @@ a.zoom("my_zoom", {
 
         a.hinge("my_hinge", 25, 0, "1000ms", "linear", "0ms", "infinite", "alternate", "running");
 
-        a.pageFlip("my_pageFlip", "left", 0, "2500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
+        a.pageFlip("my_pageFlip", "left", 1, 0, "2500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
 
         a.pendulum("my_pendulum", 45, 0, "1000ms", "ease-in-out", "0ms", "infinite", "alternate", "running");
 
@@ -554,13 +557,13 @@ a.zoom("my_zoom", {
 
         a.slide("my_slide", "left", 0, "3000ms", "ease", "0ms", "infinite", "alternate", "running");
 
-        a.spin("my_spin", "left", 0, "3000ms", "ease", "0ms", "infinite", "normal", "running");
+        a.spin("my_spin", "left", 1, 0, "3000ms", "ease", "0ms", "infinite", "normal", "running");
 
         a.toss("my_toss", "left", 0, "center", "2500ms", "ease", "0ms", "infinite", "alternate", "running");
 
         a.twirl("my_twirl", "left", "3000ms", "ease", "0ms", "infinite", "normal", "running");
 
-        a.wobble("my_wobble", 5, "200ms", "linear", "0ms", "infinite", "alternate", "running");
+        a.wobble("my_wobble", 5, "center", "200ms", "linear", "0ms", "infinite", "alternate", "running");
 
         a.zoom("my_zoom", {
             from: "1%", to: "125%"

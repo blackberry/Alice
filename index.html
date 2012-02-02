@@ -65,14 +65,14 @@
                     <h2>Introduction</h2>
 
                     <p>While working on a simple game written in HTML5, I wanted to use a "flip3D" effect. That effect had become popular since CSS3 was introduced and performed well due to hardware-acceleration in most mobile browsers. I thought there would be a simple library to do the job, but all I found was samples of varying quality with tons of CSS and HTML markup that were not very cross-platform. Even more important, as I researched more options, I was surprised to see that in the many years since CSS3 appeared, we hadn't gone beyond Flip, Fade, Slide and Zoom. When compared to other major development environments where rich visual libraries are the norm, I lamented the apparent lack of progress in the HTML world.</p>
-                    <p>So I decided to explore the ability to package such animations in a very lightweight library that would set-up all the CSS and manage my base HTML for me, and keep my page clean of "effects logic". AliceJS was born. I had no idea where this could lead and I literally felt like the real Alice following the white rabbit down a scary hole. Very quickly, it became clear that lots of cool things could be done that would not just be fancy animations, but which could actually make a general UI better, and help with games too. This is an area that Research In Motion (RIM) is particularly interested in, pushing boundaries in graphically rich Web applications to create more compelling experiences.</p>
+                    <p>So I decided to explore the ability to package such animations in a very lightweight library that would set up all the CSS and manage my base HTML for me, and keep my page clean of "effects logic". AliceJS was born. I had no idea where this could lead and I literally felt like the real Alice following the white rabbit down a scary hole. Very quickly, it became clear that lots of cool things could be done that would not just be fancy animations, but which could actually make a general UI better, and help with games too. This is an area that Research In Motion (RIM) is particularly interested in, pushing boundaries in graphically rich web applications to create more compelling experiences.</p>
                     <p>We are experimenting with many UI components, with tying in sensors, adding physics, and even organics. This is perhaps one of the more exciting feature of AliceJS. The human eye is very good at spotting differences in movement. Something so subtle as a millisecond difference can be perceived. Achieving natural/organic randomness is at the heart of most high-end visual effects in Hollywood blockbuster films. The beauty is that we don't need to reach that level of sophistication to give an effect some variability so that during the lifetime of the application, things don't feel repetitive. Varying just slightly the speed, perspective, and over-rotation on a flip effect adds a degree of subtle "freshness" every time it comes up.</p>
 
                     <h2>Demos</h2>
 
                     <a href="demos/index.html" class="big button">View Demos</a>
 
-                    <p>The demos are separated in two sections. Bounce, Toss, Wobble, Spring, Fade, Rotate are all working and fairly stable effects. They should be  usable in an application although of course the library is still in early alpha stages. The second section features effects such as Carousel, Cube, Page Flip, Fold, Flip, and Flip2 that are in themselves more experimental and contain several known bugs.</p>
+                    <p>The demos are separated into two sections: (1) basic demos where you can interactively adjust settings, and (2) more demos that show how AliceJS can be used in more complex use cases. These effects should be usable in an application, but the library is still in early alpha stages.</p>
 
                     <h2>Implementation</h2>
 
@@ -80,38 +80,42 @@
 &lt;div id=&quot;DIV1&quot;&gt;HERE IS ONE DIV&lt;/div&gt;
 &lt;img id=&quot;IMG1&quot; src=&quot;/myimg.gif&quot;&gt;
 &lt;script src=&quot;/alice/alice.core.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;/alice/alice.wobble.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/alice/alice.plugins.cheshire.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
-    alice.wobble([&quot;DIV1&quot;, &quot;IMG1&quot;], 20, 5, &quot;top-left&quot;, 1000, 10, &quot;ease-in-out&quot;, -1);
+alice.wobble([&quot;DIV1&quot;, &quot;IMG1&quot;], 5, &quot;center&quot;,
+    &quot;200ms&quot;, &quot;linear&quot;, &quot;0ms&quot;, &quot;infinite&quot;, &quot;alternate&quot;, &quot;running&quot;);
 &lt;/script&gt;
                     </pre>
 
                     <p>In here, we apply the Wobble effect to a DIV and an IMG. AliceJS doesn't touch the contents of the DIVs and respects whatever styling you set &mdash; it's up to you to do whatever fits your application goals. The parameters are:</p>
 
                     <ul>
-                        <li>The rotation angle in degrees (here 20).</li>
-                        <li>The amount of randomness in % applied to the rotation. So in reality, rotation will be between 19 and 21 (+/- 5%).</li>
-                        <li>The anchor point, which can be "top-left", "top-center", "top-right", "center" etc... as well as explicit coordinates in % of the DIV's entire size, like [200, 200].</li>
-                        <li>The duration of the effect in ms (here 1000).</li>
-                        <li>The amount of randomness in % applied to the duration. So in reality, duration will be between 900 and 1100 (+/- 10%).</li>
-                        <li>The easing function as per standard CSS specs.</li>
-                        <li>The number of iterations, with -1 denoting infinite.</li>
+                        <li>The target element(s) or node.</li>
+                        <li>The rotation angle in degrees (here 5).</li>
+                        <li>The anchor point, which can be "top-left", "top-center", "top-right", "center", etc... as well as explicit coordinates in % of the DIV's entire size, like {x: 200, y: 200}.</li>
+                        <li>The duration of the effect (here 200ms).</li>
+                        <li>The easing function as per standard CSS specs (here linear).</li>
+                        <li>The delay before the animation starts (usually 0ms).</li>
+                        <li>The number of iterations (here infinite).</li>
+                        <li>The direction specifies if the animation should be played in reverse (here alternate).</li>
+                        <li>The playstate is either running or paused (usually running).</li>
                     </ul>
 
                     <h2>Architecture</h2>
 
                     <p>AliceJS is completely self-contained and doesn't rely on any other libraries. It also focuses exclusively on setting up animations through CSS manipulations. This makes it easy to include along with other libraries without fear of collision as AliceJS doesn't try to do event handling (touch or mouse), nor does it enforce particular logic or layout elements. It's easy for instance to use AliceJS to animate a Dojo Dialog component for example, or a jQuery UI component, just by addressing the underlying DIV.</p>
-                    <p>AliceJS is composed exclusively of JS files in a single folder, without image, CSS or any other dependencies. There is an "alice.core.js" file that contains common code and utilities, and then each effect has its own additional JS file, for example, "alice.wobble.js". The goal is to keep each animation separate which makes it easy for a developer to create a minified build with only what is needed and nothing else. AliceJS is lean and right now, the gzipped minified version containing the entire library is about 5K only!</p>
+                    <p>AliceJS is composed exclusively of JS files in a single folder, without image, CSS or any other dependencies. There is an "alice.core.js" file that contains common code and utilities, and then each effect has its own additional JS file, for example, "alice.plugins.cheshire.js". The goal is to keep each animation separate which makes it easy for a developer to create a minified build with only what is needed and nothing else. AliceJS is lean and right now, the gzipped minified version containing the entire library is about 5K only!</p>
                     <p>The syntax for AliceJS is also kept minimal and in line with CSS, which we believe to be really simple and easy to grasp. For example:</p>
 
                     <pre class="prettyprint lang-js">
-alice.wobble("MyDiv", 20, 5, "top-left", 1000, 10, "ease-in-out", -1);
+alice.wobble("MyDiv", 5, "center",
+    "200ms", "linear", "0ms", "infinite", "alternate", "running");
                     </pre>
 
                     <p>This can be thought of as:</p>
                     <pre class="prettyprint language-css">
 #MyDiv {
-    animate-wobble: 20 5% top-left 1000ms 10% ease-in-out infinite;
+    animate-wobble: 5 center 200ms linear 0ms infinite alternate running;
 }
                     </pre>
 
@@ -119,23 +123,23 @@ alice.wobble("MyDiv", 20, 5, "top-left", 1000, 10, "ease-in-out", -1);
 
                     <pre class="prettyprint language-css">
 #MyDiv {
-  animate-wobble-rotation: 20;
-  animate-wobble-rotation-ramdomness: 5%;
-  animate-wobble-anchor: top-left;
-  animate-wobble-duration: 1000ms;
-  animate-wobble-duration-randomness: 10%;
-  animate-wobble-duration-timing-function: ease-in-out;
-  animate-wobble-iteration: infinite;
+    animate-wobble-rotation: 5;
+    animate-wobble-anchor: center;
+    animate-wobble-duration: 200ms;
+    animate-wobble-duration-timing-function: linear;
+    animate-wobble-iteration: infinite;
+    animate-wobble-direction: alternate;
+    animate-wobble-playstate: running;
 }
                     </pre>
 
-                    <p>The preceding CSS code is just mock code to illustrate how to think about AliceJS. All effects are modeled around the same approach where a single line of JavaScript is sufficient to set-up an effect. Ultimately, we would like CSS to adopt higher-level animation constructs to make it real easy to add more evolved visual special effects to Web applications.</p>
+                    <p>The preceding CSS code is just mock code to illustrate how to think about AliceJS. All effects are modeled around the same approach where a single line of JavaScript is sufficient to set up an effect. Ultimately, we would like CSS to adopt higher-level animation constructs to make it real easy to add more evolved visual special effects to web applications.</p>
 
-                    <p>Finally, although we focus primarily on hardware-accelerated CSS at this point, we don't want to rule out using other technologies in the future such as Canvas and WebGL. And although the library focuses really on visual effects, we are exploring ways to tie in sensor input to make things more interesting, without interfering with application logic, or bringing in too much baggage.</p>
+                    <p>Finally, although we focus primarily on hardware-accelerated CSS at this point, we don't want to rule out using other technologies in the future such as Canvas and WebGL. Although the library focuses really on visual effects, we are exploring ways to tie in sensor input to make things more interesting, without interfering with application logic, or bringing in too much baggage.</p>
 
                     <h2>Compatibility</h2>
 
-                    <p>The library is intended to work at least on Chrome (V13 or V14-beta because of hardware-acceleration requirements), iOS, and BlackBerry platforms. As the library evolves and more people participate, it's our goal to support all major platforms the best way we can.</p>
+                    <p>The library is intended to work at least on Chrome (V13 or higher because of hardware-acceleration requirements), iOS, and BlackBerry platforms. As the library evolves and more people participate, it's our goal to support all major platforms the best way we can.</p>
 
                     <h2>Downloads</h2>
 
@@ -181,7 +185,7 @@ alice.wobble("MyDiv", 20, 5, "top-left", 1000, 10, "ease-in-out", -1);
         var a = alice.init(),
 
             animateLogo = function () {
-                a.spin("logo-alice-img", "left", "", "3000ms");
+                a.spin("logo-alice-img", "left", 2, "", "3000ms");
 
                 a.slide(document.getElementById("logo-alice-txt-alice").children, "left", "0%", {
                     value: "1000ms",

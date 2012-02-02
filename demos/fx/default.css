@@ -74,7 +74,7 @@
     border-radius: 10px;
 }
 
-#settings-content input, #settings-content select {
+#settings-content input[type=range], #settings-content input[type=text], #settings-content select {
     font: 8pt Arial, sans-serif;
     vertical-align: middle;
     text-align: left;

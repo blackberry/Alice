@@ -38,7 +38,7 @@ var alice = (function () {
             name: "AliceJS",
             description: "A Lightweight Independent CSS Engine",
             version: "0.2",
-            build: "20120201-2300",
+            build: "20120202-1500",
 
             prefix: "",
             prefixJS: "",
@@ -331,6 +331,60 @@ var alice = (function () {
                 default:
                     return {p1: 0.250, p2: 0.100, p3: 0.250, p4: 1.000}; // ease
                 }
+            },
+
+            /**
+             * Returns a flip object
+             */
+            flip: function (params, turns, overshoot) {
+                var numTurns = turns || 1,
+                    ret,
+                    parseNum = function (num) {
+                        return {start: 0, end: num, axis: "Y"};
+                    },
+                    parseStr = function (str) {
+                        if (params === "left") {
+                            return {start: 0, end: -360 * numTurns, axis: "Y"};
+                        }
+                        else if (params === "right") {
+                            return {start: 0, end: 360 * numTurns, axis: "Y"};
+                        }
+                        else if (params === "up") {
+                            return {start: 0, end: 360 * numTurns, axis: "X"};
+                        }
+                        else if (params === "down") {
+                            return {start: 0, end: -360 * numTurns, axis: "X"};
+                        }
+                    },
+                    parseObj = function (obj) {
+                        var val;
+                        if (obj.value) {
+                            if (typeof obj.value === "string") {
+                                val = parseStr(obj.value);
+                            }
+                            else {
+                                val = parseNum(obj.value); // {value: -180}
+                            }
+                        }
+                        return val;
+                    };
+
+                switch (typeof params) {
+                case "number":
+                    ret = parseNum(params);
+                    break;
+                case "string":
+                    ret = parseStr(params);
+                    break;
+                case "object":
+                    ret = parseObj(params);
+                    break;
+                default:
+                    ret = null;
+                }
+
+                //console.warn(params, ret);
+                return ret;
             },
 
             /**

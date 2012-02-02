@@ -76,6 +76,7 @@ settings.applyEffect = function (elems, playstate) {
         move: document.getElementById("move-setting").value,
         rotate: document.getElementById("rotate-setting").value,
         flip: document.getElementById("flip-setting").value,
+        turns: document.getElementById("turns-setting").value,
         fade: document.getElementById("fade-setting").value,
         scale: {
             from: document.getElementById("scaleFrom-setting").value,
@@ -173,7 +174,7 @@ settings.insertHTML = function (targetID, params, show) {
         html += '                    <td align="right">Delay:</td>';
         html += '                      <td>';
         html += '                          <input type="range" id="delay-slider" min="' + params.delay.min + '" max="' + params.delay.max + '" value="' + parseInt(params.delay.value, 10) + '" step="' + params.delay.step + '" onchange="' + delayUpdate + '">';
-        html += '                          <input type="text" id="delay-setting" value="' + parseInt(params.delay.value, 10) + '" size="2">';
+        html += '                          <input type="text" id="delay-setting" value="' + parseInt(params.delay.value, 10) + '" size="3">';
         html += '                      </td>';
         html += '                </tr>';
     }
@@ -188,7 +189,7 @@ settings.insertHTML = function (targetID, params, show) {
         html += '                    <td align="right">Duration:</td>';
         html += '                      <td>';
         html += '                          <input type="range" id="duration-slider" min="' + params.duration.min + '" max="' + params.duration.max + '" value="' + parseInt(params.duration.value, 10) + '" step="' + params.duration.step + '" onchange="' + durationUpdate + '">';
-        html += '                          <input type="text" id="duration-setting" value="' + parseInt(params.duration.value, 10) + '" size="2">';
+        html += '                          <input type="text" id="duration-setting" value="' + parseInt(params.duration.value, 10) + '" size="3">';
         html += '                      </td>';
         html += '                </tr>';
     }
@@ -255,7 +256,7 @@ settings.insertHTML = function (targetID, params, show) {
         html += '                    <td align="right">Rotate:</td>';
         html += '                      <td>';
         html += '                          <input type="range" id="rotate-slider" min="' + params.rotate.min + '" max="' + params.rotate.max + '" value="' + parseInt(params.rotate.value, 10) + '" step="' + params.rotate.step + '" onchange="' + rotateUpdate + '">';
-        html += '                          <input type="text" id="rotate-setting" value="' + parseInt(params.rotate.value, 10) + '" size="2">';
+        html += '                          <input type="text" id="rotate-setting" value="' + parseInt(params.rotate.value, 10) + '" size="3">';
         html += '                      </td>';
         html += '                </tr>';
     }
@@ -270,11 +271,13 @@ settings.insertHTML = function (targetID, params, show) {
         html += '                        <select id="flip-setting" onchange="settings.animate();">';
         html += settings.generateOptions(settings.flipOpts, params.flip);
         html += '                        </select>';
+        html += '                        <input type="number" id="turns-setting" min="1" max="10" value="1" step="1" size="3" placeholder="turn(s)" onchange="settings.animate();" onclick="settings.animate();">';
         html += '                    </td>';
         html += '                </tr>';
     }
     else {
         hidden += '<input type="hidden" id="flip-setting" value="' + params.flip + '">';
+        hidden += '<input type="hidden" id="turns-setting" value="1">';
     }
 
     if (show.fade) {
@@ -316,7 +319,7 @@ settings.insertHTML = function (targetID, params, show) {
         html += '                    <td align="right">Overshoot:</td>';
         html += '                      <td>';
         html += '                          <input type="range" id="overshoot-slider" min="' + params.overshoot.min + '" max="' + params.overshoot.max + '" value="' + parseInt(params.overshoot.value, 10) + '" step="' + params.overshoot.step + '" onchange="' + overshootUpdate + '">';
-        html += '                          <input type="text" id="overshoot-setting" value="' + parseInt(params.overshoot.value, 10) + '" size="2">';
+        html += '                          <input type="text" id="overshoot-setting" value="' + parseInt(params.overshoot.value, 10) + '" size="3">';
         html += '                      </td>';
         html += '                </tr>';
     }
@@ -331,7 +334,7 @@ settings.insertHTML = function (targetID, params, show) {
         html += '                    <td align="right">Randomness:</td>';
         html += '                      <td>';
         html += '                          <input type="range" id="randomness-slider" min="' + params.randomness.min + '" max="' + params.randomness.max + '" value="' + parseInt(params.randomness.value, 10) + '" step="' + params.randomness.step + '" onchange="' + randomnessUpdate + '">';
-        html += '                          <input type="text" id="randomness-setting" value="' + parseInt(params.randomness.value, 10) + '" size="2">';
+        html += '                          <input type="text" id="randomness-setting" value="' + parseInt(params.randomness.value, 10) + '" size="3">';
         html += '                      </td>';
         html += '                </tr>';
     }
@@ -361,8 +364,8 @@ settings.insertHTML = function (targetID, params, show) {
         html += settings.generateOptions(settings.perspectiveOriginOpts, params.perspectiveOrigin);
         html += '                        </select>';
         html += '                        <br>';
-        html += '                        <input type="number" id="perspectiveOriginX-setting" min="-1000" max="1000" value="0" step="50" size="2" placeholder="x%" style="display: none;" onchange="settings.animate();" onclick="settings.animate();">';
-        html += '                        <input type="number" id="perspectiveOriginY-setting" min="-1000" max="1000" value="0" step="50" size="2" placeholder="y%" style="display: none;" onchange="settings.animate();" onclick="settings.animate();">';
+        html += '                        <input type="number" id="perspectiveOriginX-setting" min="-1000" max="1000" value="0" step="50" size="3" placeholder="x%" style="display: none;" onchange="settings.animate();" onclick="settings.animate();">';
+        html += '                        <input type="number" id="perspectiveOriginY-setting" min="-1000" max="1000" value="0" step="50" size="3" placeholder="y%" style="display: none;" onchange="settings.animate();" onclick="settings.animate();">';
         html += '                    </td>';
         html += '                </tr>';
     }

@@ -319,7 +319,7 @@
         }, false);
 
         document.getElementById("effect-zoomForward").addEventListener("click", function () {
-            a.zoom(elems, {from: "100%", to: "125%"}, "", {
+            a.zoom(elems, {from: "100%", to: "125%"}, true, "", {
                 "value": "1000ms",
                 "randomness": "0%",
                 "offset": "750ms"
@@ -327,7 +327,7 @@
         }, false);
 
         document.getElementById("effect-zoomBackward").addEventListener("click", function () {
-            a.zoom(elems, {from: "100%", to: "75%"}, "", {
+            a.zoom(elems, {from: "100%", to: "75%"}, false, "", {
                 "value": "1000ms",
                 "randomness": "0%",
                 "offset": "750ms"
@@ -366,7 +366,7 @@
         //---[ Continuous ]---------------------------------------------------
 
         document.getElementById("effect-bounce").addEventListener("click", function () {
-            a.bounce(elems, "", {
+            a.bounce(elems, "", true, {
                 "value": "1000ms",
                 "randomness": "0%",
                 "offset": "1ms"
@@ -374,7 +374,7 @@
         }, false);
 
         document.getElementById("effect-bounce-delay").addEventListener("click", function () {
-            a.bounce(elems, "", {
+            a.bounce(elems, "", true, {
                 "value": "1000ms",
                 "randomness": "0%",
                 "offset": "1ms"
@@ -416,6 +416,20 @@
                 "offset": "1ms"
             });
         }, false);
+
+        // Google Analytics
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28534102-1']);
+        _gaq.push(['_setDomainName', 'github.com']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
         </script>
     </body>
 </html>

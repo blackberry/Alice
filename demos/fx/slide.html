@@ -30,40 +30,9 @@
             <p></p>
         </div>
 
-        <div id="settings">
-        </div>
+        <div id="settings"></div>
 
-        <div class="table">
-            <div id="cards" class="cards">
-                <figure class="card"><img src="../common/images/cards/10_clubs.png"><figcaption>Ten of Clubs</figcaption></figure>
-                <figure class="card"><img src="../common/images/cards/10_diamonds.png"><figcaption>Ten of Diamonds</figcaption></figure>
-                <figure class="card"><img src="../common/images/cards/10_hearts.png"><figcaption>Ten of Hearts</figcaption></figure>
-                <figure class="card"><img src="../common/images/cards/10_spades.png"><figcaption>Ten of Spades</figcaption></figure>
-
-                <figure class="card"><img src="../common/images/cards/jack_clubs.png"><figcaption>Jack of Clubs</figcaption></figure>
-                <figure class="card"><img src="../common/images/cards/jack_diamonds.png"><figcaption>Jack of Diamonds</figcaption></figure>
-                <figure class="card"><img src="../common/images/cards/jack_hearts.png"><figcaption>Jack of Hearts</figcaption></figure>
-                <figure class="card"><img src="../common/images/cards/jack_spades.png"><figcaption>Jack of Spades</figcaption></figure>
-
-                <figure class="card"><img src="../common/images/cards/queen_clubs.png"><figcaption>Queen of Clubs</figcaption></figure>
-                <figure class="card"><img src="../common/images/cards/queen_diamonds.png"><figcaption>Queen of Diamonds</figcaption></figure>
-                <figure class="card"><img src="../common/images/cards/queen_hearts.png"><figcaption>Queen of Hearts</figcaption></figure>
-                <figure class="card"><img src="../common/images/cards/queen_spades.png"><figcaption>Queen of Spades</figcaption></figure>
-
-                <figure class="card"><img src="../common/images/cards/king_clubs.png"><figcaption>King of Clubs</figcaption></figure>
-                <figure class="card"><img src="../common/images/cards/king_diamonds.png"><figcaption>King of Diamonds</figcaption></figure>
-                <figure class="card"><img src="../common/images/cards/king_hearts.png"><figcaption>King of Hearts</figcaption></figure>
-                <figure class="card"><img src="../common/images/cards/king_spades.png"><figcaption>King of Spades</figcaption></figure>
-
-                <figure class="card"><img src="../common/images/cards/ace_clubs.png"><figcaption>Ace of Clubs</figcaption></figure>
-                <figure class="card"><img src="../common/images/cards/ace_diamonds.png"><figcaption>Ace of Diamonds</figcaption></figure>
-                <figure class="card"><img src="../common/images/cards/ace_hearts.png"><figcaption>Ace of Hearts</figcaption></figure>
-                <figure class="card"><img src="../common/images/cards/ace_spades.png"><figcaption>Ace of Spades</figcaption></figure>
-
-                <figure class="card"><img src="../common/images/cards/joker_red.png"><figcaption>Red Joker</figcaption></figure>
-                <figure class="card"><img src="../common/images/cards/joker_black.png"><figcaption>Black Joker</figcaption></figure>
-            </div>
-        </div>
+        <div id="table" class="table"></div>
 
         <div class="fineprint"><p class="copyright">Copyright &copy; 2011-2012 Research In Motion Limited</p></div>
 
@@ -78,7 +47,9 @@
         <script type="text/javascript">
         sniffer.init();
 
-        settings.insertHTML("settings", {
+        var a = alice.init();
+
+        settings.createSettings("settings", {
             delay: {
                 min: 0,
                 max: 10000,
@@ -142,46 +113,23 @@
             backfaceVisibility: false
         });
 
-        var a = alice.init();
-
-        document.getElementById("settings-button-toggle").addEventListener("click", function () {
-            var settingsContent = document.getElementById("settings-content").style,
-                button = document.getElementById("settings-button-toggle");
-
-            if (settingsContent.display == "none") {
-                button.innerHTML = "Hide Settings";
-                settingsContent.display = "block";
-                a.slide("settings-content", "left", "5%", "1000ms");
-            }
-            else {
-                button.innerHTML = "Show Settings";
-                //a.slide("settings-content", "right");
-                settingsContent.display = "none";
-            }
-        }, false);
-
-        document.getElementById("perspectiveOrigin-setting").addEventListener("change", function () {
-            settings.handleChange(this, ['perspectiveOriginX-setting', 'perspectiveOriginY-setting']);
-        }, false);
-
-        document.getElementById("settings-button-start").addEventListener("click", function () {
-            var p = settings.applyEffect(document.getElementById("cards").children, "running");
-            a.cheshire(p);
-        }, false);
-
-        document.getElementById("settings-button-stop").addEventListener("click", function () {
-            var p = settings.applyEffect(document.getElementById("cards").children, "paused");
-            a.cheshire(p);
-        }, false);
-
-        for (var i = 0; i < document.getElementById("cards").children.length; i++) {
-            document.getElementById("cards").children[i].addEventListener("click", function () {
-                var p = settings.applyEffect(this, "running");
-                a.cheshire(p);
-            }, false);
-        }
+        settings.createTable("table");
 
         settings.animate();
+
+        // Google Analytics
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28534102-1']);
+        _gaq.push(['_setDomainName', 'github.com']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
         </script>
     </body>
 </html>

@@ -77,6 +77,7 @@
  * [bounce description]
  * @param  {[type]} elems     [description]
  * @param  {[type]} scale     [description]
+ * @param  {[type]} shadow    [description]
  * @param  {[type]} duration  [description]
  * @param  {[type]} timing    [description]
  * @param  {[type]} delay     [description]
@@ -85,7 +86,7 @@
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-a.bounce("my_bounce", 125, "750ms", "easeOutSine", "0ms", "infinite", "alternate", "running");
+a.bounce("my_bounce", 125, true, "750ms", "easeOutSine", "0ms", "infinite", "alternate", "running");
                         </pre>
                     </div>
                 </div>
@@ -481,6 +482,7 @@ a.wobble("my_wobble", 5, "center", "200ms", "linear", "0ms", "infinite", "altern
  * [zoom description]
  * @param  {[type]} elems     [description]
  * @param  {[type]} scale     [description]
+ * @param  {[type]} shadow    [description]
  * @param  {[type]} move      [description]
  * @param  {[type]} duration  [description]
  * @param  {[type]} timing    [description]
@@ -492,7 +494,7 @@ a.wobble("my_wobble", 5, "center", "200ms", "linear", "0ms", "infinite", "altern
  */
 a.zoom("my_zoom", {
     from: "1%", to: "125%"
-}, "none", "5000ms", "ease", "0ms", "infinite", "normal", "running");
+}, true, "none", "5000ms", "ease", "0ms", "infinite", "normal", "running");
                         </pre>
                     </div>
                 </div>
@@ -537,7 +539,7 @@ a.zoom("my_zoom", {
 
         var a = alice.init();
 
-        a.bounce("my_bounce", 125, "750ms", "easeOutSine", "0ms", "infinite", "alternate", "running");
+        a.bounce("my_bounce", 125, true, "750ms", "easeOutSine", "0ms", "infinite", "alternate", "running");
 
         a.dance("my_dance", 45, "750ms", "easeInOutBack", "0ms", "infinite", "alternate", "running");
 
@@ -567,7 +569,7 @@ a.zoom("my_zoom", {
 
         a.zoom("my_zoom", {
             from: "1%", to: "125%"
-        }, "none", "5000ms", "ease", "0ms", "infinite", "normal", "running");
+        }, true, "none", "5000ms", "ease", "0ms", "infinite", "normal", "running");
 
         // Google Analytics
         var _gaq = _gaq || [];

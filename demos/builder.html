@@ -340,6 +340,7 @@
                                             <option value="190%">190</option>
                                             <option value="200%">200</option>
                                         </select>
+                                        <input type="checkbox" id="shadow1" name="shadow1" alt="Shadow" title="Shadow" checked>
                                     </td>
                                 </tr>
                                 <tr>
@@ -455,6 +456,20 @@
         document.getElementById("perspective_origin1").addEventListener("change", function () {
             app.handleChange(this, ['perspectiveOriginX-setting', 'perspectiveOriginY-setting']);
         }, false);
+
+        // Google Analytics
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28534102-1']);
+        _gaq.push(['_setDomainName', 'github.com']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
         </script>
     </body>
 </html>

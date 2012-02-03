@@ -189,6 +189,7 @@ app.applyEffect = function (param) {
                 from: document.getElementById("scaleFrom" + i).value,
                 to: document.getElementById("scaleTo" + i).value
             },
+            shadow: document.getElementById("shadow" + i).checked,
             overshoot: document.getElementById("overshoot" + i).value,
             perspective: document.getElementById("perspective" + i).value,
             perspectiveOrigin: document.getElementById("perspective_origin" + i).value,
@@ -314,22 +315,25 @@ app.applyEffect = function (param) {
 
         case "zoom (125%)":
             p.scale = {from: "100%", to: "125%"};
+            p.shadow = true;
             p.move = "left";
-            ret = a.zoom(p.elems, p.scale, p.move, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.zoom(p.elems, p.scale, p.shadow, p.move, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
         case "zoom (75%)":
             p.scale = {from: "100%", to: "75%"};
+            p.shadow = false;
             p.move = "left";
-            ret = a.zoom(p.elems, p.scale, p.move, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.zoom(p.elems, p.scale, p.shadow, p.move, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
 
         case "bounce":
             p.scale = {from: "100%", to: "125%"};
+            p.shadow = true;
             p.duration = "500ms";
             p.timing = "easeOutSine";
             p.iteration = "infinite";
             p.direction = "alternate";
-            ret = a.bounce(p.elems, p.scale, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.bounce(p.elems, p.scale, p.shadow, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
             break;
 
         case "dance":

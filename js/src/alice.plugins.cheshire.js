@@ -61,6 +61,7 @@ alice.plugins.cheshire = function (params) {
 
         scaleFrom = (params.scale && params.scale.from) ? alice.percentage(params.scale.from) : 1,
         scaleTo = (params.scale && params.scale.to) ? alice.percentage(params.scale.to) : 1,
+        shadow = params.shadow || false,
 
         move = "",
         axis = "",
@@ -165,7 +166,7 @@ alice.plugins.cheshire = function (params) {
             transformEnd += " scale(" + scaleTo + ")";
 
             // Generate box shadow
-            if (scaleTo > 1) {
+            if (shadow === true && scaleTo > 1) {
                 shadowSize = Math.round(scaleTo * 10);
                 boxShadowStart = " 0px 0px 0px rgba(0, 0, 0, 1)";
                 boxShadowEnd = " " + shadowSize + "px " + shadowSize + "px " + shadowSize + "px rgba(0, 0, 0, 0.5)";
@@ -179,7 +180,7 @@ alice.plugins.cheshire = function (params) {
             css += "\t\t" + alice.prefix + "transform:" + transformStart + ";" + "\n";
             css += "\t\t" + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
             css += (fade) ? "\t\t" + "opacity: " + fadeStart + ";" + "\n" : "";
-            css += (scaleTo > 1) ? "\t\t" + alice.prefix + "box-shadow: " + boxShadowStart + ";" + "\n" : "";
+            css += (shadow === true && scaleTo > 1) ? "\t\t" + alice.prefix + "box-shadow: " + boxShadowStart + ";" + "\n" : "";
 
             css += "\t" + "}" + "\n";
 
@@ -194,7 +195,7 @@ alice.plugins.cheshire = function (params) {
             css += "\t\t" + alice.prefix + "transform:" + transformEnd + ";" + "\n";
             css += "\t\t" + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
             css += (fade) ? "\t\t" + "opacity: " + fadeEnd + ";" + "\n" : "";
-            css += (scaleTo > 1) ? "\t\t" + alice.prefix + "box-shadow: " + boxShadowEnd + ";" + "\n" : "";
+            css += (shadow === true && scaleTo > 1) ? "\t\t" + alice.prefix + "box-shadow: " + boxShadowEnd + ";" + "\n" : "";
 
             css += "\t" + "}" + "\n";
 
@@ -223,7 +224,7 @@ alice.plugins.cheshire = function (params) {
             // Apply styles from last key frame
             elem.style[alice.prefixJS + "Transform"] = transformEnd;
             elem.style.opacity = (fade) ? fadeEnd : "";
-            elem.style[alice.prefixJS + "BoxShadow"] = (scaleTo > 1) ? boxShadowEnd : "";
+            elem.style[alice.prefixJS + "BoxShadow"] = (shadow === true && scaleTo > 1) ? boxShadowEnd : "";
 
             // Add listener to clear animation after it's done
             if ("MozAnimation" in elem.style) {
@@ -257,19 +258,20 @@ alice.plugins.cheshire = function (params) {
  *     elems, <options>, duration, timing, delay, iteration, direction, playstate
  */
 
- /**
-  * [bounce description]
-  * @param  {[type]} elems     [description]
-  * @param  {[type]} scale     [description]
-  * @param  {[type]} duration  [description]
-  * @param  {[type]} timing    [description]
-  * @param  {[type]} delay     [description]
-  * @param  {[type]} iteration [description]
-  * @param  {[type]} direction [description]
-  * @param  {[type]} playstate [description]
-  * @return {[type]}
-  */
- alice.plugins.bounce = function (elems, scale, duration, timing, delay, iteration, direction, playstate) {
+/**
+ * [bounce description]
+ * @param  {[type]} elems     [description]
+ * @param  {[type]} scale     [description]
+ * @param  {[type]} shadow    [description]
+ * @param  {[type]} duration  [description]
+ * @param  {[type]} timing    [description]
+ * @param  {[type]} delay     [description]
+ * @param  {[type]} iteration [description]
+ * @param  {[type]} direction [description]
+ * @param  {[type]} playstate [description]
+ * @return {[type]}
+ */
+ alice.plugins.bounce = function (elems, scale, shadow, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("bounce: ", arguments);
 
@@ -288,6 +290,7 @@ alice.plugins.cheshire = function (params) {
 
         //scale: scale || {from: "100%", to: "125%"},
         scale: scaleObj,
+        shadow: shadow || false,
 
         duration: duration || "750ms",
         timing: timing || "easeOutSine",
@@ -793,6 +796,7 @@ alice.plugins.wobble = function (elems, rotate, perspectiveOrigin, duration, tim
  * [zoom description]
  * @param  {[type]} elems     [description]
  * @param  {[type]} scale     [description]
+ * @param  {[type]} shadow    [description]
  * @param  {[type]} move      [description]
  * @param  {[type]} duration  [description]
  * @param  {[type]} timing    [description]
@@ -802,7 +806,7 @@ alice.plugins.wobble = function (elems, rotate, perspectiveOrigin, duration, tim
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.zoom = function (elems, scale, move, duration, timing, delay, iteration, direction, playstate) {
+alice.plugins.zoom = function (elems, scale, shadow, move, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("zoom: ", arguments);
 
@@ -821,6 +825,7 @@ alice.plugins.zoom = function (elems, scale, move, duration, timing, delay, iter
         elems: elems,
 
         scale: scaleObj,
+        shadow: shadow || false,
 
         move: move || "none",
 

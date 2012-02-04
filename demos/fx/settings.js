@@ -84,6 +84,7 @@ settings.applyEffect = function (elems, playstate) {
         },
         shadow: document.getElementById("shadow-setting").checked,
         overshoot: document.getElementById("overshoot-setting").value,
+        randomness: document.getElementById("randomness-setting").value,
         perspective: document.getElementById("perspective-setting").value,
         perspectiveOrigin: document.getElementById("perspectiveOrigin-setting").value,
         backfaceVisibility: document.getElementById("backfaceVisibility-setting").value

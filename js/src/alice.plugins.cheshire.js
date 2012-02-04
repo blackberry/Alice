@@ -46,10 +46,7 @@ alice.plugins.cheshire = function (params) {
         overshoot = alice.percentage(params.overshoot) || 0,
         overShootPercent = 85,
 
-        rotate = alice.format.rotation(params.rotate) || 0,
-        rotateStart = alice.percentage(rotate) * 100,
-        rotateOver = overshoot * 100,
-        rotateEnd = 0,
+        rotate = params.rotate || 0,
 
         turns = params.turns || 1,
 
@@ -88,8 +85,15 @@ alice.plugins.cheshire = function (params) {
             elem = elems[i];
             container = elem.parentElement || elem.parentNode;
 
+            // Recalculate delay and duration for each element
             calc.delay = alice.helper.duration(params.delay, calc.delay, delay);
             calc.duration = alice.helper.duration(params.duration, calc.duration, duration);
+
+            // Recalculate rotation with randomization for each element
+            calc.rotate = alice.helper.rotation(rotate, params);
+            calc.rotateStart = alice.percentage(calc.rotate) * 100;
+            calc.rotateOver = overshoot * 100;
+            calc.rotateEnd = 0;
 
             // Generate animation ID
             animId = alice.id + "-cheshire-" + (new Date()).getTime() + "-" + Math.floor(Math.random() * 1000000);
@@ -144,12 +148,12 @@ alice.plugins.cheshire = function (params) {
             // Generate transforms
             transformStart = "";
             transformStart += (flip) ? " rotate" + flip.axis + "(" + flip.start + "deg)" : " translate" + axis + "(" + posStart + "px)";
-            transformStart += (rotate && parseInt(rotate, 10) !== 0) ? " rotate(" + rotateStart + "deg)" : "";
+            transformStart += (calc.rotate && parseInt(calc.rotate, 10) !== 0) ? " rotate(" + calc.rotateStart + "deg)" : "";
             transformStart += " scale(" + scaleFrom + ")";
 
             transformOver = "";
             transformOver += (flip) ? " rotate" + flip.axis + "(" + Math.floor((1 + overshoot) * flip.end) + "deg)" : " translate" + axis + "(" + over + "px)";
-            transformOver += (rotate && parseInt(rotate, 10) !== 0) ? " rotate(" + rotateOver + "deg)" : "";
+            transformOver += (calc.rotate && parseInt(calc.rotate, 10) !== 0) ? " rotate(" + calc.rotateOver + "deg)" : "";
             transformOver += (scaleTo > 1) ? " scale(" + scaleTo + ")" : "";
             transformOver += " scale(" + scaleTo + ")";
 
@@ -157,10 +161,10 @@ alice.plugins.cheshire = function (params) {
             transformEnd += (flip) ? " rotate" + flip.axis + "(" + flip.end + "deg)" : " translate" + axis + "(" + posEnd + "px)";
 
             if (move === "" && direction === "alternate") {
-                transformEnd += " rotate(" + alice.format.oppositeNumber(rotateStart) + "deg)";
+                transformEnd += " rotate(" + alice.format.oppositeNumber(calc.rotateStart) + "deg)";
             }
             else {
-                transformEnd += (rotate && parseInt(rotate, 10) !== 0) ? " rotate(" + rotateEnd + "deg)" : "";
+                transformEnd += (calc.rotate && parseInt(calc.rotate, 10) !== 0) ? " rotate(" + calc.rotateEnd + "deg)" : "";
             }
 
             transformEnd += " scale(" + scaleTo + ")";
@@ -236,8 +240,8 @@ alice.plugins.cheshire = function (params) {
 
             if (alice.debug) {
                 console.log(css);
-                //console.log(container.style);
-                //console.log(elem.id, alice.prefixJS, elem.style, elem.style.cssText, elem.style[alice.prefixJS + "AnimationDuration"], elem.style[alice.prefixJS + "AnimationTimingFunction"]);
+                console.log(container.style);
+                console.log(elem.id, alice.prefixJS, elem.style, elem.style.cssText, elem.style[alice.prefixJS + "AnimationDuration"], elem.style[alice.prefixJS + "AnimationTimingFunction"]);
             }
         }
     }

@@ -38,7 +38,7 @@ var alice = (function () {
             name: "AliceJS",
             description: "A Lightweight Independent CSS Engine",
             version: "0.2",
-            build: "20120203-1600",
+            build: "20120204-1040",
 
             prefix: "",
             prefixJS: "",
@@ -104,7 +104,8 @@ var alice = (function () {
              * Returns random number +/- the factor
              */
             randomize: function (num, factor) {
-                var f, r;
+                var f, r,
+                    n = parseInt(num, 10);
 
                 if (typeof factor === "string" && factor.indexOf("%") > -1) {
                     f = parseInt(factor, 10) / 100;
@@ -113,9 +114,9 @@ var alice = (function () {
                     f = parseFloat(factor, 10);
                 }
 
-                r = num + num * ((Math.random() * 2 * f) - f);
+                r = n + n * ((Math.random() * 2 * f) - f);
 
-                //console.log(num, factor, r);
+                //console.log("randomize:", "n=" + n, "factor=" + factor, "r=" + r);
                 return Math.floor(r);
             },
 
@@ -126,14 +127,7 @@ var alice = (function () {
                 //console.info("duration", params, typeof params);
                 var dur,
                     parseNum = function (num) {
-                        var val;
-                        if (num < 100) {
-                            val = num * 1000; // 1, 1.5, 10, 10.25, 99
-                        }
-                        else {
-                            val = num; // 100, 1000, 1500
-                        }
-                        return val;
+                        return num;
                     },
                     parseStr = function (str) {
                         var val;
@@ -175,7 +169,7 @@ var alice = (function () {
                     dur = params;
                 }
 
-                //console.log(dur);
+                //console.log("duration:", "dur=" + dur);
                 return dur;
             },
 
@@ -416,7 +410,7 @@ var alice = (function () {
                     }
                 }
 
-                //console.log("pct=" + pct);
+                //console.log("percentage:", pct=" + pct);
                 return pct;
             },
 
@@ -690,6 +684,19 @@ alice.helper = {
             calc = parseInt(alice.format.duration(duration), 10) + "ms";
         }
         return calc;
+    },
+
+    /**
+     *
+     */
+    rotation: function (rotate, params) {
+        "use strict";
+        var val = rotate;
+        if (params.randomness) {
+            val = alice.randomize(val, alice.percentage(params.randomness));
+            //console.log("rotation:", "rotate=" + rotate, "params.randomness=" + params.randomness, "val=" + val);
+        }
+        return val;
     }
 };
 

@@ -46,7 +46,7 @@ alice.plugins.cheshire = function (params) {
         overshoot = alice.percentage(params.overshoot) || 0,
         overShootPercent = 85,
 
-        rotate = params.rotate || 0,
+        rotate = alice.format.rotation(params.rotate) || 0,
         rotateStart = alice.percentage(rotate) * 100,
         rotateOver = overshoot * 100,
         rotateEnd = 0,

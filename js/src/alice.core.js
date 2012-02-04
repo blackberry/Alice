@@ -126,14 +126,7 @@ var alice = (function () {
                 //console.info("duration", params, typeof params);
                 var dur,
                     parseNum = function (num) {
-                        var val;
-                        if (num < 100) {
-                            val = num * 1000; // 1, 1.5, 10, 10.25, 99
-                        }
-                        else {
-                            val = num; // 100, 1000, 1500
-                        }
-                        return val;
+                        return num;
                     },
                     parseStr = function (str) {
                         var val;

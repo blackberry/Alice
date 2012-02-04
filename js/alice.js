@@ -38,7 +38,7 @@ var alice = (function () {
             name: "AliceJS",
             description: "A Lightweight Independent CSS Engine",
             version: "0.2",
-            build: "20120203-1600",
+            build: "20120204-1040",
 
             prefix: "",
             prefixJS: "",
@@ -104,7 +104,8 @@ var alice = (function () {
              * Returns random number +/- the factor
              */
             randomize: function (num, factor) {
-                var f, r;
+                var f, r,
+                    n = parseInt(num, 10);
 
                 if (typeof factor === "string" && factor.indexOf("%") > -1) {
                     f = parseInt(factor, 10) / 100;
@@ -113,9 +114,9 @@ var alice = (function () {
                     f = parseFloat(factor, 10);
                 }
 
-                r = num + num * ((Math.random() * 2 * f) - f);
+                r = n + n * ((Math.random() * 2 * f) - f);
 
-                //console.log(num, factor, r);
+                //console.log("randomize:", "n=" + n, "factor=" + factor, "r=" + r);
                 return Math.floor(r);
             },
 
@@ -126,14 +127,7 @@ var alice = (function () {
                 //console.info("duration", params, typeof params);
                 var dur,
                     parseNum = function (num) {
-                        var val;
-                        if (num < 100) {
-                            val = num * 1000; // 1, 1.5, 10, 10.25, 99
-                        }
-                        else {
-                            val = num; // 100, 1000, 1500
-                        }
-                        return val;
+                        return num;
                     },
                     parseStr = function (str) {
                         var val;
@@ -175,7 +169,7 @@ var alice = (function () {
                     dur = params;
                 }
 
-                //console.log(dur);
+                //console.log("duration:", "dur=" + dur);
                 return dur;
             },
 
@@ -416,7 +410,7 @@ var alice = (function () {
                     }
                 }
 
-                //console.log("pct=" + pct);
+                //console.log("percentage:", pct=" + pct);
                 return pct;
             },
 
@@ -690,6 +684,19 @@ alice.helper = {
             calc = parseInt(alice.format.duration(duration), 10) + "ms";
         }
         return calc;
+    },
+
+    /**
+     *
+     */
+    rotation: function (rotate, params) {
+        "use strict";
+        var val = rotate;
+        if (params.randomness) {
+            val = alice.randomize(val, alice.percentage(params.randomness));
+            //console.log("rotation:", "rotate=" + rotate, "params.randomness=" + params.randomness, "val=" + val);
+        }
+        return val;
     }
 };
 
@@ -744,9 +751,6 @@ alice.plugins.cheshire = function (params) {
         overShootPercent = 85,
 
         rotate = params.rotate || 0,
-        rotateStart = alice.percentage(rotate) * 100,
-        rotateOver = overshoot * 100,
-        rotateEnd = 0,
 
         turns = params.turns || 1,
 
@@ -785,8 +789,15 @@ alice.plugins.cheshire = function (params) {
             elem = elems[i];
             container = elem.parentElement || elem.parentNode;
 
+            // Recalculate delay and duration for each element
             calc.delay = alice.helper.duration(params.delay, calc.delay, delay);
             calc.duration = alice.helper.duration(params.duration, calc.duration, duration);
+
+            // Recalculate rotation with randomization for each element
+            calc.rotate = alice.helper.rotation(rotate, params);
+            calc.rotateStart = alice.percentage(calc.rotate) * 100;
+            calc.rotateOver = overshoot * 100;
+            calc.rotateEnd = 0;
 
             // Generate animation ID
             animId = alice.id + "-cheshire-" + (new Date()).getTime() + "-" + Math.floor(Math.random() * 1000000);
@@ -841,12 +852,12 @@ alice.plugins.cheshire = function (params) {
             // Generate transforms
             transformStart = "";
             transformStart += (flip) ? " rotate" + flip.axis + "(" + flip.start + "deg)" : " translate" + axis + "(" + posStart + "px)";
-            transformStart += (rotate && parseInt(rotate, 10) !== 0) ? " rotate(" + rotateStart + "deg)" : "";
+            transformStart += (calc.rotate && parseInt(calc.rotate, 10) !== 0) ? " rotate(" + calc.rotateStart + "deg)" : "";
             transformStart += " scale(" + scaleFrom + ")";
 
             transformOver = "";
             transformOver += (flip) ? " rotate" + flip.axis + "(" + Math.floor((1 + overshoot) * flip.end) + "deg)" : " translate" + axis + "(" + over + "px)";
-            transformOver += (rotate && parseInt(rotate, 10) !== 0) ? " rotate(" + rotateOver + "deg)" : "";
+            transformOver += (calc.rotate && parseInt(calc.rotate, 10) !== 0) ? " rotate(" + calc.rotateOver + "deg)" : "";
             transformOver += (scaleTo > 1) ? " scale(" + scaleTo + ")" : "";
             transformOver += " scale(" + scaleTo + ")";
 
@@ -854,10 +865,10 @@ alice.plugins.cheshire = function (params) {
             transformEnd += (flip) ? " rotate" + flip.axis + "(" + flip.end + "deg)" : " translate" + axis + "(" + posEnd + "px)";
 
             if (move === "" && direction === "alternate") {
-                transformEnd += " rotate(" + alice.format.oppositeNumber(rotateStart) + "deg)";
+                transformEnd += " rotate(" + alice.format.oppositeNumber(calc.rotateStart) + "deg)";
             }
             else {
-                transformEnd += (rotate && parseInt(rotate, 10) !== 0) ? " rotate(" + rotateEnd + "deg)" : "";
+                transformEnd += (calc.rotate && parseInt(calc.rotate, 10) !== 0) ? " rotate(" + calc.rotateEnd + "deg)" : "";
             }
 
             transformEnd += " scale(" + scaleTo + ")";
@@ -933,8 +944,8 @@ alice.plugins.cheshire = function (params) {
 
             if (alice.debug) {
                 console.log(css);
-                //console.log(container.style);
-                //console.log(elem.id, alice.prefixJS, elem.style, elem.style.cssText, elem.style[alice.prefixJS + "AnimationDuration"], elem.style[alice.prefixJS + "AnimationTimingFunction"]);
+                console.log(container.style);
+                console.log(elem.id, alice.prefixJS, elem.style, elem.style.cssText, elem.style[alice.prefixJS + "AnimationDuration"], elem.style[alice.prefixJS + "AnimationTimingFunction"]);
             }
         }
     }

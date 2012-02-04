@@ -633,6 +633,20 @@ alice.format = {
     },
 
     /**
+     * 
+     * @param params
+     * @returns
+     */
+    rotation: function (params) {
+        "use strict";
+        var val = alice.duration(params);
+        if (params.randomness) {
+            val = alice.randomize(val, alice.percentage(params.randomness));
+        }
+        return val;
+    },
+
+    /**
      *
      */
     coords: function (c) {

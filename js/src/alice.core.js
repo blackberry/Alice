@@ -579,6 +579,10 @@ var alice = (function () {
                                 });
                                 return animation;
                             },
+                            custom: function(func) {
+                                workflow.andThen(func);
+                                return animation;
+                            },
                             start: function () {
                                 workflow.start(function () {
                                     console.info("workflow.start");

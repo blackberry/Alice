@@ -87,6 +87,16 @@ This library and the sample code is Open Source under the [Apache 2.0 License](h
 
 To contribute code to this repository, you must [sign up as an official contributor](http://blackberry.github.com/howToContribute.html).
 
+To build the code you will need to have [node](http://nodejs.org/) installed. To build run the following in your shell(git-bash for windows):
+
+    ./configure
+
+This will install the dependancies. You should then be able to run:
+  
+    jake
+
+to build Alice.js
+
 ## Bug Reporting and Feature Requests
 
 If you find a bug or have an enhancement request, please report an [Issue](https://github.com/blackberry/Alice/issues) and send a message (via github messages) to the author(s) to let them know that you have filed an issue.

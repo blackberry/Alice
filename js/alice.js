@@ -579,6 +579,10 @@ var alice = (function () {
                                 });
                                 return animation;
                             },
+                            custom: function (func) {
+                                workflow.andThen(func);
+                                return animation;
+                            },
                             start: function () {
                                 workflow.start(function () {
                                     console.info("workflow.start");
@@ -703,6 +707,7 @@ alice.helper = {
 //----------------------------------------------------------------------------
 
 /*jslint devel: true, browser: true, white: true, nomen: true */
+/*global alice: false */
 
 /* ===========================================================================
  * alice.plugins.cheshire.js
@@ -979,7 +984,7 @@ alice.plugins.cheshire = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
- alice.plugins.bounce = function (elems, scale, shadow, duration, timing, delay, iteration, direction, playstate) {
+alice.plugins.bounce = function (elems, scale, shadow, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("bounce: ", arguments);
 
@@ -1172,7 +1177,7 @@ alice.plugins.pageFlip = function (elems, flip, turns, overshoot, duration, timi
 
     var perspectiveOrigin = "left";
 
-    switch(flip) {
+    switch (flip) {
     case "right":
         perspectiveOrigin = "right";
         break;

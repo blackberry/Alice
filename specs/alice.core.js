@@ -346,6 +346,18 @@ describe("selecting elements", function () {
         });
     });
 
+    describe("by query selector", function () {
+        it("can find an elment by the id", function () {
+            var a = document.createElement("div");
+            a.id = "hippo";
+
+            sandbox.appendChild(a);
+            var result = alice.elements("#hippo");
+
+            expect(result).toEqual([a]);
+        });
+    });
+
     describe("by element", function () {
         it("returns the element passed in", function () {
             var el = document.createElement('div');

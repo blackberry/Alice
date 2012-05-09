@@ -55,16 +55,20 @@ var alice = (function () {
              * Returns array of elements
              */
             elements: function (params) {
-                //console.info("elements", params, typeof params);
                 var elems = [],
-                    elem,
-                    i;
+                    each = function (arr, func) {
+                        Array.prototype.forEach.apply(arr, [func]);
+                    },
+                    push = function (v) {
+                        elems.push(v);
+                    },
+                    lookup = function (query) {
+                        var result = document.getElementById(query);
+                        return result ? [result] : document.querySelectorAll(query);
+                    };
 
                 if (typeof params === "string") {
-                    elem = document.getElementById(params);
-                    if (elem) {
-                        elems.push(elem);
-                    }
+                    each(lookup(params), push);
                 }
                 else if (typeof params === "object") {
                     if (params.length === undefined) {
@@ -74,30 +78,26 @@ var alice = (function () {
                         elems.push(document.getElementById(params[0])); // ["myId2"]
                     }
                     else if (params.length > 0) {
-                        for (i = 0; i < params.length; i += 1) {
-                            if (document.getElementById(params[i])) {
-                                elems.push(document.getElementById(params[i])); // ["myId3-1", "myId3-2", "myId3-3"]
+                        each(params, function(param) {
+                            var elem = document.getElementById(param);
+                            if (document.getElementById(param)) {
+                                elems.push(elem);
                             }
-                            // Chrome NodeList
                             else {
-                                // ignore Text
-                                if (params[i].nodeType !== 3) {
-                                    elems.push(params[i]); // myElem4.childNodes
+                                if (param.nodeType !== 3) {
+                                    elems.push(param);
                                 }
                             }
-                        }
+                        });
                     }
                 }
                 // Safari NodeList
-                else if (typeof params === "function") {
-                    if (params.length > 0) {
-                        for (i = 0; i < params.length; i += 1) {
-                            // ignore Text
-                            if (params[i].nodeType !== 3) {
-                                elems.push(params[i]); // myElem4.childNodes
-                            }
+                else if (typeof params === "function" && params.length > 0) {
+                    each(params, function (param) {
+                        if (param.nodeType !== 3) {
+                            elems.push(param);
                         }
-                    }
+                    });
                 }
 
                 //console.log(elems);

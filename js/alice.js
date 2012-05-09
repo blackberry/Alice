@@ -57,10 +57,14 @@ var alice = (function () {
             elements: function (params) {
                 //console.info("elements", params, typeof params);
                 var elems = [],
+                    elem,
                     i;
 
                 if (typeof params === "string") {
-                    elems.push(document.getElementById(params)); // "myId1"
+                    elem = document.getElementById(params);
+                    if (elem) {
+                        elems.push(elem);
+                    }
                 }
                 else if (typeof params === "object") {
                     if (params.length === undefined) {

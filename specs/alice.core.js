@@ -4,8 +4,7 @@
  *
  * Copyright 2011-2012 Research In Motion Limited.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
+ * Licensed under the Apache License, Version 2.0 (the "License") you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
@@ -319,5 +318,85 @@ describe('oppositeNumber', function () {
     });
     it('-0 returns 0', function () {
         expect(alice.format.oppositeNumber(-0)).toEqual(0);
+    });
+});
+
+describe("selecting elements", function () {
+    var sandbox;
+    beforeEach(function () {
+        sandbox = document.createElement("div");
+        sandbox.id = "sandbox";
+
+        document.body.appendChild(sandbox);
+    });
+
+    afterEach(function () {
+        document.body.removeChild(sandbox);
+    });
+
+    describe("by id", function () {
+        it("can find an element by passing in the id", function () {
+            var result = alice.elements('sandbox');
+            expect(result[0]).toBe(sandbox);
+        });
+
+        it("returns an empty array when the id doesn't exist", function () {
+            var result = alice.elements('bob');
+            expect(result).toEqual([]);
+        });
+    });
+
+    describe("by element", function () {
+        it("returns the element passed in", function () {
+            var el = document.createElement('div');
+            var result = alice.elements(el);
+            expect(result[0]).toBe(el);
+        });
+    });
+
+    describe("when passing in an array", function () {
+        it("finds a collection of id's", function () {
+            var a = document.createElement("div");
+                b = document.createElement("div"),
+                c = document.createElement("div");
+
+            a.id = "a";
+            b.id = "b";
+            c.id = "c";
+
+            sandbox.appendChild(a);
+            sandbox.appendChild(b);
+            sandbox.appendChild(c);
+
+            var result = alice.elements(["a", "b", "c"]);
+
+            expect(result).toEqual([a, b, c]);
+        });
+
+        it("returns the element for a list containing a single id", function () {
+            var a = document.createElement("div");
+            a.id = "astroturf";
+            sandbox.appendChild(a);
+
+            var result = alice.elements(["astroturf"]);
+            expect(result).toEqual([a]);
+        });
+
+        it("doesn't return the element for a list containing a single element", function () {
+            var a = document.createElement("div");
+
+            var result = alice.elements([a]);
+            expect(result).not.toEqual([a]);
+        });
+
+        it("filters out the text elements for a list of elements", function () {
+            var a = {nodeType: 1},
+                b = {nodeType: 3},
+                c = {nodeType: 1},
+                d = {random: 55555},
+                result = alice.elements([a, b, c, d]);
+
+            expect(result).toEqual([a,c,d]);
+        });
     });
 });

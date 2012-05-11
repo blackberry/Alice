@@ -75,25 +75,16 @@ var alice = (function () {
                     elems.push(params); // myElem1
                 }
                 else {
-                    if (params.length === 1) {
-                        //HACK: this is kinda suspect. Why is only only element different than a list of more?
-                        if (!params[0].nodeType) {
-                            each(lookup(params[0]), push);
+                    each(params, function(param) {
+                        if (param.nodeType && param.nodeType !== 3) {
+                            elems.push(param);
                         }
-                    }
-                    else if (params.length > 0) {
-                        each(params, function(param) {
-                            if (param.nodeType && param.nodeType !== 3) {
-                                elems.push(param);
-                            }
-                            else {
-                                each(lookup(param), push);
-                            }
-                        });
-                    }
+                        else {
+                            each(lookup(param), push);
+                        }
+                    });
                 }
 
-                //console.log(elems);
                 return elems;
             },
 

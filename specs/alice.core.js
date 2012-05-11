@@ -421,13 +421,6 @@ describe("selecting elements", function () {
             expect(result).toEqual([a]);
         });
 
-        it("doesn't return the element for a list containing a single element", function () {
-            var a = document.createElement("div");
-
-            var result = alice.elements([a]);
-            expect(result).not.toEqual([a]);
-        });
-
         it("filters out the text elements for a list of elements", function () {
             var a = {nodeType: 1},
                 b = {nodeType: 3},

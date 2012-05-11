@@ -385,12 +385,39 @@ describe("selecting elements", function () {
             expect(result).toEqual([a, b, c]);
         });
 
+        it("finds a collection of query selectors", function () {
+            var a = document.createElement("div");
+                b = document.createElement("div"),
+                c = document.createElement("div");
+
+            a.id = "a";
+            b.id = "b";
+            c.id = "c";
+
+            sandbox.appendChild(a);
+            sandbox.appendChild(b);
+            sandbox.appendChild(c);
+
+            var result = alice.elements(["#a", "div#b", "#c"]);
+
+            expect(result).toEqual([a, b, c]);
+        });
+
         it("returns the element for a list containing a single id", function () {
             var a = document.createElement("div");
             a.id = "astroturf";
             sandbox.appendChild(a);
 
             var result = alice.elements(["astroturf"]);
+            expect(result).toEqual([a]);
+        });
+
+        it("returns the element for a list containing a single query selector", function () {
+            var a = document.createElement("div");
+            a.id = "scoobysnacks";
+            sandbox.appendChild(a);
+
+            var result = alice.elements(["#scoobysnacks"]);
             expect(result).toEqual([a]);
         });
 
@@ -405,10 +432,24 @@ describe("selecting elements", function () {
             var a = {nodeType: 1},
                 b = {nodeType: 3},
                 c = {nodeType: 1},
-                d = {random: 55555},
+                d = {nodeType: 3},
                 result = alice.elements([a, b, c, d]);
 
-            expect(result).toEqual([a,c,d]);
+            expect(result).toEqual([a,c]);
+        });
+
+        it("works with an actual list of elements", function () {
+            var a = document.createElement('div'),
+                b = document.createElement('div'),
+                c = document.createElement('div');
+            
+            sandbox.appendChild(a);
+            sandbox.appendChild(b);
+            sandbox.appendChild(c);
+
+            var result = alice.elements(sandbox.querySelectorAll('div'));
+
+            expect(result).toEqual([a, b, c]);
         });
     });
 });

@@ -63,6 +63,7 @@ var alice = (function () {
                         elems.push(v);
                     },
                     lookup = function (query) {
+                        if (typeof query != 'string') return [];
                         var result = document.getElementById(query);
                         return result ? [result] : document.querySelectorAll(query);
                     };
@@ -70,34 +71,26 @@ var alice = (function () {
                 if (typeof params === "string") {
                     each(lookup(params), push);
                 }
-                else if (typeof params === "object") {
-                    if (params.length === undefined) {
-                        elems.push(params); // myElem1
-                    }
-                    else if (params.length === 1) {
-                        elems.push(document.getElementById(params[0])); // ["myId2"]
+                else if (params.length === undefined) {
+                    elems.push(params); // myElem1
+                }
+                else {
+                    if (params.length === 1) {
+                        //HACK: this is kinda suspect. Why is only only element different than a list of more?
+                        if (!params[0].nodeType) {
+                            each(lookup(params[0]), push);
+                        }
                     }
                     else if (params.length > 0) {
                         each(params, function(param) {
-                            var elem = document.getElementById(param);
-                            if (document.getElementById(param)) {
-                                elems.push(elem);
+                            if (param.nodeType && param.nodeType !== 3) {
+                                elems.push(param);
                             }
                             else {
-                                if (param.nodeType !== 3) {
-                                    elems.push(param);
-                                }
+                                each(lookup(param), push);
                             }
                         });
                     }
-                }
-                // Safari NodeList
-                else if (typeof params === "function" && params.length > 0) {
-                    each(params, function (param) {
-                        if (param.nodeType !== 3) {
-                            elems.push(param);
-                        }
-                    });
                 }
 
                 //console.log(elems);

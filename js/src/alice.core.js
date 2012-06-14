@@ -55,48 +55,36 @@ var alice = (function () {
              * Returns array of elements
              */
             elements: function (params) {
-                //console.info("elements", params, typeof params);
                 var elems = [],
-                    i;
+                    each = function (arr, func) {
+                        Array.prototype.forEach.apply(arr, [func]);
+                    },
+                    push = function (v) {
+                        elems.push(v);
+                    },
+                    lookup = function (query) {
+                        if (typeof query != 'string') return [];
+                        var result = document.getElementById(query);
+                        return result ? [result] : document.querySelectorAll(query);
+                    };
 
                 if (typeof params === "string") {
-                    elems.push(document.getElementById(params)); // "myId1"
+                    each(lookup(params), push);
                 }
-                else if (typeof params === "object") {
-                    if (params.length === undefined) {
-                        elems.push(params); // myElem1
-                    }
-                    else if (params.length === 1) {
-                        elems.push(document.getElementById(params[0])); // ["myId2"]
-                    }
-                    else if (params.length > 0) {
-                        for (i = 0; i < params.length; i += 1) {
-                            if (document.getElementById(params[i])) {
-                                elems.push(document.getElementById(params[i])); // ["myId3-1", "myId3-2", "myId3-3"]
-                            }
-                            // Chrome NodeList
-                            else {
-                                // ignore Text
-                                if (params[i].nodeType !== 3) {
-                                    elems.push(params[i]); // myElem4.childNodes
-                                }
-                            }
-                        }
-                    }
+                else if (params.length === undefined) {
+                    elems.push(params); // myElem1
                 }
-                // Safari NodeList
-                else if (typeof params === "function") {
-                    if (params.length > 0) {
-                        for (i = 0; i < params.length; i += 1) {
-                            // ignore Text
-                            if (params[i].nodeType !== 3) {
-                                elems.push(params[i]); // myElem4.childNodes
-                            }
+                else {
+                    each(params, function(param) {
+                        if (param.nodeType && param.nodeType !== 3) {
+                            elems.push(param);
                         }
-                    }
+                        else {
+                            each(lookup(param), push);
+                        }
+                    });
                 }
 
-                //console.log(elems);
                 return elems;
             },
 

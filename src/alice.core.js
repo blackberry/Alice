@@ -884,7 +884,7 @@ var aliceJs = function(workflowName){
         params = '';
     }else{
         var params = {
-            workflow: workflow
+            workflow: true
         }
     } 
     //returns the plugins utilizing workflow if necessary

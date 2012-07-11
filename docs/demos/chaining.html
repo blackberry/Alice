@@ -93,7 +93,7 @@
 
         //var a = alice.init();
 
-        aliceJs("top row").slide(aces, "left", "", {
+        aliceJs(aces, true).slide(aces, "left", "", {
             "value": "1000ms",
             "randomness": "0%",
             "offset": "150ms"
@@ -115,7 +115,7 @@
 
         //var a = alice.init();
 
-        aFx(true).delay(4000).toss(kings, "left", "", "", {
+        aliceJs("test").delay(4000).toss(kings, "left", "", "", {
             "value": "1000ms",
             "randomness": "0%",
             "offset": "150ms"
@@ -135,7 +135,7 @@
 
         // Queens
 
-        var c = alice.init();
+        var c = aliceJs("test");
 
         c.delay(8000).spin(queens, "left", "", "", {
             "value": "1000ms",
@@ -157,7 +157,7 @@
 
         // Jacks
 
-        var d = alice.init();
+        var d = aliceJs("test");
 
         d.delay(12000).pageFlip(jacks, "left", "", "", {
             "value": "1000ms",
@@ -179,7 +179,7 @@
 
         // Tens
 
-        var e = alice.init();
+        var e = aliceJs("test");
 
         e.delay(16000).drain(tens, "", "", {
             "value": "3000ms",

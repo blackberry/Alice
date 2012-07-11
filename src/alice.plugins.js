@@ -93,7 +93,7 @@ alice.plugins.bounce2 = function (params) {
     }
 
     var opts = {
-        elems: params.elems,
+        
 
         //scale: scale || {from: "100%", to: "125%"},
         scale: scaleObj,

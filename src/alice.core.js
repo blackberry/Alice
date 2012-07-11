@@ -42,23 +42,27 @@ var alice = (function () {
 a.reduce)f.push({func:function(b,d){d.take();var f=a.length,g=function(){return--f||d.pass()};a.forEach(function(a){jWorkflow.order(a).start(g)})},context:b});else{if(typeof a!=="function")throw"expected function but was "+typeof a;f.push({func:a,context:b})}return e},chill:function(a){return e.andThen(function(b,c){c.take();setTimeout(function(){c.pass(b)},a)})},start:function(a,b){var c,d,e;a&&typeof a==="object"?(c=a.callback,d=a.context,e=a.initialValue):(c=a,d=b);g={func:c,context:d};h=f.slice();
 i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof require==="function")module.exports=jWorkflow;
 
+    /*
+     * The core
+     */
+
     var core = {
-            id: "alice",
-            name: "AliceJS",
-            description: "A Lightweight Independent CSS Engine",
-            version: "0.3",
-            build: "20120204-1040",
+        id: "alice",
+        name: "AliceJS",
+        description: "A Lightweight Independent CSS Engine",
+        version: "0.3",
+        build: "20120204-1040",
 
-            prefix: "",
-            prefixJS: "",
+        prefix: "",
+        prefixJS: "",
 
-            elems: null,
+        elems: null,
 
-            format: {},
-            helper: {},
-            plugins: {},
+        format: {},
+        helper: {},
+        plugins: {},
 
-            debug: false,
+        debug: false,
 
             /**
              * Returns array of elements
@@ -203,7 +207,7 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
                     null: {x: "50%", y: "50%"} 
                 };
 
-                return coordsArray[params]; // {x: 320, y: 240} returns matching value from array!
+                return coordsArray[params]; // {x: 320, y: 240} > returns matching value from array!
             },
 
             /**
@@ -874,14 +878,16 @@ alice.helper = {
 /* 
  * In order to condense the plugin calls ensuring jWorkflow functions if need be
  */
-var aFx = function(workflow){
-    if(!workflow){
+var aliceJs = function(workflowName){
+    if(!workflowName){
         //sets if the workflow is true or false
+        params = '';
+    }else{
         var params = {
             workflow: workflow
         }
-    }
-    //returns the plugins utilizing workflow if nescesasry
+    } 
+    //returns the plugins utilizing workflow if necessary
     return alice.init(params);
 }
 

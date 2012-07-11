@@ -2,7 +2,7 @@
 /*global alice: false */
 
 /* ===========================================================================
- * alice.plugins.cheshire.js
+ * alice.plugins.js
  * ===========================================================================
  *
  * Copyright 2011-2012 Research In Motion Limited.
@@ -19,239 +19,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-/**
- * [cheshire description]
- * @param  {[type]} params [description]
- * @return {[type]}
- */
-alice.plugins.cheshire = function (params) {
-    "use strict";
-
-    console.info("cheshire", params);
-
-    var
-        // Initialize variables and set defaults
-        delay = params.delay || "0ms",
-        duration = params.duration || "2000ms",
-
-        timing = params.timing || "ease",
-        iteration = params.iteration || 1,
-        direction = params.direction || "normal",
-        playstate = params.playstate || "running",
-
-        perspective = params.perspective || "1000",
-        perspectiveOrigin = params.perspectiveOrigin || "center",
-        backfaceVisibility = params.backfaceVisibility || "visible",
-
-        overshoot = alice.percentage(params.overshoot) || 0,
-        overShootPercent = 85,
-
-        rotate = params.rotate || 0,
-
-        turns = params.turns || 1,
-
-        flip = alice.flip(params.flip, turns, overshoot),
-
-        fade = (params.fade && params.fade !== "") ? params.fade : null,
-        fadeStart = (fade && fade === "out") ? 1 : 0,
-        fadeEnd = (fade && fade === "out") ? 0 : 1,
-
-        scaleFrom = (params.scale && params.scale.from) ? alice.percentage(params.scale.from) : 1,
-        scaleTo = (params.scale && params.scale.to) ? alice.percentage(params.scale.to) : 1,
-        shadow = params.shadow || false,
-
-        move = "",
-        axis = "",
-        sign = 1,
-        posStart = 0,
-        posEnd = params.posEnd || 0,
-        over = posEnd + (sign * Math.floor(posEnd * overshoot)),
-
-        // temporary variables
-        calc = {},
-        container, elems, elem, i, animId, css, transformStart, transformOver, transformEnd, boxShadowStart, boxShadowEnd, dir, size, shadowSize;
-
-    // TODO: use elems from init for chaining?
-    if (alice.elems !== null) {
-        elems = alice.elems;
-    }
-    else if (params.elems) {
-        elems = alice.elements(params.elems);
-    }
-
-    // Loop through elements
-    if (elems && elems.length > 0) {
-        for (i = 0; i < elems.length; i += 1) {
-            elem = elems[i];
-            container = elem.parentElement || elem.parentNode;
-
-            // Recalculate delay and duration for each element
-            calc.delay = alice.helper.duration(params.delay, calc.delay, delay);
-            calc.duration = alice.helper.duration(params.duration, calc.duration, duration);
-
-            // Recalculate rotation with randomization for each element
-            calc.rotate = alice.helper.rotation(rotate, params);
-            calc.rotateStart = alice.percentage(calc.rotate) * 100;
-            calc.rotateOver = overshoot * 100;
-            calc.rotateEnd = 0;
-
-            // Generate animation ID
-            animId = alice.id + "-cheshire-" + (new Date()).getTime() + "-" + Math.floor(Math.random() * 1000000);
-
-            // Configure settings
-            if (params.move) {
-                dir = params.move.direction || params.move;
-                switch (dir) {
-                case "left":
-                    move = "Left";
-                    axis = "X";
-                    sign = -1;
-                    size = window.innerWidth;
-                    posStart = (params.move.start) ? alice.pixel(params.move.start, size) : size;
-                    posEnd = (params.move.end) ? alice.pixel(params.move.end, size) : 0;
-                    over = sign * Math.floor(posStart * overshoot);
-                    break;
-                case "right":
-                    move = "Right";
-                    axis = "X";
-                    sign = 1;
-                    size = document.body.offsetWidth - elem.clientWidth;
-                    posStart = (params.move.start) ? alice.pixel(params.move.start, size) : 0;
-                    posEnd = (params.move.end) ? alice.pixel(params.move.end, size) : size;
-                    over = posEnd + (sign * Math.floor(posEnd * overshoot));
-                    break;
-                case "up":
-                    move = "Up";
-                    axis = "Y";
-                    sign = -1;
-                    size = window.innerHeight;
-                    posStart = (params.move.start) ? alice.pixel(params.move.start, size) : size;
-                    posEnd = (params.move.end) ? alice.pixel(params.move.end, size) : 0;
-                    over = sign * Math.floor(posStart * overshoot);
-                    break;
-                case "down":
-                    move = "Down";
-                    axis = "Y";
-                    sign = 1;
-                    size = alice.docHeight() - (container.clientHeight * 3);
-                    posStart = (params.move.start) ? alice.pixel(params.move.start, size) : 0;
-                    posEnd = (params.move.end) ? alice.pixel(params.move.end, size) : size;
-                    over = posEnd + (sign * Math.floor(posEnd * overshoot));
-
-                    if (alice.debug) {
-                        console.log(alice.docHeight(), window.innerHeight, window.pageYOffset, container.clientHeight);
-                    }
-                    break;
-                }
-            }
-
-            // Generate transforms
-            transformStart = "";
-            transformStart += (flip) ? " rotate" + flip.axis + "(" + flip.start + "deg)" : " translate" + axis + "(" + posStart + "px)";
-            transformStart += (calc.rotate && parseInt(calc.rotate, 10) !== 0) ? " rotate(" + calc.rotateStart + "deg)" : "";
-            transformStart += " scale(" + scaleFrom + ")";
-
-            transformOver = "";
-            transformOver += (flip) ? " rotate" + flip.axis + "(" + Math.floor((1 + overshoot) * flip.end) + "deg)" : " translate" + axis + "(" + over + "px)";
-            transformOver += (calc.rotate && parseInt(calc.rotate, 10) !== 0) ? " rotate(" + calc.rotateOver + "deg)" : "";
-            transformOver += (scaleTo > 1) ? " scale(" + scaleTo + ")" : "";
-            transformOver += " scale(" + scaleTo + ")";
-
-            transformEnd = "";
-            transformEnd += (flip) ? " rotate" + flip.axis + "(" + flip.end + "deg)" : " translate" + axis + "(" + posEnd + "px)";
-
-            if (move === "" && direction === "alternate") {
-                transformEnd += " rotate(" + alice.format.oppositeNumber(calc.rotateStart) + "deg)";
-            }
-            else {
-                transformEnd += (calc.rotate && parseInt(calc.rotate, 10) !== 0) ? " rotate(" + calc.rotateEnd + "deg)" : "";
-            }
-
-            transformEnd += " scale(" + scaleTo + ")";
-
-            // Generate box shadow
-            if (shadow === true && scaleTo > 1) {
-                shadowSize = Math.round(scaleTo * 10);
-                boxShadowStart = " 0px 0px 0px rgba(0, 0, 0, 1)";
-                boxShadowEnd = " " + shadowSize + "px " + shadowSize + "px " + shadowSize + "px rgba(0, 0, 0, 0.5)";
-            }
-
-            // Generate CSS for keyframe rule
-            css = "";
-            css += "@" + alice.prefix + "keyframes " + animId + " {\n";
-
-            css += "\t" + "0% {" + "\n";
-            css += "\t\t" + alice.prefix + "transform:" + transformStart + ";" + "\n";
-            css += "\t\t" + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
-            css += (fade) ? "\t\t" + "opacity: " + fadeStart + ";" + "\n" : "";
-            css += (shadow === true && scaleTo > 1) ? "\t\t" + alice.prefix + "box-shadow: " + boxShadowStart + ";" + "\n" : "";
-
-            css += "\t" + "}" + "\n";
-
-            if (overshoot !== 0) {
-                css += "\t" + overShootPercent + "% {\n";
-                css += "\t\t" + alice.prefix + "transform:" + transformOver + ";" + "\n";
-                css += "\t\t" + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
-                css += "\t" + "}" + "\n";
-            }
-
-            css += "\t" + "100% {" + "\n";
-            css += "\t\t" + alice.prefix + "transform:" + transformEnd + ";" + "\n";
-            css += "\t\t" + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
-            css += (fade) ? "\t\t" + "opacity: " + fadeEnd + ";" + "\n" : "";
-            css += (shadow === true && scaleTo > 1) ? "\t\t" + alice.prefix + "box-shadow: " + boxShadowEnd + ";" + "\n" : "";
-
-            css += "\t" + "}" + "\n";
-
-            css += "}" + "\n";
-
-            //console.log(css);
-
-            // Insert keyframe rule
-            alice.keyframeInsert(css);
-
-            // Apply perspective to parent container
-            container.style[alice.prefixJS + "Perspective"] = perspective + "px";
-            container.style[alice.prefixJS + "PerspectiveOrigin"] = alice.format.coords(perspectiveOrigin); // alice.coords();
-
-            // Apply properties to elements
-            elem.style[alice.prefixJS + "BackfaceVisibility"] = backfaceVisibility;
-
-            elem.style[alice.prefixJS + "AnimationName"] = animId;
-            elem.style[alice.prefixJS + "AnimationDelay"] = calc.delay;
-            elem.style[alice.prefixJS + "AnimationDuration"] = calc.duration;
-            elem.style[alice.prefixJS + "AnimationTimingFunction"] = alice.format.easing(timing);
-            elem.style[alice.prefixJS + "AnimationIterationCount"] = iteration;
-            elem.style[alice.prefixJS + "AnimationDirection"] = direction;
-            elem.style[alice.prefixJS + "AnimationPlayState"] = playstate;
-
-            // Apply styles from last key frame
-            elem.style[alice.prefixJS + "Transform"] = transformEnd;
-            elem.style.opacity = (fade) ? fadeEnd : "";
-            elem.style[alice.prefixJS + "BoxShadow"] = (shadow === true && scaleTo > 1) ? boxShadowEnd : "";
-
-            // Add listener to clear animation after it's done
-            if ("MozAnimation" in elem.style) {
-                elem.addEventListener("animationend", alice.clearAnimation, false);
-            }
-            else {
-                elem.addEventListener(alice.prefixJS + "AnimationEnd", alice.clearAnimation, false);
-            }
-
-            if (alice.debug) {
-                console.log(css);
-                console.log(container.style);
-                console.log(elem.id, alice.prefixJS, elem.style, elem.style.cssText, elem.style[alice.prefixJS + "AnimationDuration"], elem.style[alice.prefixJS + "AnimationTimingFunction"]);
-            }
-        }
-    }
-    else {
-        console.warn("No elements!");
-    }
-
-    return params;
-};
 
 //---[ Shortcut Methods ]-----------------------------------------------------
 
@@ -305,7 +72,42 @@ alice.plugins.bounce = function (elems, scale, shadow, duration, timing, delay, 
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.cheshire(opts);
+    return opts;
+};
+
+//delete later
+alice.plugins.bounce2 = function (params) {
+    "use strict";
+    console.info("bounce:2 ", arguments);
+
+    var scaleObj = {from: "100%", to: "125%"}; // default
+    
+    if (params.scale) {
+        if (typeof scale === "object") {
+            scaleObj = params.scale;
+        }
+        else {
+            scaleObj.to = params.scale;
+        }
+    }
+
+    var opts = {
+        elems: params.elems,
+
+        //scale: scale || {from: "100%", to: "125%"},
+        scale: scaleObj,
+        shadow: params.shadow || false,
+
+        duration: params.duration || "750ms",
+        timing: params.timing || "easeOutSine",
+        delay: params.delay || "0ms",
+        iteration: params.iteration || "infinite",
+        direction: params.direction || "alternate",
+        playstate: params.playstate
+    };
+
+    alice.cheshire(opts);
     return opts;
 };
 
@@ -338,7 +140,7 @@ alice.plugins.dance = function (elems, rotate, duration, timing, delay, iteratio
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.cheshire(opts);
     return opts;
 };
 
@@ -375,7 +177,7 @@ alice.plugins.drain = function (elems, fade, rotate, duration, timing, delay, it
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.cheshire(opts);
     return opts;
 };
 
@@ -408,7 +210,7 @@ alice.plugins.fade = function (elems, fade, duration, timing, delay, iteration, 
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.cheshire(opts);
     return opts;
 };
 
@@ -445,7 +247,7 @@ alice.plugins.hinge = function (elems, rotate, overshoot, duration, timing, dela
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.cheshire(opts);
     return opts;
 };
 
@@ -498,7 +300,7 @@ alice.plugins.pageFlip = function (elems, flip, turns, overshoot, duration, timi
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.cheshire(opts);
     return opts;
 };
 
@@ -535,7 +337,7 @@ alice.plugins.pendulum = function (elems, rotate, overshoot, duration, timing, d
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.cheshire(opts);
     return opts;
 };
 
@@ -574,7 +376,7 @@ alice.plugins.phantomZone = function (elems, fade, rotate, flip, duration, timin
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.cheshire(opts);
     return opts;
 };
 
@@ -611,7 +413,7 @@ alice.plugins.raceFlag = function (elems, rotate, perspectiveOrigin, duration, t
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.cheshire(opts);
     return opts;
 };
 
@@ -646,7 +448,7 @@ alice.plugins.slide = function (elems, move, overshoot, duration, timing, delay,
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.cheshire(opts);
     return opts;
 };
 
@@ -684,7 +486,7 @@ alice.plugins.spin = function (elems, flip, turns, overshoot, duration, timing, 
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.cheshire(opts);
     return opts;
 };
 
@@ -724,7 +526,7 @@ alice.plugins.toss = function (elems, move, overshoot, perspectiveOrigin, durati
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.cheshire(opts);
     return opts;
 };
 
@@ -759,7 +561,7 @@ alice.plugins.twirl = function (elems, flip, duration, timing, delay, iteration,
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.cheshire(opts);
     return opts;
 };
 
@@ -793,7 +595,7 @@ alice.plugins.wobble = function (elems, rotate, perspectiveOrigin, duration, tim
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.cheshire(opts);
     return opts;
 };
 
@@ -842,7 +644,7 @@ alice.plugins.zoom = function (elems, scale, shadow, move, duration, timing, del
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.cheshire(opts);
     return opts;
 };
 

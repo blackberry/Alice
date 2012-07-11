@@ -18,7 +18,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <title>AliceJS Chaining</title>
-        <link href="../favicon.ico" rel="icon" type="image/x-icon">
+        <link href="../../images/favicon.ico" rel="icon" type="image/x-icon">
         <style type="text/css">
         body, select {
             font: 8pt Arial, sans-serif;
@@ -77,10 +77,11 @@
         </div>
 
         <!-- Add jWorkflow for Chaining -->
-        <script src="../libs/jworkflow/jworkflow-min-0.6.0.js"></script>
+        <!-- <script src="../../libs/jworkflow/jworkflow-min-0.6.0.js"></script>-->
 
-        <script src="../js/src/alice.core.js"></script>
-        <script src="../js/src/alice.plugins.cheshire.js"></script>
+        <script src="../../src/alice.core.js"></script>
+        <script src="../../src/alice.plugins.js"></script>
+
         <script type="text/javascript">
         var aces = ["elem1", "elem2", "elem3", "elem4"];
         var kings = ["elem5", "elem6", "elem7", "elem8"];
@@ -90,9 +91,9 @@
 
         // Aces
 
-        var a = alice.init();
+        //var a = alice.init();
 
-        a.slide(aces, "left", "", {
+        aFx(true).slide(aces, "left", "", {
             "value": "1000ms",
             "randomness": "0%",
             "offset": "150ms"
@@ -112,9 +113,9 @@
 
         // Kings
 
-        var b = alice.init();
+        //var a = alice.init();
 
-        b.delay(4000).toss(kings, "left", "", "", {
+        aFx(true).delay(4000).toss(kings, "left", "", "", {
             "value": "1000ms",
             "randomness": "0%",
             "offset": "150ms"

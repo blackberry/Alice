@@ -19,8 +19,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <title>AliceJS - (A Lightweight Independent CSS Engine)</title>
-        <link href="favicon.ico" rel="icon" type="image/x-icon">
-        <link rel="stylesheet" href="default.css">
+        <link href="images/favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="css/default.css">
         <style type="text/css">
         </style>
     </head>
@@ -151,7 +151,7 @@ alice.wobble("MyDiv", 5, "center",
                     <h2>Unit Tests</h2>
 
                     <div>
-                        <a href="specs/index.html">Jasmine</a>
+                        <a href="../tests">Review Unit Tests</a>
                     </div>
 
                     <h2>License</h2>
@@ -165,16 +165,16 @@ alice.wobble("MyDiv", 5, "center",
         <div class="fineprint"><p>Copyright &copy; 2011-2012 Research In Motion Limited &bull; <a href="license.txt">License</a> &bull; <a href="credits.html">Credits</a></p></div>
 
         <!-- Syntax Highlighting -->
-        <link rel="stylesheet" type="text/css" href="libs/prettify/themes/sunburst.css">
-        <script type="text/javascript" src="libs/prettify/prettify.js"></script>
-        <script type="text/javascript" src="libs/prettify/lang-css.js"></script>
+        <link rel="stylesheet" type="text/css" href="../libs/prettify/themes/sunburst.css">
+        <script type="text/javascript" src="../libs/prettify/prettify.js"></script>
+        <script type="text/javascript" src="../libs/prettify/lang-css.js"></script>
 
         <!-- Feature Sniffer -->
-        <script type="text/javascript" src="libs/sniffer.js"></script>
+        <script type="text/javascript" src="../libs/sniffer.js"></script>
 
         <!-- AliceJS -->
-        <script src="js/src/alice.core.js"></script>
-        <script src="js/src/alice.plugins.cheshire.js"></script>
+        <script src="../src/alice.core.js"></script>
+        <script src="../src/alice.plugins.js"></script>
 
         <script type="text/javascript">
         prettyPrint();
@@ -182,18 +182,18 @@ alice.wobble("MyDiv", 5, "center",
 
         document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
 
-        var a = alice.init(),
+        // var a = alice.init(),
 
             animateLogo = function () {
-                a.spin("logo-alice-img", "left", 2, "", "3000ms");
+                aFx().spin("logo-alice-img", "left", 2, "", "3000ms");
 
-                a.slide(document.getElementById("logo-alice-txt-alice").children, "left", "0%", {
+                aFx().slide(document.getElementById("logo-alice-txt-alice").children, "left", "0%", {
                     value: "1000ms",
                     randomness: "100%",
                     offset: "250ms"
                 }, "easeOutQuint");
 
-                a.toss(document.getElementById("logo-alice-txt-js").children, "left", "10%", "", {
+                aFx().toss(document.getElementById("logo-alice-txt-js").children, "left", "10%", "", {
                     value: "2000ms",
                     randomness: "50%",
                     offset: "250ms"

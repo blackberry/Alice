@@ -34,51 +34,51 @@ body {
 /* Logo sprite */
 
 #logo-alice-img {
-    background: transparent url('images/logo_header_plain_sprite.png') no-repeat 0px 0px;
+    background: transparent url('../../images/logo_header_plain_sprite.png') no-repeat 0px 0px;
     float: left;
     width: 120px;
     height: 150px;
 }
 
 #logo-alice-txt-a {
-    background: transparent url('images/logo_header_plain_sprite.png') no-repeat -120px 0px;
+    background: transparent url('../../images/logo_header_plain_sprite.png') no-repeat -120px 0px;
     float: left;
     width: 114px;
     height: 150px;
     margin-left: -30px;
 }
 #logo-alice-txt-l {
-    background: transparent url('images/logo_header_plain_sprite.png') no-repeat -234px 0px;
+    background: transparent url('../../images/logo_header_plain_sprite.png') no-repeat -234px 0px;
     float: left;
     width: 45px;
     height: 150px;
 }
 #logo-alice-txt-i {
-    background: transparent url('images/logo_header_plain_sprite.png') no-repeat -279px 0px;
+    background: transparent url('../../images/logo_header_plain_sprite.png') no-repeat -279px 0px;
     float: left;
     width: 36px;
     height: 150px;
 }
 #logo-alice-txt-c {
-    background: transparent url('images/logo_header_plain_sprite.png') no-repeat -315px 0px;
+    background: transparent url('../../images/logo_header_plain_sprite.png') no-repeat -315px 0px;
     float: left;
     width: 52px;
     height: 150px;
 }
 #logo-alice-txt-e {
-    background: transparent url('images/logo_header_plain_sprite.png') no-repeat -367px 0px;
+    background: transparent url('../../images/logo_header_plain_sprite.png') no-repeat -367px 0px;
     float: left;
     width: 51px;
     height: 150px;
 }
 #logo-alice-txt-j {
-    background: transparent url('images/logo_header_plain_sprite.png') no-repeat -418px 0px;
+    background: transparent url('../../images/logo_header_plain_sprite.png') no-repeat -418px 0px;
     float: left;
     width: 52px;
     height: 150px;
 }
 #logo-alice-txt-s {
-    background: transparent url('images/logo_header_plain_sprite.png') no-repeat -470px 0px;
+    background: transparent url('../../images/logo_header_plain_sprite.png') no-repeat -470px 0px;
     float: left;
     width: 55px;
     height: 150px;
@@ -100,7 +100,7 @@ img {
 }
 
 .card-edge {
-    background: #F1FCFF url(images/backgrounds/wave_header.jpg) no-repeat;
+    background: #F1FCFF url(../../images/backgrounds/wave_header.jpg) no-repeat;
     border-radius: 15px;
     padding: 20px;
 }

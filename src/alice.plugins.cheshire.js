@@ -187,7 +187,7 @@ alice.plugins.cheshire = function (params) {
 
             css += "\t" + "0% {" + "\n";
             css += "\t\t" + alice.prefix + "transform:" + transformStart + ";" + "\n";
-            css += "\t\t" + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
+            css += "\t\t" + alice.prefix + "transform-origin:" + alice.coords(perspectiveOrigin) + ";" + "\n";
             css += (fade) ? "\t\t" + "opacity: " + fadeStart + ";" + "\n" : "";
             css += (shadow === true && scaleTo > 1) ? "\t\t" + alice.prefix + "box-shadow: " + boxShadowStart + ";" + "\n" : "";
 
@@ -196,13 +196,13 @@ alice.plugins.cheshire = function (params) {
             if (overshoot !== 0) {
                 css += "\t" + overShootPercent + "% {\n";
                 css += "\t\t" + alice.prefix + "transform:" + transformOver + ";" + "\n";
-                css += "\t\t" + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
+                css += "\t\t" + alice.prefix + "transform-origin:" + alice.coords(perspectiveOrigin) + ";" + "\n";
                 css += "\t" + "}" + "\n";
             }
 
             css += "\t" + "100% {" + "\n";
             css += "\t\t" + alice.prefix + "transform:" + transformEnd + ";" + "\n";
-            css += "\t\t" + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
+            css += "\t\t" + alice.prefix + "transform-origin:" + alice.coords(perspectiveOrigin) + ";" + "\n";
             css += (fade) ? "\t\t" + "opacity: " + fadeEnd + ";" + "\n" : "";
             css += (shadow === true && scaleTo > 1) ? "\t\t" + alice.prefix + "box-shadow: " + boxShadowEnd + ";" + "\n" : "";
 
@@ -217,7 +217,7 @@ alice.plugins.cheshire = function (params) {
 
             // Apply perspective to parent container
             container.style[alice.prefixJS + "Perspective"] = perspective + "px";
-            container.style[alice.prefixJS + "PerspectiveOrigin"] = alice.format.coords(perspectiveOrigin); 
+            container.style[alice.prefixJS + "PerspectiveOrigin"] = alice.coords(perspectiveOrigin); 
 
             // Apply properties to elements
             elem.style[alice.prefixJS + "BackfaceVisibility"] = backfaceVisibility;

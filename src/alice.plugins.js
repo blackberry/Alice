@@ -76,7 +76,7 @@ alice.plugins.bounce = function (elems, scale, shadow, duration, timing, delay, 
     return opts;
 };
 
-//delete later
+// A better way of calling the plugins, with these details only, let aliceJs control the elements?
 alice.plugins.bounce2 = function (params) {
     "use strict";
     console.info("bounce:2 ", arguments);
@@ -93,8 +93,6 @@ alice.plugins.bounce2 = function (params) {
     }
 
     var opts = {
-        
-
         //scale: scale || {from: "100%", to: "125%"},
         scale: scaleObj,
         shadow: params.shadow || false,

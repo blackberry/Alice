@@ -7,10 +7,11 @@
  * @description
  * A Lightweight Independent CSS Engine
  *
- * @author Laurent Hasson (@ldhasson)
- * @author Jim Ing (@jim_ing)
- * @author Matt Lantz (@mattylantz)
- * @author Gord Tanner (@gtanner) [ jWorkflow ]
+ * @author Laurent Hasson (@ldhasson)       [original]
+ * @author Jim Ing (@jim_ing)               [original]
+ * @author Gord Tanner (@gtanner)           [contributor, jWorkflow]
+ * @author Matt Lantz (@mattylantz)         [minor contributor] 
+ * 
  * ===========================================================================
  *
  * Copyright 2011-2012 Research In Motion Limited.
@@ -494,7 +495,7 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
                 }
 
                 // Add optional support for jWorkflow (https://github.com/tinyhippos/jWorkflow)
-                if (params.workflow === true) {
+                if (params.jWorkflow === true) {
                     console.log("jWorkflow: enabled");
 
                     var id = (params && params.id) ? params.id : '',
@@ -786,7 +787,7 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
 }());
 
 /**
- * Performs various acts of format changes
+ * Performs various acts of formating changes
  */
 alice.format = {
     /**
@@ -876,18 +877,26 @@ alice.helper = {
 };
 
 /* 
- * In order to condense the plugin calls ensuring jWorkflow functions if need be
+ * main function with the plugins running secondary.
  */
-var aliceJs = function(workflowName){
-    if(!workflowName){
-        //sets if the workflow is true or false
-        params = '';
+var aliceJs = function(param){
+    
+    if(param){
+        if(param.chaining === true){
+            var params = {
+                jWorkflow: true
+            }
+        }else{
+            var params = {
+                jWorkflow: false
+            }
+        }
     }else{
         var params = {
-            workflow: true
+            jWorkflow: false
         }
-    } 
-    //returns the plugins utilizing workflow if necessary
+    }
+
     return alice.init(params);
 }
 

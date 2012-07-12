@@ -185,15 +185,15 @@ alice.wobble("MyDiv", 5, "center",
         // var a = alice.init(),
 
             animateLogo = function () {
-                aFx().spin("logo-alice-img", "left", 2, "", "3000ms");
+                aliceJs().spin("logo-alice-img", "left", 2, "", "3000ms");
 
-                aFx().slide(document.getElementById("logo-alice-txt-alice").children, "left", "0%", {
+                aliceJs().slide(document.getElementById("logo-alice-txt-alice").children, "left", "0%", {
                     value: "1000ms",
                     randomness: "100%",
                     offset: "250ms"
                 }, "easeOutQuint");
 
-                aFx().toss(document.getElementById("logo-alice-txt-js").children, "left", "10%", "", {
+                aliceJs().toss(document.getElementById("logo-alice-txt-js").children, "left", "10%", "", {
                     value: "2000ms",
                     randomness: "50%",
                     offset: "250ms"

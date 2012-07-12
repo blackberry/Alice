@@ -46,7 +46,6 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
     /*
      * The core
      */
-
     var core = {
         id: "alice",
         name: "AliceJS",
@@ -577,16 +576,6 @@ alice.format = {
     },
 
     /**
-     * configures the coords object
-     */
-    coords: function (c) {
-        "use strict";
-        var cObj = alice.coords(c),
-            cVal = cObj.x + " " + cObj.y;
-        return cVal;
-    },
-
-    /**
      * configures the output of the object
      */
     easing: function (e) {
@@ -666,5 +655,4 @@ var aliceJs = function(param){
 
     return alice.init(params);
 }
-
 //----------------------------------------------------------------------------

@@ -21,7 +21,8 @@ body {
     background-color: #4E7BA1;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 84%;
-    padding: 20px;
+    padding: 0;
+    margin: 0;
 }
 
 .seo {
@@ -85,24 +86,27 @@ body {
     margin-left: -7px;
 }
 
+
 a:hover {
     color: #FF0000;
 }
 
-img {
+{
     border: 0;
 }
 
 #container {
     overflow: hidden;
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+    min-height: 100%;
 }
 
 .card-edge {
     background: #F1FCFF url(../../images/backgrounds/wave_header.jpg) no-repeat;
     border-radius: 15px;
     padding: 20px;
+    overflow: hidden;
 }
 
 .card {
@@ -220,4 +224,27 @@ a.button, button {
     position: relative;
     zoom: 1;
     line-height: 1.11;
+}
+
+.infoBox{
+    width: 48%;
+    float: left;
+    margin-left: 1%;
+    min-height: 300px;
+    background: #eee;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+}
+
+.padded{
+    padding: 10px 20px;
+}
+
+.padded li{
+    list-style: none;
+}
+
+a.title{
+    font-weight: bold;
+    font-size: 22px;
 }

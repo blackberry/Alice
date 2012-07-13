@@ -58,9 +58,12 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
 
         elems: null,
 
+        vacuum: {},
+
         format: {},
         helper: {},
-        plugins: {},
+        masterFx: {},
+        fx: {},
 
         debug: false,
 
@@ -68,7 +71,7 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
              * Returns array of elements
              */
             elements: function (params) {
-                var elems = [],
+                var elemId, elems = [],
                     each = function (arr, func) {
                         Array.prototype.forEach.apply(arr, [func]);
                     },
@@ -82,7 +85,22 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
                     };
 
                 if (typeof params === "string") {
-                    each(lookup(params), push);
+                    //just to make sure we're not dealing with a jquery object.
+                    if(params.indexOf("$") === 0){
+                        //if we are and its an id, or class
+                        if(params.indexOf('#') > -1){
+                            elemId = params.substring((params.indexOf('#')+1), params.indexOf('\')'));
+                            each(lookup(elemId), push);
+                        }else if(params.indexOf('.') > -1){
+                            elemId = params.substring((params.indexOf('.')+1), params.indexOf('\')'));
+                            each(lookup(elemId), push);
+                        }else{
+                            console.warn('jQuery selectors must be either classes or ids.');
+                            return;
+                        }
+                    }else{
+                        each(lookup(params), push);
+                    }
                 }
                 else if (params.length === undefined) {
                     elems.push(params); // myElem1
@@ -169,7 +187,6 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
                 default:
                     dur = params;
                 }
-
                 //console.log("duration:", "dur=" + dur);
                 return dur;
             },
@@ -206,8 +223,7 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
                     'undefined': {x: "50%", y: "50%"},
                     null: {x: "50%", y: "50%"} 
                 };
-
-                return coordsArray[params]; // {x: 320, y: 240} > returns matching value from array!
+                return coordsArray[params]; // {x: 320, y: 240}
             },
 
             /**
@@ -463,19 +479,35 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
              */
             clearAnimation: function (evt) {
                 //console.info("_clearAnimation", this, evt.srcElement.id, evt.animationName, evt.elapsedTime);
-                this.style[this.prefixJS + "AnimationName"] = "";
-                this.style[this.prefixJS + "AnimationDelay"] = "";
-                this.style[this.prefixJS + "AnimationDuration"] = "";
-                this.style[this.prefixJS + "AnimationTimingFunction"] = "";
-                this.style[this.prefixJS + "AnimationIterationCount"] = "";
-                this.style[this.prefixJS + "AnimationDirection"] = "";
+                this.style[this.prefixJS + "AnimationName"] = " ";
+                this.style[this.prefixJS + "AnimationDelay"] = " ";
+                this.style[this.prefixJS + "AnimationDuration"] = " ";
+                this.style[this.prefixJS + "AnimationTimingFunction"] = " ";
+                this.style[this.prefixJS + "AnimationIterationCount"] = " ";
+                this.style[this.prefixJS + "AnimationDirection"] = " ";
                 //this.style[this.prefixJS + "AnimationFillMode"] = "";
-                this.style[this.prefixJS + "AnimationPlayState"] = "";
+                this.style[this.prefixJS + "AnimationPlayState"] = " ";
 
                 // TODO: add evt.animationName to a delete queue?
                 alice.keyframeDelete(evt.animationName);
 
                 return;
+            },
+
+            /**
+             * Pause the animation
+             */
+            playpauseAnimation: function(elms) {
+                var i, elems = this.elements(elms);
+                console.log(elems);
+                for(i = 0; i < elems.length; i++){
+                    var elemId = elems[i].getAttribute('id');
+                    if(document.getElementById(elemId).style[this.prefixJS + "AnimationPlayState"] == "paused"){
+                        document.getElementById(elemId).style[this.prefixJS + "AnimationPlayState"] = "running";
+                    }else{
+                        document.getElementById(elemId).style[this.prefixJS + "AnimationPlayState"] = "paused";
+                    }
+                }
             },
 
             /**
@@ -545,7 +577,7 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
                     console.log("jWorkflow: disabled");
                 }
 
-                return core.plugins;
+                return core.fx;
             }
         }
 

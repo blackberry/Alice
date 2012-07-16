@@ -248,6 +248,8 @@ alice.masterFx.cheshire = function (params) {
                 console.log(container.style);
                 console.log(elem.id, alice.prefixJS, elem.style, elem.style.cssText, elem.style[alice.prefixJS + "AnimationDuration"], elem.style[alice.prefixJS + "AnimationTimingFunction"]);
             }
+
+            alice.cleanser.removeAni();
         }
     }
     else {

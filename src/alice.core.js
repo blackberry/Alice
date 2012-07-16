@@ -58,7 +58,7 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
 
         elems: null,
 
-        vacuum: {},
+        cleanser: {},
 
         format: {},
         helper: {},
@@ -495,7 +495,7 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
             },
 
             /**
-             * Pause the animation
+             * Play/Pause the animation
              */
             playpauseAnimation: function(elms) {
                 var i, elems = this.elements(elms);
@@ -514,16 +514,16 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
              * Initialize
              */
             init: function (params) {
+                var Chaining;
+
                 console.info("Initializing " + this.name + " (" + this.description + ") " + this.version);
 
                 this.vendorPrefix();
 
-                var Chaining;
-
+                //regarding chaining
                 if (!params) {
                     Chaining = false;
                 }
-
                 if (params) {
                     Chaining = params.chaining;
                 }else if(params && params.elems){
@@ -663,6 +663,32 @@ alice.helper = {
         return val;
     }
 };
+
+/**
+ * Functions that cleanse the DOM
+ */
+alice.cleanser = {
+    // Remove animations that are no longer useful
+    removeAni: function(params){
+        document.addEventListener(this.vendorPrefix+'AnimationEnd', 
+            function(){ 
+                if(document.getElementById(params)){
+                    document.getElementById(params).removeAttribute('style');
+                }
+        }, false);
+    },
+    // Removes the animated elements from the DOM.
+    removeElems: function(params){
+        document.addEventListener(this.vendorPrefix+'AnimationEnd', 
+            function(){ 
+                if(document.getElementById('my_drain')){
+                var drain = document.getElementById('my_drain'); 
+                drain.parentNode.removeChild(drain);
+                console.warn('deleted the animation elements'); 
+                }
+        }, false);
+    }
+}
 
 /* 
  * main function with the plugins running secondary.

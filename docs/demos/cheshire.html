@@ -27,7 +27,7 @@
     <body>
         <div class="fineprint"><p id="version"></p></div>
 
-        <div class="close" style="position: absolute; top: 45px; right: 15px;">
+        <div class="close" style="position: absolute; top: 22px; right: 9%;">
             <a href="../index.html"><img src="../../images/close_icon.png"></a>
         </div>
 
@@ -71,6 +71,7 @@
                         <span>Bounce</span>
                     </div>
                     <p><a href="fx/bounce.html">Bounce</a> - The "bounce" effect simulates the bouncing of an object from a top view including a shadow.</p>
+                    <p onclick="alice.playpauseAnimation('my_bounce')">play/pause</p>
                     <div class="code">
                         <pre class="prettyprint lang-js">
 /**
@@ -528,6 +529,7 @@ a.zoom("my_zoom", {
         <!-- AliceJS -->
         <script src="../../src/alice.core.js"></script>
         <script src="../../src/alice.plugins.cheshire.js"></script>
+        <script src="jquery.min.js"></script>
 <!--
         <script src="../js/alice-min.js"></script>
 -->

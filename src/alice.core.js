@@ -499,13 +499,13 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
              */
             playpauseAnimation: function(elms) {
                 var i, elems = this.elements(elms);
-                console.log(elems);
                 for(i = 0; i < elems.length; i++){
                     var elemId = elems[i].getAttribute('id');
-                    if(document.getElementById(elemId).style[this.prefixJS + "AnimationPlayState"] == "paused"){
-                        document.getElementById(elemId).style[this.prefixJS + "AnimationPlayState"] = "running";
+                    var pfx = this.prefixJS;
+                    if(document.getElementById(elemId).style[pfx + "AnimationPlayState"] == "paused"){
+                        document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "running";
                     }else{
-                        document.getElementById(elemId).style[this.prefixJS + "AnimationPlayState"] = "paused";
+                        document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "paused";
                     }
                 }
             },

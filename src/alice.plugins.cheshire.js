@@ -2,7 +2,7 @@
 /*global alice: false */
 
 /* ===========================================================================
- * alice.plugins.cheshire.js
+ * alice.masterFx.cheshire.js
  * ===========================================================================
  *
  * Copyright 2011-2012 Research In Motion Limited.
@@ -27,7 +27,7 @@
  * @param  {[type]} params [description]
  * @return {[type]}
  */
-alice.plugins.cheshire = function (params) {
+alice.masterFx.cheshire = function (params) {
     "use strict";
 
     console.info("cheshire", params);
@@ -280,7 +280,7 @@ alice.plugins.cheshire = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.bounce = function (elems, scale, shadow, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.bounce = function (elems, scale, shadow, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("bounce: ", arguments);
 
@@ -309,12 +309,12 @@ alice.plugins.bounce = function (elems, scale, shadow, duration, timing, delay, 
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.masterFx.cheshire(opts);
     return opts;
 };
 
 // A better way of calling the plugins, with these details only, let aliceJs control the elements?
-alice.plugins.bounce2 = function (params) {
+alice.fx.bounce2 = function (params) {
     "use strict";
     console.info("bounce:2 ", arguments);
 
@@ -342,7 +342,7 @@ alice.plugins.bounce2 = function (params) {
         playstate: params.playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.masterFx.cheshire(opts);
     return opts;
 };
 
@@ -358,7 +358,7 @@ alice.plugins.bounce2 = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.dance = function (elems, rotate, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.dance = function (elems, rotate, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("dance: ", arguments);
 
@@ -375,7 +375,7 @@ alice.plugins.dance = function (elems, rotate, duration, timing, delay, iteratio
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.masterFx.cheshire(opts);
     return opts;
 };
 
@@ -392,7 +392,7 @@ alice.plugins.dance = function (elems, rotate, duration, timing, delay, iteratio
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.drain = function (elems, fade, rotate, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.drain = function (elems, fade, rotate, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("drain: ", arguments);
 
@@ -412,7 +412,7 @@ alice.plugins.drain = function (elems, fade, rotate, duration, timing, delay, it
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.masterFx.cheshire(opts);
     return opts;
 };
 
@@ -428,7 +428,7 @@ alice.plugins.drain = function (elems, fade, rotate, duration, timing, delay, it
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.fade = function (elems, fade, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.fade = function (elems, fade, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("fade: ", arguments);
 
@@ -445,7 +445,7 @@ alice.plugins.fade = function (elems, fade, duration, timing, delay, iteration, 
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.masterFx.cheshire(opts);
     return opts;
 };
 
@@ -462,7 +462,7 @@ alice.plugins.fade = function (elems, fade, duration, timing, delay, iteration, 
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.hinge = function (elems, rotate, overshoot, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.hinge = function (elems, rotate, overshoot, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("hinge: ", arguments);
 
@@ -482,7 +482,7 @@ alice.plugins.hinge = function (elems, rotate, overshoot, duration, timing, dela
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.masterFx.cheshire(opts);
     return opts;
 };
 
@@ -500,7 +500,7 @@ alice.plugins.hinge = function (elems, rotate, overshoot, duration, timing, dela
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.pageFlip = function (elems, flip, turns, overshoot, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.pageFlip = function (elems, flip, turns, overshoot, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("pageFlip: ", arguments);
 
@@ -535,7 +535,7 @@ alice.plugins.pageFlip = function (elems, flip, turns, overshoot, duration, timi
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.masterFx.cheshire(opts);
     return opts;
 };
 
@@ -552,7 +552,7 @@ alice.plugins.pageFlip = function (elems, flip, turns, overshoot, duration, timi
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.pendulum = function (elems, rotate, overshoot, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.pendulum = function (elems, rotate, overshoot, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("pendulum: ", arguments);
 
@@ -572,7 +572,7 @@ alice.plugins.pendulum = function (elems, rotate, overshoot, duration, timing, d
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.masterFx.cheshire(opts);
     return opts;
 };
 
@@ -590,7 +590,7 @@ alice.plugins.pendulum = function (elems, rotate, overshoot, duration, timing, d
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.phantomZone = function (elems, fade, rotate, flip, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.phantomZone = function (elems, fade, rotate, flip, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("phantomZone: ", arguments);
 
@@ -611,7 +611,7 @@ alice.plugins.phantomZone = function (elems, fade, rotate, flip, duration, timin
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.masterFx.cheshire(opts);
     return opts;
 };
 
@@ -628,7 +628,7 @@ alice.plugins.phantomZone = function (elems, fade, rotate, flip, duration, timin
  * @param  {[type]} playstate         [description]
  * @return {[type]}
  */
-alice.plugins.raceFlag = function (elems, rotate, perspectiveOrigin, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.raceFlag = function (elems, rotate, perspectiveOrigin, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("raceFlag: ", arguments);
 
@@ -648,7 +648,7 @@ alice.plugins.raceFlag = function (elems, rotate, perspectiveOrigin, duration, t
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.masterFx.cheshire(opts);
     return opts;
 };
 
@@ -665,7 +665,7 @@ alice.plugins.raceFlag = function (elems, rotate, perspectiveOrigin, duration, t
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.slide = function (elems, move, overshoot, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.slide = function (elems, move, overshoot, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("slide: ", arguments);
 
@@ -683,7 +683,7 @@ alice.plugins.slide = function (elems, move, overshoot, duration, timing, delay,
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.masterFx.cheshire(opts);
     return opts;
 };
 
@@ -700,7 +700,7 @@ alice.plugins.slide = function (elems, move, overshoot, duration, timing, delay,
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.spin = function (elems, flip, turns, overshoot, duration, timing, delay, iteration, playstate) {
+alice.fx.spin = function (elems, flip, turns, overshoot, duration, timing, delay, iteration, playstate) {
     "use strict";
     console.info("spin: ", arguments);
 
@@ -721,7 +721,7 @@ alice.plugins.spin = function (elems, flip, turns, overshoot, duration, timing, 
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.masterFx.cheshire(opts);
     return opts;
 };
 
@@ -739,7 +739,7 @@ alice.plugins.spin = function (elems, flip, turns, overshoot, duration, timing, 
  * @param  {[type]} playstate         [description]
  * @return {[type]}
  */
-alice.plugins.toss = function (elems, move, overshoot, perspectiveOrigin, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.toss = function (elems, move, overshoot, perspectiveOrigin, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("toss: ", arguments);
 
@@ -761,7 +761,7 @@ alice.plugins.toss = function (elems, move, overshoot, perspectiveOrigin, durati
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.masterFx.cheshire(opts);
     return opts;
 };
 
@@ -777,7 +777,7 @@ alice.plugins.toss = function (elems, move, overshoot, perspectiveOrigin, durati
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.twirl = function (elems, flip, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.twirl = function (elems, flip, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("twirl: ", arguments);
 
@@ -796,7 +796,7 @@ alice.plugins.twirl = function (elems, flip, duration, timing, delay, iteration,
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.masterFx.cheshire(opts);
     return opts;
 };
 
@@ -812,7 +812,7 @@ alice.plugins.twirl = function (elems, flip, duration, timing, delay, iteration,
  * @param  {[type]} playstate         [description]
  * @return {[type]}
  */
-alice.plugins.wobble = function (elems, rotate, perspectiveOrigin, duration, timing, delay, iteration, playstate) {
+alice.fx.wobble = function (elems, rotate, perspectiveOrigin, duration, timing, delay, iteration, playstate) {
     "use strict";
     console.info("wobble: ", arguments);
 
@@ -830,7 +830,7 @@ alice.plugins.wobble = function (elems, rotate, perspectiveOrigin, duration, tim
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.masterFx.cheshire(opts);
     return opts;
 };
 
@@ -848,7 +848,7 @@ alice.plugins.wobble = function (elems, rotate, perspectiveOrigin, duration, tim
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.plugins.zoom = function (elems, scale, shadow, move, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.zoom = function (elems, scale, shadow, move, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("zoom: ", arguments);
 
@@ -879,7 +879,7 @@ alice.plugins.zoom = function (elems, scale, shadow, move, duration, timing, del
         playstate: playstate
     };
 
-    alice.plugins.cheshire(opts);
+    alice.masterFx.cheshire(opts);
     return opts;
 };
 

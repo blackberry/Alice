@@ -236,15 +236,26 @@ a.button, button {
     border: 1px solid #ddd;
 }
 
+.infoBox a{
+    color: #333;
+    text-decoration: none;
+}
+
+.infoBox a:hover{
+    color: #000;
+    font-weight: bold;
+}
+
 .padded{
     padding: 10px 20px;
 }
 
 .padded li{
     list-style: none;
+    line-height: 22px;
 }
 
 a.title{
     font-weight: bold;
-    font-size: 22px;
+    font-size: larger;
 }

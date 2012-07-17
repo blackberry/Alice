@@ -70,8 +70,16 @@ alice.masterFx.cheshire = function (params) {
         posEnd = params.posEnd || 0,
         over = posEnd + (sign * Math.floor(posEnd * overshoot)),
 
+        cleanUp = params.cleanUp || 'partial',
+
         // temporary variables
         calc = {}, container, elems, elem, i, animId, css, transformStart, transformOver, transformEnd, boxShadowStart, boxShadowEnd, dir, size, shadowSize;
+
+    if(params.cleanUp === 'partial'){
+        alice.cleaner.removeAni(params.elems);
+    }else if(params.cleanUp === 'total'){
+        alice.cleaner.removeElems(params.elems);
+    }
 
     // TODO: use elems from init for chaining?
     if (alice.elems !== null) {
@@ -248,8 +256,6 @@ alice.masterFx.cheshire = function (params) {
                 console.log(container.style);
                 console.log(elem.id, alice.prefixJS, elem.style, elem.style.cssText, elem.style[alice.prefixJS + "AnimationDuration"], elem.style[alice.prefixJS + "AnimationTimingFunction"]);
             }
-
-            alice.cleanser.removeAni();
         }
     }
     else {
@@ -411,7 +417,8 @@ alice.fx.drain = function (elems, fade, rotate, duration, timing, delay, iterati
         delay: delay || "0ms",
         iteration: iteration || 1,
         direction: direction || "normal",
-        playstate: playstate
+        playstate: playstate,
+        cleanUp: 'total'
     };
 
     alice.masterFx.cheshire(opts);

@@ -38,6 +38,16 @@ var alice = (function () {
 
     /*
      * jWorkflow is embedded directly into the core to ensure we can do sequencial animations
+     *
+     *   ** Licensed Under **
+     *
+     *   The MIT License
+     *   http://www.opensource.org/licenses/mit-license.php
+     *
+     *   Copyright (c) 2010 all contributors:
+     *
+     *   Gord Tanner
+     *   tinyHippos Inc.
      */
     var jWorkflow=function(){return{order:function(j,k){var f=[],h,g=null,i=function(){var a=false;return{take:function(){a=true},pass:function(b){var c;a=false;h.length?(c=h.shift(),b=c.func.apply(c.context,[b,i]),a||i.pass(b)):g.func&&g.func.apply(g.context,[b])}}}(),e={andThen:function(a,b){if(typeof a.andThen==="function"&&typeof a.start==="function"&&typeof a.chill==="function")f.push({func:function(c,d){d.take();a.start({callback:function(a){d.pass(a)},context:b,initialValue:c})},context:b});else if(a.map&&
 a.reduce)f.push({func:function(b,d){d.take();var f=a.length,g=function(){return--f||d.pass()};a.forEach(function(a){jWorkflow.order(a).start(g)})},context:b});else{if(typeof a!=="function")throw"expected function but was "+typeof a;f.push({func:a,context:b})}return e},chill:function(a){return e.andThen(function(b,c){c.take();setTimeout(function(){c.pass(b)},a)})},start:function(a,b){var c,d,e;a&&typeof a==="object"?(c=a.callback,d=a.context,e=a.initialValue):(c=a,d=b);g={func:c,context:d};h=f.slice();
@@ -602,7 +612,6 @@ alice.format = {
             r = alice.randomize(d, alice.percentage(params.randomness));
             dur = Math.abs(r);
         }
-
         //console.log(d, r, dur);
         return dur + "ms";
     },
@@ -641,12 +650,11 @@ alice.helper = {
             else {
                 calc = parseInt(alice.format.duration(duration), 10);
             }
-            calc += "ms";
-            //console.log(duration, param.value, param.offset, calc);
         }
         else {
-            calc = parseInt(alice.format.duration(duration), 10) + "ms";
+            calc = parseInt(alice.format.duration(duration), 10);
         }
+        calc += "ms";
         return calc;
     },
 
@@ -667,26 +675,30 @@ alice.helper = {
 /**
  * Functions that cleanse the DOM
  */
-alice.cleanser = {
-    // Remove animations that are no longer useful
-    removeAni: function(params){
-        document.addEventListener(this.vendorPrefix+'AnimationEnd', 
+alice.cleaner = {
+    // Clear the Elements style tag and thusly the animation call.
+    removeAni: function(elems){
+        var i, AniElems;
+        document.addEventListener(alice.prefixJS+'AnimationEnd', 
             function(){ 
-                if(document.getElementById(params)){
-                    document.getElementById(params).removeAttribute('style');
+                AniElems = alice.elements(elems);
+                for(i = 0; i < AniElems.length; i++){   
+                    //we may need something here to tell the browser to remember the style in case they want the animation to start again
+                    document.getElementById(AniElems[i].getAttribute('id')).removeAttribute('style');
                 }
-        }, false);
+            }, false);
     },
-    // Removes the animated elements from the DOM.
-    removeElems: function(params){
-        document.addEventListener(this.vendorPrefix+'AnimationEnd', 
+    // Removes the animated elements from the DOM completely.
+    removeElems: function(elems){
+        var ob, AniObj;
+        document.addEventListener(alice.prefixJS+'AnimationEnd', 
             function(){ 
-                if(document.getElementById('my_drain')){
-                var drain = document.getElementById('my_drain'); 
-                drain.parentNode.removeChild(drain);
-                console.warn('deleted the animation elements'); 
+                AniObj = alice.elements(elems);    
+                for(ob = 0; ob < AniObj.length; ob++){
+                    var animationElement = document.getElementById(AniObj[ob].getAttribute('id')); 
+                    animationElement.parentNode.removeChild(animationElement);
                 }
-        }, false);
+            }, false);
     }
 }
 

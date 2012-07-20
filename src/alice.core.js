@@ -31,7 +31,6 @@
 
 /**
  * @description
- *
  */
 var alice = (function () {
     "use strict";
@@ -480,7 +479,6 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
                         break;
                     }
                 }
-
                 return;
             },
 
@@ -524,7 +522,7 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
              * Initialize
              */
             init: function (params) {
-                var Chaining;
+                var chainingAni;
 
                 console.info("Initializing " + this.name + " (" + this.description + ") " + this.version);
 
@@ -532,16 +530,16 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
 
                 //regarding chaining
                 if (!params) {
-                    Chaining = false;
+                    chainingAni = false;
                 }
                 if (params) {
-                    Chaining = params.chaining;
+                    chainingAni = params.chaining;
                 }else if(params && params.elems){
                     this.elems = this.elements(params.elems);
                 }
 
                 // Add optional support for jWorkflow (https://github.com/tinyhippos/jWorkflow)
-                if (Chaining === true) {
+                if (chainingAni === true) {
                     console.log("jWorkflow: enabled");
 
                     var id = (params && params.id) ? params.id : '',
@@ -570,8 +568,8 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
                             }
                         };
 
-                    Array.prototype.forEach.call(Object.keys(core.plugins), function (plugin) {
-                        var func = core.plugins[plugin];
+                    Array.prototype.forEach.call(Object.keys(core.fx), function (plugin) {
+                        var func = core.fx[plugin];
                         animation[plugin] = function () {
                             var args = arguments;
                             workflow.andThen(function () {
@@ -706,19 +704,19 @@ alice.cleaner = {
  * main function with the plugins running secondary.
  */
 var aliceJs = function(param){
-    
+    var params;
     if(param){
         if(param.chaining === true){
-            var params = {
+            params = {
                 chaining: true
             }
         }else{
-            var params = {
+            params = {
                 chaining: false
             }
         }
     }else{
-        var params = {
+        params = {
             chaining: false
         }
     }

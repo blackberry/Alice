@@ -71,7 +71,7 @@
                         <span>Bounce</span>
                     </div>
                     <p><a href="fx/bounce.html">Bounce</a> - The "bounce" effect simulates the bouncing of an object from a top view including a shadow.</p>
-                    <p onclick="alice.playpauseAnimation('my_bounce')">play/pause</p>
+                    <p onclick="alice.playPause('my_bounce')">play/pause</p>
                     <div class="code">
                         <pre class="prettyprint lang-js">
 /**
@@ -541,48 +541,35 @@ a.zoom("my_zoom", {
 
         //var a = alice.init();
 
-       aliceJs().bounce("my_bounce",125, true, "750ms", "easeOutSine", "0ms", "infinite", "alternate", "running");
+        $a().bounce("my_bounce",125, true, "750ms", "easeOutSine", "0ms", "infinite", "alternate", "running");
 
-       //delete this later
-         // aliceJs().bounce2({
-         //    elems:"my_bounce",
-         //    scale: 125, 
-         //    shadow: true, 
-         //    duration: "750ms", 
-         //    timing: "easeOutSine", 
-         //    delay: "0ms", 
-         //    iteration: "infinite", 
-         //    direction: "alternate", 
-         //    playstate: "running"
-         //    });  
+        $a().dance("my_dance", 45, "750ms", "easeInOutBack", "0ms", "infinite", "alternate", "running");
 
-        aliceJs().dance("my_dance", 45, "750ms", "easeInOutBack", "0ms", "infinite", "alternate", "running");
+        $a().drain("my_drain", "out", -2880, "4500ms", "ease-in-out", "0ms", "1", "normal", "running");
 
-        aliceJs().drain("my_drain", "out", -2880, "4500ms", "ease-in-out", "0ms", "1", "normal", "running");
+        $a().fade("my_fade", "in", "4500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
 
-        aliceJs().fade("my_fade", "in", "4500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
+        $a().hinge("my_hinge", 25, 0, "1000ms", "linear", "0ms", "infinite", "alternate", "running");
 
-        aliceJs().hinge("my_hinge", 25, 0, "1000ms", "linear", "0ms", "infinite", "alternate", "running");
+        $a().pageFlip("my_pageFlip", "left", 1, 0, "2500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
 
-        aliceJs().pageFlip("my_pageFlip", "left", 1, 0, "2500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
+        $a().pendulum("my_pendulum", 45, 0, "1000ms", "ease-in-out", "0ms", "infinite", "alternate", "running");
 
-        aliceJs().pendulum("my_pendulum", 45, 0, "1000ms", "ease-in-out", "0ms", "infinite", "alternate", "running");
+        $a().phantomZone("my_phantomZone", "out", -720, "left", "5000ms", "ease", "0ms", "infinite", "normal", "running");
 
-        aliceJs().phantomZone("my_phantomZone", "out", -720, "left", "5000ms", "ease", "0ms", "infinite", "normal", "running");
+        $a().raceFlag("my_raceFlag", -720, "top-right", "3000ms", "ease", "0ms", "infinite", "normal", "running");
 
-        aliceJs().raceFlag("my_raceFlag", -720, "top-right", "3000ms", "ease", "0ms", "infinite", "normal", "running");
+        $a().slide("my_slide", {direction: "left", start: 0, end: 500}, 0, "3000ms", "ease", "0ms", "infinite", "alternate", "running");
 
-        aliceJs().slide("my_slide", {direction: "left", start: 0, end: 500}, 0, "3000ms", "ease", "0ms", "infinite", "alternate", "running");
+        $a().spin("my_spin", "left", 1, 0, "3000ms", "ease", "0ms", "infinite", "normal", "running");
 
-        aliceJs().spin("my_spin", "left", 1, 0, "3000ms", "ease", "0ms", "infinite", "normal", "running");
+        $a().toss("my_toss", "left", 0, "center", "2500ms", "ease", "0ms", "infinite", "alternate", "running");
 
-        aliceJs().toss("my_toss", "left", 0, "center", "2500ms", "ease", "0ms", "infinite", "alternate", "running");
+        $a().twirl("my_twirl", "left", "3000ms", "ease", "0ms", "infinite", "normal", "running");
 
-        aliceJs().twirl("my_twirl", "left", "3000ms", "ease", "0ms", "infinite", "normal", "running");
+        $a().wobble("my_wobble", 5, "center", "200ms", "linear", "0ms", "infinite", "alternate", "running");
 
-        aliceJs().wobble("my_wobble", 5, "center", "200ms", "linear", "0ms", "infinite", "alternate", "running");
-
-        aliceJs().zoom("my_zoom", {
+        $a().zoom("my_zoom", {
             from: "1%", to: "125%"
         }, true, "none", "5000ms", "ease", "0ms", "infinite", "normal", "running");
 

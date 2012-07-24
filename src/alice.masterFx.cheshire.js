@@ -75,6 +75,7 @@ alice.masterFx.cheshire = function (params) {
         // temporary variables
         calc = {}, container, elems, elem, i, animId, css, transformStart, transformOver, transformEnd, boxShadowStart, boxShadowEnd, dir, size, shadowSize;
 
+    // needs to be an option in the fx elements
     if(params.cleanUp === 'partial'){
         alice.cleaner.removeAni(params.elems);
     }else if(params.cleanUp === 'total'){
@@ -324,30 +325,35 @@ alice.fx.bounce = function (elems, scale, shadow, duration, timing, delay, itera
 // A better way of calling the plugins, with these details only, let aliceJs control the elements?
 alice.fx.bounce2 = function (params) {
     "use strict";
-    console.info("bounce:2 ", arguments);
+    //console.info("bounce2: ", arguments);
+
+    if(!params){ params = ''; }
 
     var scaleObj = {from: "100%", to: "125%"}; // default
     
-    if (params.scale) {
-        if (typeof scale === "object") {
-            scaleObj = params.scale;
-        }
-        else {
-            scaleObj.to = params.scale;
+    if(params){
+        if (params.scale) {
+            if (typeof scale === "object") {
+                scaleObj = params.scale;
+            }
+            else {
+                scaleObj.to = params.scale;
+            }
         }
     }
 
     var opts = {
+        elems: alice.AnIdea,
         //scale: scale || {from: "100%", to: "125%"},
         scale: scaleObj,
-        shadow: params.shadow || false,
+        shadow: params.shadow || true,
 
         duration: params.duration || "750ms",
         timing: params.timing || "easeOutSine",
         delay: params.delay || "0ms",
         iteration: params.iteration || "infinite",
         direction: params.direction || "alternate",
-        playstate: params.playstate
+        playstate: params.playstate || "running"
     };
 
     alice.masterFx.cheshire(opts);
@@ -452,6 +458,27 @@ alice.fx.fade = function (elems, fade, duration, timing, delay, iteration, direc
         iteration: iteration || 1,
         direction: direction || "normal",
         playstate: playstate
+    };
+
+    alice.masterFx.cheshire(opts);
+    return opts;
+};
+
+alice.fx.fade2 = function (params) {
+    "use strict";
+    console.info("fade: ", arguments);
+
+    var opts = {
+        elems: alice.AnIdea,
+
+        fade: params.fade || "in",
+
+        duration: params.duration || "4500ms",
+        timing: params.timing || "ease-in-out",
+        delay: params.delay || "0ms",
+        iteration: params.iteration || 1,
+        direction: params.direction || "normal",
+        playstate: params.playstate
     };
 
     alice.masterFx.cheshire(opts);
@@ -886,6 +913,42 @@ alice.fx.zoom = function (elems, scale, shadow, move, duration, timing, delay, i
         iteration: iteration || 1,
         direction: direction || "normal",
         playstate: playstate
+    };
+
+    alice.masterFx.cheshire(opts);
+    return opts;
+};
+
+alice.fx.zoom2 = function (params) {
+    "use strict";
+    //console.info("zoom: ", arguments);
+    if(!params){params = '';}
+
+    var scaleObj = {from: "100%", to: "525%"}; // default
+    if (params.scale) {
+        if (typeof params.scale === "object") {
+            scaleObj = params.scale;
+            //scaleObj = {from: alice.percentage(scale.from), to: alice.percentage(scale.to)};
+        }
+        else {
+            scaleObj.to = params.scale;
+        }
+    }
+
+    var opts = {
+        elems: alice.AnIdea,
+
+        scale: scaleObj,
+        shadow: params.shadow || true,
+
+        move: params.move || "none",
+
+        duration: params.duration || '800ms',
+        timing: params.timing || 'ease-in-out',
+        delay: params.delay || '0ms',
+        iteration: params.iteration || 1,
+        direction: params.direction || "normal",
+        playstate: params.playstate || "running"
     };
 
     alice.masterFx.cheshire(opts);

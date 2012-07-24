@@ -29,28 +29,32 @@
  * limitations under the License.
  */
 
+ //===================================================================================
+
+/*
+ * jWorkflow is embedded directly into the core to ensure we can do sequencial animations
+ *
+ *   ** Licensed Under **
+ *
+ *   The MIT License
+ *   http://www.opensource.org/licenses/mit-license.php
+ *
+ *   Copyright (c) 2010 all contributors:
+ *
+ *   Gord Tanner
+ *   tinyHippos Inc.
+ */
+    var jWorkflow=function(){return{order:function(j,k){var f=[],h,g=null,i=function(){var a=false;return{take:function(){a=true},pass:function(b){var c;a=false;h.length?(c=h.shift(),b=c.func.apply(c.context,[b,i]),a||i.pass(b)):g.func&&g.func.apply(g.context,[b])}}}(),e={andThen:function(a,b){if(typeof a.andThen==="function"&&typeof a.start==="function"&&typeof a.chill==="function")f.push({func:function(c,d){d.take();a.start({callback:function(a){d.pass(a)},context:b,initialValue:c})},context:b});else if(a.map&&
+    a.reduce)f.push({func:function(b,d){d.take();var f=a.length,g=function(){return--f||d.pass()};a.forEach(function(a){jWorkflow.order(a).start(g)})},context:b});else{if(typeof a!=="function")throw"expected function but was "+typeof a;f.push({func:a,context:b})}return e},chill:function(a){return e.andThen(function(b,c){c.take();setTimeout(function(){c.pass(b)},a)})},start:function(a,b){var c,d,e;a&&typeof a==="object"?(c=a.callback,d=a.context,e=a.initialValue):(c=a,d=b);g={func:c,context:d};h=f.slice();
+    i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof require==="function")module.exports=jWorkflow;
+
+    //===================================================================================
+
 /**
  * @description
  */
 var alice = (function () {
     "use strict";
-
-    /*
-     * jWorkflow is embedded directly into the core to ensure we can do sequencial animations
-     *
-     *   ** Licensed Under **
-     *
-     *   The MIT License
-     *   http://www.opensource.org/licenses/mit-license.php
-     *
-     *   Copyright (c) 2010 all contributors:
-     *
-     *   Gord Tanner
-     *   tinyHippos Inc.
-     */
-    var jWorkflow=function(){return{order:function(j,k){var f=[],h,g=null,i=function(){var a=false;return{take:function(){a=true},pass:function(b){var c;a=false;h.length?(c=h.shift(),b=c.func.apply(c.context,[b,i]),a||i.pass(b)):g.func&&g.func.apply(g.context,[b])}}}(),e={andThen:function(a,b){if(typeof a.andThen==="function"&&typeof a.start==="function"&&typeof a.chill==="function")f.push({func:function(c,d){d.take();a.start({callback:function(a){d.pass(a)},context:b,initialValue:c})},context:b});else if(a.map&&
-a.reduce)f.push({func:function(b,d){d.take();var f=a.length,g=function(){return--f||d.pass()};a.forEach(function(a){jWorkflow.order(a).start(g)})},context:b});else{if(typeof a!=="function")throw"expected function but was "+typeof a;f.push({func:a,context:b})}return e},chill:function(a){return e.andThen(function(b,c){c.take();setTimeout(function(){c.pass(b)},a)})},start:function(a,b){var c,d,e;a&&typeof a==="object"?(c=a.callback,d=a.context,e=a.initialValue):(c=a,d=b);g={func:c,context:d};h=f.slice();
-i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof require==="function")module.exports=jWorkflow;
 
     /*
      * The core
@@ -67,12 +71,13 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
 
         elems: null,
 
-        cleanser: {},
+        cleaner: {},
 
         format: {},
         helper: {},
         masterFx: {},
         fx: {},
+        AnIdea: "",
 
         debug: false,
 
@@ -505,11 +510,10 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
             /**
              * Play/Pause the animation
              */
-            playpauseAnimation: function(elms) {
-                var i, elems = this.elements(elms);
+            playPause: function(elms) {
+                var i, elems = this.elements(elms),pfx = this.prefixJS;
                 for(i = 0; i < elems.length; i++){
                     var elemId = elems[i].getAttribute('id');
-                    var pfx = this.prefixJS;
                     if(document.getElementById(elemId).style[pfx + "AnimationPlayState"] == "paused"){
                         document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "running";
                     }else{
@@ -522,70 +526,8 @@ i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof r
              * Initialize
              */
             init: function (params) {
-                var chainingAni;
+                
 
-                console.info("Initializing " + this.name + " (" + this.description + ") " + this.version);
-
-                this.vendorPrefix();
-
-                //regarding chaining
-                if (!params) {
-                    chainingAni = false;
-                }
-                if (params) {
-                    chainingAni = params.chaining;
-                }else if(params && params.elems){
-                    this.elems = this.elements(params.elems);
-                }
-
-                // Add optional support for jWorkflow (https://github.com/tinyhippos/jWorkflow)
-                if (chainingAni === true) {
-                    console.log("jWorkflow: enabled");
-
-                    var id = (params && params.id) ? params.id : '',
-
-                        workflow = jWorkflow.order(),
-
-                        animation = {
-                            delay: function (ms) {
-                                workflow.chill(ms);
-                                return animation;
-                            },
-                            log: function (msg) {
-                                workflow.andThen(function () {
-                                    console.log(msg);
-                                });
-                                return animation;
-                            },
-                            custom: function (func) {
-                                workflow.andThen(func);
-                                return animation;
-                            },
-                            start: function () {
-                                workflow.start(function () {
-                                    console.info("workflow.start");
-                                });
-                            }
-                        };
-
-                    Array.prototype.forEach.call(Object.keys(core.fx), function (plugin) {
-                        var func = core.fx[plugin];
-                        animation[plugin] = function () {
-                            var args = arguments;
-                            workflow.andThen(function () {
-                                func.apply(document.getElementById(id), args);
-                            });
-                            return animation;
-                        };
-                    });
-
-                    return animation;
-                }
-                else {
-                    console.log("jWorkflow: disabled");
-                }
-
-                return core.fx;
             }
         }
 
@@ -701,26 +643,67 @@ alice.cleaner = {
 }
 
 /* 
- * main function with the plugins running secondary.
+ * Main Function
  */
-var aliceJs = function(param){
-    var params;
-    if(param){
-        if(param.chaining === true){
-            params = {
-                chaining: true
-            }
-        }else{
-            params = {
-                chaining: false
-            }
-        }
-    }else{
-        params = {
-            chaining: false
-        }
-    }
+var $a = function(elems, chain){
+    
+    console.log("You are working with: "+elems);
+    
+    console.info("Initializing " + alice.name + " (" + alice.description + ") " + alice.version);
 
-    return alice.init(params);
-}
+    alice.vendorPrefix();
+
+    alice.AnIdea = elems;
+
+    console.log("jWorkflow: enabled");
+
+        if(chain === true){
+
+            var id = (elems && elems) ? elems : '',
+
+                workflow = jWorkflow.order(),
+
+                animation = {
+                    delay: function (ms) {
+                        workflow.chill(ms);
+                        return animation;
+                    },
+                    log: function (msg) {
+                        workflow.andThen(function () {
+                            console.log(msg);
+                        });
+                        return animation;
+                    },
+                    custom: function (func) {
+                        workflow.andThen(func);
+                        return animation;
+                    },
+                    start: function () {
+                        workflow.start(function () {
+                            //console.info(animation);
+                        });
+                    }
+                };
+
+            Array.prototype.forEach.call(Object.keys(alice.fx), function (plugin) {
+                var func = alice.fx[plugin];
+                animation[plugin] = function () {
+                    var args = arguments;
+                    workflow.andThen(function () {
+                        func.apply(document.getElementById(id), args);
+                    });
+
+                   return animation;
+                };
+            });
+
+            return animation;
+        }
+        else {
+            console.log("jWorkflow: disabled");
+        }
+                    
+    return alice.fx;
+};
+
 //----------------------------------------------------------------------------

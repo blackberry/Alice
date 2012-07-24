@@ -174,7 +174,7 @@ alice.wobble("MyDiv", 5, "center",
 
         <!-- AliceJS -->
         <script src="../src/alice.core.js"></script>
-        <script src="../src/alice.plugins.cheshire.js"></script>
+        <script src="../src/alice.masterFx.cheshire.js"></script>
 
         <script type="text/javascript">
         prettyPrint();
@@ -185,15 +185,15 @@ alice.wobble("MyDiv", 5, "center",
         // var a = alice.init(),
 
             animateLogo = function () {
-                aliceJs().spin("logo-alice-img", "left", 2, "", "3000ms");
+                aliceJs.spin("logo-alice-img", "left", 2, "", "3000ms");
 
-                aliceJs().slide(document.getElementById("logo-alice-txt-alice").children, "left", "0%", {
+                aliceJs.slide(document.getElementById("logo-alice-txt-alice").children, "left", "0%", {
                     value: "1000ms",
                     randomness: "100%",
                     offset: "250ms"
                 }, "easeOutQuint");
 
-                aliceJs().toss(document.getElementById("logo-alice-txt-js").children, "left", "10%", "", {
+                aliceJs.toss(document.getElementById("logo-alice-txt-js").children, "left", "10%", "", {
                     value: "2000ms",
                     randomness: "50%",
                     offset: "250ms"

@@ -541,69 +541,35 @@ a.zoom("my_zoom", {
 
         //var a = alice.init();
 
-        $a("my_bounce").bounce({
-            // scale: 125,
-            // shadow: true,
-            // duration: "750ms",
-            // timing: "easeOutSine",
-            // delay: "0ms",
-            // iteration: "infinite",
-            // direction: "alternate",
-            // playstate: "running"
-        });
+        $a("my_bounce").bounce2(,125, true, "750ms", "easeOutSine", "0ms", "infinite", "alternate", "running");
 
-        $a("my_dance").dance({
-            // rotate: 45,
-            // duration: "950ms",
-            // timing: "easeInOutBack",
-            // delay: "0ms",
-            // iteration: "infinite",
-            // direction: "alternate",
-            // playstate: "running"
-        });
+        $a().dance("my_dance", 45, "750ms", "easeInOutBack", "0ms", "infinite", "alternate", "running");
 
-        $a("my_drain").drain({
-            // fade: "out",
-            // rotate: -720,  
-            // duration: "4500ms",
-            // timing: "ease-in-out",
-            // delay: "0ms",
-            // iteration: "infinite",
-            // direction: "normal",
-            // playstate:  "running"
-        });
+        $a().drain("my_drain", "out", -2880, "4500ms", "ease-in-out", "0ms", "1", "normal", "running");
 
-        $a("my_fade").fade({
-            // fade: "in",   
-            // duration: "4500ms",
-            // timing: "ease-in-out",
-            // delay: "0ms",
-            // iteration: "infinite",
-            // direction: "normal",
-            // playstate: "running"
-        });
+        $a().fade("my_fade", "in", "4500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
 
-        $a("my_hinge").hinge("my_hinge", 25, 0, "1000ms", "linear", "0ms", "infinite", "alternate", "running");
+        $a().hinge("my_hinge", 25, 0, "1000ms", "linear", "0ms", "infinite", "alternate", "running");
 
-        $a("my_pageFlip").pageFlip("my_pageFlip", "left", 1, 0, "2500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
+        $a().pageFlip("my_pageFlip", "left", 1, 0, "2500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
 
-        $a("my_pendulum").pendulum("my_pendulum", 45, 0, "1000ms", "ease-in-out", "0ms", "infinite", "alternate", "running");
+        $a().pendulum("my_pendulum", 45, 0, "1000ms", "ease-in-out", "0ms", "infinite", "alternate", "running");
 
-        $a("my_phantomZone").phantomZone("my_phantomZone", "out", -720, "left", "5000ms", "ease", "0ms", "infinite", "normal", "running");
+        $a().phantomZone("my_phantomZone", "out", -720, "left", "5000ms", "ease", "0ms", "infinite", "normal", "running");
 
-        $a("my_raceFlag").raceFlag("my_raceFlag", -720, "top-right", "3000ms", "ease", "0ms", "infinite", "normal", "running");
+        $a().raceFlag("my_raceFlag", -720, "top-right", "3000ms", "ease", "0ms", "infinite", "normal", "running");
 
-        $a("my_slide").slide("my_slide", {direction: "left", start: 0, end: 500}, 0, "3000ms", "ease", "0ms", "infinite", "alternate", "running");
+        $a().slide("my_slide", {direction: "left", start: 0, end: 500}, 0, "3000ms", "ease", "0ms", "infinite", "alternate", "running");
 
-        $a("my_spin").spin("my_spin", "left", 1, 0, "3000ms", "ease", "0ms", "infinite", "normal", "running");
+        $a().spin("my_spin", "left", 1, 0, "3000ms", "ease", "0ms", "infinite", "normal", "running");
 
-        $a("my_toss").toss("my_toss", "left", 0, "center", "2500ms", "ease", "0ms", "infinite", "alternate", "running");
+        $a().toss("my_toss", "left", 0, "center", "2500ms", "ease", "0ms", "infinite", "alternate", "running");
 
-        $a("my_twirl").twirl("my_twirl", "left", "3000ms", "ease", "0ms", "infinite", "normal", "running");
+        $a().twirl("my_twirl", "left", "3000ms", "ease", "0ms", "infinite", "normal", "running");
 
-        $a("my_wobble").wobble("my_wobble", 5, "center", "200ms", "linear", "0ms", "infinite", "alternate", "running");
+        $a().wobble("my_wobble", 5, "center", "200ms", "linear", "0ms", "infinite", "alternate", "running");
 
-        $a("my_zoom").zoom("my_zoom", {
+        $a().zoom("my_zoom", {
             from: "1%", to: "125%"
         }, true, "none", "5000ms", "ease", "0ms", "infinite", "normal", "running");
 

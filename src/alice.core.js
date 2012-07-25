@@ -673,7 +673,7 @@ var $a = function(elems, chain){
                         workflow.andThen(func);
                         return animation;
                     },
-                    go: function () {
+                    start: function () {
                         workflow.start(function () {
                             console.info('workflow.start()');
                         });

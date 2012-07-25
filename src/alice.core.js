@@ -77,7 +77,7 @@ var alice = (function () {
         helper: {},
         masterFx: {},
         fx: {},
-        AnIdea: "",
+        anima: "",
 
         debug: false,
 
@@ -520,14 +520,6 @@ var alice = (function () {
                         document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "paused";
                     }
                 }
-            },
-
-            /**
-             * Initialize
-             */
-            init: function (params) {
-                
-
             }
         }
 
@@ -564,6 +556,13 @@ alice.format = {
         var eObj = alice.easing(e),
             eVal = "cubic-bezier(" + eObj.p1 + ", " + eObj.p2 + ", " + eObj.p3 + ", " + eObj.p4 + ")";
         return eVal;
+    },
+
+    coords: function (c) {
+        "use strict";
+        var cObj = alice.coords(c),
+            cVal = cObj.x + " " + cObj.y;
+        return cVal;
     },
 
     /**
@@ -647,17 +646,13 @@ alice.cleaner = {
  */
 var $a = function(elems, chain){
     
-    console.log("You are working with: "+elems);
-    
     console.info("Initializing " + alice.name + " (" + alice.description + ") " + alice.version);
-
     alice.vendorPrefix();
 
-    alice.AnIdea = elems;
-
-    console.log("jWorkflow: enabled");
-
+    // set the element variable known as anima
+    alice.anima = elems;
         if(chain === true){
+            console.log("jWorkflow: enabled");
 
             var id = (elems && elems) ? elems : '',
 
@@ -680,7 +675,7 @@ var $a = function(elems, chain){
                     },
                     start: function () {
                         workflow.start(function () {
-                            //console.info(animation);
+                            console.info('workflow.start()');
                         });
                     }
                 };

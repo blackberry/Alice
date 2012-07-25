@@ -129,11 +129,11 @@ a.bounce("my_bounce", 125, true, "750ms", "easeOutSine", "0ms", "infinite", "alt
         prettyPrint();
         sniffer.init();
 
-        document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
+        //document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
 
         //var a = alice.init();
 
-        $a('my_bounce', true).bounce2().delay(4000).zoom2().delay(500).fade2({fade: 'out'}).start();
+        $a('my_bounce').pageFlip({flip: 'right'});
         
 
         // Google Analytics

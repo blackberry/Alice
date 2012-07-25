@@ -294,7 +294,7 @@ alice.fx.bounce = function (params) {
 
     if(!params){ params = ''; }
 
-    var scaleObj = {from: "100%", to: "125%"}; // default
+    var scaleObj = {from: "100%", to: "150%"}; // default
     if (params.scale) {
         if (typeof params.scale === "object") {
             scaleObj = params.scale;
@@ -378,7 +378,7 @@ alice.fx.drain = function (params) {
     if(!params){ params = ''; }
 
     var opts = {
-        scale: (fade === "in") ? {from: "0%", to: "100%"} : {from: "100%", to: "0%"},
+        scale: (params.fade === "in") ? {from: "0%", to: "100%"} : {from: "100%", to: "0%"},
 
         elems: alice.anima,
 
@@ -673,11 +673,11 @@ alice.fx.slide = function (params) {
         move: params.move || 'left',
         overshoot: params.overshoot || '0',
 
-        duration: params.duration || '800ms',
+        duration: params.duration || '4000ms',
         timing: params.timing || "ease-in-out",
         delay: params.delay || '0ms',
-        iteration: params.iteration || "infinite",
-        direction: params.direction || "left",
+        iteration: params.iteration || 1,
+        direction: params.direction || "normal",
         playstate: params.playstate || "running"
     };
 
@@ -746,7 +746,7 @@ alice.fx.toss = function (params) {
     if(!params){ params = ''; } 
 
     var opts = {
-        rotate: (move === "left" || move === "down") ? 720 : -720,
+        rotate: (params.move === "left" || params.move === "down") ? 720 : -720,
         fade: "in",
 
         elems: alice.anima,
@@ -779,25 +779,25 @@ alice.fx.toss = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.twirl = function (elems, flip, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.twirl = function (params) {
     "use strict";
     console.info("twirl: ", arguments);
 
     if(!params){params = '';}
 
     var opts = {
-        rotate: (flip === "left") ? -135 : 135,
+        rotate: (params.flip === "left") ? -135 : 135,
 
-        elems: elems,
+        elems: alice.anima,
 
-        flip: flip || "left",
+        flip: params.flip || "left",
 
-        duration: duration || "3000ms",
-        timing: timing,
-        delay: delay,
-        iteration: iteration || 1,
-        direction: direction || "normal",
-        playstate: playstate
+        duration: params.duration || "3000ms",
+        timing: params.timing,
+        delay: params.delay,
+        iteration: params.iteration || 1,
+        direction: params.direction || "normal",
+        playstate: params.playstate || "running"
     };
 
     alice.masterFx.cheshire(opts);

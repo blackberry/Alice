@@ -196,7 +196,7 @@ alice.masterFx.cheshire = function (params) {
 
             css += "\t" + "0% {" + "\n";
             css += "\t\t" + alice.prefix + "transform:" + transformStart + ";" + "\n";
-            css += "\t\t" + alice.prefix + "transform-origin:" + alice.coords(perspectiveOrigin) + ";" + "\n";
+            css += "\t\t" + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
             css += (fade) ? "\t\t" + "opacity: " + fadeStart + ";" + "\n" : "";
             css += (shadow === true && scaleTo > 1) ? "\t\t" + alice.prefix + "box-shadow: " + boxShadowStart + ";" + "\n" : "";
 
@@ -205,13 +205,13 @@ alice.masterFx.cheshire = function (params) {
             if (overshoot !== 0) {
                 css += "\t" + overShootPercent + "% {\n";
                 css += "\t\t" + alice.prefix + "transform:" + transformOver + ";" + "\n";
-                css += "\t\t" + alice.prefix + "transform-origin:" + alice.coords(perspectiveOrigin) + ";" + "\n";
+                css += "\t\t" + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
                 css += "\t" + "}" + "\n";
             }
 
             css += "\t" + "100% {" + "\n";
             css += "\t\t" + alice.prefix + "transform:" + transformEnd + ";" + "\n";
-            css += "\t\t" + alice.prefix + "transform-origin:" + alice.coords(perspectiveOrigin) + ";" + "\n";
+            css += "\t\t" + alice.prefix + "transform-origin:" + alice.format.coords(perspectiveOrigin) + ";" + "\n";
             css += (fade) ? "\t\t" + "opacity: " + fadeEnd + ";" + "\n" : "";
             css += (shadow === true && scaleTo > 1) ? "\t\t" + alice.prefix + "box-shadow: " + boxShadowEnd + ";" + "\n" : "";
 
@@ -226,7 +226,7 @@ alice.masterFx.cheshire = function (params) {
 
             // Apply perspective to parent container
             container.style[alice.prefixJS + "Perspective"] = perspective + "px";
-            container.style[alice.prefixJS + "PerspectiveOrigin"] = alice.coords(perspectiveOrigin); 
+            container.style[alice.prefixJS + "PerspectiveOrigin"] = alice.format.coords(perspectiveOrigin); 
 
             // Apply properties to elements
             elem.style[alice.prefixJS + "BackfaceVisibility"] = backfaceVisibility;
@@ -278,7 +278,6 @@ alice.masterFx.cheshire = function (params) {
 
 /**
  * [bounce description]
- * @param  {[type]} elems     [description]
  * @param  {[type]} scale     [description]
  * @param  {[type]} shadow    [description]
  * @param  {[type]} duration  [description]
@@ -289,62 +288,25 @@ alice.masterFx.cheshire = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.bounce = function (elems, scale, shadow, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.bounce = function (params) {
     "use strict";
     console.info("bounce: ", arguments);
-
-    var scaleObj = {from: "100%", to: "125%"}; // default
-    if (scale) {
-        if (typeof scale === "object") {
-            scaleObj = scale;
-        }
-        else {
-            scaleObj.to = scale;
-        }
-    }
-
-    var opts = {
-        elems: elems,
-
-        //scale: scale || {from: "100%", to: "125%"},
-        scale: scaleObj,
-        shadow: shadow || false,
-
-        duration: duration || "750ms",
-        timing: timing || "easeOutSine",
-        delay: delay || "0ms",
-        iteration: iteration || "infinite",
-        direction: direction || "alternate",
-        playstate: playstate
-    };
-
-    alice.masterFx.cheshire(opts);
-    return opts;
-};
-
-// A better way of calling the plugins, with these details only, let aliceJs control the elements?
-alice.fx.bounce2 = function (params) {
-    "use strict";
-    //console.info("bounce2: ", arguments);
 
     if(!params){ params = ''; }
 
     var scaleObj = {from: "100%", to: "125%"}; // default
-    
-    if(params){
-        if (params.scale) {
-            if (typeof scale === "object") {
-                scaleObj = params.scale;
-            }
-            else {
-                scaleObj.to = params.scale;
-            }
+    if (params.scale) {
+        if (typeof params.scale === "object") {
+            scaleObj = params.scale;
+        }
+        else {
+            scaleObj.to = params.scale;
         }
     }
 
     var opts = {
-        elems: alice.AnIdea,
-        //scale: scale || {from: "100%", to: "125%"},
+        elems: alice.anima,
+
         scale: scaleObj,
         shadow: params.shadow || true,
 
@@ -372,21 +334,24 @@ alice.fx.bounce2 = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.dance = function (elems, rotate, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.dance = function (params) {
     "use strict";
     console.info("dance: ", arguments);
 
+     if(!params){ params = ''; }
+
     var opts = {
-        elems: elems,
 
-        rotate: rotate || 45,
+        elems: alice.anima,
 
-        duration: duration || "750ms",
-        timing: timing || "easeInOutBack",
-        delay: delay || "0ms",
-        iteration: iteration || "infinite",
-        direction: direction || "alternate",
-        playstate: playstate
+        rotate: params.rotate || 45,
+
+        duration: params.duration || "750ms",
+        timing: params.timing || "easeInOutBack",
+        delay: params.delay || "0ms",
+        iteration: params.iteration || "infinite",
+        direction: params.direction || "alternate",
+        playstate: params.playstate || "running"
     };
 
     alice.masterFx.cheshire(opts);
@@ -406,25 +371,26 @@ alice.fx.dance = function (elems, rotate, duration, timing, delay, iteration, di
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.drain = function (elems, fade, rotate, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.drain = function (params) {
     "use strict";
     console.info("drain: ", arguments);
 
+    if(!params){ params = ''; }
+
     var opts = {
-        scale: (fade === "in") ? {from: "1%", to: "100%"} : {from: "100%", to: "1%"},
+        scale: (fade === "in") ? {from: "0%", to: "100%"} : {from: "100%", to: "0%"},
 
-        elems: elems,
+        elems: alice.anima,
 
-        fade: fade || "out",
-        rotate: rotate || -2880,
+        fade: params.fade || "out",
+        rotate: params.rotate || -2880,
 
-        duration: duration || "4500ms",
-        timing: timing || "ease-in-out",
-        delay: delay || "0ms",
-        iteration: iteration || 1,
-        direction: direction || "normal",
-        playstate: playstate,
-        cleanUp: 'total'
+        duration: params.duration || "4500ms",
+        timing: params.timing || "ease-in-out",
+        delay: params.delay || "0ms",
+        iteration: params.iteration || 1,
+        direction: params.direction || "normal",
+        playstate: params.playstate || "running"
     };
 
     alice.masterFx.cheshire(opts);
@@ -443,33 +409,15 @@ alice.fx.drain = function (elems, fade, rotate, duration, timing, delay, iterati
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.fade = function (elems, fade, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.fade = function (params) {
     "use strict";
     console.info("fade: ", arguments);
 
-    var opts = {
-        elems: elems,
-
-        fade: fade || "in",
-
-        duration: duration || "4500ms",
-        timing: timing || "ease-in-out",
-        delay: delay || "0ms",
-        iteration: iteration || 1,
-        direction: direction || "normal",
-        playstate: playstate
-    };
-
-    alice.masterFx.cheshire(opts);
-    return opts;
-};
-
-alice.fx.fade2 = function (params) {
-    "use strict";
-    console.info("fade: ", arguments);
+    if(!params){ params = ''; }
 
     var opts = {
-        elems: alice.AnIdea,
+
+        elems: alice.anima,
 
         fade: params.fade || "in",
 
@@ -478,7 +426,7 @@ alice.fx.fade2 = function (params) {
         delay: params.delay || "0ms",
         iteration: params.iteration || 1,
         direction: params.direction || "normal",
-        playstate: params.playstate
+        playstate: params.playstate || "running"
     };
 
     alice.masterFx.cheshire(opts);
@@ -498,24 +446,26 @@ alice.fx.fade2 = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.hinge = function (elems, rotate, overshoot, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.hinge = function (params) {
     "use strict";
     console.info("hinge: ", arguments);
+
+    if(!params){ params = ''; }
 
     var opts = {
         perspectiveOrigin: "top-left",
 
-        elems: elems,
+        elems: alice.anima,
 
-        rotate: rotate || 25,
-        overshoot: overshoot || 0,
+        rotate: params.rotate || 25,
+        overshoot: params.overshoot || 0,
 
-        duration: duration || "1000ms",
-        timing: timing || "linear",
-        delay: delay || "0ms",
-        iteration: iteration || "infinite",
-        direction: direction || "alternate",
-        playstate: playstate
+        duration: params.duration || "1000ms",
+        timing: params.timing || "linear",
+        delay: params.delay || "0ms",
+        iteration: params.iteration || "infinite",
+        direction: params.direction || "alternate",
+        playstate: params.playstate || "running"
     };
 
     alice.masterFx.cheshire(opts);
@@ -536,13 +486,15 @@ alice.fx.hinge = function (elems, rotate, overshoot, duration, timing, delay, it
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.pageFlip = function (elems, flip, turns, overshoot, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.pageFlip = function (params) {
     "use strict";
     console.info("pageFlip: ", arguments);
 
-    var perspectiveOrigin = "left";
+    if(!params){ params = ''; }
 
-    switch (flip) {
+    var perspectiveOrigin = "";
+
+    switch (params.flip) {
     case "right":
         perspectiveOrigin = "right";
         break;
@@ -555,21 +507,23 @@ alice.fx.pageFlip = function (elems, flip, turns, overshoot, duration, timing, d
     }
 
     var opts = {
-        perspectiveOrigin: perspectiveOrigin,
+        perspectiveOrigin: perspectiveOrigin || 'left',
 
-        elems: elems,
+        elems: alice.anima,
 
-        flip: flip || "left",
-        turns: turns || 1,
-        overshoot: overshoot || 0,
+        flip: params.flip || "left",
+        turns: params.turns || 1,
+        overshoot: params.overshoot || 0,
 
-        duration: duration,
-        timing: timing,
-        delay: delay,
-        iteration: iteration,
-        direction: direction,
-        playstate: playstate
+        duration: params.duration,
+        timing: params.timing,
+        delay: params.delay,
+        iteration: params.iteration || 'infinite',
+        direction: params.direction || 'normal',
+        playstate: params.playstate || 'running'
     };
+
+    console.warn(opts);
 
     alice.masterFx.cheshire(opts);
     return opts;
@@ -588,24 +542,26 @@ alice.fx.pageFlip = function (elems, flip, turns, overshoot, duration, timing, d
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.pendulum = function (elems, rotate, overshoot, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.pendulum = function (params) {
     "use strict";
     console.info("pendulum: ", arguments);
+
+    if(!params){ params = ''; }
 
     var opts = {
         perspectiveOrigin: "top",
 
-        elems: elems,
+        elems: alice.anima,
 
-        rotate: rotate || 45,
-        overshoot: overshoot || 0,
+        rotate: params.rotate || 45,
+        overshoot: params.overshoot || 0,
 
-        duration: duration || "1000ms",
-        timing: timing || "ease-in-out",
-        delay: delay || "0ms",
-        iteration: iteration || "infinite",
-        direction: direction || "alternate",
-        playstate: playstate
+        duration: params.duration || "1000ms",
+        timing: params.timing || "ease-in-out",
+        delay: params.delay || "0ms",
+        iteration: params.iteration || "infinite",
+        direction: params.direction || "alternate",
+        playstate: params.playstate || "running"
     };
 
     alice.masterFx.cheshire(opts);
@@ -626,25 +582,27 @@ alice.fx.pendulum = function (elems, rotate, overshoot, duration, timing, delay,
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.phantomZone = function (elems, fade, rotate, flip, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.phantomZone = function (params) {
     "use strict";
     console.info("phantomZone: ", arguments);
 
+    if(!params){ params = ''; }
+
     var opts = {
-        scale: (fade === "in") ? {from: "1%", to: "100%"} : {from: "100%", to: "1%"},
+        scale: (params.fade === "in") ? {from: "1%", to: "100%"} : {from: "100%", to: "1%"},
 
-        elems: elems,
+        elems: alice.anima,
 
-        fade: fade || "out",
-        rotate: rotate || -720,
-        flip: flip || "left",
+        fade: params.fade || "out",
+        rotate: params.rotate || -720,
+        flip: params.flip || "left",
 
-        duration: duration || "5000ms",
-        timing: timing,
-        delay: delay,
-        iteration: iteration || 1,
-        direction: direction || "normal",
-        playstate: playstate
+        duration: params.duration || "5000ms",
+        timing: params.timing,
+        delay: params.delay,
+        iteration: params.iteration || 1,
+        direction: params.direction || "normal",
+        playstate: params.playstate || "running"
     };
 
     alice.masterFx.cheshire(opts);
@@ -664,24 +622,26 @@ alice.fx.phantomZone = function (elems, fade, rotate, flip, duration, timing, de
  * @param  {[type]} playstate         [description]
  * @return {[type]}
  */
-alice.fx.raceFlag = function (elems, rotate, perspectiveOrigin, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.raceFlag = function (params) {
     "use strict";
     console.info("raceFlag: ", arguments);
+
+    if(!params){ params = ''; } 
 
     var opts = {
         flip: "down",
 
-        elems: elems,
+        elems: alice.anima,
 
-        rotate: rotate || -720,
-        perspectiveOrigin: perspectiveOrigin || "top-right",
+        rotate: params.rotate || -720,
+        perspectiveOrigin: params.perspectiveOrigin || "top-right",
 
-        duration: duration || "3000ms",
-        timing: timing,
-        delay: delay,
-        iteration: iteration || 1,
-        direction: direction || "normal",
-        playstate: playstate
+        duration: params.duration || "3000ms",
+        timing: params.timing,
+        delay: params.delay,
+        iteration: params.iteration || 1,
+        direction: params.direction || "normal",
+        playstate: params.playstate || "running"
     };
 
     alice.masterFx.cheshire(opts);
@@ -701,22 +661,24 @@ alice.fx.raceFlag = function (elems, rotate, perspectiveOrigin, duration, timing
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.slide = function (elems, move, overshoot, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.slide = function (params) {
     "use strict";
     console.info("slide: ", arguments);
 
+    if(!params){ params = ''; } 
+
     var opts = {
-        elems: elems,
+        elems: alice.anima,
 
-        move: move,
-        overshoot: overshoot,
+        move: params.move || 'left',
+        overshoot: params.overshoot || '0',
 
-        duration: duration,
-        timing: timing,
-        delay: delay,
-        iteration: iteration,
-        direction: direction,
-        playstate: playstate
+        duration: params.duration || '800ms',
+        timing: params.timing || "ease-in-out",
+        delay: params.delay || '0ms',
+        iteration: params.iteration || "infinite",
+        direction: params.direction || "left",
+        playstate: params.playstate || "running"
     };
 
     alice.masterFx.cheshire(opts);
@@ -736,25 +698,27 @@ alice.fx.slide = function (elems, move, overshoot, duration, timing, delay, iter
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.spin = function (elems, flip, turns, overshoot, duration, timing, delay, iteration, playstate) {
+alice.fx.spin = function (params) {
     "use strict";
     console.info("spin: ", arguments);
+
+    if(!params){ params = ''; } 
 
     var opts = {
         perspectiveOrigin: "center",
         direction: "normal",
 
-        elems: elems,
+        elems: alice.anima,
 
-        flip: flip || "left",
-        turns: turns || 1,
-        overshoot: overshoot || 0,
+        flip: params.flip || "left",
+        turns: params.turns || 1,
+        overshoot: params.overshoot || 0,
 
-        duration: duration,
-        timing: timing,
-        delay: delay,
-        iteration: iteration,
-        playstate: playstate
+        duration: params.duration || "800ms",
+        timing: params.timing || "ease-in-out",
+        delay: params.delay || "0ms",
+        iteration: params.iteration || "infinite",
+        playstate: params.playstate || "running"
     };
 
     alice.masterFx.cheshire(opts);
@@ -775,26 +739,28 @@ alice.fx.spin = function (elems, flip, turns, overshoot, duration, timing, delay
  * @param  {[type]} playstate         [description]
  * @return {[type]}
  */
-alice.fx.toss = function (elems, move, overshoot, perspectiveOrigin, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.toss = function (params) {
     "use strict";
     console.info("toss: ", arguments);
+
+    if(!params){ params = ''; } 
 
     var opts = {
         rotate: (move === "left" || move === "down") ? 720 : -720,
         fade: "in",
 
-        elems: elems,
+        elems: alice.anima,
 
-        move: move,
-        overshoot: overshoot,
-        perspectiveOrigin: perspectiveOrigin,
+        move: params.move,
+        overshoot: params.overshoot,
+        perspectiveOrigin: params.perspectiveOrigin,
 
-        duration: duration,
-        timing: timing,
-        delay: delay,
-        iteration: iteration,
-        direction: direction,
-        playstate: playstate
+        duration: params.duration,
+        timing: params.timing,
+        delay: params.delay,
+        iteration: params.iteration,
+        direction: params.direction,
+        playstate: params.playstate
     };
 
     alice.masterFx.cheshire(opts);
@@ -816,6 +782,8 @@ alice.fx.toss = function (elems, move, overshoot, perspectiveOrigin, duration, t
 alice.fx.twirl = function (elems, flip, duration, timing, delay, iteration, direction, playstate) {
     "use strict";
     console.info("twirl: ", arguments);
+
+    if(!params){params = '';}
 
     var opts = {
         rotate: (flip === "left") ? -135 : 135,
@@ -848,22 +816,24 @@ alice.fx.twirl = function (elems, flip, duration, timing, delay, iteration, dire
  * @param  {[type]} playstate         [description]
  * @return {[type]}
  */
-alice.fx.wobble = function (elems, rotate, perspectiveOrigin, duration, timing, delay, iteration, playstate) {
+alice.fx.wobble = function (params) {
     "use strict";
     console.info("wobble: ", arguments);
 
+    if(!params){params = '';}
+
     var opts = {
-        elems: elems,
+        elems: alice.anima,
 
-        rotate: rotate || 5,
-        perspectiveOrigin: perspectiveOrigin || "center",
+        rotate: params.rotate || 5,
+        perspectiveOrigin: params.perspectiveOrigin || "center",
 
-        duration: duration || "200ms",
-        timing: timing || "linear",
-        delay: delay || "0ms",
-        iteration: iteration || "infinite",
+        duration: params.duration || "200ms",
+        timing: params.timing || "linear",
+        delay: params.delay || "0ms",
+        iteration: params.iteration || "infinite",
         direction: "alternate",
-        playstate: playstate
+        playstate: params.playstate || "running"
     };
 
     alice.masterFx.cheshire(opts);
@@ -884,13 +854,15 @@ alice.fx.wobble = function (elems, rotate, perspectiveOrigin, duration, timing, 
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.zoom = function (elems, scale, shadow, move, duration, timing, delay, iteration, direction, playstate) {
+alice.fx.zoom = function (params) {
     "use strict";
     console.info("zoom: ", arguments);
 
+    if(!params){params = '';}
+
     var scaleObj = {from: "100%", to: "125%"}; // default
-    if (scale) {
-        if (typeof scale === "object") {
+    if (params.scale) {
+        if (typeof params.scale === "object") {
             scaleObj = scale;
             //scaleObj = {from: alice.percentage(scale.from), to: alice.percentage(scale.to)};
         }
@@ -900,52 +872,16 @@ alice.fx.zoom = function (elems, scale, shadow, move, duration, timing, delay, i
     }
 
     var opts = {
-        elems: elems,
+        elems: alice.anima,
 
         scale: scaleObj,
-        shadow: shadow || false,
-
-        move: move || "none",
-
-        duration: duration,
-        timing: timing,
-        delay: delay,
-        iteration: iteration || 1,
-        direction: direction || "normal",
-        playstate: playstate
-    };
-
-    alice.masterFx.cheshire(opts);
-    return opts;
-};
-
-alice.fx.zoom2 = function (params) {
-    "use strict";
-    //console.info("zoom: ", arguments);
-    if(!params){params = '';}
-
-    var scaleObj = {from: "100%", to: "525%"}; // default
-    if (params.scale) {
-        if (typeof params.scale === "object") {
-            scaleObj = params.scale;
-            //scaleObj = {from: alice.percentage(scale.from), to: alice.percentage(scale.to)};
-        }
-        else {
-            scaleObj.to = params.scale;
-        }
-    }
-
-    var opts = {
-        elems: alice.AnIdea,
-
-        scale: scaleObj,
-        shadow: params.shadow || true,
+        shadow: params.shadow || false,
 
         move: params.move || "none",
 
-        duration: params.duration || '800ms',
-        timing: params.timing || 'ease-in-out',
-        delay: params.delay || '0ms',
+        duration: params.duration,
+        timing: params.timing,
+        delay: params.delay,
         iteration: params.iteration || 1,
         direction: params.direction || "normal",
         playstate: params.playstate || "running"

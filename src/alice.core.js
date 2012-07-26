@@ -393,7 +393,7 @@ var alice = (function () {
                 // Internet Explorer 10+
                 else if ("MSAnimation" in el.style) {
                     this.prefix = "-ms-";
-                    this.prefixJS = "MS";
+                    this.prefixJS = "ms";
                 }
                 // Opera 12+
                 else if ("OAnimation" in el.style || "OTransform" in el.style) {

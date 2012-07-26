@@ -133,7 +133,7 @@ a.bounce("my_bounce", 125, true, "750ms", "easeOutSine", "0ms", "infinite", "alt
 
         //var a = alice.init();
 
-        $a('my_bounce').pageFlip({flip: 'right'});
+        $a({chain: true}).pageFlip({elems: "my_bounce"}).delay(3000).bounce({elems: "logo"}).go();
         
 
         // Google Analytics

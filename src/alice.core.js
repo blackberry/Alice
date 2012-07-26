@@ -653,11 +653,13 @@ var $a = function(elems, params){
     console.info("Initializing " + alice.name + " (" + alice.description + ") " + alice.version);
     alice.vendorPrefix();
 
+    if(typeof elems === 'object'){ params = elems; elems = ''; }
+
     // set the element variable known as anima
-    if(elems){
-        alice.anima = elems;
-    }else{
+    if(!elems !== 'object'){
         alice.anima = '';
+    }else{
+        alice.anima = elems;
     }
     
     if(params){

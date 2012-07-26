@@ -305,7 +305,7 @@ alice.fx.bounce = function (params) {
     }
 
     var opts = {
-        elems: alice.anima,
+        elems: params.elems || alice.anima,
 
         scale: scaleObj,
         shadow: params.shadow || true,
@@ -342,7 +342,7 @@ alice.fx.dance = function (params) {
 
     var opts = {
 
-        elems: alice.anima,
+        elems: params.elems || alice.anima,
 
         rotate: params.rotate || 45,
 
@@ -380,7 +380,7 @@ alice.fx.drain = function (params) {
     var opts = {
         scale: (params.fade === "in") ? {from: "0%", to: "100%"} : {from: "100%", to: "0%"},
 
-        elems: alice.anima,
+        elems: params.elems || alice.anima,
 
         fade: params.fade || "out",
         rotate: params.rotate || -2880,
@@ -417,7 +417,7 @@ alice.fx.fade = function (params) {
 
     var opts = {
 
-        elems: alice.anima,
+        elems: params.elems || alice.anima,
 
         fade: params.fade || "in",
 
@@ -455,7 +455,7 @@ alice.fx.hinge = function (params) {
     var opts = {
         perspectiveOrigin: "top-left",
 
-        elems: alice.anima,
+        elems: params.elems || alice.anima,
 
         rotate: params.rotate || 25,
         overshoot: params.overshoot || 0,
@@ -509,7 +509,7 @@ alice.fx.pageFlip = function (params) {
     var opts = {
         perspectiveOrigin: perspectiveOrigin || 'left',
 
-        elems: alice.anima,
+        elems: params.elems || alice.anima,
 
         flip: params.flipDirection || "left",
         turns: params.turns || 1,
@@ -522,8 +522,6 @@ alice.fx.pageFlip = function (params) {
         direction: params.direction || 'normal',
         playstate: params.playstate || 'running'
     };
-
-    console.warn(opts);
 
     alice.masterFx.cheshire(opts);
     return opts;
@@ -551,7 +549,7 @@ alice.fx.pendulum = function (params) {
     var opts = {
         perspectiveOrigin: "top",
 
-        elems: alice.anima,
+        elems: params.elems || alice.anima,
 
         rotate: params.rotate || 45,
         overshoot: params.overshoot || 0,
@@ -591,7 +589,7 @@ alice.fx.phantomZone = function (params) {
     var opts = {
         scale: (params.fade === "in") ? {from: "1%", to: "100%"} : {from: "100%", to: "1%"},
 
-        elems: alice.anima,
+        elems: params.elems || alice.anima,
 
         fade: params.fade || "out",
         rotate: params.rotate || -720,
@@ -631,7 +629,7 @@ alice.fx.raceFlag = function (params) {
     var opts = {
         flip: "down",
 
-        elems: alice.anima,
+        elems: params.elems || alice.anima,
 
         rotate: params.rotate || -720,
         perspectiveOrigin: params.perspectiveOrigin || "top-right",
@@ -668,7 +666,7 @@ alice.fx.slide = function (params) {
     if(!params){ params = ''; } 
 
     var opts = {
-        elems: alice.anima,
+        elems: params.elems || alice.anima,
 
         move: params.move || 'left',
         overshoot: params.overshoot || '0',
@@ -708,7 +706,7 @@ alice.fx.spin = function (params) {
         perspectiveOrigin: "center",
         direction: "normal",
 
-        elems: alice.anima,
+        elems: params.elems || alice.anima,
 
         flip: params.flip || "left",
         turns: params.turns || 1,
@@ -749,7 +747,7 @@ alice.fx.toss = function (params) {
         rotate: (params.move === "left" || params.move === "down") ? 720 : -720,
         //fade: "in",
 
-        elems: alice.anima,
+        elems: params.elems || alice.anima,
 
         move: params.move || "right",
         overshoot: params.overshoot || 0,
@@ -788,7 +786,7 @@ alice.fx.twirl = function (params) {
     var opts = {
         rotate: (params.flip === "left") ? -135 : 135,
 
-        elems: alice.anima,
+        elems: params.elems || alice.anima,
 
         flip: params.flip || "left",
 
@@ -823,7 +821,7 @@ alice.fx.wobble = function (params) {
     if(!params){params = '';}
 
     var opts = {
-        elems: alice.anima,
+        elems: params.elems || alice.anima,
 
         rotate: params.rotate || 5,
         perspectiveOrigin: params.perspectiveOrigin || "center",
@@ -872,7 +870,7 @@ alice.fx.zoom = function (params) {
     }
 
     var opts = {
-        elems: alice.anima,
+        elems: params.elems || alice.anima,
 
         scale: scaleObj,
         shadow: params.shadow || true,

@@ -53,7 +53,7 @@
 /**
  * @description
  */
-var alice = (function () {
+var alice = function () {
     "use strict";
 
     /*
@@ -93,7 +93,7 @@ var alice = (function () {
                         elems.push(v);
                     },
                     lookup = function (query) {
-                        if (typeof query != 'string') return [];
+                        if (typeof query !== 'string'){ return []; }
                         var result = document.getElementById(query);
                         return result ? [result] : document.querySelectorAll(query);
                     };
@@ -234,8 +234,7 @@ var alice = (function () {
                     'S':{x: "50%", y: "100%"},
                     'SE':{x: "100%", y: "100%"},
                     '':{x: "50%", y: "50%"},
-                    'undefined': {x: "50%", y: "50%"},
-                    null: {x: "50%", y: "50%"} 
+                    'undefined': {x: "50%", y: "50%"}
                 };
                 return coordsArray[params]; // {x: 320, y: 240}
             },
@@ -391,7 +390,7 @@ var alice = (function () {
                     this.prefixJS = "Moz";
                 }
                 // Internet Explorer 10+
-                else if ("MSAnimation" in el.style) {
+                else if ("msAnimation" in el.style) {
                     this.prefix = "-ms-";
                     this.prefixJS = "ms";
                 }
@@ -512,19 +511,21 @@ var alice = (function () {
              */
             playPause: function(elms) {
                 var i, elems = this.elements(elms),pfx = this.prefixJS;
+                
                 for(i = 0; i < elems.length; i++){
                     var elemId = elems[i].getAttribute('id');
-                    if(document.getElementById(elemId).style[pfx + "AnimationPlayState"] == "paused"){
+                    if(document.getElementById(elemId).style[pfx + "AnimationPlayState"] === "paused"){
                         document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "running";
-                    }else{
+                    }
+                    else{
                         document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "paused";
                     }
                 }
             }
-        }
+        };
 
         return core;
-}());
+}();
 
 /**
  * Performs various acts of formating changes
@@ -582,6 +583,7 @@ alice.helper = {
      * Formats the duration and returns a string
      */
     duration: function (param, calc, duration) {
+        "use strict";
         if (param && param.offset) {
             if (calc) {
                 calc = parseInt(calc, 10) + parseInt(param.offset, 10);
@@ -617,6 +619,7 @@ alice.helper = {
 alice.cleaner = {
     // Clear the Elements style tag and thusly the animation call.
     removeAni: function(elems){
+        "use strict";
         var i, AniElems;
         document.addEventListener(alice.prefixJS+'AnimationEnd', 
             function(){ 
@@ -629,6 +632,7 @@ alice.cleaner = {
     },
     // Removes the animated elements from the DOM completely.
     removeElems: function(elems){
+        "use strict";
         var ob, AniObj;
         document.addEventListener(alice.prefixJS+'AnimationEnd', 
             function(){ 
@@ -639,19 +643,25 @@ alice.cleaner = {
                 }
             }, false);
     }
-}
+};
 
 /* 
  * Main Function
  */
-var $a = function(elems, chain){
-    
+var $a = function(elems, params){
+    "use strict";
     console.info("Initializing " + alice.name + " (" + alice.description + ") " + alice.version);
     alice.vendorPrefix();
 
     // set the element variable known as anima
-    alice.anima = elems;
-        if(chain === true){
+    if(elems){
+        alice.anima = elems;
+    }else{
+        alice.anima = '';
+    }
+    
+    if(params){
+        if(params.chain && params.chain === true){
             console.log("jWorkflow: enabled");
 
             var id = (elems && elems) ? elems : '',
@@ -697,6 +707,7 @@ var $a = function(elems, chain){
         else {
             console.log("jWorkflow: disabled");
         }
+    }
                     
     return alice.fx;
 };

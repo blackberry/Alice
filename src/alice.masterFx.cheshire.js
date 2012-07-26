@@ -494,7 +494,7 @@ alice.fx.pageFlip = function (params) {
 
     var perspectiveOrigin = "";
 
-    switch (params.flip) {
+    switch (params.flipDirection) {
     case "right":
         perspectiveOrigin = "right";
         break;
@@ -511,13 +511,13 @@ alice.fx.pageFlip = function (params) {
 
         elems: alice.anima,
 
-        flip: params.flip || "left",
+        flip: params.flipDirection || "left",
         turns: params.turns || 1,
         overshoot: params.overshoot || 0,
 
-        duration: params.duration,
-        timing: params.timing,
-        delay: params.delay,
+        duration: params.duration || "2000ms",
+        timing: params.timing || "ease-in-out",
+        delay: params.delay || "0ms",
         iteration: params.iteration || 'infinite',
         direction: params.direction || 'normal',
         playstate: params.playstate || 'running'
@@ -556,7 +556,7 @@ alice.fx.pendulum = function (params) {
         rotate: params.rotate || 45,
         overshoot: params.overshoot || 0,
 
-        duration: params.duration || "1000ms",
+        duration: params.duration || "2000ms",
         timing: params.timing || "ease-in-out",
         delay: params.delay || "0ms",
         iteration: params.iteration || "infinite",
@@ -598,8 +598,8 @@ alice.fx.phantomZone = function (params) {
         flip: params.flip || "left",
 
         duration: params.duration || "5000ms",
-        timing: params.timing,
-        delay: params.delay,
+        timing: params.timing || "ease-in-out",
+        delay: params.delay || "0ms",
         iteration: params.iteration || 1,
         direction: params.direction || "normal",
         playstate: params.playstate || "running"
@@ -637,8 +637,8 @@ alice.fx.raceFlag = function (params) {
         perspectiveOrigin: params.perspectiveOrigin || "top-right",
 
         duration: params.duration || "3000ms",
-        timing: params.timing,
-        delay: params.delay,
+        timing: params.timing || "ease-in-out",
+        delay: params.delay || "0ms",
         iteration: params.iteration || 1,
         direction: params.direction || "normal",
         playstate: params.playstate || "running"
@@ -714,7 +714,7 @@ alice.fx.spin = function (params) {
         turns: params.turns || 1,
         overshoot: params.overshoot || 0,
 
-        duration: params.duration || "800ms",
+        duration: params.duration || "1200ms",
         timing: params.timing || "ease-in-out",
         delay: params.delay || "0ms",
         iteration: params.iteration || "infinite",
@@ -747,20 +747,20 @@ alice.fx.toss = function (params) {
 
     var opts = {
         rotate: (params.move === "left" || params.move === "down") ? 720 : -720,
-        fade: "in",
+        //fade: "in",
 
         elems: alice.anima,
 
-        move: params.move,
-        overshoot: params.overshoot,
-        perspectiveOrigin: params.perspectiveOrigin,
+        move: params.move || "right",
+        overshoot: params.overshoot || 0,
+        perspectiveOrigin: params.perspectiveOrigin || "center",
 
-        duration: params.duration,
-        timing: params.timing,
-        delay: params.delay,
-        iteration: params.iteration,
-        direction: params.direction,
-        playstate: params.playstate
+        duration: params.duration || "2500ms",
+        timing: params.timing || "ease-in-out",
+        delay: params.delay || "0ms",
+        iteration: params.iteration || "infinite",
+        direction: params.direction || "normal",
+        playstate: params.playstate || "running"
     };
 
     alice.masterFx.cheshire(opts);
@@ -793,8 +793,8 @@ alice.fx.twirl = function (params) {
         flip: params.flip || "left",
 
         duration: params.duration || "3000ms",
-        timing: params.timing,
-        delay: params.delay,
+        timing: params.timing || "ease-in-out",
+        delay: params.delay || "0ms",
         iteration: params.iteration || 1,
         direction: params.direction || "normal",
         playstate: params.playstate || "running"
@@ -860,7 +860,7 @@ alice.fx.zoom = function (params) {
 
     if(!params){params = '';}
 
-    var scaleObj = {from: "100%", to: "125%"}; // default
+    var scaleObj = {from: "1%", to: "125%"}; // default
     if (params.scale) {
         if (typeof params.scale === "object") {
             scaleObj = scale;
@@ -875,13 +875,13 @@ alice.fx.zoom = function (params) {
         elems: alice.anima,
 
         scale: scaleObj,
-        shadow: params.shadow || false,
+        shadow: params.shadow || true,
 
         move: params.move || "none",
 
-        duration: params.duration,
-        timing: params.timing,
-        delay: params.delay,
+        duration: params.duration || "2000ms",
+        timing: params.timing || "ease",
+        delay: params.delay || "0ms",
         iteration: params.iteration || 1,
         direction: params.direction || "normal",
         playstate: params.playstate || "running"

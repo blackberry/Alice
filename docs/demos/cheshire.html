@@ -541,37 +541,175 @@ a.zoom("my_zoom", {
 
         //var a = alice.init();
 
-        $a("my_bounce").bounce2(,125, true, "750ms", "easeOutSine", "0ms", "infinite", "alternate", "running");
+        $(document).ready(function(){
+            //$a("my_bounce", true).spin({duration: "4000ms"}).delay(3500).bounce().go();
+        });
 
-        $a().dance("my_dance", 45, "750ms", "easeInOutBack", "0ms", "infinite", "alternate", "running");
+        $a("my_bounce").bounce({
+            // scale: 125,
+            // shadow: true,
+            // duration: "750ms",
+            // timing: "easeOutSine",
+            // delay: "0ms",
+            // iteration: "infinite",
+            // direction: "alternate",
+            // playstate: "running"
+        });
 
-        $a().drain("my_drain", "out", -2880, "4500ms", "ease-in-out", "0ms", "1", "normal", "running");
+        $a("my_dance").dance({
+            // rotate: 45,
+            // duration: "950ms",
+            // timing: "easeInOutBack",
+            // delay: "0ms",
+            // iteration: "infinite",
+            // direction: "alternate",
+            // playstate: "running"
+        });
 
-        $a().fade("my_fade", "in", "4500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
+        $a("my_drain").drain({
+            // fade: "out",
+            // rotate: -720,  
+            // duration: "4500ms",
+            // timing: "ease-in-out",
+            // delay: "0ms",
+            // iteration: "infinite",
+            // direction: "normal",
+            // playstate:  "running"
+        });
 
-        $a().hinge("my_hinge", 25, 0, "1000ms", "linear", "0ms", "infinite", "alternate", "running");
+        $a("my_fade").fade({
+            // fade: "in",   
+            // duration: "4500ms",
+            // timing: "ease-in-out",
+            // delay: "0ms",
+            // iteration: "infinite",
+            // direction: "normal",
+            // playstate: "running"
+        });
 
-        $a().pageFlip("my_pageFlip", "left", 1, 0, "2500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
+        $a("my_hinge").hinge({
+            // rotate: 35,
+            // overshoot: 0,
+            // duration: "1000ms",
+            // timing: "linear",
+            // delay: "0ms",
+            // iteration: "infinite",
+            // direction: "alternate",
+            // playstate: "running"
+        });
 
-        $a().pendulum("my_pendulum", 45, 0, "1000ms", "ease-in-out", "0ms", "infinite", "alternate", "running");
+        $a("my_pageFlip").pageFlip({
+            // flipDirection: "left",
+            // turns: 1,
+            // overshoot: 0,
+            // duration: "2000ms",
+            // timing: "ease-in-out",
+            // delay: "0ms",
+            // iteration: "infinite",
+            // direction: "normal",
+            // playstate: "running"
+        });
 
-        $a().phantomZone("my_phantomZone", "out", -720, "left", "5000ms", "ease", "0ms", "infinite", "normal", "running");
+        $a("my_pendulum").pendulum({
+            // rotate: 45,
+            // overshoot: 0,
+            // duration: "2000ms",
+            // timing: "ease-in-out",
+            // delay: "0ms",
+            // iteration: "infinite",
+            // direction: "alternate",
+            // playstate: "running"
+        });
 
-        $a().raceFlag("my_raceFlag", -720, "top-right", "3000ms", "ease", "0ms", "infinite", "normal", "running");
+        $a("my_phantomZone").phantomZone({
+            // fade: "in",
+            // rotate: -720,
+            // flip: "left",
+            // duration: "5000ms",
+            // timing: "ease-in-out",
+            // delay: "0ms",
+            // iteration: "infinite",
+            // direction: "normal",
+            // playstate: "running"
+        });
 
-        $a().slide("my_slide", {direction: "left", start: 0, end: 500}, 0, "3000ms", "ease", "0ms", "infinite", "alternate", "running");
+        $a("my_raceFlag").raceFlag({
+            // rotate: -720,
+            // perspectiveOrigin: "top-right",
+            // duration: "3000ms",
+            // timing: "ease-in-out",
+            // delay: "0ms",
+            // iteration: 1,
+            // direction: "normal",
+            // playstate: "running" 
+        });
 
-        $a().spin("my_spin", "left", 1, 0, "3000ms", "ease", "0ms", "infinite", "normal", "running");
+        $a("my_slide").slide({
+            // move: {direction: "left", start: 0, end: 500},
+            // overshoot: '0',
+            // duration: "3000ms",
+            // timing: "ease",
+            // delay: "0ms",
+            // iteration: "infinite",
+            // direction: "alternate",
+            // playstate: "running"  
+        });
 
-        $a().toss("my_toss", "left", 0, "center", "2500ms", "ease", "0ms", "infinite", "alternate", "running");
+        $a("my_spin").spin({
+            // flip: "left",
+            // turns: 1,
+            // oevrshoot: 0,
+            // duration: "1200ms",
+            // timing: "ease-in-out",
+            // delay: "0ms",
+            // iteration: "infinite",
+            // direction: "normal",
+            // playstate: "running"  
+        });
 
-        $a().twirl("my_twirl", "left", "3000ms", "ease", "0ms", "infinite", "normal", "running");
+        $a("my_toss").toss({
+            // move: "right",
+            // perspectiveOrigin: "center",
+            // oevrshoot: 0,
+            // duration: "2500ms",
+            // timing: "ease-in-out",
+            // delay: "0ms",
+            // iteration: "infinite",
+            // direction: "normal",
+            // playstate: "running" 
+        });
 
-        $a().wobble("my_wobble", 5, "center", "200ms", "linear", "0ms", "infinite", "alternate", "running");
+        $a("my_twirl").twirl({
+            // flip: "left",
+            // duration: "3000ms",
+            // timing: "ease",
+            // delay: "0ms",
+            // iteration: "infinite",
+            // direction: "normal",
+            // playstate: "running" 
+        });
 
-        $a().zoom("my_zoom", {
-            from: "1%", to: "125%"
-        }, true, "none", "5000ms", "ease", "0ms", "infinite", "normal", "running");
+        $a("my_wobble").wobble({
+            // rotate: 5,
+            // perspectiveOrigin: "center",
+            // duration: "200ms",
+            // timing: "linear",
+            // delay: "0ms",
+            // iteration: "infinite",
+            // direction: "normal",
+            // playstate: "running" 
+        });
+
+        $a("my_zoom").zoom({
+            // scale: {from: "1%", to: "125%"},
+            // move: "none",
+            // duration: "200ms",
+            // timing: "linear",
+            // delay: "0ms",
+            // iteration: "infinite",
+            // direction: "normal",
+            // playstate: "running" 
+        });
 
         // Google Analytics
         var _gaq = _gaq || [];

@@ -130,7 +130,7 @@ alice.masterFx.caterpillar = function (params) {
                         var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRotNeg90+closure+'\n'+closure;
                         var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
                         var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originL+tranRot0+closure+'\n'+closure;
-                        var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originL+tranRotNeg90+closure+'\n'+closure;
+                        var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originL+tranRot90+closure+'\n'+closure;
                     }
                     //insert the formulated CSS
                     alice.keyframeInsert(oddPageTurnF);
@@ -292,65 +292,69 @@ alice.masterFx.caterpillar = function (params) {
                                         thisPage.style.left = core.pageWidth+'px';     
                                     }
                                 }
-                            }else if(core.binding === 'horizontal'){
+                            }else 
+            /***********************************/
+                            if(core.binding === 'horizontal'){
                                 if(idNum % 2 === 1 ){
                                     if(flipDirection === 'forward' && core.direction === 'down'){
                                         thisPage.setAttribute('style',
-                                            alice.prefix+'transform-origin: 1px 1px;'+
+                                            alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
                                             alice.prefix+'transform: '+ core.transformRotate + AngleNeg90 +
                                             alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
-                                        thisPage.style.top = '0px';
-                                        
                                     }
                                     if(flipDirection === 'reverse' && core.direction === 'down'){
                                         thisPage.setAttribute('style',
                                             basicSettings+
-                                            alice.prefix+'transform-origin: 1px 1px;'+
+                                            alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
                                             alice.prefix+'box-shadow:'+core.shadowPattern100+';');
                                         thisPage.style.top = '0px';
                                     }
+
                                     if(flipDirection === 'forward' && core.direction === 'up'){
                                         thisPage.setAttribute('style',
-                                            alice.prefix+'transform-origin: 600px 1px;'+
+                                            alice.prefix+'transform-origin: 1px 1px;'+
                                             alice.prefix+'transform: '+ core.transformRotate + Angle90 +
                                             alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
+                                        thisPage.style.top = core.pageHeight+'px';
                                     }
                                     if(flipDirection === 'reverse' && core.direction === 'up'){
                                         thisPage.setAttribute('style',
                                             basicSettings+
-                                            alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
+                                            alice.prefix+'transform-origin: 1px 1px;'+
                                             alice.prefix+'box-shadow:'+core.shadowPattern100+';');
+                                        thisPage.style.top = core.pageHeight+'px';
                                     }
                                 }else if(idNum % 2 === 0 ){
+                                    
                                     if(flipDirection === 'forward' && core.direction === 'down'){
                                         thisPage.setAttribute('style',
-                                            basicSettings+
-                                            alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
-                                            alice.prefix+'transform: '+core.transformRotate+ AngleNeg90 +
-                                            alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
-                                    }
-                                    if(flipDirection === 'reverse' && core.direction === 'down'){
-                                        thisPage.setAttribute('style', 
-                                            alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
-                                            alice.prefix+'transform: '+core.transformRotate+ Angle90 +
-                                            alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');   
-                                    }
-                                    if(flipDirection === 'forward' && core.direction === 'up'){
-                                        thisPage.setAttribute('style', 
                                             basicSettings+
                                             alice.prefix+'transform-origin: 1px 1px;'+
                                             alice.prefix+'transform: '+core.transformRotate+ Angle0 +
                                             alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
-                                        thisPage.style.top = '0px';
-                                        thisPage.style.left = core.pageWidth+'px';     
+                                        thisPage.style.top = core.pageHeight+'px';
+                                    }
+                                    if(flipDirection === 'reverse' && core.direction === 'down'){
+                                        thisPage.setAttribute('style', 
+                                            alice.prefix+'transform-origin: 1px 1px;'+
+                                            alice.prefix+'transform: '+core.transformRotate+ Angle90 +
+                                            alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');   
+                                        thisPage.style.top = core.pageHeight+'px';
+                                    }
+                                    if(flipDirection === 'forward' && core.direction === 'up'){
+                                        thisPage.setAttribute('style', 
+                                            basicSettings+
+                                            alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
+                                            alice.prefix+'transform: '+core.transformRotate+ Angle0 +
+                                            alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
+                                        thisPage.style.top = '0px';    
                                     }
                                     if(flipDirection === 'reverse' && core.direction === 'up'){
                                         thisPage.setAttribute('style',+
                                             alice.prefix+'transform-origin: 1px 1px;'+
                                             alice.prefix+'transform: '+core.transformRotate+ AngleNeg90 +
                                             alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
-                                        thisPage.style.top = '0px';
-                                        thisPage.style.left = core.pageWidth+'px';     
+                                        thisPage.style.top = '0px'; 
                                     }
                                 }
                             }

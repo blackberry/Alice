@@ -82,13 +82,8 @@ alice.masterFx.cheshire = function (params) {
         alice.cleaner.removeElems(params.elems);
     }
 
-    // TODO: use elems from init for chaining?
-    if (alice.elems !== null) {
-        elems = alice.elems;
-    }
-    else if (params.elems) {
-        elems = alice.elements(params.elems);
-    }
+    // Set the elements using our means of grabbing elements
+    elems = alice.elements(params.elems);
 
     // Loop through elements
     if (elems && elems.length > 0) {

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<!--
+    Copyright 2011-2012 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>testing ideas</title>
+	<style type="text/css">
+		.page{
+			background: #888;
+			/*-webkit-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);*/
+			/*-webkit-backface-visibility: hidden;*/
+		}
+
+		p{
+			color: #fff;
+			padding: 40px;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="my_book" style="">
+		<div>
+			<p style="color: #fff; text-align: center;">CSS3 Book Effect</p>
+			<br >
+			<br />
+			<p style="text-align: left;">To whomever is viewing this please note the following: The pages flipping back does not work in mobile browsers yet or in 
+				safari likely because of the event listener, the code is a disaster area but it should be resolved shortly and made all pretty. The current 
+				build requires webkit but will shortly support most browsers. <br /> Though it is not currently integrated with Alice JS that will not take long to do.</p>
+		</div>
+		<div>
+			<p style="text-align: left;">Arrow keys will flip through the pages as well. Please note that this entire book is using CSS3 and its 3D capabilities. If your browser doesn't 
+				support this, this will do nothing.</p>
+		</div>
+		<div><p>Page 3</p></div>
+		<div><p>You guessed it page 4!!!</p><div style="width: 300px; height: 200px; background: #999; margin: 20px;"></div></div>
+		<div><p>You guessed it page 5!!!</p></div>
+		<div><p>You guessed it page 6!!!</p>
+			<br />
+			<p>This book effect is pretty cool eh!!</p>
+		</div>
+		<div><p>You guessed it page 7!!!</p></div>
+		<div><p>You guessed it page 8!!! <br />This could also be a back cover!</p></div>
+		</div>
+	</div>
+
+<script src="../../src/alice.core.js"></script>
+<script src="../../src/alice.masterFx.caterpillar.js"></script>
+<script type="text/javascript">
+
+	$a("my_book").book({
+		pageClassName: 'page',
+		bookWidth: 600,
+		bookHeight: 400,
+		speed: '500ms',
+		direction: "down",
+		binding: 'horizontal'
+	});
+
+</script>
+</html>

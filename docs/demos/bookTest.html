@@ -1,0 +1,242 @@
+<script>
+var book = function (){
+
+		var core = {
+
+			leftPage: 0,
+			rightPage: 1, 
+			realPageCount: 0,
+
+			turnPage: function (pageId){
+		
+				if(bookit.leftPage < 0){
+					bookit.leftPage = 0;
+					bookit.rightPage = 1;
+				}
+
+				if(bookit.rightPage > bookit.realPageCount){
+					bookit.leftPage = bookit.realPageCount;
+					bookit.rightPage = bookit.realPageCount+1;
+				}
+
+				var book = document.getElementById('book');
+				
+				if(pageId % 2 === 1){
+					bookit.leftPage += 1;
+
+					var nxtPageId = book.querySelector('div:nth-child('+(pageId + 1)+')').getAttribute('id');
+
+					var nxtNxtPageId = book.querySelector('div:nth-child('+(pageId + 2)+')');
+					if(nxtNxtPageId){
+						nxtNxtPageId = nxtNxtPageId.getAttribute('id');
+						var nxtNxtPage = document.getElementById(nxtNxtPageId);
+						nxtNxtPage.style.display = 'block';
+					}
+					
+					var page = document.getElementById('p'+pageId);
+						page.style.zIndex = 1;
+						page.style.webkitAnimationName = "PageTurn";
+						page.style.webkitAnimationDuration = "1000ms";
+						page.style.webkitAnimationFillMode = "forwards";
+						page.style.webkitAnimationTimingFunction = "linear";
+						page.style.webkitAnimationPlayState = "running";
+						page.style.webkitAnimationDirection = 'normal';
+
+					if(bookit.rightPage < bookit.realPageCount+1){
+						bookit.rightPage += 2;
+						bookit.leftPage += 1;
+					}
+
+					console.log('Odd Page Turn');
+				}
+				if(pageId % 2 === 0){
+
+					var prvPageId = book.querySelector('div:nth-child('+(pageId - 1)+')').getAttribute('id');
+
+					var prvPrvPageElement = book.querySelector('div:nth-child('+(pageId - 2)+')');
+					
+					if(prvPrvPageElement){
+						prvPrvPageId = prvPrvPageElement.getAttribute('id');
+						var prvPrvPage = document.getElementById(prvPrvPageId);
+						prvPrvPage.style.display = 'block';
+					}
+					
+					var page = document.getElementById('p'+pageId);
+						page.style.zIndex = 1;
+						
+						page.style.webkitAnimationName = "PageBackFlipReverse";
+						page.style.webkitAnimationDuration = "1000ms";
+						page.style.webkitAnimationFillMode = "forwards";
+						page.style.webkitAnimationPlayState = "running";
+						page.style.webkitAnimationDirection = "normal";
+						page.style.webkitAnimationTimingFunction = "linear";
+				
+					if(bookit.leftPage >= 1){
+						bookit.rightPage -= 2;
+						bookit.leftPage -= 2;
+					}
+
+					console.log('Even Page Turn initial flip');
+				}
+			},
+
+			evenPageFlip: function(id){
+				var nxtId = id;
+					nxtId = nxtId.substring(1, 8);
+					nxtId = parseInt(nxtId);
+
+				var nxtPageId = book.querySelector('div:nth-child('+(nxtId + 1)+')').getAttribute('id');
+
+				var nxtPage = document.getElementById(nxtPageId);
+					nxtPage.style.zIndex = 1;
+
+					nxtPage.style.display = 'block';
+					nxtPage.style.webkitAnimationName = "PageBackTurn";
+					nxtPage.style.webkitAnimationDuration = "1000ms";
+					nxtPage.style.webkitAnimationFillMode = "forwards";
+					nxtPage.style.webkitAnimationPlayState = "running";
+					nxtPage.style.webkitAnimationDirection = 'normal';
+					nxtPage.style.webkitAnimationTimingFunction = "linear";
+				
+				console.log('even page flip after effect');
+			},
+
+			oddPageFlip: function(id){
+				var nxtId = id;
+					nxtId = nxtId.substring(1, 8);
+					nxtId = parseInt(nxtId);
+
+				var prvPageId = book.querySelector('div:nth-child('+(nxtId - 1)+')').getAttribute('id');
+
+				var prvPage = document.getElementById(prvPageId);
+					prvPage.style.zIndex = 1;
+
+					prvPage.style.display = 'block';
+					prvPage.style.webkitAnimationName = "PageTurnReverse";
+					prvPage.style.webkitAnimationDuration = "1000ms";
+					prvPage.style.webkitAnimationFillMode = "forwards";
+					prvPage.style.webkitAnimationPlayState = "running";
+					prvPage.style.webkitAnimationDirection = "normal";
+					prvPage.style.webkitAnimationTimingFunction = "linear";
+					
+				console.log('odd page flip after effect');
+			},
+
+			init: function(params){
+
+				pagesRule = "."+params.pageClassName+":nth-child(even){ \n"+
+							"margin-left: -400px; \n"+
+							"-webkit-transform-origin: 400px 1px; \n"+
+							"-webkit-box-shadow: -5px 5px 30px rgba(0, 0, 0, 0.0); \n"+
+							"-webkit-transform: rotateY(90deg); \n }";
+
+					try {
+                        document.styleSheets[0].insertRule(pagesRule, 0);
+                    }
+                    catch (ex) {
+                        console.warn(ex.message, rule);
+                    }
+
+				var mybook = document.getElementById(params); //the book!
+				var pages = mybook.childNodes; //pages of the book
+				var n = 1;
+
+				for(var p = 0; p < pages.length; p++){
+					if(pages[p].nodeType === 1){
+						bookit.realPageCount = bookit.realPageCount+1;
+					}
+				}
+
+				for (var i = 0; i < pages.length; i++){
+					if(pages[i].nodeType === 1){
+						pages[i].setAttribute('id', 'p'+n);
+						pages[i].setAttribute('class', 'page');
+						pages[i].style.display = 'none';
+						pages[i].setAttribute('onclick', 'bookit.turnPage('+n+')');
+						
+						if(i % 2 == 1){
+							pages[i].addEventListener('webkitAnimationEnd', function(){
+								
+								// For odd pages moving forward L>R
+								if(this.style.webkitAnimationName == 'PageTurn' && this.style.webkitAnimationDirection == 'normal' && this.style.webkitAnimationFillMode == 'forwards'){
+									bookit.evenPageFlip(this.getAttribute('id'));
+									this.setAttribute('style', 'display: none; -webkit-transform: rotateY(-90deg); -webkit-box-shadow: -5px 5px 30px rgba(0,0,0,0.1);');
+
+								// For the resetting of even pages moving forwards
+								}else if(this.style.webkitAnimationName === 'PageBackTurn' && this.style.webkitAnimationDirection === 'normal'){
+									this.setAttribute('style', 'margin-left: -400px; display: block; -webkit-transform: rotateY(0deg); -webkit-box-shadow: -5px 5px 30px rgba(0,0,0,0.1);');
+								
+
+
+								// For even pages moving backwards
+								}else if(this.style.webkitAnimationName === 'PageBackFlipReverse' && this.style.webkitAnimationDirection === 'normal'){
+									
+									bookit.oddPageFlip(this.getAttribute('id'));
+
+									this.setAttribute('style', 'margin-left: -400px; display: none; -webkit-transform: rotateY(90deg); -webkit-box-shadow: -5px 5px 30px rgba(0,0,0,0.1);');
+
+									var nxtId = this.getAttribute('id');
+									nxtId = nxtId.substring(1, 8);
+									nxtId = parseInt(nxtId)+1;
+
+									if(nxtId < bookit.realPageCount){
+										document.getElementById('p'+nxtId).style.zIndex = 0;
+									}
+								
+								
+
+
+								// For odd pages moving backwards
+								}else if(this.style.webkitAnimationName === 'PageTurnReverse' && this.style.webkitAnimationDirection === 'normal' && this.style.webkitAnimationFillMode === 'forwards'){
+
+									this.setAttribute('style','display: block;');
+								
+									console.log('do you work?')
+
+									var nxtId = this.getAttribute('id');
+									nxtId = nxtId.substring(1, 8);
+									nxtId = parseInt(nxtId)+2;
+									
+									if(nxtId < bookit.realPageCount){
+										document.getElementById('p'+nxtId).style.display = 'none';
+									}
+								}
+							}, false);
+						}
+
+						if(i === 1){
+							pages[i].style.display = 'block';
+						}
+					n++;
+					}
+				}
+			}
+		}
+
+		return core.init;
+
+	
+
+
+
+
+
+
+	function keyrelease(evt){
+
+		var dir = evt.keyCode;
+			if(dir == 39){
+				if(bookit.rightPage < bookit.realPageCount+1){
+					bookit.turnPage(bookit.rightPage);
+				}
+			}
+			else if(dir == 37){
+				if(bookit.leftPage >= 1){
+					bookit.turnPage(bookit.leftPage);
+				}
+			}
+	}
+
+	document.body.addEventListener("keyup", keyrelease, false);
+
+</script>

@@ -10,7 +10,7 @@
  * @author Laurent Hasson (@ldhasson)       [original]
  * @author Jim Ing (@jim_ing)               [original]
  * @author Gord Tanner (@gtanner)           [contributor, jWorkflow]
- * @author Matt Lantz (@mattylantz)         [minor contributor] 
+ * @author Matt Lantz (@mattylantz)         [contributor] 
  * 
  * ===========================================================================
  *
@@ -63,13 +63,13 @@ var alice = function () {
         id: "alice",
         name: "AliceJS",
         description: "A Lightweight Independent CSS Engine",
-        version: "0.3",
+        version: "0.4",
         build: "20120204-1040",
 
         prefix: "",
         prefixJS: "",
 
-        elems: null,
+        //elems: null,
 
         cleaner: {},
 
@@ -77,7 +77,7 @@ var alice = function () {
         helper: {},
         masterFx: {},
         fx: {},
-        anima: "",
+        anima: null,
 
         debug: false,
 
@@ -453,6 +453,7 @@ var alice = function () {
                 if (document.styleSheets && document.styleSheets.length) {
                     try {
                         document.styleSheets[0].insertRule(rule, 0);
+                        //console.log(rule);
                     }
                     catch (ex) {
                         console.warn(ex.message, rule);
@@ -513,7 +514,7 @@ var alice = function () {
                 var i, elems = this.elements(elms),pfx = this.prefixJS;
                 
                 for(i = 0; i < elems.length; i++){
-                    var elemId = elems[i].getAttribute('id');
+                var elemId = elems[i].getAttribute('id');
                     if(document.getElementById(elemId).style[pfx + "AnimationPlayState"] === "paused"){
                         document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "running";
                     }
@@ -656,12 +657,12 @@ var $a = function(elems, params){
     if(typeof elems === 'object'){ params = elems; elems = ''; }
 
     // set the element variable known as anima
-    if(!elems !== 'object'){
-        alice.anima = '';
-    }else{
+    if(typeof elems !== 'object'){
         alice.anima = elems;
+    }else{
+        alice.anima = '';
     }
-    
+
     if(params){
         if(params.chain && params.chain === true){
             console.log("jWorkflow: enabled");

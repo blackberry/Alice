@@ -36,7 +36,7 @@ alice.masterFx.caterpillar = function (params) {
 
     var CatCore = {
         // The book effect
-        book: (function(){
+        book: function(){
 
             var core = {
 
@@ -46,10 +46,9 @@ alice.masterFx.caterpillar = function (params) {
                 rightPage: 1, 
                 realPageCount: 0,
                 speed: 0,
-                mybook: document.getElementById(alice.anima),
+                mybook: '',
                 timing: 'linear',
                 binding: '',
-                direction: '',
                 
                 TransformOrigin: '',
                 transformRotate: '',
@@ -63,16 +62,15 @@ alice.masterFx.caterpillar = function (params) {
 
                 cssgen: function(params){
                     //first we have to set our book up!
-                    core.mybook.style[alice.prefixJS+'Perspective'] = '3000';
+                    core.mybook.style[alice.prefixJS+'Perspective'] = '3000px';
                     core.mybook.style.width = core.pageWidth+'px';
                     core.mybook.style.height = core.pageHeight+'px';
-                    core.mybook.style.margin = "20px auto";
                     core.binding = params.binding;
 
-                    if(params.binding === 'vertical'){
+                    if(params.binding === 'left' || params.binding === 'right'){
                         core.mybook.style.width = (core.pageWidth * 2)+'px';
                         core.transformRotate = 'rotateY';
-                    }else if(params.binding === 'horizontal'){
+                    }else if(params.binding === 'top' || params.binding === 'bottom'){
                         core.mybook.style.height = (core.pageHeight * 2)+'px';
                         core.transformRotate = 'rotateX';
                     }
@@ -105,14 +103,13 @@ alice.masterFx.caterpillar = function (params) {
                     var closure = '}\n';
 
                     //vertical axis
-                    if(core.binding === 'vertical' && core.direction === 'left'){
+                    if(core.binding === 'left'){
                         var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originL+tranRotNeg90+closure+'\n'+closure;
                         var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
                         var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originR+tranRot0+closure+'\n'+closure;
                         var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originR+tranRot90+closure+'\n'+closure;
                     }
-
-                    if(core.binding === 'vertical' && core.direction === 'right'){
+                    if(core.binding === 'right'){
                         var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRot90+closure+'\n'+closure;
                         var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
                         var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originL+tranRot0+closure+'\n'+closure;
@@ -120,18 +117,19 @@ alice.masterFx.caterpillar = function (params) {
                     }  
 
                     //horizontal axis
-                    if(core.binding === 'horizontal' && core.direction === 'up'){
+                    if(core.binding === 'top'){
                         var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originL+tranRot90+closure+'\n'+closure;
                         var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
                         var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originR+tranRot0+closure+'\n'+closure;
                         var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originR+tranRotNeg90+closure+'\n'+closure;
                     }
-                    if(core.binding === 'horizontal' && core.direction === 'down'){
+                    if(core.binding === 'bottom'){
                         var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRotNeg90+closure+'\n'+closure;
                         var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
                         var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originL+tranRot0+closure+'\n'+closure;
                         var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originL+tranRot90+closure+'\n'+closure;
                     }
+
                     //insert the formulated CSS
                     alice.keyframeInsert(oddPageTurnF);
                     alice.keyframeInsert(oddPageTurnR);
@@ -157,10 +155,10 @@ alice.masterFx.caterpillar = function (params) {
                     core.shadowPatternRev50 = params.shadowPatternRev50;
                     core.shadowPatternRev100 = params.shadowPatternRev100;
 
-                    if(params.binding === 'vertical'){
+                    if(params.binding === 'left' || params.binding === 'right'){
                         core.TransformOrigin = core.pageWidth+'px 1px';
                     }
-                    if(params.binding === 'horizontal'){
+                    if(params.binding === 'top' || params.binding === 'bottom'){
                         core.TransformOrigin = '1px '+core.pageHeight+'px';
                     } 
 
@@ -187,12 +185,12 @@ alice.masterFx.caterpillar = function (params) {
                                 nxtPage.style.zIndex = 1;
 
                                 nxtPage.style.display = 'block';
-                                nxtPage.style.webkitAnimationName = "evenPageTurnF";
-                                nxtPage.style.webkitAnimationDuration = core.speed;
-                                nxtPage.style.webkitAnimationFillMode = "forwards";
-                                nxtPage.style.webkitAnimationPlayState = "running";
-                                nxtPage.style.webkitAnimationDirection = 'normal';
-                                nxtPage.style.webkitAnimationTimingFunction = "linear";
+                                nxtPage.style[alice.prefixJS+'AnimationName'] = "evenPageTurnF";
+                                nxtPage.style[alice.prefixJS+'AnimationDuration'] = core.speed;
+                                nxtPage.style[alice.prefixJS+'AnimationFillMode'] = "forwards";
+                                nxtPage.style[alice.prefixJS+'AnimationPlayState'] = "running";
+                                nxtPage.style[alice.prefixJS+'AnimationDirection'] = 'normal';
+                                nxtPage.style[alice.prefixJS+'AnimationTimingFunction'] = "linear";
                             
                             //console.log('evenPageTurn');
                         },
@@ -207,17 +205,17 @@ alice.masterFx.caterpillar = function (params) {
                                 prvPage.style.zIndex = 1;
 
                                 prvPage.style.display = 'block';
-                                prvPage.style.webkitAnimationName = "oddPageTurnR";
-                                prvPage.style.webkitAnimationDuration = core.speed;
-                                prvPage.style.webkitAnimationFillMode = "forwards";
-                                prvPage.style.webkitAnimationPlayState = "running";
-                                prvPage.style.webkitAnimationDirection = "normal";
-                                prvPage.style.webkitAnimationTimingFunction = "linear";
+                                prvPage.style[alice.prefixJS+'AnimationName'] = "oddPageTurnR";
+                                prvPage.style[alice.prefixJS+'AnimationDuration'] = core.speed;
+                                prvPage.style[alice.prefixJS+'AnimationFillMode'] = "forwards";
+                                prvPage.style[alice.prefixJS+'AnimationPlayState'] = "running";
+                                prvPage.style[alice.prefixJS+'AnimationDirection'] = "normal";
+                                prvPage.style[alice.prefixJS+'AnimationTimingFunction'] = "linear";
                                 
                             //console.log('oddPageTurnR');
                         },
-                        resetCSS = function(flipDirection, direction, binding, id){
-                            
+                        resetCSS = function(flipDirection, binding, id){
+                            // A set of options for resetting the style attributes of the different pages.
                             var thisPage = document.getElementById(id);
                             var idNum = id.substring(1, 8);
                             
@@ -227,137 +225,128 @@ alice.masterFx.caterpillar = function (params) {
 
                             var basicSettings = 'display: block; left: 0px; top: 0px;';
 
-                            if(core.binding === 'vertical'){
-                                if(idNum % 2 === 1 ){
-                                    if(flipDirection === 'forward' && core.direction === 'left'){
-                                        thisPage.setAttribute('style',
-                                            alice.prefix+'transform-origin: 1px 1px;'+
-                                            alice.prefix+'transform: '+ core.transformRotate + AngleNeg90 +
-                                            alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
-                                        thisPage.style.top = '0px';
-                                        thisPage.style.left = core.pageWidth+'px'; 
-                                    }
-                                    if(flipDirection === 'reverse' && core.direction === 'left'){
-                                        thisPage.setAttribute('style',
-                                            basicSettings+
-                                            alice.prefix+'transform-origin: 1px 1px;'+
-                                            alice.prefix+'box-shadow:'+core.shadowPattern100+';');
-                                        thisPage.style.top = '0px';
-                                        thisPage.style.left = core.pageWidth+'px'; 
-                                    }
-                                    if(flipDirection === 'forward' && core.direction === 'right'){
-                                        thisPage.setAttribute('style',
-                                            alice.prefix+'transform-origin: 600px 1px;'+
-                                            alice.prefix+'transform: '+ core.transformRotate + Angle90 +
-                                            alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
-                                    }
-                                    if(flipDirection === 'reverse' && core.direction === 'right'){
-                                        thisPage.setAttribute('style',
-                                            basicSettings+
-                                            alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
-                                            alice.prefix+'box-shadow:'+core.shadowPattern100+';');
-                                    }
-                                }else if(idNum % 2 === 0 ){
-                                    if(flipDirection === 'forward' && core.direction === 'left'){
-                                        thisPage.setAttribute('style',
-                                            basicSettings+
-                                            alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
-                                            alice.prefix+'transform: '+core.transformRotate+ Angle0 +
-                                            alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
-                                        if(core.binding === 'vertical'){
-                                            this.style.marginLeft = '-'+myBookWidth;
-                                        }
-                                    }
-                                    if(flipDirection === 'reverse' && core.direction === 'left'){
-                                        thisPage.setAttribute('style', 
-                                            alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
-                                            alice.prefix+'transform: '+core.transformRotate+ Angle90 +
-                                            alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');   
-                                    }
-                                    if(flipDirection === 'forward' && core.direction === 'right'){
-                                        thisPage.setAttribute('style', 
-                                            basicSettings+
-                                            alice.prefix+'transform-origin: 1px 1px;'+
-                                            alice.prefix+'transform: '+core.transformRotate+ Angle0 +
-                                            alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
-                                        thisPage.style.top = '0px';
-                                        thisPage.style.left = core.pageWidth+'px';     
-                                    }
-                                    if(flipDirection === 'reverse' && core.direction === 'right'){
-                                        thisPage.setAttribute('style',+
-                                            alice.prefix+'transform-origin: 1px 1px;'+
-                                            alice.prefix+'transform: '+core.transformRotate+ AngleNeg90 +
-                                            alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
-                                        thisPage.style.top = '0px';
-                                        thisPage.style.left = core.pageWidth+'px';     
-                                    }
+                            if(idNum % 2 === 1 ){
+                                if(flipDirection === 'forward' && core.binding === 'left'){
+                                    thisPage.setAttribute('style',
+                                        alice.prefix+'transform-origin: 1px 1px;'+
+                                        alice.prefix+'transform: '+ core.transformRotate + AngleNeg90 +
+                                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
+                                    thisPage.style.top = '0px';
+                                    thisPage.style.left = core.pageWidth+'px'; 
                                 }
-                            }else 
-            /***********************************/
-                            if(core.binding === 'horizontal'){
-                                if(idNum % 2 === 1 ){
-                                    if(flipDirection === 'forward' && core.direction === 'down'){
-                                        thisPage.setAttribute('style',
-                                            alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
-                                            alice.prefix+'transform: '+ core.transformRotate + AngleNeg90 +
-                                            alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
-                                    }
-                                    if(flipDirection === 'reverse' && core.direction === 'down'){
-                                        thisPage.setAttribute('style',
-                                            basicSettings+
-                                            alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
-                                            alice.prefix+'box-shadow:'+core.shadowPattern100+';');
-                                        thisPage.style.top = '0px';
-                                    }
+                                if(flipDirection === 'reverse' && core.binding === 'left'){
+                                    thisPage.setAttribute('style',
+                                        basicSettings+
+                                        alice.prefix+'transform-origin: 1px 1px;'+
+                                        alice.prefix+'box-shadow:'+core.shadowPattern100+';');
+                                    thisPage.style.top = '0px';
+                                    thisPage.style.left = core.pageWidth+'px'; 
+                                }
+                                if(flipDirection === 'forward' && core.binding === 'right'){
+                                    thisPage.setAttribute('style',
+                                        alice.prefix+'transform-origin: 600px 1px;'+
+                                        alice.prefix+'transform: '+ core.transformRotate + Angle90 +
+                                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
+                                }
+                                if(flipDirection === 'reverse' && core.binding === 'right'){
+                                    thisPage.setAttribute('style',
+                                        basicSettings+
+                                        alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
+                                        alice.prefix+'box-shadow:'+core.shadowPattern100+';');
+                                }
+                                if(flipDirection === 'forward' && core.binding === 'bottom'){
+                                    thisPage.setAttribute('style',
+                                        alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
+                                        alice.prefix+'transform: '+ core.transformRotate + AngleNeg90 +
+                                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
+                                }
+                                if(flipDirection === 'reverse' && core.binding === 'bottom'){
+                                    thisPage.setAttribute('style',
+                                        basicSettings+
+                                        alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
+                                        alice.prefix+'box-shadow:'+core.shadowPattern100+';');
+                                    thisPage.style.top = '0px';
+                                }
+                                if(flipDirection === 'forward' && core.binding === 'top'){
+                                    thisPage.setAttribute('style',
+                                        alice.prefix+'transform-origin: 1px 1px;'+
+                                        alice.prefix+'transform: '+ core.transformRotate + Angle90 +
+                                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
+                                    thisPage.style.top = core.pageHeight+'px';
+                                }
+                                if(flipDirection === 'reverse' && core.binding === 'top'){
+                                    thisPage.setAttribute('style',
+                                        basicSettings+
+                                        alice.prefix+'transform-origin: 1px 1px;'+
+                                        alice.prefix+'box-shadow:'+core.shadowPattern100+';');
+                                    thisPage.style.top = core.pageHeight+'px';
+                                }
+                            } 
 
-                                    if(flipDirection === 'forward' && core.direction === 'up'){
-                                        thisPage.setAttribute('style',
-                                            alice.prefix+'transform-origin: 1px 1px;'+
-                                            alice.prefix+'transform: '+ core.transformRotate + Angle90 +
-                                            alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
-                                        thisPage.style.top = core.pageHeight+'px';
-                                    }
-                                    if(flipDirection === 'reverse' && core.direction === 'up'){
-                                        thisPage.setAttribute('style',
-                                            basicSettings+
-                                            alice.prefix+'transform-origin: 1px 1px;'+
-                                            alice.prefix+'box-shadow:'+core.shadowPattern100+';');
-                                        thisPage.style.top = core.pageHeight+'px';
-                                    }
-                                }else if(idNum % 2 === 0 ){
-                                    
-                                    if(flipDirection === 'forward' && core.direction === 'down'){
-                                        thisPage.setAttribute('style',
-                                            basicSettings+
-                                            alice.prefix+'transform-origin: 1px 1px;'+
-                                            alice.prefix+'transform: '+core.transformRotate+ Angle0 +
-                                            alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
-                                        thisPage.style.top = core.pageHeight+'px';
-                                    }
-                                    if(flipDirection === 'reverse' && core.direction === 'down'){
-                                        thisPage.setAttribute('style', 
-                                            alice.prefix+'transform-origin: 1px 1px;'+
-                                            alice.prefix+'transform: '+core.transformRotate+ Angle90 +
-                                            alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');   
-                                        thisPage.style.top = core.pageHeight+'px';
-                                    }
-                                    if(flipDirection === 'forward' && core.direction === 'up'){
-                                        thisPage.setAttribute('style', 
-                                            basicSettings+
-                                            alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
-                                            alice.prefix+'transform: '+core.transformRotate+ Angle0 +
-                                            alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
-                                        thisPage.style.top = '0px';    
-                                    }
-                                    if(flipDirection === 'reverse' && core.direction === 'up'){
-                                        thisPage.setAttribute('style',+
-                                            alice.prefix+'transform-origin: 1px 1px;'+
-                                            alice.prefix+'transform: '+core.transformRotate+ AngleNeg90 +
-                                            alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
-                                        thisPage.style.top = '0px'; 
-                                    }
+
+                            if(idNum % 2 === 0 ){
+                                if(flipDirection === 'forward' && core.binding === 'left'){
+                                    thisPage.setAttribute('style',
+                                        basicSettings+
+                                        alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
+                                        alice.prefix+'transform: '+core.transformRotate+ Angle0 +
+                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
                                 }
+                                if(flipDirection === 'reverse' && core.binding === 'left'){
+                                    thisPage.setAttribute('style', 
+                                        alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
+                                        alice.prefix+'transform: '+core.transformRotate+ Angle90 +
+                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');   
+                                }
+                                if(flipDirection === 'forward' && core.binding === 'right'){
+                                    thisPage.setAttribute('style', 
+                                        basicSettings+
+                                        alice.prefix+'transform-origin: 1px 1px;'+
+                                        alice.prefix+'transform: '+core.transformRotate+ Angle0 +
+                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
+                                    thisPage.style.top = '0px';
+                                    thisPage.style.left = core.pageWidth+'px';     
+                                }
+                                if(flipDirection === 'reverse' && core.binding === 'right'){
+                                    thisPage.setAttribute('style',+
+                                        alice.prefix+'transform-origin: 1px 1px;'+
+                                        alice.prefix+'transform: '+core.transformRotate+ AngleNeg90 +
+                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
+                                    thisPage.style.top = '0px';
+                                    thisPage.style.left = core.pageWidth+'px';     
+                                }
+                                if(flipDirection === 'forward' && core.binding === 'bottom'){
+                                    thisPage.setAttribute('style',
+                                        basicSettings+
+                                        alice.prefix+'transform-origin: 1px 1px;'+
+                                        alice.prefix+'transform: '+core.transformRotate+ Angle0 +
+                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
+                                    thisPage.style.top = core.pageHeight+'px';
+                                }
+                                if(flipDirection === 'reverse' && core.binding === 'bottom'){
+                                    thisPage.setAttribute('style', 
+                                        alice.prefix+'transform-origin: 1px 1px;'+
+                                        alice.prefix+'transform: '+core.transformRotate+ Angle90 +
+                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');   
+                                    thisPage.style.top = core.pageHeight+'px';
+                                }
+                                if(flipDirection === 'forward' && core.binding === 'top'){
+                                    thisPage.setAttribute('style', 
+                                        basicSettings+
+                                        alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
+                                        alice.prefix+'transform: '+core.transformRotate+ Angle0 +
+                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
+                                    thisPage.style.top = '0px';    
+                                }
+                                if(flipDirection === 'reverse' && core.binding === 'top'){
+                                    thisPage.setAttribute('style',+
+                                        alice.prefix+'transform-origin: 1px 1px;'+
+                                        alice.prefix+'transform: '+core.transformRotate+ AngleNeg90 +
+                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
+                                    thisPage.style.top = '0px'; 
+                                }                                
                             }
+                        
                         };
 
                     for(var p = 0; p < pages.length; p++){
@@ -380,69 +369,70 @@ alice.masterFx.caterpillar = function (params) {
                                     'overflow: hidden;'+
                                     '}';
 
-                            var altAngleOdd = '(-90deg);';
-                            var altAngleEven = '(90deg);';
-                            if(core.binding === 'horizontal'){
-                                altAngleOdd = '(-90deg);';
-                                altAngleEven = '(90deg);';
-                            }
-
                     alice.keyframeInsert(NewClass);
 
+                    // Initial page setup
                     for (var i = 0; i < pages.length; i++){
                         if(pages[i].nodeType === 1){
                             pages[i].setAttribute('id', 'p'+n);
                             pages[i].setAttribute('class', className + ' ' +NewPageClass);
 
-                            //Need to make adjustments for the direction of page flips
-                            if(core.binding === 'vertical' && core.direction === 'left'){
+                            //Need to make adjustments for the binding
+                            if(core.binding === 'left'){
                                     pages[i].style.top = '0px';
                                     pages[i].style.left = core.pageWidth+'px';
+                                    pages[i].style[alice.prefixJS+'TransformOrigin'] = '1px 1px';
                                 }
-                            if(core.binding === 'horizontal' && core.direction === 'up'){
+                            if(core.binding === 'top'){
                                     pages[i].style.top = core.pageHeight+'px';
                                     pages[i].style.left = '0px';
+                                    pages[i].style[alice.prefixJS+'TransformOrigin'] = '1px 1px';
                                 }
-                            if(core.binding === 'vertical' && core.direction === 'right'){
+                            if(core.binding === 'right'){
                                     pages[i].style.top = '0px';
                                     pages[i].style.left = '0px';
+                                    pages[i].style[alice.prefixJS+'TransformOrigin'] = core.TransformOrigin;
                                 }
-                            if(core.binding === 'horizontal' && core.direction === 'down'){
+                            if(core.binding === 'bottom'){
                                     pages[i].style.top = '0px';
                                     pages[i].style.left = '0px';
+                                    pages[i].style[alice.prefixJS+'TransformOrigin'] = core.TransformOrigin;
                                 }
 
                             pages[i].setAttribute('onclick', 'alice.masterFx.caterpillar.book.turnPage('+n+')');
 
+                            var Angle90 = '(90deg);';
+                            var Angle0 = '(0deg);';
+                            var AngleNeg90 = '(-90deg);';
+
                             if(n % 2 === 0){
                                 //prep the even numbered elements for the animations
-                                if(core.binding === 'vertical' && core.direction === 'left'){
+                                if(core.binding === 'left'){
                                     pages[i].setAttribute('style', 'display: none; '+
                                         alice.prefix+'transform-origin: '+ core.TransformOrigin+';'+
-                                        alice.prefix+'transform: '+ core.transformRotate + altAngleEven +
+                                        alice.prefix+'transform: '+ core.transformRotate + Angle90 +
                                         alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
                                 }
-                                if(core.binding === 'vertical' && core.direction === 'right'){
+                                if(core.binding === 'right'){
                                    pages[i].setAttribute('style', 'display: none; '+
                                         'left: ' +core.pageWidth+ 'px;'+
                                         alice.prefix+'transform-origin: 1px 1px;'+
-                                        alice.prefix+'transform: '+ core.transformRotate + altAngleOdd +
+                                        alice.prefix+'transform: '+ core.transformRotate + AngleNeg90 +
                                         alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';'); 
                                 }
-                                if(core.binding === 'horizontal' && core.direction === 'up'){
+                                if(core.binding === 'top'){
                                     pages[i].setAttribute('style', 'display: none; '+
                                         alice.prefix+'transform-origin: '+ core.TransformOrigin+';'+
-                                        alice.prefix+'transform: '+ core.transformRotate + altAngleOdd +
+                                        alice.prefix+'transform: '+ core.transformRotate + AngleNeg90 +
                                         alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
                                 }
-                                if(core.binding === 'horizontal' && core.direction === 'down'){
+                                if(core.binding === 'bottom'){
                                    pages[i].setAttribute('style', 'display: none; '+
                                         'top: ' +core.pageHeight+ 'px;'+
                                         alice.prefix+'transform-origin: 1px 1px;'+
-                                        alice.prefix+'transform: '+ core.transformRotate + altAngleEven +
+                                        alice.prefix+'transform: '+ core.transformRotate + Angle90 +
                                         alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';'); 
                                 }
-                                
                             }
 
                             // make the first page visible
@@ -451,70 +441,58 @@ alice.masterFx.caterpillar = function (params) {
                                 pages[i].style[pfex+'BoxShadow'] = core.shadowPattern100+';';
                             }
 
-                            // For odd page events
-                            if(n % 2 === 1){
-                                pages[i].addEventListener('webkitAnimationEnd', function(){
-                                    if(this.style.webkitAnimationName == 'oddPageTurnF'){
-                                        //pageId
-                                        evenPageFlip(this.getAttribute('id'));
-                                        //direction, binding, pageId
-                                        resetCSS('forward', core.direction, core.binding, this.getAttribute('id'));
-                                    }   
+                            var animationend = alice.prefixJS+'AnimationEnd';
+                            if(alice.prefixJS === 'Moz'){
+                                animationend = 'animationend';
+                            }
+
+                            pages[i].addEventListener(animationend, function(){
+                                if(this.style[alice.prefixJS+'AnimationName'] === 'oddPageTurnF'){
+                                    //pageId
+                                    evenPageFlip(this.getAttribute('id'));
+                                    //direction, binding, pageId
+                                    resetCSS('forward', core.binding, this.getAttribute('id'));
+                                }   
+                                if(this.style[alice.prefixJS+'AnimationName'] === 'oddPageTurnR'){
+
+                                    resetCSS('reverse', core.binding, this.getAttribute('id'));
+
+                                    var nxtId = this.getAttribute('id');
+                                    nxtId = nxtId.substring(1, 8);
+                                    nxtId = parseInt(nxtId)+2;
                                     
-                                    if(this.style.webkitAnimationName === 'oddPageTurnR'){
-
-                                        resetCSS('reverse', core.direction, core.binding, this.getAttribute('id'));
-
-                                        var nxtId = this.getAttribute('id');
-                                        nxtId = nxtId.substring(1, 8);
-                                        nxtId = parseInt(nxtId)+2;
-                                        
-                                        if(nxtId < core.realPageCount){
-                                            document.getElementById('p'+nxtId).style.display = 'none';
-                                        }
-                                    } 
-                                }, false);
-                            }
-
-                            // for even page events
-                            if(n % 2 === 0){
-                                pages[i].addEventListener('webkitAnimationEnd', function(){
-                                    // for even pages moving forward
-                                    if(this.style.webkitAnimationName === 'evenPageTurnF'){
-                                        resetCSS('forward', core.direction, core.binding, this.getAttribute('id'));
-                                    //console.log(bookEffect.shadowPattern0);
+                                    if(nxtId < core.realPageCount){
+                                        document.getElementById('p'+nxtId).style.display = 'none';
                                     }
+                                } 
+                                if(this.style[alice.prefixJS+'AnimationName'] === 'evenPageTurnF'){
+                                    resetCSS('forward', core.binding, this.getAttribute('id'));
+                                }
+                                // for even pages moving backwards
+                                if(this.style[alice.prefixJS+'AnimationName'] === 'evenPageTurnR'){
+                                    //this.style.display = 'none';
+                                    
+                                    oddPageFlip(this.getAttribute('id'));
+                                    resetCSS('reverse', core.binding, this.getAttribute('id'));
 
-                                    // for even pages moving backwards
-                                    if(this.style.webkitAnimationName === 'evenPageTurnR'){
-                                        this.style.display = 'none';
-                                        oddPageFlip(this.getAttribute('id'));
-                                        resetCSS('reverse', core.direction, core.binding, this.getAttribute('id'));
+                                    var nxtId = this.getAttribute('id');
+                                    nxtId = nxtId.substring(1, 8);
+                                    nxtId = parseInt(nxtId)+1;
 
-                                        var nxtId = this.getAttribute('id');
-                                        nxtId = nxtId.substring(1, 8);
-                                        nxtId = parseInt(nxtId)+1;
-
-                                        if(nxtId < bookEffect.realPageCount){
-                                            document.getElementById('p'+nxtId).style.zIndex = 0;
-                                        }
+                                    if(nxtId < bookEffect.realPageCount){
+                                        document.getElementById('p'+nxtId).style.zIndex = 0;
                                     }
-                                },false);
-                            }
-                        
-                        n++;
-                        
+                                }
+                            }, false);
+                        n++; 
                         }
                     }
-
-                    if(core.startPage !== 'first'){
-                        //this.setFirstPage();
-                    }
-
                     return params;
                 },
 
                 turnPage: function (pageId){
+
+                    console.log('turn page: '+pageId);
 
                     if(this.leftPage < 0){
                         this.leftPage = 0;
@@ -540,12 +518,12 @@ alice.masterFx.caterpillar = function (params) {
                         
                         var page = document.getElementById('p'+pageId);
                             page.style.zIndex = 1;
-                            page.style.webkitAnimationName = "oddPageTurnF";
-                            page.style.webkitAnimationDuration = core.speed;
-                            page.style.webkitAnimationFillMode = "forwards";
-                            page.style.webkitAnimationTimingFunction = core.timing;
-                            page.style.webkitAnimationPlayState = "running";
-                            page.style.webkitAnimationDirection = 'normal';
+                            page.style[alice.prefixJS+'AnimationName'] = "oddPageTurnF";
+                            page.style[alice.prefixJS+'AnimationDuration'] = core.speed;
+                            page.style[alice.prefixJS+'AnimationFillMode'] = "forwards";
+                            page.style[alice.prefixJS+'AnimationTimingFunction'] = core.timing;
+                            page.style[alice.prefixJS+'AnimationPlayState'] = "running";
+                            page.style[alice.prefixJS+'AnimationDirection']= 'normal';
 
                         if(this.rightPage < this.realPageCount+1){
                             this.rightPage += 2;
@@ -567,12 +545,12 @@ alice.masterFx.caterpillar = function (params) {
                         var page = document.getElementById('p'+pageId);
                             page.style.zIndex = 1;
                             
-                            page.style.webkitAnimationName = "evenPageTurnR";
-                            page.style.webkitAnimationDuration = core.speed;
-                            page.style.webkitAnimationFillMode = "forwards";
-                            page.style.webkitAnimationPlayState = "running";
-                            page.style.webkitAnimationDirection = "normal";
-                            page.style.webkitAnimationTimingFunction = core.timing;
+                            page.style[alice.prefixJS+'AnimationName'] = "evenPageTurnR";
+                            page.style[alice.prefixJS+'AnimationDuration'] = core.speed;
+                            page.style[alice.prefixJS+'AnimationFillMode'] = "forwards";
+                            page.style[alice.prefixJS+'AnimationPlayState'] = "running";
+                            page.style[alice.prefixJS+'AnimationDirection'] = "normal";
+                            page.style[alice.prefixJS+'AnimationTimingFunction'] = core.timing;
 
                             page.style.marginLeft = '-'+core.myBookWidth+'px';
                     
@@ -585,7 +563,7 @@ alice.masterFx.caterpillar = function (params) {
             }
 
             return core;
-        }()),
+        }(),
     
         polygon: function(){
 
@@ -652,7 +630,7 @@ alice.fx.book = function (params) {
         direction: params.direction || 'left'
     };
 
-    console.log(opts);
+    //console.log(opts);
 
     alice.masterFx.caterpillar.book.init(opts);
     return opts;

@@ -18,22 +18,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>testing ideas</title>
-	<style type="text/css">
-		.page{
-			background: #888;
-			/*-webkit-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);*/
-			/*-webkit-backface-visibility: hidden;*/
-		}
-
-		p{
-			color: #fff;
-			padding: 40px;
-		}
-
-	</style>
 </head>
 <body>
-	<div id="my_book" style="">
+	<div id="thebook" style="position: absolute; left: 40%;">
 		<div>
 			<p style="color: #fff; text-align: center;">CSS3 Book Effect</p>
 			<br >
@@ -62,13 +49,12 @@
 <script src="../../src/alice.masterFx.caterpillar.js"></script>
 <script type="text/javascript">
 
-	$a("my_book").book({
+	$a("thebook").book({
 		pageClassName: 'page',
 		bookWidth: 600,
 		bookHeight: 400,
 		speed: '500ms',
-		direction: "up",
-		binding: 'horizontal'
+		binding: "right",
 	});
 
 </script>

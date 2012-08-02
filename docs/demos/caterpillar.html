@@ -22,17 +22,38 @@
         <link href="../../images/favicon.ico" rel="icon" type="image/x-icon">
         <link rel="stylesheet" href="../css/default.css">
         <style type="text/css">
-        </style>
+        .page:nth-child(odd){
+            background: #888;
+            border-left: 1px solid #222;
+        }
+        .page:nth-child(even){
+            background: #444;
+        }
+       .page p{
+            color: #fff;
+            padding: 40px;
+        }
+        /* Firefox 3.0+ */
+        #book{
+            position: absolute;
+            top: 600px;
+            background: #eee;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+        }
+    </style>
     </head>
-    <body>
+    <body>      
         <div class="fineprint"><p id="version"></p></div>
 
         <div class="close" style="position: absolute; top: 45px; right: 15px;">
             <a href="../index.html"><img src="../../images/close_icon.png"></a>
         </div>
 
-        <div id="container">
-            <div id="card1" class="card-edge">
+        <div id="container" style="height: 1300px;">
+            <div id="card1" class="card-edge" style="height: 1100px;">
                 <div>
                     <h1 class="seo">AliceJS Demos</h1>
 
@@ -69,23 +90,17 @@
                     <div id="book_info" class="icon">
                         
                     </div>
-                    <p><a href="fx/bounce.html">Book</a> - The "book" effect generates book with the content provided in the child divs of the parent div.</p>
+                    <p><a href="fx/bounce.html">Book</a> - The "book" effect generates book with the content provided in the child divs of the parent div, allowing the binding to be placed on any side of the parent div.</p>
                     <div class="code">
                         <pre class="prettyprint lang-js">
-/**
- * [bounce description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} scale     [description]
- * @param  {[type]} shadow    [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} direction [description]
- * @param  {[type]} playstate [description]
- * @return {[type]}
- */
-a.bounce("my_bounce", 125, true, "750ms", "easeOutSine", "0ms", "infinite", "alternate", "running");
+
+$a("book").book({
+    pageClassName: 'page',
+    bookWidth: 600,
+    bookHeight: 400,
+    speed: '500ms',
+    binding: "left",
+});
                         </pre>
                     </div>
                 </div>
@@ -116,20 +131,6 @@ a.bounce("my_bounce", 125, true, "750ms", "easeOutSine", "0ms", "infinite", "alt
                     <div><p>You guessed it page 8!!! <br />This could also be a back cover!</p></div>
                     </div>
                 </div>
-
-                <!-- More Demos -->
-                <a name="moredemos"></a>
-                <div>
-                    <h2>More Demos</h2>
-                </div>
-
-                <ul>
-                    <li><a href="sampler.html">Sampler (with offsets)</a></li>
-                    <li><a href="builder.html">Builder</a></li>
-                    <li><a href="chaining.html">Chaining Effects</a></li>
-                    <li><a href="stack.html">Stack</a></li>
-                </ul>
-            </div>
         </div>
 
         <div class="fineprint"><p>Copyright &copy; 2011-2012 Research In Motion Limited</p></div>
@@ -154,12 +155,13 @@ a.bounce("my_bounce", 125, true, "750ms", "easeOutSine", "0ms", "infinite", "alt
 
         document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
 
-         
-            $a("book").bounce2({
-                shadow: true, 
-                speed: "750ms", 
-                timing: "easeOutSine"
-                });  
+            $a("book").book({
+                pageClassName: 'page',
+                bookWidth: 600,
+                bookHeight: 400,
+                speed: '500ms',
+                binding: "left"
+            }); 
 
 
         // Google Analytics

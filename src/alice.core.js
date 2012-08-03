@@ -528,6 +528,30 @@ var alice = function () {
         return core;
 }();
 
+alice.fx.delay = function(){
+    //setTimeout(workflow, 1000000000000);
+
+    // var i, //elems = this.elements(elms),pfx = this.prefixJS;
+    
+    // elems = alice.anima;     
+
+    // for(i = 0; i < elems.length; i++){
+    // var elemId = elems[i].getAttribute('id');
+    //     if(document.getElementById(elemId).style[pfx + "AnimationPlayState"] === "paused"){
+    //         document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "running";
+    //     }
+    //     else{
+    //         document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "paused";
+    //     }
+    // }
+
+    document.addEventListener(alice.prefixJS+'AnimationEnd', function(){
+
+        return alice.fx;
+
+    }, false);
+}
+
 /**
  * Performs various acts of formating changes
  */
@@ -652,66 +676,13 @@ alice.cleaner = {
 var $a = function(elems, params){
     "use strict";
     console.info("Initializing " + alice.name + " (" + alice.description + ") " + alice.version);
+    
     alice.vendorPrefix();
 
-    if(typeof elems === 'object'){ params = elems; elems = ''; }
-
-    // set the element variable known as anima
-    if(typeof elems !== 'object'){
+    if(elems){
         alice.anima = elems;
-    }else{
-        alice.anima = '';
     }
 
-    if(params){
-        if(params.chain && params.chain === true){
-            console.log("jWorkflow: enabled");
-
-            var id = (elems && elems) ? elems : '',
-
-                workflow = jWorkflow.order(),
-
-                animation = {
-                    delay: function (ms) {
-                        workflow.chill(ms);
-                        return animation;
-                    },
-                    log: function (msg) {
-                        workflow.andThen(function () {
-                            console.log(msg);
-                        });
-                        return animation;
-                    },
-                    custom: function (func) {
-                        workflow.andThen(func);
-                        return animation;
-                    },
-                    go: function () {
-                        workflow.start(function () {
-                            console.info('workflow.start()');
-                        });
-                    }
-                };
-
-            Array.prototype.forEach.call(Object.keys(alice.fx), function (plugin) {
-                var func = alice.fx[plugin];
-                animation[plugin] = function () {
-                    var args = arguments;
-                    workflow.andThen(function () {
-                        func.apply(document.getElementById(id), args);
-                    });
-
-                   return animation;
-                };
-            });
-
-            return animation;
-        }
-        else {
-            console.log("jWorkflow: disabled");
-        }
-    }
-                    
     return alice.fx;
 };
 

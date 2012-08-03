@@ -71,7 +71,7 @@
                         <span>Bounce</span>
                     </div>
                     <p><a href="fx/bounce.html">Bounce</a> - The "bounce" effect simulates the bouncing of an object from a top view including a shadow.</p>
-                    <p onclick="alice.playPause(['my_bounce','logo'])">play/pause</p>
+                    <p onclick="$a('my_bounce').playPause()">play/pause</p>
                     <div class="code">
                         <pre class="prettyprint lang-js">
 /**
@@ -133,9 +133,10 @@ a.bounce("my_bounce", 125, true, "750ms", "easeOutSine", "0ms", "infinite", "alt
 
         //var a = alice.init();
 
-        $a({chain: true}).pageFlip({elems: "my_bounce"}).delay(3000).bounce({elems: "logo"}).go();
+        //$a("my_bounce").pageFlip().delay(3000).bounce();
         
-
+            $a($("#my_bounce")).bounce({iteration: 1}).delay(3000).slide({move: "right"}).go();
+        
         // Google Analytics
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-28534102-1']);

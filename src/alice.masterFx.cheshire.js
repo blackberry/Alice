@@ -586,7 +586,7 @@ alice.fx.phantomZone = function (params) {
 
         elems: params.elems || alice.anima,
 
-        fade: params.fade || "out",
+        //fade: params.fade || "out", //blocked this out due to a problem with Chrome 21
         rotate: params.rotate || -720,
         flip: params.flip || "left",
 

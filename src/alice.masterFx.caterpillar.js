@@ -67,10 +67,10 @@ alice.masterFx.caterpillar = function (params) {
                     core.mybook.style.height = core.pageHeight+'px';
                     core.binding = params.binding;
 
-                    if(params.binding === 'left' || params.binding === 'right'){
+                    if(params.binding === 'left' || params.binding === 'right' || params.binding === 'center'){
                         core.mybook.style.width = (core.pageWidth * 2)+'px';
                         core.transformRotate = 'rotateY';
-                    }else if(params.binding === 'top' || params.binding === 'bottom'){
+                    }else if(params.binding === 'top' || params.binding === 'bottom' || params.binding === 'middle'){
                         core.mybook.style.height = (core.pageHeight * 2)+'px';
                         core.transformRotate = 'rotateX';
                     }
@@ -83,6 +83,7 @@ alice.masterFx.caterpillar = function (params) {
 
                     //transform-origins
                     var originL = '\n\t'+alice.prefix+'transform-origin: 1px 1px;';
+                    var originM = '\n\t'+alice.prefix+'transform-origin: 50% 50%;';
                     var originR = '\n\t'+alice.prefix+'transform-origin: '+core.TransformOrigin+';';
 
                     //Shadows
@@ -128,6 +129,14 @@ alice.masterFx.caterpillar = function (params) {
                         var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
                         var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originL+tranRot0+closure+'\n'+closure;
                         var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originL+tranRot90+closure+'\n'+closure;
+                    }
+
+                    //center binding
+                    if(core.binding === 'center'){
+                        var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originM+tranRotNeg90+closure+'\n'+closure;
+                        var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
+                        var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originM+tranRot0+closure+'\n'+closure;
+                        var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originR+tranRot90+closure+'\n'+closure;
                     }
 
                     //insert the formulated CSS
@@ -281,6 +290,22 @@ alice.masterFx.caterpillar = function (params) {
                                         alice.prefix+'box-shadow:'+core.shadowPattern100+';');
                                     thisPage.style.top = core.pageHeight+'px';
                                 }
+                                if(flipDirection === 'forward' && core.binding === 'center'){
+                                    thisPage.setAttribute('style',
+                                        alice.prefix+'transform-origin: 50% 50%;'+
+                                        alice.prefix+'transform: '+ core.transformRotate + AngleNeg90 +
+                                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
+                                    thisPage.style.top = '0px';
+                                     
+                                }
+                                if(flipDirection === 'reverse' && core.binding === 'center'){
+                                    thisPage.setAttribute('style',
+                                        basicSettings+
+                                        alice.prefix+'transform-origin: 50% 50%;'+
+                                        alice.prefix+'box-shadow:'+core.shadowPattern100+';');
+                                    thisPage.style.top = '0px';
+                                    
+                                }
                             } 
 
 
@@ -398,6 +423,10 @@ alice.masterFx.caterpillar = function (params) {
                                     pages[i].style.left = '0px';
                                     pages[i].style[alice.prefixJS+'TransformOrigin'] = core.TransformOrigin;
                                 }
+                            if(core.binding === 'center'){
+                                    pages[i].style.top = '0px';
+                                    pages[i].style[alice.prefixJS+'TransformOrigin'] = '50% 50%';
+                                }
 
                             pages[i].setAttribute('onclick', 'alice.masterFx.caterpillar.book.turnPage('+n+')');
 
@@ -433,6 +462,12 @@ alice.masterFx.caterpillar = function (params) {
                                         alice.prefix+'transform: '+ core.transformRotate + Angle90 +
                                         alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';'); 
                                 }
+                                if(core.binding === 'center'){
+                                    pages[i].setAttribute('style', 'display: none; '+
+                                        alice.prefix+'transform-origin: 50% 50%;'+
+                                        alice.prefix+'transform: '+ core.transformRotate + Angle90 +
+                                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
+                                }      
                             }
 
                             // make the first page visible

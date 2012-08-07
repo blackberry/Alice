@@ -377,7 +377,7 @@ alice.fx.drain = function (params) {
 
         elems: params.elems || alice.anima,
 
-        fade: params.fade || "out",
+        //fade: params.fade || "out",
         rotate: params.rotate || -2880,
 
         duration: params.duration || "4500ms",

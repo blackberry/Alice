@@ -43,6 +43,8 @@ alice.masterFx.caterpillar = function (params) {
                 leftPage: 0,
                 pageWidth: '',
                 pageHeight: '', 
+                docWidth: function(){ var width = document.body.clientWidth; return width; },
+                docHeight: alice.docHeight(),
                 rightPage: 1, 
                 realPageCount: 0,
                 speed: 0,
@@ -169,7 +171,53 @@ alice.masterFx.caterpillar = function (params) {
                     }
                     if(params.binding === 'top' || params.binding === 'bottom'){
                         core.TransformOrigin = '1px '+core.pageHeight+'px';
+                    }
+                    if(params.binding === 'center'){
+                        core.TransformOrigin = '50% 50%';
+                        //we need controls for the left/right flips
+
+                        var genController = function(loc){
+                            var clickBox = document.createElement('div');
+                            clickBox.setAttribute('id', 'leftController');
+                            //clickBox.style.background = '#333';
+                            clickBox.style.width = (core.docWidth()/2)+'px';
+                            clickBox.style.height = core.docHeight+'px';
+                            clickBox.style.position = 'absolute';
+                            clickBox.style.left = '0px';
+                            clickBox.style.top = '0px';
+                            clickBox.style.zIndex = '100000';
+
+                            var pageRef = 'alice.masterFx.caterpillar.book';
+
+                            if(loc === 'right'){
+                                clickBox.style.left = (core.docWidth()/2)+'px';
+                                clickBox.setAttribute('onclick', pageRef+'.turnPage('+pageRef+'.rightPage)');
+                            }else{
+                                clickBox.setAttribute('onclick', pageRef+'.turnPage('+pageRef+'.leftPage)');
+                            }
+
+                            document.body.appendChild(clickBox);
+                        }
+                        
+                        genController('left');
+                        genController('right');    
                     } 
+
+                    function keyrelease(evt){
+                        var dir = evt.keyCode;
+                            if(dir == 39){
+                                if(core.rightPage < core.realPageCount+1){
+                                    core.turnPage(core.rightPage);
+                                }
+                            }
+                            else if(dir == 37){
+                                if(core.leftPage >= 1){
+                                    core.turnPage(core.leftPage);
+                                }
+                            }
+                    }
+
+                    document.body.addEventListener("keyup", keyrelease, false);
 
                     // input the css into a stylesheet
                     this.cssgen(params);
@@ -296,7 +344,6 @@ alice.masterFx.caterpillar = function (params) {
                                         alice.prefix+'transform: '+ core.transformRotate + AngleNeg90 +
                                         alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
                                     thisPage.style.top = '0px';
-                                     
                                 }
                                 if(flipDirection === 'reverse' && core.binding === 'center'){
                                     thisPage.setAttribute('style',
@@ -529,18 +576,18 @@ alice.masterFx.caterpillar = function (params) {
 
                     console.log('turn page: '+pageId);
 
-                    if(this.leftPage < 0){
-                        this.leftPage = 0;
-                        this.rightPage = 1;
+                    if(core.leftPage < 0){
+                        core.leftPage = 0;
+                        core.rightPage = 1;
                     }
 
-                    if(this.rightPage > this.realPageCount){
-                        this.leftPage = this.realPageCount;
-                        this.rightPage = this.realPageCount+1;
+                    if(core.rightPage > core.realPageCount){
+                        core.leftPage = core.realPageCount;
+                        core.rightPage = core.realPageCount+1;
                     }
 
                     if(pageId % 2 === 1){
-                        this.leftPage += 1;
+                        core.leftPage += 1;
 
                         var nxtPageId = core.mybook.querySelector('div:nth-child('+(pageId + 1)+')').getAttribute('id');
 
@@ -560,9 +607,9 @@ alice.masterFx.caterpillar = function (params) {
                             page.style[alice.prefixJS+'AnimationPlayState'] = "running";
                             page.style[alice.prefixJS+'AnimationDirection']= 'normal';
 
-                        if(this.rightPage < this.realPageCount+1){
-                            this.rightPage += 2;
-                            this.leftPage += 1;
+                        if(core.rightPage < core.realPageCount+1){
+                            core.rightPage += 2;
+                            core.leftPage += 1;
                         }
                     }
                     if(pageId % 2 === 0){
@@ -589,11 +636,13 @@ alice.masterFx.caterpillar = function (params) {
 
                             page.style.marginLeft = '-'+core.myBookWidth+'px';
                     
-                        if(this.leftPage >= 1){
-                            this.rightPage -= 2;
-                            this.leftPage -= 2;
+                        if(core.leftPage >= 1){
+                            core.rightPage -= 2;
+                            core.leftPage -= 2;
                         }
                     }
+
+                    console.log(core.rightPage +' '+core.leftPage);
                 }
             }
 

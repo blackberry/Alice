@@ -196,7 +196,7 @@ alice.wobble("MyDiv", 5, "center",
                 
 
                 $a(document.getElementById("logo-alice-txt-alice").children).slide({
-                    elems: document.getElementById("logo-alice-txt-alice").children,
+                    //elems: document.getElementById("logo-alice-txt-alice").children,
                     move: "left",
                     overshoot: '0',
                     duration: {value: "2000ms", randomness: "100%", offset: "250ms"},
@@ -205,11 +205,13 @@ alice.wobble("MyDiv", 5, "center",
                     iteration: 1
                 });
 
-                aliceJs.toss(document.getElementById("logo-alice-txt-js").children, "left", "10%", "", {
-                    value: "2000ms",
-                    randomness: "50%",
-                    offset: "250ms"
-                }, "ease-in-out");
+                $a(document.getElementById("logo-alice-txt-js").children).toss({
+                    move: "left",
+                    overshoot: "10%",
+                    iteration: 1,
+                    duration: { value: "2000ms", randomness: "50%", offset: "250ms" },
+                    timing: "ease-in-out"
+                });
             };
 
         document.getElementById("logo").addEventListener("click", animateLogo, false);

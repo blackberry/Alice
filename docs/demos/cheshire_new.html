@@ -71,7 +71,7 @@
                         <span>Bounce</span>
                     </div>
                     <p><a href="fx/bounce.html">Bounce</a> - The "bounce" effect simulates the bouncing of an object from a top view including a shadow.</p>
-                    <p onclick="$a('my_bounce').playPause()">play/pause</p>
+                    <p onclick="$a(['my_bounce', 'logo-alice-img']).playPause()">play/pause</p>
                     <div class="code">
                         <pre class="prettyprint lang-js">
 /**
@@ -121,11 +121,13 @@ a.bounce("my_bounce", 125, true, "750ms", "easeOutSine", "0ms", "infinite", "alt
         <!-- AliceJS -->
         <script src="../../src/alice.core.js"></script>
         <script src="../../src/alice.masterFx.cheshire.js"></script>
+        
         <script src="jquery.min.js"></script>
 <!--
         <script src="../js/alice-min.js"></script>
 -->
         <script type="text/javascript">
+
         prettyPrint();
         sniffer.init();
 
@@ -135,7 +137,17 @@ a.bounce("my_bounce", 125, true, "750ms", "easeOutSine", "0ms", "infinite", "alt
 
         //$a("my_bounce").pageFlip().delay(3000).bounce();
         
-            $a($("#my_bounce")).bounce({iteration: 1}).delay(3000).slide({move: "right"}).go();
+            $a("logo-alice-img", {chaining: true})
+            .dance({iteration: 7, rotate: 5})
+            .addNext()
+            .slide({elems: "logo-alice-img", move:{direction: 'right', start: 0, end: 1400}, duration: '500ms'})
+            .addNext()
+            .slide({elems: "logo-alice-img", move:{direction: 'left', start: 1400, end: 0 }, duration: "400ms" })
+            .go();
+       
+
+
+            
         
         // Google Analytics
         var _gaq = _gaq || [];

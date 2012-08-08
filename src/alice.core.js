@@ -44,9 +44,158 @@
  *   Gord Tanner
  *   tinyHippos Inc.
  */
-    var jWorkflow=function(){return{order:function(j,k){var f=[],h,g=null,i=function(){var a=false;return{take:function(){a=true},pass:function(b){var c;a=false;h.length?(c=h.shift(),b=c.func.apply(c.context,[b,i]),a||i.pass(b)):g.func&&g.func.apply(g.context,[b])}}}(),e={andThen:function(a,b){if(typeof a.andThen==="function"&&typeof a.start==="function"&&typeof a.chill==="function")f.push({func:function(c,d){d.take();a.start({callback:function(a){d.pass(a)},context:b,initialValue:c})},context:b});else if(a.map&&
-    a.reduce)f.push({func:function(b,d){d.take();var f=a.length,g=function(){return--f||d.pass()};a.forEach(function(a){jWorkflow.order(a).start(g)})},context:b});else{if(typeof a!=="function")throw"expected function but was "+typeof a;f.push({func:a,context:b})}return e},chill:function(a){return e.andThen(function(b,c){c.take();setTimeout(function(){c.pass(b)},a)})},start:function(a,b){var c,d,e;a&&typeof a==="object"?(c=a.callback,d=a.context,e=a.initialValue):(c=a,d=b);g={func:c,context:d};h=f.slice();
-    i.pass(e)}};return j?e.andThen(j,k):e}}}();if(typeof module==="object"&&typeof require==="function")module.exports=jWorkflow;
+    // jWorkflow.js
+// (c) 2010 tinyHippos inc.
+// jWorkflow is freely distributable under the terms of the MIT license.
+// Portions of jWorkflow are inspired by Underscore.js
+var jWorkflow = (function () {
+    function _valid(func) {
+        if (typeof(func) !== 'function') {
+            throw "expected function but was " + typeof(func);
+        }
+    }
+
+    function _isWorkflow(func) {
+        return typeof func.andThen === 'function' &&
+               typeof func.start === 'function' &&
+               typeof func.chill === 'function';
+    }
+
+    function _isArray(func) {
+        return !!func.map && !!func.reduce;
+    }
+
+    var transfunctioner =  {
+        order: function (func, context) {
+            var _workflow = [],
+                _tasks,
+                _callback = null,
+                _baton = (function () {
+                    var _taken = false; 
+                    return {
+
+                        take: function () {
+                            _taken = true;
+                        },
+
+                        pass: function (result) {
+                            var task;
+                            _taken = false;
+
+                            if (_tasks.length) {
+                                task = _tasks.shift();
+                                result = task.func.apply(task.context, [result, _baton]);
+
+                                if (!_taken) {
+                                    _baton.pass(result);
+                                }
+                            }
+                            else { 
+                                if (_callback.func) {
+                                    _callback.func.apply(_callback.context, [result]);
+                                }
+                            }
+                        },
+
+                        drop: function (result) {
+                            _taken = true;
+                            _tasks = [];
+                            setTimeout(function () {
+                                _baton.pass(result);
+                            }, 1);
+                        }
+                    };
+                }()),
+                _self = {
+
+                    andThen: function (func, context) {
+                        if (_isWorkflow(func)) {
+                            var f = function (prev, baton) {
+                                baton.take();
+                                func.start({
+                                    callback: function (result) {
+                                        baton.pass(result);
+                                    }, 
+                                    context: context, 
+                                    initialValue: prev
+                                });
+                            };
+                            _workflow.push({func: f, context: context});
+                        }
+                        else if (_isArray(func)) {
+                            var orch = function (prev, baton) {
+                                baton.take();
+
+                                var l = func.length,
+                                    join = function () {
+                                        return --l || baton.pass();
+                                    };
+
+                                func.forEach(function (f) {
+                                    jWorkflow.order(f).start(join);
+                                });
+                            };
+                            _workflow.push({func: orch, context: context});
+                        }
+                        else {
+                            _valid(func);
+                            _workflow.push({func: func, context: context});
+                        }
+                        return _self;
+                    },
+
+                    chill: function (time) {
+                        return _self.andThen(function (prev, baton) {
+                            baton.take();
+                            
+                            setTimeout(function () {
+                                baton.pass(prev);
+                                }, time);  
+                        });
+                    },
+
+                    pause: function (){
+                        return _self.andThen(function (prev, baton) {
+                            baton.take();
+                            
+                            
+                            baton.pass(prev);
+                                 
+                        });
+                    },
+
+                    start: function () {
+                        var callback,
+                            context,
+                            initialValue;
+
+                        if (arguments[0] && typeof arguments[0] === 'object') {
+                            callback = arguments[0].callback;
+                            context = arguments[0].context;
+                            initialValue = arguments[0].initialValue;
+                        }
+                        else {
+                            callback = arguments[0];
+                            context = arguments[1];
+                        }
+
+                        _callback = {func: callback, context: context};
+                        _tasks = _workflow.slice();
+                        _baton.pass(initialValue);
+                    }
+                };
+
+            return func ? _self.andThen(func, context) : _self;
+        }
+    };
+
+    return transfunctioner;
+}());
+
+if (typeof module === "object" && typeof require === "function") {
+    module.exports = jWorkflow;
+}
+
 
     //===================================================================================
 
@@ -505,51 +654,27 @@ var alice = function () {
                 alice.keyframeDelete(evt.animationName);
 
                 return;
-            },
-
-            /**
-             * Play/Pause the animation
-             */
-            playPause: function(elms) {
-                var i, elems = this.elements(elms),pfx = this.prefixJS;
-                
-                for(i = 0; i < elems.length; i++){
-                var elemId = elems[i].getAttribute('id');
-                    if(document.getElementById(elemId).style[pfx + "AnimationPlayState"] === "paused"){
-                        document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "running";
-                    }
-                    else{
-                        document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "paused";
-                    }
-                }
             }
         };
 
         return core;
 }();
 
-alice.fx.delay = function(){
-    //setTimeout(workflow, 1000000000000);
 
-    // var i, //elems = this.elements(elms),pfx = this.prefixJS;
+
+alice.fx.playPause = function() {
+    var elms = alice.anima;
+    var i, elems = alice.elements(elms),pfx = alice.prefixJS;
     
-    // elems = alice.anima;     
-
-    // for(i = 0; i < elems.length; i++){
-    // var elemId = elems[i].getAttribute('id');
-    //     if(document.getElementById(elemId).style[pfx + "AnimationPlayState"] === "paused"){
-    //         document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "running";
-    //     }
-    //     else{
-    //         document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "paused";
-    //     }
-    // }
-
-    document.addEventListener(alice.prefixJS+'AnimationEnd', function(){
-
-        return alice.fx;
-
-    }, false);
+    for(i = 0; i < elems.length; i++){
+    var elemId = elems[i].getAttribute('id');
+        if(document.getElementById(elemId).style[pfx + "AnimationPlayState"] === "paused"){
+            document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "running";
+        }
+        else{
+            document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "paused";
+        }
+    }
 }
 
 /**
@@ -675,13 +800,75 @@ alice.cleaner = {
  */
 var $a = function(elems, params){
     "use strict";
-    console.info("Initializing " + alice.name + " (" + alice.description + ") " + alice.version);
+    //console.info("Initializing " + alice.name + " (" + alice.description + ") " + alice.version);
     
+    function Gogo(ms){ alert(ms); }
+
     alice.vendorPrefix();
 
     if(elems){
         alice.anima = elems;
     }
+
+    if(params && params.chaining === true){
+            console.log("jWorkflow: enabled");
+
+            var id = (elems && elems) ? elems : '',
+
+                workflow = jWorkflow.order(),
+
+                animation = {
+                    addNext: function (ms){
+                        workflow.andThen(function (prev, baton) {
+                            baton.take();
+                                
+                            var animationend = alice.prefixJS+'AnimationEnd';
+                            if(alice.prefixJS === 'Moz'){
+                                animationend = 'animationend';
+                            }
+                            if(!ms){
+                                document.addEventListener(animationend, function(){     
+                                    baton.pass(prev);
+                                }, false);
+                            }else{
+                                setTimeout(function () {
+                                baton.pass(prev);
+                                }, ms);      
+                            }                      
+                        });
+                        return animation;    
+                    },
+                    log: function (msg) {
+                        workflow.andThen(function () {
+                            console.log(msg);
+                        });
+                        return animation;
+                    },
+                    custom: function (func) {
+                        workflow.andThen(func);
+                        return animation;
+                    },
+                    go: function () {
+                        workflow.start(function () {
+                            console.info('workflow.start()');
+                        });
+                    }
+                };
+
+            Array.prototype.forEach.call(Object.keys(alice.fx), function (plugin) {
+                var func = alice.fx[plugin];
+                animation[plugin] = function () {
+                    var args = arguments;
+                    workflow.andThen(function () {
+                        func.apply(document.getElementById(id), args);
+                    });
+
+                   return animation;
+                };
+            });
+
+            return animation;
+        }
 
     return alice.fx;
 };

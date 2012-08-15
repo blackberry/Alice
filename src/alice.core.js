@@ -154,16 +154,6 @@ var jWorkflow = (function () {
                         });
                     },
 
-                    pause: function (){
-                        return _self.andThen(function (prev, baton) {
-                            baton.take();
-                            
-                            
-                            baton.pass(prev);
-                                 
-                        });
-                    },
-
                     start: function () {
                         var callback,
                             context,
@@ -801,8 +791,6 @@ alice.cleaner = {
 var $a = function(elems, params){
     "use strict";
     //console.info("Initializing " + alice.name + " (" + alice.description + ") " + alice.version);
-    
-    function Gogo(ms){ alert(ms); }
 
     alice.vendorPrefix();
 

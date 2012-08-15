@@ -22,14 +22,10 @@
         <link href="../../images/favicon.ico" rel="icon" type="image/x-icon">
         <link rel="stylesheet" href="../css/default.css">
         <style type="text/css">
-        .page:nth-child(odd){
-            background: #888;
-            border-left: 1px solid #222;
-        }
-        .page:nth-child(even){
+        .page{
             background: #444;
         }
-       .page p{
+        .page p{
             color: #fff;
             padding: 40px;
         }
@@ -95,11 +91,13 @@
                         <pre class="prettyprint lang-js">
 
 $a("book").book({
-    pageClassName: 'page',
-    bookWidth: 600,
-    bookHeight: 400,
-    speed: '500ms',
-    binding: "left",
+    pageClassName: 'page',      // class title of pages
+    bookWidth: 600,             // integer relating to pixels
+    bookHeight: 400,            // integer relating to pixels
+    speed: '500ms',             // select a speed
+    paging: 'single',           // single || double
+    binding: "left",            // left || right || top || bottom || center || middle
+    circular: true              // true || false
 });
                         </pre>
                     </div>
@@ -111,20 +109,24 @@ $a("book").book({
                         <p style="color: #fff; text-align: center;">CSS3 Book Effect</p>
                         <br >
                         <br />
-                        <p style="text-align: left;">To whomever is viewing this please note the following: The pages flipping back does not work in mobile browsers yet or in 
-                            safari likely because of the event listener, the code is a disaster area but it should be resolved shortly and made all pretty. The current 
-                            build requires webkit but will shortly support most browsers. <br /> Though it is not currently integrated with Alice JS that will not take long to do.</p>
+                        <p style="text-align: left;">Page 1</p>
                     </div>
                     <div>
-                        <p style="text-align: left;">Arrow keys will flip through the pages as well. Please note that this entire book is using CSS3 and its 3D capabilities. If your browser doesn't 
-                            support this, this will do nothing.</p>
+                        <p style="text-align: left;">Page 2</p>
                     </div>
-                    
-                    <div><p>Page 3</p></div>
-                    
-                    <div><p>You guessed it page 4!!!</p><div style="width: 300px; height: 200px; background: #999; margin: 20px;"></div>
+                    <div>
+                        <p>Page 3</p>
                     </div>
-                    
+                    <div>
+                        <p>You guessed it page 4!!!</p>
+                        <div style="width: 300px; height: 200px; background: #999; margin: 20px;"></div>
+                    </div>
+                    <div>
+                        <p>The omega 5th page!</p>
+                    </div>
+                    <div>
+                        <p>The back cover?</p>
+                    </div>
                 </div>
         </div>
 
@@ -155,7 +157,9 @@ $a("book").book({
                 bookWidth: 600,
                 bookHeight: 400,
                 speed: '500ms',
-                binding: "center"
+                paging: "single",
+                binding: "right",
+                controls: true
             }); 
 
             //console.log(alice.anima);

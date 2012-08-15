@@ -39,52 +39,71 @@ alice.masterFx.caterpillar = function (params) {
         book: function(){
 
             var core = {
+                // Book elements
+                pages: [],
 
+                // Page counters
                 leftPage: 0,
+                rightPage: 1,
+                realPageCount: 0,
+                pn: 1,                  //page number
+                
+                // Page/Book size
                 pageWidth: '',
                 pageHeight: '', 
                 docWidth: function(){ var width = document.body.clientWidth; return width; },
                 docHeight: alice.docHeight(),
-                rightPage: 1, 
-                realPageCount: 0,
+                
+                // Book details
                 speed: 0,
-                mybook: '',
+                book: '',
                 timing: 'linear',
                 binding: '',
-                
-                TransformOrigin: '',
-                transformRotate: '',
+                circular: true,
+                paging: '',
+                flip: '',
+                margin: '',
+                controlBoxStyle: '',
 
+                // Transform details
+                transformOrigin: '',
+                transformRotate: '',
+                transformDegrees: [],
+                
+                // Transform degrees
+                _rot270: '(270deg)',
+                _rot180: '(180deg)',
+                _rot90: '(90deg)',
+                _rot0: '(0deg)',
+                _rotNeg90: '(-90deg)',
+                _rotNeg180: '(-180deg)',
+                _rotNeg270: '(-265deg)',
+
+                // Shadow details
                 shadowPattern0: '',
                 shadowPattern50: '',
                 shadowPattern100: '',
                 shadowPatternRev50: '',
                 shadowPatternRev100: '',
-                margin: '', 
 
-                cssgen: function(params){
-                    //first we have to set our book up!
-                    core.mybook.style[alice.prefixJS+'Perspective'] = '3000px';
-                    core.mybook.style.width = core.pageWidth+'px';
-                    core.mybook.style.height = core.pageHeight+'px';
-                    core.binding = params.binding;
+                // Browser details
+                animationend: '',
 
-                    if(params.binding === 'left' || params.binding === 'right'){
-                        core.mybook.style.width = (core.pageWidth * 2)+'px';
-                        core.transformRotate = 'rotateY';
-                    }else if(params.binding === 'top' || params.binding === 'bottom' || params.binding === 'middle'){
-                        core.mybook.style.height = (core.pageHeight * 2)+'px';
-                        core.transformRotate = 'rotateX';
-                    }else if(params.binding === 'center'){
-                        core.mybook.style.width = core.pageWidth;
-                        core.transformRotate = 'rotateY';
-                    }
+                AnimGenerator: function(params){
+                    
+
+// SWAP FOR A SWITCH CASE *************************************************** /
 
                     //transforms
-                    var tranRot90 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+'(90deg);';
-                    var tranRot180 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+'(180deg);';
-                    var tranRotNeg90 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+'(-90deg);';
-                    var tranRot0 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+'(0deg);';
+                    var tranRot90 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+core._rot90+';';
+                    var tranRot180 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+core._rot180+';';
+                    var tranRot270 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+core._rot270+';';
+
+                    var tranRotNeg180 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+core._rotNeg180+';';
+                    var tranRotNeg270 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+core._rotNeg270+';';
+                    var tranRotNeg90 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+core._rotNeg90+';';
+                    
+                    var tranRot0 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+core._rot0+';';
 
                     //transform-origins
                     var originL = '\n\t'+alice.prefix+'transform-origin: 1px 1px;';
@@ -105,64 +124,101 @@ alice.masterFx.caterpillar = function (params) {
                     var oddPageR = '@'+alice.prefix+'keyframes oddPageTurnR{\n';
                     var evenPageF = '@'+alice.prefix+'keyframes evenPageTurnF{\n';
                     var evenPageR = '@'+alice.prefix+'keyframes evenPageTurnR{\n';
+                    var abstrPageF = '@'+alice.prefix+'keyframes abstrPageTurnF{\n';
+                    var abstrPageR = '@'+alice.prefix+'keyframes abstrPageTurnR{\n';
+                    var abstrPageReTurnF = '@'+alice.prefix+'keyframes abstrPageReTurnF{\n';
+                    var abstrPageReTurnR = '@'+alice.prefix+'keyframes abstrPageReTurnR{\n';
 
                     var closure = '}\n';
+                    
+                    //abstract axis
+                    if(core.paging === 'single'){
+                        if(core.binding == 'left'){
+                            var abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originL+tranRotNeg270+closure+'\n'+closure;
+                            var abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
+                            var abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originL+tranRot90+closure+'\n'+closure;
+                            var abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
+                        }
+                        if(core.binding == 'right'){
+                            var abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRot270+closure+'\n'+closure;
+                            var abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
+                            var abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originR+tranRot90+closure+'\n'+closure;
+                            var abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
+                        }
+                        if(core.binding == 'top'){
+                            var abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originL+tranRot270+closure+'\n'+closure;
+                            var abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
+                            var abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originL+tranRot90+closure+'\n'+closure;
+                            var abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
+                        }
+                        if(core.binding == 'bottom'){
+                            var abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRotNeg270+closure+'\n'+closure;
+                            var abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
+                            var abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originR+tranRot90+closure+'\n'+closure;
+                            var abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
+                        }
+                        if(core.binding == 'center'){
+                            var abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originM+tranRotNeg90+closure+'\n'+closure;
+                            var abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originM+tranRot0+closure+'\n'+closure;
+                            var abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originM+tranRot90+closure+'\n'+closure;
+                            var abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originM+tranRot0+closure+'\n'+closure;
+                        }
+                        if(core.binding == 'middle'){
+                            var abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originM+tranRotNeg90+closure+'\n'+closure;
+                            var abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originM+tranRot0+closure+'\n'+closure;
+                            var abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originM+tranRot90+closure+'\n'+closure;
+                            var abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originM+tranRot0+closure+'\n'+closure;
+                        }
 
-                    //vertical axis
-                    if(core.binding === 'left'){
-                        var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originL+tranRotNeg90+closure+'\n'+closure;
-                        var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
-                        var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originR+tranRot0+closure+'\n'+closure;
-                        var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originR+tranRot90+closure+'\n'+closure;
-                    }
-                    if(core.binding === 'right'){
-                        var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRot90+closure+'\n'+closure;
-                        var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
-                        var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originL+tranRot0+closure+'\n'+closure;
-                        var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originL+tranRotNeg90+closure+'\n'+closure;
-                    }
-                    if(core.binding === 'center'){
-                        var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originM+tranRotNeg90+closure+'\n'+closure;
-                        var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originM+tranRot0+closure+'\n'+closure;
-                        var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originM+tranRot0+closure+'\n'+closure;
-                        var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originM+tranRot90+closure+'\n'+closure;
-                    }  
-
-                    //horizontal axis
-                    if(core.binding === 'top'){
-                        var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originL+tranRot90+closure+'\n'+closure;
-                        var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
-                        var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originR+tranRot0+closure+'\n'+closure;
-                        var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originR+tranRotNeg90+closure+'\n'+closure;
-                    }
-                    if(core.binding === 'bottom'){
-                        var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRotNeg90+closure+'\n'+closure;
-                        var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
-                        var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originL+tranRot0+closure+'\n'+closure;
-                        var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originL+tranRot90+closure+'\n'+closure;
+                        // Insert the keyframes!
+                        alice.keyframeInsert(abstrPageTurnF);
+                        alice.keyframeInsert(abstrPageTurnR);
+                        alice.keyframeInsert(abstrPageReTurnF);
+                        alice.keyframeInsert(abstrPageReTurnR);
                     }
 
-                    //insert the formulated CSS
-                    alice.keyframeInsert(oddPageTurnF);
-                    alice.keyframeInsert(oddPageTurnR);
-                    alice.keyframeInsert(evenPageTurnF);
-                    alice.keyframeInsert(evenPageTurnR);
+                    if(core.paging === 'double'){
+                        //vertical axis
+                        if(core.binding === 'left'){
+                            var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originL+tranRotNeg90+closure+'\n'+closure;
+                            var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
+                            var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originR+tranRot0+closure+'\n'+closure;
+                            var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originR+tranRot90+closure+'\n'+closure;
+                        }
+                        if(core.binding === 'right'){
+                            var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRot90+closure+'\n'+closure;
+                            var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
+                            var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originL+tranRot0+closure+'\n'+closure;
+                            var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originL+tranRotNeg90+closure+'\n'+closure;
+                        }
+                        //horizontal axis
+                        if(core.binding === 'top'){
+                            var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originL+tranRot90+closure+'\n'+closure;
+                            var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
+                            var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originR+tranRot0+closure+'\n'+closure;
+                            var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originR+tranRotNeg90+closure+'\n'+closure;
+                        }
+                        if(core.binding === 'bottom'){
+                            var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRotNeg90+closure+'\n'+closure;
+                            var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
+                            var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originL+tranRot0+closure+'\n'+closure;
+                            var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originL+tranRot90+closure+'\n'+closure;
+                        }
+                        
+                        //Insert the keyframes!
+                        alice.keyframeInsert(oddPageTurnF);
+                        alice.keyframeInsert(oddPageTurnR);
+                        alice.keyframeInsert(evenPageTurnF);
+                        alice.keyframeInsert(evenPageTurnR);
+                    }
                 },
 
-                config: function(){
-                    //Used to set all core elements
-                },
-
-
-
-
-                init: function(params){
-
+                config: function(params){
                     // config some core variables
                     core.speed = params.speed;
-                    core.mybook = document.getElementById(alice.anima);
+                    core.book = document.getElementById(alice.anima);
                     core.timing = params.timing;
-                    core.direction = params.direction;
+                    core.binding = params.binding;
 
                     core.pageWidth = params.bookWidth;
                     core.pageHeight = params.bookHeight;
@@ -174,56 +230,435 @@ alice.masterFx.caterpillar = function (params) {
                     core.shadowPatternRev50 = params.shadowPatternRev50;
                     core.shadowPatternRev100 = params.shadowPatternRev100;
 
-                    var pages = core.mybook.childNodes; //find me some kids!
+                    core.paging = params.paging; 
 
-                    // real page count
-                    for(var p = 0; p < pages.length; p++){
-                        if(pages[p].nodeType === 1){
+                    // Fashion me a book!
+                    core.book.style[alice.prefixJS+'Perspective'] = '3000px';
+                    core.binding = params.binding;
+
+                    if(params.paging == 'single'){
+                        core.book.style.width = core.pageWidth+'px';
+                        core.book.style.height = core.pageHeight+'px';
+                        if(params.binding === 'center' || params.binding === 'left' || params.binding === 'right'){
+                            core.transformRotate = 'rotateY';
+                        }
+                        if(params.binding === 'middle' || params.binding === 'top' || params.binding === 'bottom'){
+                            core.transformRotate = 'rotateX';
+                        }
+                    }
+                    else if(params.paging == 'double'){
+                        if(params.binding == 'left' || params.binding == 'right'){
+                            core.book.style.width = (core.pageWidth * 2)+'px';
+                            core.book.style.height = core.pageHeight+'px';
+                            core.transformRotate = 'rotateY';
+                        }
+                        else if(params.binding === 'top' || params.binding === 'bottom'){
+                            core.book.style.width = core.pageWidth+'px';
+                            core.book.style.height = (core.pageHeight * 2)+'px';
+                            core.transformRotate = 'rotateX';
+                        }
+                    }
+
+                    // Set the Animation End element
+                    core.animationend = alice.prefixJS+'AnimationEnd';
+                    if(alice.prefixJS === 'Moz'){
+                        core.animationend = 'animationend';
+                    }
+
+                    core.pages = core.book.childNodes; //find me some kids!
+
+                    // Set the real page count.
+                    for(var p = 0; p < core.pages.length; p++){
+                        if(core.pages[p].nodeType === 1){
                             core.realPageCount = core.realPageCount+1;
                         }
                     }
 
-                    if(params.binding === 'left' || params.binding === 'right'){
-                        core.TransformOrigin = core.pageWidth+'px 1px';
+                    // Collect the style details of the book div
+                    core.controlBoxStyle = document.getElementById(alice.anima);
+
+                    // Set the details per binding
+                    if(core.paging == 'single'){
+                        switch(params.binding){
+                            case "center":
+                                core.transformDegrees = [core._rot0, core._rot90, core._rotNeg90];
+                                core.TransformOrigin = '50% 50%';
+                                break;
+                            case "middle":
+                                core.transformDegrees = [core._rot0, core._rot90, core._rotNeg90];
+                                core.TransformOrigin = '50% 50%';
+                                break;
+                            case "left":
+                                core.transformDegrees = [core._rot0, core._rot0];
+                                core.TransformOrigin = '1px 1px';
+                                break;
+                            case "right":
+                                core.transformDegrees = [core._rot0, core._rot0];
+                                core.TransformOrigin = core.pageWidth+'px 1px';
+                                break;
+                            case "top":
+                                core.transformDegrees = [core._rot0, core._rot0];
+                                core.TransformOrigin = '1px 1px';
+                                break;
+                            case "bottom":
+                                core.transformDegrees = [core._rot0, core._rot0];
+                                core.TransformOrigin = '1px '+core.pageHeight+'px';
+                                break;
+                        }
                     }
-                    if(params.binding === 'top' || params.binding === 'bottom'){
-                        core.TransformOrigin = '1px '+core.pageHeight+'px';
-                    }
-                    if(params.binding === 'center'){
-                        core.TransformOrigin = '50% 50%';
-                        //we need controls for the left/right flips
+                    if(core.paging == 'double'){
+                        switch(params.binding){
+                            case "left":
+                                core.transformDegrees = [core._rot0, core._rot0];
+                                core.TransformOrigin = core.pageWidth+'px 1px';
+                                break;
+                            case "right":
+                                core.transformDegrees = [core._rot0, core._rot0];
+                                core.TransformOrigin = core.pageWidth+'px 1px';
+                                break;
+                            case "top":
+                                core.transformDegrees = [core._rot0, core._rot0];
+                                core.TransformOrigin = '1px '+core.pageHeight+'px';
+                                break;
+                            case "bottom":
+                                core.transformDegrees = [core._rot0, core._rot0];
+                                core.TransformOrigin = '1px '+core.pageHeight+'px';
+                                break;
+                        }
+                    }   
+                },
 
-                        var genController = function(loc){
-                            var clickBox = document.createElement('div');
-                            clickBox.setAttribute('id', 'leftController');
-                            //clickBox.style.background = 'transparent';
-                            clickBox.style.width = (core.docWidth()/2)+'px';
-                            clickBox.style.height = core.docHeight+'px';
-                            clickBox.style.position = 'absolute';
-                            clickBox.style.left = '0px';
-                            clickBox.style.top = '0px';
-                            clickBox.style.zIndex = '100000';
+                clearAnimation: function (id, dir) {
+                    var idNum = id.substring(1, 8);    
+                    var _element = document.getElementById(id);
 
-                            var pageRef = 'alice.masterFx.caterpillar.book';
+                    console.log(core.pn);
 
-                            if(loc === 'right'){
-                                clickBox.style.left = (core.docWidth()/2)+'px';
-                                clickBox.setAttribute('onclick', pageRef+'.turnPage('+pageRef+'.rightPage)');
-                            }else{
-                                clickBox.setAttribute('onclick', pageRef+'.turnPage('+pageRef+'.leftPage)');
+                    // Simple blanks for replacing
+                    _element.style[alice.prefixJS + "Animation"] = '';
+                    _element.style[alice.prefixJS + "AnimationDelay"] = "";
+                    _element.style[alice.prefixJS + "AnimationDuration"] = "";
+                    _element.style[alice.prefixJS + "AnimationTimingFunction"] = "";
+                    _element.style[alice.prefixJS + "AnimationIterationCount"] = "";
+                    _element.style[alice.prefixJS + "AnimationDirection"] = "";
+                    _element.style[alice.prefixJS + "AnimationPlayState"] = "";
+
+                    if(core.binding == 'center' || core.binding == 'middle'){
+                        if(idNum % 2 === 1){
+                            if(core.pn % 2 === 1){
+                                _element.style.display = 'none';
                             }
+                            if(core.pn === 1){
+                                _element.style.display = 'none';
+                            }
+                        }
+                        if(idNum % 2 === 0){
+                            if(core.pn % 2 === 1){
+                                _element.style.display = 'none';
+                            }
+                        }
+                    }else if(core.binding == 'left' || core.binding == 'top' || core.binding == 'right' || core.binding == 'bottom'){
+                        _element.style.display = 'none';
+                    }
 
-                            document.body.appendChild(clickBox);
+                    // Abtsract page changes
+                    if(core.paging == 'single'){
+                        // get other pages
+                        var prepage = document.getElementById('p'+(parseInt(idNum)-1)); 
+                        var nextpage = document.getElementById('p'+(parseInt(idNum)+1)); 
+
+                        if(idNum == core.realPageCount){
+                            var nextpage = document.getElementById('p1'); 
+                        }
+                        // set this pages main attributes
+                        _element.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[0];
+                        _element.style.zIndex = '0';
+                        
+                        if(idNum > 1 && dir == 'forwards'){
+                            prepage.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[1];
+                            if(core.binding == 'left' || core.binding == 'right' || core.binding == 'top' || core.binding == 'bottom'){    
+                                nextpage.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[0];
+                            }
+                        }
+                        if(idNum == 1 && dir == 'forwards'){
+                            var prepage = document.getElementById('p'+core.realPageCount); 
+                            prepage.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[1];
+                        }
+                        if(idNum > 1 && dir == 'reverse'){
+                            var prepage = document.getElementById('p'+(idNum-1)); 
+                            prepage.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[2];
+                            nextpage.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[1];
+                        }
+                        if(idNum == 1 && dir == 'reverse'){
+                            var prepage = document.getElementById('p'+core.realPageCount); 
+                            prepage.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[2];
+                            nextpage.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[1];
+                        }
+                    }
+                    
+                    core.pn++;
+                },
+
+                resetCSS: function(flipDirection, binding, id){
+                    var bookEffect = alice.masterFx.caterpillar.book;
+
+                    // A set of options for resetting the style attributes of the different pages.
+                    var thisPage = document.getElementById(id);
+                    var idNum = id.substring(1, 8);
+                    var nextPage = document.getElementById('p'+(parseInt(idNum)+1));
+
+                    console.log('p'+(parseInt(idNum)+1));
+
+                    var Angle90 = '(90deg);';
+                    var Angle0 = '(0deg);';
+                    var AngleNeg90 = '(-90deg);';
+
+                    var basicSettings = 'display: block; left: 0px; top: 0px;';
+
+                    if(idNum % 2 === 1 ){
+                        if(flipDirection === 'forward' && core.binding === 'left'){
+                            thisPage.setAttribute('style',
+                                alice.prefix+'transform-origin: 1px 1px;'+
+                                alice.prefix+'transform: '+ core.transformRotate + AngleNeg90 +
+                                alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
+                            thisPage.style.top = '0px';
+                            thisPage.style.left = core.pageWidth+'px'; 
+                        }
+                        if(flipDirection === 'reverse' && core.binding === 'left'){
+                            thisPage.setAttribute('style',
+                                basicSettings+
+                                alice.prefix+'transform-origin: 1px 1px;'+
+                                alice.prefix+'box-shadow:'+core.shadowPattern100+';');
+                            thisPage.style.top = '0px';
+                            thisPage.style.left = core.pageWidth+'px'; 
                         }
                         
-                        //genController('left');
-                        //genController('right');    
+
+                        if(flipDirection === 'forward' && core.binding === 'right'){
+                            thisPage.setAttribute('style',
+                                alice.prefix+'transform-origin: 600px 1px;'+
+                                alice.prefix+'transform: '+ core.transformRotate + Angle90 +
+                                alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
+                        }
+                        if(flipDirection === 'reverse' && core.binding === 'right'){
+                            thisPage.setAttribute('style',
+                                basicSettings+
+                                alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
+                                alice.prefix+'box-shadow:'+core.shadowPattern100+';');
+                        }
+                        
+
+                        if(flipDirection === 'forward' && core.binding === 'bottom'){
+                            thisPage.setAttribute('style',
+                                alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
+                                alice.prefix+'transform: '+ core.transformRotate + AngleNeg90 +
+                                alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
+                        }
+                        if(flipDirection === 'reverse' && core.binding === 'bottom'){
+                            thisPage.setAttribute('style',
+                                basicSettings+
+                                alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
+                                alice.prefix+'box-shadow:'+core.shadowPattern100+';');
+                            thisPage.style.top = '0px';
+                        }
+                        
+
+                        if(flipDirection === 'forward' && core.binding === 'top'){
+                            thisPage.setAttribute('style',
+                                alice.prefix+'transform-origin: 1px 1px;'+
+                                alice.prefix+'transform: '+ core.transformRotate + Angle90 +
+                                alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
+                            thisPage.style.top = core.pageHeight+'px';
+                        }
+                        if(flipDirection === 'reverse' && core.binding === 'top'){
+                            thisPage.setAttribute('style',
+                                basicSettings+
+                                alice.prefix+'transform-origin: 1px 1px;'+
+                                alice.prefix+'box-shadow:'+core.shadowPattern100+';');
+                            thisPage.style.top = core.pageHeight+'px';
+                        }
+                        
+
+
                     } 
+
+
+                    if(idNum % 2 === 0 ){
+                        
+                        if(flipDirection === 'forward' && core.binding === 'left'){
+                            thisPage.setAttribute('style',
+                                basicSettings+
+                                alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
+                                alice.prefix+'transform: '+core.transformRotate+ Angle0 +
+                                alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
+                        }
+                        if(flipDirection === 'reverse' && core.binding === 'left'){
+                            thisPage.setAttribute('style', 
+                                alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
+                                alice.prefix+'transform: '+core.transformRotate+ Angle90 +
+                                alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
+                        }
+                        
+
+                        if(flipDirection === 'forward' && core.binding === 'right'){
+                            thisPage.setAttribute('style', 
+                                basicSettings+
+                                alice.prefix+'transform-origin: 1px 1px;'+
+                                alice.prefix+'transform: '+core.transformRotate+ Angle0 +
+                                alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
+                            thisPage.style.top = '0px';
+                            thisPage.style.left = core.pageWidth+'px';     
+                        }
+                        if(flipDirection === 'reverse' && core.binding === 'right'){
+                            thisPage.setAttribute('style',+
+                                alice.prefix+'transform-origin: 1px 1px;'+
+                                alice.prefix+'transform: '+core.transformRotate+ AngleNeg90 +
+                                alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
+                            thisPage.style.top = '0px';
+                            thisPage.style.left = core.pageWidth+'px';     
+                        }
+                        
+
+                        if(flipDirection === 'forward' && core.binding === 'bottom'){
+                            thisPage.setAttribute('style',
+                                basicSettings+
+                                alice.prefix+'transform-origin: 1px 1px;'+
+                                alice.prefix+'transform: '+core.transformRotate+ Angle0 +
+                                alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
+                            thisPage.style.top = core.pageHeight+'px';
+                        }
+                        if(flipDirection === 'reverse' && core.binding === 'bottom'){
+                            thisPage.setAttribute('style', 
+                                alice.prefix+'transform-origin: 1px 1px;'+
+                                alice.prefix+'transform: '+core.transformRotate+ Angle90 +
+                                alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');   
+                            thisPage.style.top = core.pageHeight+'px';
+                        }
+                        
+
+                        if(flipDirection === 'forward' && core.binding === 'top'){
+                            thisPage.setAttribute('style', 
+                                basicSettings+
+                                alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
+                                alice.prefix+'transform: '+core.transformRotate+ Angle0 +
+                                alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
+                            thisPage.style.top = '0px';    
+                        }
+                        if(flipDirection === 'reverse' && core.binding === 'top'){
+                            thisPage.setAttribute('style',+
+                                alice.prefix+'transform-origin: 1px 1px;'+
+                                alice.prefix+'transform: '+core.transformRotate+ AngleNeg90 +
+                                alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
+                            thisPage.style.top = '0px'; 
+                        }                            
+                    }
+                },
+
+                styleConfig: function(idNum){
+                    var page = document.getElementById('p'+idNum);
+                    if(core.paging == 'single'){
+                        if(core.binding == 'center' || core.binding == 'middle'){
+                            page.setAttribute('style', 'display: none; '+
+                                alice.prefix+'transform-origin: 50% 50%;'+
+                                alice.prefix+'transform: '+ core.transformRotate + core._rot90 +';'+
+                                alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
+                        }
+                        if(core.binding == 'left' || core.binding == 'top'){
+                            page.setAttribute('style', 'display: none; '+
+                                alice.prefix+'transform-origin:'+core.TransformOrigin+';'+
+                                alice.prefix+'transform: '+ core.transformRotate + core._rot0 +';'+
+                                alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
+                        }
+                    }
+                    if(core.paging == 'double'){
+                        if(core.binding == 'left'){
+                            if(idNum % 2 === 1){
+                                page.style.left = core.pageWidth+'px';
+                            }
+                            if(idNum % 2 === 0){
+                                page.style[alice.prefixJS+'Transform'] = core.transformRotate+core._rot90;
+                            }
+                        }
+                        if(core.binding == 'right'){
+                            if(idNum % 2 === 0){
+                                page.style.left = core.pageWidth+'px';
+                                page.style[alice.prefixJS+'Transform'] = core.transformRotate+core._rotNeg90;
+                            }
+                        }
+                        if(core.binding == 'top'){
+                            if(idNum % 2 === 1){
+                                page.style.top = core.pageHeight+'px';
+                            }
+                            if(idNum % 2 === 0){
+                                page.style[alice.prefixJS+'Transform'] = core.transformRotate+core._rotNeg90;
+                            }
+                        }
+                        if(core.binding == 'bottom'){
+                            if(idNum % 2 === 0){
+                                page.style.top = core.pageHeight+'px';
+                                page.style[alice.prefixJS+'Transform'] = core.transformRotate+core._rot90;
+                            }
+                        }
+                    }
+                },
+
+                init: function(params){
+                    //run the configuation of the book effect
+                    core.config(params);
+
+                    // Set the animations/ Add to stylesheet
+                    core.AnimGenerator(params);
+
+                    var genControlBox = function(){
+                        var controlBox = document.createElement('div');
+                        controlBox.setAttribute('id', '_controlBox');
+                        controlBox.style.width = core.pageWidth+'px';
+                        controlBox.style.height = core.pageHeight+'px';
+                        controlBox.style.position = 'absolute';
+                        controlBox.style.background = 'transparent';
+                        controlBox.style.textAlign = 'center';
+                        controlBox.style.left = core.controlBoxStyle.offsetLeft+'px';
+                        controlBox.style.top = core.controlBoxStyle.offsetTop+'px';
+                        controlBox.style.zIndex = '10000';
+                        //controlBox.style[alice.prefixJS+'Perspective'] = '3000px';
+
+                        document.body.appendChild(controlBox);
+                       // console.log(controlBoxStyle.offsetParent+'px');
+                    };
+
+                    //genControlBox();
+
+                    var genController = function(loc){
+                        var clickBox = document.createElement('div');
+                        clickBox.setAttribute('id', '_'+loc+'Controller');
+                        clickBox.style.width = (core.pageWidth/2)+'px';
+                        clickBox.style.height = core.pageHeight+'px';
+                        clickBox.style.position = 'absolute';
+                        clickBox.style.background = 'transparent';
+                        clickBox.style.left = '0px';
+                        clickBox.style.top = '0px';
+                        clickBox.style.zIndex = '10001';
+
+                        var pageRef = 'alice.masterFx.caterpillar.book';
+
+                        if(loc === 'right'){
+                            clickBox.style.left = (core.pageWidth/2)+'px';
+                            //clickBox.style.background = '#999';
+                            clickBox.setAttribute('onclick', pageRef+'._AbstractPageTurn('+pageRef+'.rightPage)');
+                        }else{
+                            clickBox.setAttribute('onclick', pageRef+'._AbstractPageTurnR('+pageRef+'.rightPage)');
+                        }
+                        document.getElementById('_controlBox').appendChild(clickBox);
+                    };
+                        
+                    //genController('left');
+                    //genController('right');   
 
                     function keyrelease(evt){
                         var dir = evt.keyCode;
+                        var newPageCount = core.realPageCount+1;
                             if(dir == 39){
-                                if(core.rightPage < core.realPageCount+1){
+                                if(core.rightPage < newPageCount){
                                     core.turnPage(core.rightPage);
                                 }
                             }
@@ -234,224 +669,17 @@ alice.masterFx.caterpillar = function (params) {
                             }
                     }
 
+                    // Add the keylistener
                     document.body.addEventListener("keyup", keyrelease, false);
-
-                    // input the css into a stylesheet
-                    this.cssgen(params);
 
                     //Acquired traits from params
                     var className = params.pageClassName,
                         bookEffect = alice.masterFx.caterpillar.book,
-                        myBookWidth = params.bookWidth,
-                        myBookHeight = params.bookHeight,
-                        n = 1, // for page numbering
-
-                        evenPageFlip = function(id){
-                            var nxtId = id;
-                                nxtId = nxtId.substring(1, 8);
-                                nxtId = parseInt(nxtId);
-                                nxtId = nxtId + 1;
-
-                            var nxtPageId = core.mybook.querySelector('div:nth-child('+nxtId+')').getAttribute('id');
-
-                            var nxtPage = document.getElementById(nxtPageId);
-                                nxtPage.style.zIndex = 1;
-
-                                nxtPage.style.display = 'block';
-                                nxtPage.style[alice.prefixJS+'AnimationName'] = "evenPageTurnF";
-                                nxtPage.style[alice.prefixJS+'AnimationDuration'] = core.speed;
-                                nxtPage.style[alice.prefixJS+'AnimationFillMode'] = "forwards";
-                                nxtPage.style[alice.prefixJS+'AnimationPlayState'] = "running";
-                                nxtPage.style[alice.prefixJS+'AnimationDirection'] = 'normal';
-                                nxtPage.style[alice.prefixJS+'AnimationTimingFunction'] = "linear";
-                            
-                            //console.log('evenPageTurn');
-                        },
-                        oddPageFlip = function(id){
-                            var nxtId = id;
-                                nxtId = nxtId.substring(1, 8);
-                                nxtId = parseInt(nxtId);                                
-
-                            var prvPageId = core.mybook.querySelector('div:nth-child('+(nxtId - 1)+')').getAttribute('id');
-
-                            var prvPage = document.getElementById(prvPageId);
-                                prvPage.style.zIndex = 1;
-
-                                prvPage.style.display = 'block';
-                                prvPage.style[alice.prefixJS+'AnimationName'] = "oddPageTurnR";
-                                prvPage.style[alice.prefixJS+'AnimationDuration'] = core.speed;
-                                prvPage.style[alice.prefixJS+'AnimationFillMode'] = "forwards";
-                                prvPage.style[alice.prefixJS+'AnimationPlayState'] = "running";
-                                prvPage.style[alice.prefixJS+'AnimationDirection'] = "normal";
-                                prvPage.style[alice.prefixJS+'AnimationTimingFunction'] = "linear";
-                                
-                            //console.log('oddPageTurnR');
-                        },
-                        resetCSS = function(flipDirection, binding, id){
-                            // A set of options for resetting the style attributes of the different pages.
-                            var thisPage = document.getElementById(id);
-                            var idNum = id.substring(1, 8);
-                            
-                            var Angle90 = '(90deg);';
-                            var Angle0 = '(0deg);';
-                            var AngleNeg90 = '(-90deg);';
-
-                            var basicSettings = 'display: block; left: 0px; top: 0px;';
-
-                            if(idNum % 2 === 1 ){
-                                if(flipDirection === 'forward' && core.binding === 'left'){
-                                    thisPage.setAttribute('style',
-                                        alice.prefix+'transform-origin: 1px 1px;'+
-                                        alice.prefix+'transform: '+ core.transformRotate + AngleNeg90 +
-                                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
-                                    thisPage.style.top = '0px';
-                                    thisPage.style.left = core.pageWidth+'px'; 
-                                }
-                                if(flipDirection === 'reverse' && core.binding === 'left'){
-                                    thisPage.setAttribute('style',
-                                        basicSettings+
-                                        alice.prefix+'transform-origin: 1px 1px;'+
-                                        alice.prefix+'box-shadow:'+core.shadowPattern100+';');
-                                    thisPage.style.top = '0px';
-                                    thisPage.style.left = core.pageWidth+'px'; 
-                                }
-                                if(flipDirection === 'forward' && core.binding === 'right'){
-                                    thisPage.setAttribute('style',
-                                        alice.prefix+'transform-origin: 600px 1px;'+
-                                        alice.prefix+'transform: '+ core.transformRotate + Angle90 +
-                                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
-                                }
-                                if(flipDirection === 'reverse' && core.binding === 'right'){
-                                    thisPage.setAttribute('style',
-                                        basicSettings+
-                                        alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
-                                        alice.prefix+'box-shadow:'+core.shadowPattern100+';');
-                                }
-                                if(flipDirection === 'forward' && core.binding === 'bottom'){
-                                    thisPage.setAttribute('style',
-                                        alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
-                                        alice.prefix+'transform: '+ core.transformRotate + AngleNeg90 +
-                                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
-                                }
-                                if(flipDirection === 'reverse' && core.binding === 'bottom'){
-                                    thisPage.setAttribute('style',
-                                        basicSettings+
-                                        alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
-                                        alice.prefix+'box-shadow:'+core.shadowPattern100+';');
-                                    thisPage.style.top = '0px';
-                                }
-                                if(flipDirection === 'forward' && core.binding === 'top'){
-                                    thisPage.setAttribute('style',
-                                        alice.prefix+'transform-origin: 1px 1px;'+
-                                        alice.prefix+'transform: '+ core.transformRotate + Angle90 +
-                                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
-                                    thisPage.style.top = core.pageHeight+'px';
-                                }
-                                if(flipDirection === 'reverse' && core.binding === 'top'){
-                                    thisPage.setAttribute('style',
-                                        basicSettings+
-                                        alice.prefix+'transform-origin: 1px 1px;'+
-                                        alice.prefix+'box-shadow:'+core.shadowPattern100+';');
-                                    thisPage.style.top = core.pageHeight+'px';
-                                }
-                                if(flipDirection === 'forward' && core.binding === 'center'){
-                                    thisPage.setAttribute('style',
-                                        alice.prefix+'transform-origin: 50% 50%;'+
-                                        alice.prefix+'transform: '+ core.transformRotate + AngleNeg90 +
-                                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
-                                    thisPage.style.top = '0px';
-                                }
-                                if(flipDirection === 'reverse' && core.binding === 'center'){
-                                    thisPage.setAttribute('style',
-                                        basicSettings+
-                                        alice.prefix+'transform-origin: 50% 50%;'+
-                                        alice.prefix+'box-shadow:'+core.shadowPattern100+';');
-                                    thisPage.style.top = '0px';
-                                    
-                                }
-                            } 
-
-
-                            if(idNum % 2 === 0 ){
-                                if(flipDirection === 'forward' && core.binding === 'left'){
-                                    thisPage.setAttribute('style',
-                                        basicSettings+
-                                        alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
-                                        alice.prefix+'transform: '+core.transformRotate+ Angle0 +
-                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
-                                }
-                                if(flipDirection === 'reverse' && core.binding === 'left'){
-                                    thisPage.setAttribute('style', 
-                                        alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
-                                        alice.prefix+'transform: '+core.transformRotate+ Angle90 +
-                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');   
-                                }
-                                if(flipDirection === 'forward' && core.binding === 'right'){
-                                    thisPage.setAttribute('style', 
-                                        basicSettings+
-                                        alice.prefix+'transform-origin: 1px 1px;'+
-                                        alice.prefix+'transform: '+core.transformRotate+ Angle0 +
-                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
-                                    thisPage.style.top = '0px';
-                                    thisPage.style.left = core.pageWidth+'px';     
-                                }
-                                if(flipDirection === 'reverse' && core.binding === 'right'){
-                                    thisPage.setAttribute('style',+
-                                        alice.prefix+'transform-origin: 1px 1px;'+
-                                        alice.prefix+'transform: '+core.transformRotate+ AngleNeg90 +
-                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
-                                    thisPage.style.top = '0px';
-                                    thisPage.style.left = core.pageWidth+'px';     
-                                }
-                                if(flipDirection === 'forward' && core.binding === 'bottom'){
-                                    thisPage.setAttribute('style',
-                                        basicSettings+
-                                        alice.prefix+'transform-origin: 1px 1px;'+
-                                        alice.prefix+'transform: '+core.transformRotate+ Angle0 +
-                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
-                                    thisPage.style.top = core.pageHeight+'px';
-                                }
-                                if(flipDirection === 'reverse' && core.binding === 'bottom'){
-                                    thisPage.setAttribute('style', 
-                                        alice.prefix+'transform-origin: 1px 1px;'+
-                                        alice.prefix+'transform: '+core.transformRotate+ Angle90 +
-                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');   
-                                    thisPage.style.top = core.pageHeight+'px';
-                                }
-                                if(flipDirection === 'forward' && core.binding === 'top'){
-                                    thisPage.setAttribute('style', 
-                                        basicSettings+
-                                        alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
-                                        alice.prefix+'transform: '+core.transformRotate+ Angle0 +
-                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
-                                    thisPage.style.top = '0px';    
-                                }
-                                if(flipDirection === 'reverse' && core.binding === 'top'){
-                                    thisPage.setAttribute('style',+
-                                        alice.prefix+'transform-origin: 1px 1px;'+
-                                        alice.prefix+'transform: '+core.transformRotate+ AngleNeg90 +
-                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
-                                    thisPage.style.top = '0px'; 
-                                } 
-                                if(flipDirection === 'forward' && core.binding === 'center'){
-                                    thisPage.setAttribute('style',
-                                        basicSettings+
-                                        alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
-                                        alice.prefix+'transform: '+core.transformRotate+ Angle0 +
-                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');
-                                }
-                                if(flipDirection === 'reverse' && core.binding === 'center'){
-                                    thisPage.setAttribute('style', 
-                                        alice.prefix+'transform-origin: '+ core.TransformOrigin +';'+
-                                        alice.prefix+'transform: '+core.transformRotate+ Angle90 +
-                                        alice.prefix+'box-shadow: '+ bookEffect.shadowPatternRev100 +';');   
-                                }                               
-                            }
-                        
-                        };
-
+                        n = 1;
+                    
                     // get the vendor prefix
                     var pfex = alice.prefixJS; 
+                    
                     // generate a new class
                     var NewPageClass = 'book'+ new Date().getTime();
                     var NewClass =  '.'+NewPageClass+
@@ -465,140 +693,200 @@ alice.masterFx.caterpillar = function (params) {
                                     'z-index: 0;'+ 
                                     'overflow: hidden;'+
                                     '}';
+
                     // insert the new class
                     alice.keyframeInsert(NewClass);
+ 
+                    //This is key generating the doubles required for this binding.
+                    if(core.paging === 'single'){ 
+                        
+                        var f = 1;
+                        //var newPages = document.getElementById(alice.anima).childNodes;
+                        for(var b = 0; b < core.pages.length; b++){
+                            if(core.pages[b].nodeType === 1){
+                                core.pages[b].setAttribute('id', 'p'+f);
+                                core.pages[b].setAttribute('class', className + ' ' +NewPageClass);
 
-                    // Initial page setup
-                    //==================================================================================
-                    for (var i = 0; i < pages.length; i++){
-                        if(pages[i].nodeType === 1){
-                            pages[i].setAttribute('id', 'p'+n);
-                            pages[i].setAttribute('class', className + ' ' +NewPageClass);
+                                core.pages[b].setAttribute('onclick', 'alice.masterFx.caterpillar.book._AbstractPageTurn('+f+')');                                
 
-                            //Need to make adjustments for the binding
-                            if(core.binding === 'left'){
-                                    pages[i].style.top = '0px';
-                                    pages[i].style.left = core.pageWidth+'px';
-                                    pages[i].style[alice.prefixJS+'TransformOrigin'] = '1px 1px';
-                                }
-                            if(core.binding === 'top'){
-                                    pages[i].style.top = core.pageHeight+'px';
-                                    pages[i].style.left = '0px';
-                                    pages[i].style[alice.prefixJS+'TransformOrigin'] = '1px 1px';
-                                }
-                            if(core.binding === 'right'){
-                                    pages[i].style.top = '0px';
-                                    pages[i].style.left = '0px';
-                                    pages[i].style[alice.prefixJS+'TransformOrigin'] = core.TransformOrigin;
-                                }
-                            if(core.binding === 'bottom'){
-                                    pages[i].style.top = '0px';
-                                    pages[i].style.left = '0px';
-                                    pages[i].style[alice.prefixJS+'TransformOrigin'] = core.TransformOrigin;
-                                }
-                            if(core.binding === 'center'){
-                                    pages[i].style.top = '0px';
-                                    pages[i].style[alice.prefixJS+'TransformOrigin'] = '50% 50%';
+                                core.styleConfig(f);
 
+                                if(f === 1){
+                                    core.pages[b].style.display = 'block';
+                                    core.pages[b].setAttribute('style', 'display: block; '+
+                                    alice.prefix+'transform-origin:'+core.TransformOrigin+';'+
+                                    alice.prefix+'transform: '+ core.transformRotate + core._rot0 +';' +
+                                    alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
                                 }
 
-                            pages[i].setAttribute('onclick', 'alice.masterFx.caterpillar.book.turnPage('+n+')');
-
-                            var Angle90 = '(90deg);';
-                            var Angle0 = '(0deg);';
-                            var AngleNeg90 = '(-90deg);';
-
-                            if(n % 2 === 0){
-                                //prep the even numbered elements for the animations
-                                if(core.binding === 'left'){
-                                    pages[i].setAttribute('style', 'display: none; '+
-                                        alice.prefix+'transform-origin: '+ core.TransformOrigin+';'+
-                                        alice.prefix+'transform: '+ core.transformRotate + Angle90 +
-                                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
-                                }
-                                if(core.binding === 'right'){
-                                   pages[i].setAttribute('style', 'display: none; '+
-                                        'left: ' +core.pageWidth+ 'px;'+
-                                        alice.prefix+'transform-origin: 1px 1px;'+
-                                        alice.prefix+'transform: '+ core.transformRotate + AngleNeg90 +
-                                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';'); 
-                                }
-                                if(core.binding === 'top'){
-                                    pages[i].setAttribute('style', 'display: none; '+
-                                        alice.prefix+'transform-origin: '+ core.TransformOrigin+';'+
-                                        alice.prefix+'transform: '+ core.transformRotate + AngleNeg90 +
-                                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
-                                }
-                                if(core.binding === 'bottom'){
-                                   pages[i].setAttribute('style', 'display: none; '+
-                                        'top: ' +core.pageHeight+ 'px;'+
-                                        alice.prefix+'transform-origin: 1px 1px;'+
-                                        alice.prefix+'transform: '+ core.transformRotate + Angle90 +
-                                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';'); 
-                                }
-                                if(core.binding === 'center'){
-                                    pages[i].setAttribute('style', 'display: none; '+
-                                        alice.prefix+'transform-origin: 50% 50%;'+
-                                        alice.prefix+'transform: '+ core.transformRotate + Angle90 +
-                                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
-
-
-                                }      
+                                f++;
                             }
-
-                            // make the first page visible
-                            if(n === 1){
-                                pages[i].style.display = 'block';
-                                pages[i].style[pfex+'BoxShadow'] = core.shadowPattern100+';';
-                            }
-
-                            var animationend = alice.prefixJS+'AnimationEnd';
-                            if(alice.prefixJS === 'Moz'){
-                                animationend = 'animationend';
-                            }
-
-                            pages[i].addEventListener(animationend, function(){
-                                if(this.style[alice.prefixJS+'AnimationName'] === 'oddPageTurnF'){
-                                    // even page flip
-                                    evenPageFlip(this.getAttribute('id'));
-                                    // reset the CSS
-                                    resetCSS('forward', core.binding, this.getAttribute('id'));
-                                }   
-                                if(this.style[alice.prefixJS+'AnimationName'] === 'oddPageTurnR'){
-                                    // reset the CSS
-                                    resetCSS('reverse', core.binding, this.getAttribute('id'));
-
-                                    var nxtId = this.getAttribute('id');
-                                    nxtId = nxtId.substring(1, 8);
-                                    nxtId = parseInt(nxtId)+2;
-                                    
-                                    if(nxtId < core.realPageCount){
-                                        document.getElementById('p'+nxtId).style.display = 'none';
-                                    }
-                                } 
-                                if(this.style[alice.prefixJS+'AnimationName'] === 'evenPageTurnF'){
-                                    resetCSS('forward', core.binding, this.getAttribute('id'));
-
-                                }
-                                // for even pages moving backwards
-                                if(this.style[alice.prefixJS+'AnimationName'] === 'evenPageTurnR'){
-                                    
-                                    oddPageFlip(this.getAttribute('id'));
-                                    resetCSS('reverse', core.binding, this.getAttribute('id'));
-
-                                    var nxtId = this.getAttribute('id');
-                                    nxtId = nxtId.substring(1, 8);
-                                    nxtId = parseInt(nxtId)+1;
-
-                                    if(nxtId < bookEffect.realPageCount){
-                                        document.getElementById('p'+nxtId).style.zIndex = 0;
-                                    }
-                                }
-                            }, false);
-                        n++; 
                         }
                     }
-                    return params;
+
+                    if(core.paging === 'double'){
+                        // Initial page setup
+                        //==================================================================================
+                        for (var i = 0; i < core.pages.length; i++){
+                            if(core.pages[i].nodeType === 1){
+                                core.pages[i].setAttribute('id', 'p'+n);
+                                core.pages[i].setAttribute('class', className + ' ' +NewPageClass);
+
+                                // make the first page visible
+                                if(n === 1){
+                                    core.pages[i].style.display = 'block';
+                                    core.pages[i].style[pfex+'BoxShadow'] = core.shadowPattern100+';';
+                                }
+
+                                core.styleConfig(n);
+
+                                core.pages[i].setAttribute('onclick', 'alice.masterFx.caterpillar.book.turnPage('+n+')');                                
+
+                                core.pages[i].addEventListener(core.animationend, function(){
+                                    if(this.style[alice.prefixJS+'AnimationName'] === 'oddPageTurnF'){
+                                        // even page flip
+                                        core.evenPageFlip(this.getAttribute('id'));
+                                        // reset the CSS
+                                        core.resetCSS('forward', core.binding, this.getAttribute('id'));
+                                    }   
+                                    if(this.style[alice.prefixJS+'AnimationName'] === 'oddPageTurnR'){
+                                        // reset the CSS
+                                        core.resetCSS('reverse', core.binding, this.getAttribute('id'));
+
+                                        var nxtId = this.getAttribute('id');
+                                        nxtId = nxtId.substring(1, 8);
+                                        nxtId = parseInt(nxtId)+2;
+
+                                        console.log(nxtId);
+                                        
+                                        if(nxtId < core.realPageCount+1){
+                                            document.getElementById('p'+nxtId).style.display = 'none';
+                                        }
+                                    } 
+                                    if(this.style[alice.prefixJS+'AnimationName'] === 'evenPageTurnF'){
+                                        core.resetCSS('forward', core.binding, this.getAttribute('id'));
+                                    }
+                                    // for even pages moving backwards
+                                    if(this.style[alice.prefixJS+'AnimationName'] === 'evenPageTurnR'){
+                                        // odd page flip
+                                        core.oddPageFlip(this.getAttribute('id'));
+                                        // reset the CSS of the page
+                                        core.resetCSS('reverse', core.binding, this.getAttribute('id'));
+
+                                        var nxtId = this.getAttribute('id');
+                                        nxtId = nxtId.substring(1, 8);
+                                        nxtId = parseInt(nxtId)+1;
+
+                                        if(nxtId < bookEffect.realPageCount){
+                                            //document.getElementById('p'+nxtId).style.zIndex = 0;
+                                        }
+                                    }
+                                }, false);
+
+                                //This is needed for the generation of the required double pages
+                                if(core.binding === 'center'){
+                                    var papier = core.mybook.removeChild(document.getElementById('p'+n));
+                                    papiers.push(papier);
+                                }
+
+                                n++;    
+                            }    
+                        }
+                    }                
+
+                    return core;
+                },
+
+                getThisId: function(pageId){
+                    var page = pageId.substring(1, 8);
+                        page = parseInt(page);
+                        return page;
+                },
+
+                pageSetter: function(pageId){
+                    if(pageId == 0){
+                        pageId = core.realPageCount;
+                    }
+                    var prePageId = 'p'+ (pageId - 1);
+                    var prePage = document.getElementById(prePageId);
+                    prePage.style[alice.prefixJS+'Transform'] = core.transformRotate+core._rotNeg90;
+                },
+
+                setAnimDefaults: function(page){
+                    page.style[alice.prefixJS+'AnimationDuration'] = core.speed;
+                    page.style[alice.prefixJS+'AnimationFillMode'] = "forwards";
+                    page.style[alice.prefixJS+'AnimationPlayState'] = "running";
+                    page.style[alice.prefixJS+'AnimationDirection'] = 'normal';
+                    page.style[alice.prefixJS+'AnimationTimingFunction'] = "linear";
+                    page.style.display = 'block';
+                },
+
+                abstrPageFlip: function(id){
+                    var nxtId = core.getThisId(id)+1;
+                    
+                    if(nxtId === core.realPageCount+1){
+                        nxtId = 1;
+                    }
+
+                    var nxtPageId = core.book.querySelector('div:nth-child('+nxtId+')').getAttribute('id');
+                    
+                    var nxtPage = document.getElementById(nxtPageId);
+                        nxtPage.style[alice.prefixJS+'AnimationName'] = "abstrPageTurnR";
+                        core.setAnimDefaults(nxtPage); 
+
+                    nxtPage.addEventListener(core.animationend, function(){
+                        if(nxtPage.style[alice.prefixJS+'AnimationName'] === 'abstrPageTurnR'){    
+                            core.clearAnimation(this.getAttribute('id'), 'forwards');
+                        }
+                    }, false);
+                },
+
+                abstrPageReFlip: function(id){
+                    var preId = core.getThisId(id)-1;
+
+                    if(preId == 0){
+                        preId = core.realPageCount;
+                    }
+
+                    var prePageId = core.book.querySelector('div:nth-child('+preId+')').getAttribute('id');
+                    
+                    var prePage = document.getElementById(prePageId);
+                        prePage.style[alice.prefixJS+'AnimationName'] = "abstrPageReTurnR";
+                        core.setAnimDefaults(prePage); 
+
+                    prePage.addEventListener(core.animationend, function(){
+                        if(prePage.style[alice.prefixJS+'AnimationName'] === 'abstrPageReTurnR'){    
+                            core.clearAnimation(this.getAttribute('id'), 'reverse');
+                        }
+                    }, false);
+                },
+
+                evenPageFlip: function(id){
+                    var nxtId = id;
+                        nxtId = nxtId.substring(1, 8);
+                        nxtId = parseInt(nxtId);
+                        nxtId = nxtId + 1;
+                    
+                    var nxtPageId = core.book.querySelector('div:nth-child('+nxtId+')').getAttribute('id');
+                    
+                    var nxtPage = document.getElementById(nxtPageId);
+                        nxtPage.style.zIndex = 1;
+                        nxtPage.style[alice.prefixJS+'AnimationName'] = "evenPageTurnF";
+                        core.setAnimDefaults(nxtPage); 
+                },
+
+                oddPageFlip: function(id){
+                    var preId = id;
+                        preId = preId.substring(1, 8);
+                        preId = parseInt(preId);                                
+
+                    var prePageId = core.book.querySelector('div:nth-child('+(preId - 1)+')').getAttribute('id');
+
+                    var prePage = document.getElementById(prePageId);
+                        prePage.style.zIndex = 1;
+                        prePage.style.display = 'block';
+                        prePage.style[alice.prefixJS+'AnimationName'] = "oddPageTurnR";
+                        core.setAnimDefaults(prePage); 
                 },
 
                 turnPage: function (pageId){
@@ -609,44 +897,38 @@ alice.masterFx.caterpillar = function (params) {
                         core.leftPage = 0;
                         core.rightPage = 1;
                     }
-
                     if(core.rightPage > core.realPageCount){
                         core.leftPage = core.realPageCount;
                         core.rightPage = core.realPageCount+1;
                     }
 
                     if(pageId % 2 === 1){
-                        core.leftPage += 1;
 
-                        var nxtPageId = core.mybook.querySelector('div:nth-child('+(pageId + 1)+')').getAttribute('id');
+                        var nxtPageId = core.book.querySelector('div:nth-child('+(pageId + 1)+')').getAttribute('id');
 
-                        var nxtNxtPageId = core.mybook.querySelector('div:nth-child('+(pageId + 2)+')');
+                        var nxtNxtPageId = core.book.querySelector('div:nth-child('+(pageId + 2)+')');
                         if(nxtNxtPageId){
                             nxtNxtPageId = nxtNxtPageId.getAttribute('id');
                             var nxtNxtPage = document.getElementById(nxtNxtPageId);
-                            nxtNxtPage.style.display = 'block';
                             nxtNxtPage.style.zIndex = '0';
+                            nxtNxtPage.style.display = 'block';
                         }
                         
                         var page = document.getElementById('p'+pageId);
                             page.style.zIndex = '1';
                             page.style[alice.prefixJS+'AnimationName'] = "oddPageTurnF";
-                            page.style[alice.prefixJS+'AnimationDuration'] = core.speed;
-                            page.style[alice.prefixJS+'AnimationFillMode'] = "forwards";
-                            page.style[alice.prefixJS+'AnimationTimingFunction'] = core.timing;
-                            page.style[alice.prefixJS+'AnimationPlayState'] = "running";
-                            page.style[alice.prefixJS+'AnimationDirection']= 'normal';
+                            core.setAnimDefaults(page); 
 
                         if(core.rightPage < core.realPageCount+1){
                             core.rightPage += 2;
-                            core.leftPage += 1;
+                            core.leftPage += 2;
                         }
                     }
                     if(pageId % 2 === 0){
 
-                        var prvPageId = core.mybook.querySelector('div:nth-child('+(pageId - 1)+')').getAttribute('id');
+                        var prvPageId = core.book.querySelector('div:nth-child('+(pageId - 1)+')').getAttribute('id');
 
-                        var prvPrvPageElement = core.mybook.querySelector('div:nth-child('+(pageId - 2)+')');
+                        var prvPrvPageElement = core.book.querySelector('div:nth-child('+(pageId - 2)+')');
                         
                         if(prvPrvPageElement){
                             var prvPrvPageId = prvPrvPageElement.getAttribute('id');
@@ -655,24 +937,74 @@ alice.masterFx.caterpillar = function (params) {
                         }
                         
                         var page = document.getElementById('p'+pageId);
-                            page.style.zIndex = '10';
+                            page.style.zIndex = '1';
                             
                             page.style[alice.prefixJS+'AnimationName'] = "evenPageTurnR";
-                            page.style[alice.prefixJS+'AnimationDuration'] = core.speed;
-                            page.style[alice.prefixJS+'AnimationFillMode'] = "forwards";
-                            page.style[alice.prefixJS+'AnimationPlayState'] = "running";
-                            page.style[alice.prefixJS+'AnimationDirection'] = "normal";
-                            page.style[alice.prefixJS+'AnimationTimingFunction'] = core.timing;
-
-                            //page.style.marginLeft = '-'+core.myBookWidth+'px';
+                            core.setAnimDefaults(page); 
                     
                         if(core.leftPage >= 1){
                             core.rightPage -= 2;
                             core.leftPage -= 2;
                         }
                     }
+                },
+                //This creates a page turn and then sets the event listener for that single turn event.
+                _AbstractPageTurn: function (pageId){  
+                    if(core.rightPage >= core.realPageCount){
+                        core.rightPage = 0;
+                    }
+ 
+                    var page = document.getElementById('p'+pageId);
+                    page.style.zIndex = '100';
+                    page.style[alice.prefixJS+'AnimationName'] = "abstrPageTurnF";
 
-                    console.log(core.leftPage +' '+core.rightPage);
+                    // In case we want the wrapAround effect
+                    if(pageId == core.realPageCount){
+                        pageId = 0;
+                    }
+                    // Make sure we have the next page visible!
+                    if(core.binding == 'left' || core.binding == 'top' || core.binding == 'right' || core.binding == 'bottom'){
+                        var nxtPageId = core.book.querySelector('div:nth-child('+(pageId + 1)+')').getAttribute('id');
+                        var nxtPage = document.getElementById(nxtPageId);
+                        nxtPage.style.display = 'block';
+                    }
+
+                    page.addEventListener(core.animationend, function(){
+                        if(page.style[alice.prefixJS+'AnimationName'] === 'abstrPageTurnF'){
+                            if(core.binding == 'center' || core.binding == 'middle'){
+                                alice.masterFx.caterpillar.book.abstrPageFlip(this.getAttribute('id'));
+                            }
+                            core.clearAnimation(this.getAttribute('id'), 'forwards');
+                            core.rightPage++;
+                        }
+                     }, false);
+
+                    core.setAnimDefaults(page); 
+                },
+
+                _AbstractPageTurnR: function (pageId){  
+                    if(core.rightPage === 0){
+                        core.rightPage = 5;
+                    }
+                    if(pageId != 1){
+                    core.pageSetter(pageId);
+                    }
+                    if(pageId == 0){
+                        pageId = core.realPageCount;
+                    }
+
+                    var page = document.getElementById('p'+pageId);
+                    page.style[alice.prefixJS+'AnimationName'] = "abstrPageReTurnF";
+
+                    page.addEventListener(core.animationend, function(){
+                        if(page.style[alice.prefixJS+'AnimationName'] === 'abstrPageReTurnF'){
+                            alice.masterFx.caterpillar.book.abstrPageReFlip(this.getAttribute('id'));
+                            core.clearAnimation(this.getAttribute('id'), 'reverse');
+                            core.rightPage--;
+                        }
+                     }, false);
+
+                    core.setAnimDefaults(page);
                 }
             }
 
@@ -741,7 +1073,13 @@ alice.fx.book = function (params) {
 
         binding: params.binding || "vertical",
 
-        direction: params.direction || 'left'
+        direction: params.direction || 'left',
+
+        paging: params.paging || "single",
+
+        wrap: params.wrap || "normal",
+
+        cyclical: params.cyclical || true
     };
 
     //console.log(opts);

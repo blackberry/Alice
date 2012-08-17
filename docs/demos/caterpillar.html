@@ -126,7 +126,7 @@ $a("book").book({
                     </div>
                     <div>
                         <p>The back cover?</p>
-                        <button onclick="$a('book').toss({iteration: 1});">DONE</button>
+                        <button onclick="finishUp()">DONE</button>
                     </div>
                 </div>
 
@@ -154,15 +154,24 @@ $a("book").book({
         prettyPrint();
         sniffer.init();
 
+        function moveIt(){
+            document.location = 'next.html'
+        }
+
+        function finishUp(){
+            $a('book').toss({iteration: 1, duration: "1000ms"});
+            setTimeout(moveIt, 700);
+        }
+
         document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
 
             $a("book").book({
                 pageClassName: 'page',
                 bookWidth: 600,
                 bookHeight: 400,
-                speed: '3500ms',
+                speed: '750ms',
                 paging: "single",
-                binding: "left",
+                binding: "top",
                 wrap: false,
                 controls: true
             });

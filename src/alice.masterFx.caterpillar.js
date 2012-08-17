@@ -59,11 +59,11 @@ alice.masterFx.caterpillar = function (params) {
                 book: '',
                 timing: 'linear',
                 binding: '',
-                circular: true,
                 paging: '',
                 flip: '',
                 margin: '',
                 controlBoxStyle: '',
+                wrap: false,
 
                 // Transform details
                 transformOrigin: '',
@@ -130,44 +130,46 @@ alice.masterFx.caterpillar = function (params) {
                     var abstrPageReTurnR = '@'+alice.prefix+'keyframes abstrPageReTurnR{\n';
 
                     var closure = '}\n';
+
+                    var abstrPageReTurnR, abstrPageReTurnF, abstrPageTurnR, abstrPageTurnF;
                     
                     //abstract axis
                     if(core.paging === 'single'){
-                        if(core.binding == 'left'){
-                            var abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originL+tranRotNeg270+closure+'\n'+closure;
-                            var abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
-                            var abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
-                            var abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
+                        if(core.binding === 'left'){
+                            abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originL+tranRotNeg270+closure+'\n'+closure;
+                            abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
+                            abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
+                            abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
                         }
-                        if(core.binding == 'right'){
-                            var abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRot270+closure+'\n'+closure;
-                            var abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
-                            var abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
-                            var abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
+                        if(core.binding === 'right'){
+                            abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRot270+closure+'\n'+closure;
+                            abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
+                            abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
+                            abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
                         }
-                        if(core.binding == 'top'){
-                            var abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originL+tranRot270+closure+'\n'+closure;
-                            var abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
-                            var abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
-                            var abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
+                        if(core.binding === 'top'){
+                            abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originL+tranRot270+closure+'\n'+closure;
+                            abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
+                            abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
+                            abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
                         }
-                        if(core.binding == 'bottom'){
-                            var abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRotNeg270+closure+'\n'+closure;
-                            var abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
-                            var abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
-                            var abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
+                        if(core.binding === 'bottom'){
+                            abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRotNeg270+closure+'\n'+closure;
+                            abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
+                            abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
+                            abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
                         }
-                        if(core.binding == 'center'){
-                            var abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originM+tranRotNeg90+closure+'\n'+closure;
-                            var abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originM+tranRot0+closure+'\n'+closure;
-                            var abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originM+tranRot90+closure+'\n'+closure;
-                            var abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originM+tranRot0+closure+'\n'+closure;
+                        if(core.binding === 'center'){
+                            abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originM+tranRotNeg90+closure+'\n'+closure;
+                            abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originM+tranRot0+closure+'\n'+closure;
+                            abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originM+tranRot90+closure+'\n'+closure;
+                            abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originM+tranRot0+closure+'\n'+closure;
                         }
-                        if(core.binding == 'middle'){
-                            var abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originM+tranRotNeg90+closure+'\n'+closure;
-                            var abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originM+tranRot0+closure+'\n'+closure;
-                            var abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originM+tranRot90+closure+'\n'+closure;
-                            var abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originM+tranRot0+closure+'\n'+closure;
+                        if(core.binding === 'middle'){
+                            abstrPageTurnF = abstrPageF+Szero+closure+Sfifty+closure+Shundred+originM+tranRotNeg90+closure+'\n'+closure;
+                            abstrPageTurnR = abstrPageR+Szero+closure+Sfifty+closure+Shundred+originM+tranRot0+closure+'\n'+closure;
+                            abstrPageReTurnF = abstrPageReTurnF+Szero+closure+Sfifty+closure+Shundred+originM+tranRot90+closure+'\n'+closure;
+                            abstrPageReTurnR = abstrPageReTurnR+Szero+closure+Sfifty+closure+Shundred+originM+tranRot0+closure+'\n'+closure;
                         }
 
                         // Insert the keyframes!
@@ -177,32 +179,34 @@ alice.masterFx.caterpillar = function (params) {
                         alice.keyframeInsert(abstrPageReTurnR);
                     }
 
+                    var oddPageTurnF, oddPageTurnR, evenPageTurnF, evenPageTurnR;
+
                     if(core.paging === 'double'){
                         //vertical axis
                         if(core.binding === 'left'){
-                            var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originL+tranRotNeg90+closure+'\n'+closure;
-                            var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
-                            var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originR+tranRot0+closure+'\n'+closure;
-                            var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originR+tranRot90+closure+'\n'+closure;
+                            oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originL+tranRotNeg90+closure+'\n'+closure;
+                            oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
+                            evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originR+tranRot0+closure+'\n'+closure;
+                            evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originR+tranRot90+closure+'\n'+closure;
                         }
                         if(core.binding === 'right'){
-                            var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRot90+closure+'\n'+closure;
-                            var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
-                            var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originL+tranRot0+closure+'\n'+closure;
-                            var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originL+tranRotNeg90+closure+'\n'+closure;
+                            oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRot90+closure+'\n'+closure;
+                            oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
+                            evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originL+tranRot0+closure+'\n'+closure;
+                            evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originL+tranRotNeg90+closure+'\n'+closure;
                         }
                         //horizontal axis
                         if(core.binding === 'top'){
-                            var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originL+tranRot90+closure+'\n'+closure;
-                            var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
-                            var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originR+tranRot0+closure+'\n'+closure;
-                            var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originR+tranRotNeg90+closure+'\n'+closure;
+                            oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originL+tranRot90+closure+'\n'+closure;
+                            oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originL+tranRot0+closure+'\n'+closure;
+                            evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originR+tranRot0+closure+'\n'+closure;
+                            evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originR+tranRotNeg90+closure+'\n'+closure;
                         }
                         if(core.binding === 'bottom'){
-                            var oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRotNeg90+closure+'\n'+closure;
-                            var oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
-                            var evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originL+tranRot0+closure+'\n'+closure;
-                            var evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originL+tranRot90+closure+'\n'+closure;
+                            oddPageTurnF = oddPageF+Szero+closure+Sfifty+closure+Shundred+originR+tranRotNeg90+closure+'\n'+closure;
+                            oddPageTurnR = oddPageR+Szero+closure+Sfifty+closure+Shundred+originR+tranRot0+closure+'\n'+closure;
+                            evenPageTurnF = evenPageF+SfiftyRev+closure+ShundredRev+originL+tranRot0+closure+'\n'+closure;
+                            evenPageTurnR = evenPageR+SfiftyRev+closure+ShundredRev+originL+tranRot90+closure+'\n'+closure;
                         }
                         
                         //Insert the keyframes!
@@ -229,6 +233,8 @@ alice.masterFx.caterpillar = function (params) {
 
                     core.shadowPatternRev50 = params.shadowPatternRev50;
                     core.shadowPatternRev100 = params.shadowPatternRev100;
+
+                    core.wrap = params.wrap;
 
                     core.paging = params.paging; 
 
@@ -393,12 +399,23 @@ alice.masterFx.caterpillar = function (params) {
                             // gotta prepare ourselves
                             var prepage = document.getElementById('p'+(idNum-1)); 
 
-                            // For all those special pages
-                            if(idNum == 1){
-                                var prepage = document.getElementById('p'+core.realPageCount); 
+                            //In case we need a book that never ends!
+                            if(core.wrap === true){
+                                // For all those special pages
+                                if(idNum == 1){
+                                    var prepage = document.getElementById('p'+core.realPageCount); 
+                                }
+                                if(idNum != core.realPageCount){
+                                    var nextpage = document.getElementById('p'+(parseInt(idNum)+1));
+                                }
                             }
-                            if(idNum != core.realPageCount){
-                                var nextpage = document.getElementById('p'+(parseInt(idNum)+1));
+
+                            if(core.wrap === false){
+                                if(idNum == 1){
+                                    idNum = 1;
+                                    core.rightPage = 1;
+                                    console.log("hopefully!")
+                                }
                             }
 
                             if(core.binding == 'left' || core.binding == 'top' || core.binding == 'right' || core.binding == 'bottom'){
@@ -959,16 +976,33 @@ alice.masterFx.caterpillar = function (params) {
                         core.rightPage = 0;
                     }
 
+
                     console.log(core.rightPage);
- 
                     var page = document.getElementById('p'+pageId);
-                    page.style.zIndex = '100';
-                    page.style[alice.prefixJS+'AnimationName'] = "abstrPageTurnF";
+
+                    if(core.wrap == false){
+                        if(pageId != core.realPageCount){
+                            page.style.zIndex = '100';
+                            page.style[alice.prefixJS+'AnimationName'] = "abstrPageTurnF";
+                        }
+                    }else{
+                        page.style.zIndex = '100';
+                        page.style[alice.prefixJS+'AnimationName'] = "abstrPageTurnF";
+                    }
+
 
                     // In case we want the wrapAround effect
                     if(pageId == core.realPageCount){
-                        pageId = 0;
-                    }
+                        if(core.wrap === true){      
+                            pageId = 0;
+                        }else{
+                            core.rightPage = core.realPageCount;
+                        }
+                    }        
+                    
+                    page.style.zIndex = '100';
+                    page.style[alice.prefixJS+'AnimationName'] = "abstrPageTurnF";
+
                     // Make sure we have the next page visible!
                     if(core.binding == 'left' || core.binding == 'top' || core.binding == 'right' || core.binding == 'bottom'){
                         var nxtPageId = core.book.querySelector('div:nth-child('+(pageId + 1)+')').getAttribute('id');
@@ -995,7 +1029,7 @@ alice.masterFx.caterpillar = function (params) {
                         console.log('reversing page: '+core.rightPage)
                         
                         if(core.rightPage == 0){
-                        core.rightPage = (core.realPageCount);
+                        core.rightPage = core.realPageCount;
                         }
                         if(pageId != 1){
                         core.pageSetter(pageId);
@@ -1019,40 +1053,55 @@ alice.masterFx.caterpillar = function (params) {
                     }
                     if(core.binding == 'left' || core.binding == 'right' || core.binding == 'top' || core.binding == 'bottom'){
 
-                        if((pageId-1) == 0){
-                            pageId = core.realPageCount+1;
-                            core.rightPage = core.realPageCount+1;
-                        }
-
-                        console.log('page Id = '+(pageId-1));
-
-                        var page = document.getElementById('p'+(pageId-1));
-
-                        page.style.zIndex = '10';
-
-                        switch (core.binding){
-                            case "left" || "bottom":
-                                page.style[alice.prefixJS+'Transform'] = core.transformRotate+core._rotNeg270;
-                                break;
-                            case "top":
-                                page.style[alice.prefixJS+'Transform'] = core.transformRotate+core._rot270;
-                                break;
-                            case "right":
-                                page.style[alice.prefixJS+'Transform'] = core.transformRotate+core._rot270;
-                                break;
-                            
-                        }
-
-                        page.style[alice.prefixJS+'AnimationName'] = "abstrPageReTurnF";
-
-                        page.addEventListener(core.animationend, function(){
-                            if(page.style[alice.prefixJS+'AnimationName'] === 'abstrPageReTurnF'){
-                                core.clearAnimation('p'+(pageId-1), 'reverse');
-                                core.rightPage--;  
+                        if(core.wrap == true){
+                            if((pageId-1) == 0){
+                                pageId = core.realPageCount+1;
+                                core.rightPage = core.realPageCount+1;
                             }
-                         }, false);
+                        }
 
-                        core.setAnimDefaults(page);
+                            console.log(pageId-1);
+
+                            if(core.wrap === true){
+                                if((pageId-1) === 0){
+
+                                    console.log("I need to get this first page to not move.")
+                                    // pageId = core.realPageCount+1;
+                                    // core.rightPage = core.realPageCount+1;
+                                }
+                            }
+
+                            //for 1 I need to change the rightpage, and id, and ensure the animation doesnt roll
+
+                            var page = document.getElementById('p'+(pageId-1));
+
+                            page.style.zIndex = '10';
+
+                            switch (core.binding){
+                                case "left" || "bottom":
+                                    page.style[alice.prefixJS+'Transform'] = core.transformRotate+core._rotNeg270;
+                                    break;
+                                case "top":
+                                    page.style[alice.prefixJS+'Transform'] = core.transformRotate+core._rot270;
+                                    break;
+                                case "right":
+                                    page.style[alice.prefixJS+'Transform'] = core.transformRotate+core._rot270;
+                                    break;
+                                
+                            }
+
+                            page.style[alice.prefixJS+'AnimationName'] = "abstrPageReTurnF";
+                        
+                            page.addEventListener(core.animationend, function(){
+                                if(page.style[alice.prefixJS+'AnimationName'] === 'abstrPageReTurnF'){
+                                    core.clearAnimation('p'+(pageId-1), 'reverse');
+                                    core.rightPage--;  
+                                }
+                             }, false);
+
+                            core.setAnimDefaults(page);
+
+                        
                     }
                 }
             }
@@ -1124,7 +1173,7 @@ alice.fx.book = function (params) {
 
         paging: params.paging || "single",
 
-        wrap: params.wrap || true,
+        wrap: params.wrap || false,
 
         controls: params.controls || false
     };

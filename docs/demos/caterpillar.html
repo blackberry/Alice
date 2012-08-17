@@ -126,8 +126,11 @@ $a("book").book({
                     </div>
                     <div>
                         <p>The back cover?</p>
+                        <button onclick="$a('book').toss({iteration: 1});">DONE</button>
                     </div>
                 </div>
+
+
         </div>
 
         <div class="fineprint"><p>Copyright &copy; 2011-2012 Research In Motion Limited</p></div>
@@ -143,6 +146,7 @@ $a("book").book({
         <!-- AliceJS -->
         <script src="../../src/alice.core.js"></script>
         <script src="../../src/alice.masterFx.caterpillar.js"></script>
+        <script src="../../src/alice.masterFx.cheshire.js"></script>
 <!--
         <script src="../js/alice-min.js"></script>
 -->
@@ -158,9 +162,11 @@ $a("book").book({
                 bookHeight: 400,
                 speed: '500ms',
                 paging: "single",
-                binding: "right",
+                binding: "top",
                 controls: true
-            }); 
+            });
+
+
 
             //console.log(alice.anima);
 

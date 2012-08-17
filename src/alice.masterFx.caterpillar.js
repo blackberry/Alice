@@ -234,6 +234,7 @@ alice.masterFx.caterpillar = function (params) {
 
                     // Fashion me a book!
                     core.book.style[alice.prefixJS+'Perspective'] = '3000px';
+                    core.book.style.zIndex = '1000';
                     core.binding = params.binding;
 
                     if(params.paging == 'single'){
@@ -634,7 +635,7 @@ alice.masterFx.caterpillar = function (params) {
                         clickBox.style.height = core.pageHeight+'px';
                         clickBox.style.position = 'absolute';
                         clickBox.style.background = '#999';
-                        clickBox.style.zIndex = '10001';
+                        clickBox.style.zIndex = '0';
 
                         clickBox.style.top = core.controlBoxStyle.offsetTop+'px';
 
@@ -642,8 +643,6 @@ alice.masterFx.caterpillar = function (params) {
 
                         if(loc === 'right'){
                             clickBox.style.left = (core.controlBoxStyle.offsetLeft + core.pageWidth)+'px';
-                            //clickBox.style.left = (core.pageWidth)+'px';
-                            //clickBox.style.background = '#999';
                             clickBox.setAttribute('onclick', pageRef+'._AbstractPageTurn('+pageRef+'.rightPage)');
                         }else{
                             clickBox.style.left = (core.controlBoxStyle.offsetLeft-parseInt(clickBox.style.width))+'px';
@@ -652,9 +651,11 @@ alice.masterFx.caterpillar = function (params) {
                         //document.getElementById('_controlBox').appendChild(clickBox);
                         document.body.appendChild(clickBox);
                     };
-                        
-                    genController('left');
-                    genController('right');   
+                      
+                    if(params.controls === true){    
+                        genController('left');
+                        genController('right');   
+                    }
 
                     function keyrelease(evt){
                         var dir = evt.keyCode;
@@ -709,13 +710,15 @@ alice.masterFx.caterpillar = function (params) {
                                 core.pages[b].setAttribute('id', 'p'+f);
                                 core.pages[b].setAttribute('class', className + ' ' +NewPageClass);
 
-                                //core.pages[b].setAttribute('onclick', 'alice.masterFx.caterpillar.book._AbstractPageTurn('+f+')');                                
+                                if(params.controls !== true){  
+                                    core.pages[b].setAttribute('onclick', 'alice.masterFx.caterpillar.book._AbstractPageTurn('+f+')');                                
+                                }
 
                                 core.styleConfig(f);
 
                                 if(f === 1){
                                     core.pages[b].style.display = 'block';
-                                    core.pages[b].setAttribute('style', 'display: block; '+
+                                    core.pages[b].setAttribute('style', 'display: block; z-index: 1;'+
                                     alice.prefix+'transform-origin:'+core.TransformOrigin+';'+
                                     alice.prefix+'transform: '+ core.transformRotate + core._rot0 +';' +
                                     alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
@@ -1119,13 +1122,11 @@ alice.fx.book = function (params) {
 
         binding: params.binding || "vertical",
 
-        direction: params.direction || 'left',
-
         paging: params.paging || "single",
 
-        wrap: params.wrap || "normal",
+        wrap: params.wrap || true,
 
-        cyclical: params.cyclical || true
+        controls: params.controls || false
     };
 
     //console.log(opts);

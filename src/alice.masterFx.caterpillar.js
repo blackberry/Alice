@@ -71,13 +71,13 @@ alice.masterFx.caterpillar = function (params) {
                 transformDegrees: [],
                 
                 // Transform degrees
-                _rot270: '(270deg)',
+                _rot270: '(262deg)',
                 _rot180: '(180deg)',
                 _rot90: '(90deg)',
                 _rot0: '(0deg)',
                 _rotNeg90: '(-90deg)',
                 _rotNeg180: '(-180deg)',
-                _rotNeg270: '(-265deg)',
+                _rotNeg270: '(-262deg)',
 
                 // Shadow details
                 shadowPattern0: '',
@@ -220,7 +220,7 @@ alice.masterFx.caterpillar = function (params) {
                 config: function(params){
                     // config some core variables
                     core.speed = params.speed;
-                    core.book = document.getElementById(alice.anima);
+                    core.book = document.getElementById(params.elems || alice.anima);
                     core.timing = params.timing;
                     core.binding = params.binding;
 
@@ -339,7 +339,7 @@ alice.masterFx.caterpillar = function (params) {
                     var idNum = id.substring(1, 8);    
                     var _element = document.getElementById(id);
 
-                    console.warn('clear animation of: '+idNum);
+                    console.warn('clear animation of: '+idNum+' with a pn of: '+core.pn);
 
                     // Simple blanks for replacing
                     _element.style[alice.prefixJS + "Animation"] = '';
@@ -367,6 +367,7 @@ alice.masterFx.caterpillar = function (params) {
                     }
                     else if(core.binding == 'left' || core.binding == 'top' || core.binding == 'right' || core.binding == 'bottom'){
                         _element.style.display = 'none';
+                        console.log(_element);
                     }
 
                     // Abtsract page changes
@@ -411,10 +412,9 @@ alice.masterFx.caterpillar = function (params) {
                             }
 
                             if(core.wrap === false){
-                                if(idNum == 1){
+                                if(idNum === 1){
                                     idNum = 1;
                                     core.rightPage = 1;
-                                    console.log("hopefully!")
                                 }
                             }
 
@@ -422,7 +422,9 @@ alice.masterFx.caterpillar = function (params) {
                                 nextpage.style.display = 'none';
                                 _element.style.display = 'block';
                             }
+                            if(core.wrap === true && idNum > 1){
                                 prepage.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[2];
+                            }
                                 nextpage.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[1];
                         }
                         if(idNum == 1 && dir == 'reverse'){
@@ -972,15 +974,22 @@ alice.masterFx.caterpillar = function (params) {
                 },
                 //This creates a page turn and then sets the event listener for that single turn event.
                 _AbstractPageTurn: function (pageId){  
-                    if(core.rightPage >= core.realPageCount){
-                        core.rightPage = 0;
+                    if(core.wrap === true){
+                        if(core.rightPage === core.realPageCount){
+                            core.rightPage = 0;
+                        }
+                    }else{
+                        if(core.binding === 'center' || core.binding === 'middle'){
+                            if(core.rightPage >= core.realPageCount){
+                                core.rightPage = core.realPageCount;
+                            }
+                        }
                     }
 
-
-                    console.log(core.rightPage);
+                    
                     var page = document.getElementById('p'+pageId);
 
-                    if(core.wrap == false){
+                    if(core.wrap === false){
                         if(pageId != core.realPageCount){
                             page.style.zIndex = '100';
                             page.style[alice.prefixJS+'AnimationName'] = "abstrPageTurnF";
@@ -990,18 +999,24 @@ alice.masterFx.caterpillar = function (params) {
                         page.style[alice.prefixJS+'AnimationName'] = "abstrPageTurnF";
                     }
 
-
                     // In case we want the wrapAround effect
                     if(pageId == core.realPageCount){
                         if(core.wrap === true){      
-                            pageId = 0;
+                            pageId = 0; // This is only applicable to the left, right, top, bottom.
                         }else{
-                            core.rightPage = core.realPageCount;
+                            if(core.binding === 'center' || core.binding === 'middle'){
+                                pageId = core.realPageCount+1;
+                                core.rightPage = core.realPageCount+1;
+                                var page = document.getElementById('p'+pageId);
+                            }
                         }
-                    }        
-                    
-                    page.style.zIndex = '100';
-                    page.style[alice.prefixJS+'AnimationName'] = "abstrPageTurnF";
+                    }  
+
+                    console.log('Turning page: '+core.rightPage + ' ' + pageId);
+                    if(core.rightPage != core.realPageCount && pageId != core.realPageCount && core.wrap == false){
+                        //page.style.zIndex = '100'; 
+                        page.style[alice.prefixJS+'AnimationName'] = "abstrPageTurnF";
+                    }
 
                     // Make sure we have the next page visible!
                     if(core.binding == 'left' || core.binding == 'top' || core.binding == 'right' || core.binding == 'bottom'){
@@ -1025,17 +1040,28 @@ alice.masterFx.caterpillar = function (params) {
 
                 _AbstractPageTurnR: function (pageId){  
                     if(core.binding == 'center' || core.binding == 'middle'){
+
+                        if(pageId >= core.realPageCount){
+                            pageId = core.realPageCount;
+                            core.rightPage = core.realPageCount;
+                        }
                         
                         console.log('reversing page: '+core.rightPage)
                         
-                        if(core.rightPage == 0){
+                        if(core.rightPage === 0){
                         core.rightPage = core.realPageCount;
                         }
-                        if(pageId != 1){
+                        if(pageId !== 1){
                         core.pageSetter(pageId);
                         }
-                        if(pageId == 0){
+                        if(pageId === 0){
                             pageId = core.realPageCount;
+                        }
+                        // We have to throw a curve ball to stop the function from working.
+                        if(core.wrap === false){
+                            if(pageId === 1){
+                                pageId = -1;
+                            }
                         }
 
                         var page = document.getElementById('p'+pageId);
@@ -1051,6 +1077,7 @@ alice.masterFx.caterpillar = function (params) {
 
                         core.setAnimDefaults(page);
                     }
+
                     if(core.binding == 'left' || core.binding == 'right' || core.binding == 'top' || core.binding == 'bottom'){
 
                         if(core.wrap == true){
@@ -1058,6 +1085,9 @@ alice.masterFx.caterpillar = function (params) {
                                 pageId = core.realPageCount+1;
                                 core.rightPage = core.realPageCount+1;
                             }
+                        }
+                        if(core.wrap === false && pageId >= core.realPageCount){
+                            pageId = core.realPageCount;
                         }
 
                             console.log(pageId-1);

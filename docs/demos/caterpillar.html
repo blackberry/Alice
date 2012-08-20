@@ -39,6 +39,10 @@
             left: 0;
             right: 0;
         }
+
+        .page:nth-child(odd){
+            background: #888;
+        }
     </style>
     </head>
     <body>      
@@ -154,14 +158,10 @@ $a("book").book({
         prettyPrint();
         sniffer.init();
 
-        function moveIt(){
-            document.location = 'next.html'
-        }
-
-        function finishUp(){
-            $a('book').toss({iteration: 1, duration: "1000ms"});
-            setTimeout(moveIt, 700);
-        }
+        // function finishUp(){
+        //     $a('book').toss({iteration: 1, duration: "1000ms"});
+        //     setTimeout(moveIt, 700);
+        // }
 
         document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
 
@@ -169,10 +169,10 @@ $a("book").book({
                 pageClassName: 'page',
                 bookWidth: 600,
                 bookHeight: 400,
-                speed: '750ms',
+                speed: '500ms',
                 paging: "single",
-                binding: "top",
-                wrap: false,
+                binding: "right",
+                wrap: true,
                 controls: true
             });
 
@@ -181,18 +181,18 @@ $a("book").book({
             //console.log(alice.anima);
 
         // Google Analytics
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-28534102-1']);
-        _gaq.push(['_setDomainName', 'github.com']);
-        _gaq.push(['_trackPageview']);
-        (function () {
-            var ga = document.createElement('script');
-            ga.type = 'text/javascript';
-            ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(ga, s);
-        })();
+        // var _gaq = _gaq || [];
+        // _gaq.push(['_setAccount', 'UA-28534102-1']);
+        // _gaq.push(['_setDomainName', 'github.com']);
+        // _gaq.push(['_trackPageview']);
+        // (function () {
+        //     var ga = document.createElement('script');
+        //     ga.type = 'text/javascript';
+        //     ga.async = true;
+        //     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        //     var s = document.getElementsByTagName('script')[0];
+        //     s.parentNode.insertBefore(ga, s);
+        // })();
         </script>
     </body>
 </html>

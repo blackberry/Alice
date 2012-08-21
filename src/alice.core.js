@@ -591,7 +591,7 @@ var alice = function () {
             keyframeInsert: function (rule) {
                 if (document.styleSheets && document.styleSheets.length) {
                     try {
-                        document.styleSheets[0].insertRule(rule, 0);
+                        document.styleSheets[0].insertRule(rule, 10);
                         //console.log(rule);
                     }
                     catch (ex) {

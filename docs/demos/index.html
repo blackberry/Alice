@@ -41,7 +41,7 @@
                         <div>
                             <div id="logo-alice-img"></div>
                         </div>
-                        <div id="logo-alice-txt-alice">
+                        <div id="logo-alice-txt-alice" style="padding: 40px 0 0 0;">
                             <div id="logo-alice-txt-a"></div>
                             <div id="logo-alice-txt-l"></div>
                             <div id="logo-alice-txt-i"></div>
@@ -60,7 +60,7 @@
                 </div>
 
                 <div>
-                    <h2>AliceJS Demos</h2>
+                    <h1>AliceJS Demos</h1>
                     <p>Please browse through our collection of demos of the Cheshire and Caterpillar plugins, or try developing one of your own plugins.</p>
                 </div>
 
@@ -117,12 +117,44 @@
 
         <!-- AliceJS -->
         <script src="../../src/alice.core.js"></script>
-        <script src="../../src/alice.plugins.cheshire.js"></script>
+        <script src="../../src/alice.masterFx.cheshire.js"></script>
 
         <script type="text/javascript">
         
         prettyPrint();
         sniffer.init();
+
+                animateLogo = function () {
+                $a("logo-alice-img").spin({
+                    move: "left",
+                    overshoot: '7',
+                    duration: "3000ms",
+                    iteration: "1"
+                });
+
+                var kids = document.getElementById("logo-alice-txt-alice").children;
+                
+
+                $a(document.getElementById("logo-alice-txt-alice").children).slide({
+                    //elems: document.getElementById("logo-alice-txt-alice").children,
+                    move: "left",
+                    overshoot: '0',
+                    duration: {value: "2000ms", randomness: "100%", offset: "250ms"},
+                    timing: "easeOutQuint",
+                    delay: "0ms",
+                    iteration: 1
+                });
+
+                $a(document.getElementById("logo-alice-txt-js").children).toss({
+                    move: "left",
+                    overshoot: "10%",
+                    iteration: 1,
+                    duration: { value: "2000ms", randomness: "50%", offset: "250ms" },
+                    timing: "ease-in-out"
+                });
+            };
+
+            animateLogo();
 
         document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
 

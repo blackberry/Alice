@@ -17,8 +17,10 @@
  * limitations under the License.
  */
 
+@import url("http://fonts.googleapis.com/css?family=Alice");
+
 body {
-    background-color: #4E7BA1;
+    background-color: #2C0E40;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 84%;
     padding: 0;
@@ -35,10 +37,10 @@ body {
 /* Logo sprite */
 
 #logo-alice-img {
-    background: transparent url('../../images/logo_header_plain_sprite.png') no-repeat 0px 0px;
+    background: transparent url('../../images/AliceMain.png') no-repeat 0px 0px;
     float: left;
-    width: 120px;
-    height: 150px;
+    width: 160px;
+    height: 250px;
 }
 
 #logo-alice-txt-a {
@@ -91,29 +93,28 @@ a:hover {
     color: #FF0000;
 }
 
-{
-    border: 0;
-}
 
 #container {
     overflow: hidden;
-    width: 80%;
+    width: 85%;
     margin: 0 auto;
-    min-height: 100%;
+    min-height: 100%;    
 }
 
 .card-edge {
-    background: #F1FCFF url(../../images/backgrounds/wave_header.jpg) no-repeat;
-    border-radius: 15px;
+    background: #F2DCC2; /* url(../../images/backgrounds/wave_header.jpg) no-repeat */
+    border-radius: 10px;
     padding: 20px;
+    margin: 0px 15px;
     overflow: hidden;
+    box-shadow: #000 0px 2px 15px;
 }
 
 .card {
-    background-color: #F6F9FC;
+    background-color: #eee; /*3C4C59*/
     padding: 10px;
     opacity: 0.9;
-    border: 1px solid #B5B8BA;
+    /*border: 1px solid #B5B8BA;*/
     border-radius: 15px;
     box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.75);
     min-height: 250px;
@@ -153,7 +154,7 @@ pre {
 .fineprint {
     font-size: 10px;
     text-align: center;
-    color: #194569;
+    color: #FFF;
 }
 
 .fineprint a {
@@ -231,7 +232,7 @@ a.button, button {
     float: left;
     margin-left: 1%;
     min-height: 300px;
-    background: #eee;
+    background: #F2F0D5;
     border-radius: 20px;
     border: 1px solid #ddd;
 }
@@ -257,5 +258,10 @@ a.button, button {
 
 a.title{
     font-weight: bold;
-    font-size: larger;
+    font-size: 1.8em;
+    font-family: 'Alice', serif;
 }
+
+h1{
+    font-family: 'Alice', serif;
+    }

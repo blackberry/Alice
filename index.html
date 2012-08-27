@@ -105,7 +105,9 @@ a.wobble([&quot;DIV1&quot;, &quot;IMG1&quot;], 5, &quot;center&quot;,
                     <h2>Architecture</h2>
 
                     <p>AliceJS is completely self-contained and doesn't rely on any other libraries. It also focuses exclusively on setting up animations through CSS manipulations. This makes it easy to include along with other libraries without fear of collision as AliceJS doesn't try to do event handling (touch or mouse), nor does it enforce particular logic or layout elements. It's easy for instance to use AliceJS to animate a Dojo Dialog component for example, or a jQuery UI component, just by addressing the underlying DIV.</p>
+
                     <p>AliceJS is composed exclusively of JS files in a single folder, without image, CSS or any other dependencies. There is an "alice.core.js" file that contains common code and utilities, and then each effect has its own additional JS file, for example, "alice.plugins.cheshire.js". The goal is to keep each animation separate which makes it easy for a developer to create a minified build with only what is needed and nothing else. AliceJS is lean and right now, the gzipped minified version containing the entire library is about 5K only!</p>
+
                     <p>The syntax for AliceJS is also kept minimal and in line with CSS, which we believe to be really simple and easy to grasp. For example:</p>
 
                     <pre class="prettyprint lang-js">

@@ -30,19 +30,15 @@
             color: #fff;
             padding: 40px;
         }
-        /* Firefox 3.0+ */
-        #book{
-            position: absolute;
-            top: 600px;
-            background: #eee;
-            margin-left: auto;
-            margin-right: auto;
-            left: 0;
-            right: 0;
-        }
+
+
 
         .page:nth-child(odd){
             background: #888;
+        }
+
+        #_piggy{
+            background: #999 url(../../images/pattern.jpg);
         }
     </style>
     </head>
@@ -53,8 +49,8 @@
             <a href="../index.html"><img src="../../images/close_icon.png"></a>
         </div>
 
-        <div id="container" >
-            <div id="card1" class="card-edge" style="height: 1100px;">
+        <div id="container">
+            <div id="card1" class="card-edge">
                 <div>
                     <h1 class="seo">AliceJS Demos</h1>
 
@@ -109,7 +105,7 @@ $a("book").book({
                 </div>
                 <div class="spacer"></div>
 
-                <div id="book" style="-webkit-perspective: 3000px; width: 800px; height: 800px; text-align: center; margin: 50px auto;">
+                <div id="book" style="text-align: center; margin: 100px auto;">
                     <div>
                         <h1 style="color: #fff; text-align: center;">Alice in Wonderland</h1>
                         <img src="../../images/AliceMain.png" />
@@ -117,6 +113,9 @@ $a("book").book({
                     <div>
                         <p>Down the Rabbit Hole</p>
                     </div>
+                    <!-- <span>
+                        <p>Down the Rabbit Hole</p>
+                    </span> -->
                     <div>
                         <p>The Pool of Tears</p>
                     </div>
@@ -151,9 +150,10 @@ $a("book").book({
                         <p>Alice's Evidence</p>
                     </div>
                 </div>
-
-
         </div>
+
+        
+
 
         <div class="fineprint"><p>Copyright &copy; 2011-2012 Research In Motion Limited</p></div>
 
@@ -185,13 +185,13 @@ $a("book").book({
 
             $a("book").book({
                 pageClassName: 'page',
-                bookWidth: 600,
+                bookWidth: "600px",
                 bookHeight: 400,
                 speed: '500ms',
                 paging: "single",
-                binding: "left",
+                binding: "top",
                 wrap: true,
-                //controls: true
+                controls: true
             });
 
 

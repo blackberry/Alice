@@ -90,15 +90,14 @@ alice.masterFx.caterpillar = function () {
         helpers: {},
 
         AnimGenerator: function(params){
+            var abstrPageReTurnR, abstrPageReTurnF, abstrPageTurnR, abstrPageTurnF, oddPageTurnF, oddPageTurnR, evenPageTurnF, evenPageTurnR;
             // transforms
             var tranRot90 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+core._rot90+';';
             var tranRot180 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+core._rot180+';';
             var tranRot270 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+core._rot270+';';
-
             var tranRotNeg180 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+core._rotNeg180+';';
             var tranRotNeg270 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+core._rotNeg270+';';
             var tranRotNeg90 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+core._rotNeg90+';';
-            
             var tranRot0 = '\n\t'+alice.prefix+'transform: '+core.transformRotate+core._rot0+';';
 
             //transform-origins
@@ -110,24 +109,20 @@ alice.masterFx.caterpillar = function () {
             var Szero = '\t0%{'+alice.prefix+'box-shadow:'+params.shadowPattern0+';';
             var Sfifty = '\t50%{'+alice.prefix+'box-shadow:'+params.shadowPattern50+';';
             var Shundred = '\t100%{'+alice.prefix+'box-shadow:'+params.shadowPattern100+';';
-
-            //var zeroRev = '0%{'+alice.prefix+'box-shadow:'+params.shadowPatternRev0+'}\n';
             var SfiftyRev = '50%{'+alice.prefix+'box-shadow:'+params.shadowPatternRev50+';'+'\n';
             var ShundredRev = '100%{'+alice.prefix+'box-shadow:'+params.shadowPatternRev100+';'+'\n';
 
             //Keyframe titles
-            var oddPageF = '@'+alice.prefix+'keyframes oddPageTurnF{\n';                    // odd page forward
-            var oddPageR = '@'+alice.prefix+'keyframes oddPageTurnR{\n';                    // odd page reverse
-            var evenPageF = '@'+alice.prefix+'keyframes evenPageTurnF{\n';                  // even page forward
-            var evenPageR = '@'+alice.prefix+'keyframes evenPageTurnR{\n';                  // even page reverse
-            var abstrPageF = '@'+alice.prefix+'keyframes abstrPageTurnF{\n';                // abstract page forward [ center || middle ]
-            var abstrPageR = '@'+alice.prefix+'keyframes abstrPageTurnR{\n';                // abstract page reverse [ center || middle ]
-            var abstrPageReTurnF = '@'+alice.prefix+'keyframes abstrPageReTurnF{\n';        // abstract page forward [ top || left || right || bottom ]
-            var abstrPageReTurnR = '@'+alice.prefix+'keyframes abstrPageReTurnR{\n';        // abstract page reverse [ top || left || right || bottom ]
+            oddPageF = '@'+alice.prefix+'keyframes oddPageTurnF{\n';                                    // odd page forward
+            oddPageR = '@'+alice.prefix+'keyframes oddPageTurnR{\n';                                    // odd page reverse
+            evenPageF = '@'+alice.prefix+'keyframes evenPageTurnF{\n';                                  // even page forward
+            evenPageR = '@'+alice.prefix+'keyframes evenPageTurnR{\n';                                  // even page reverse
+            abstrPageF = '@'+alice.prefix+'keyframes abstrPageTurnF{\n';                                // abstract page forward [ center || middle ]
+            abstrPageR = '@'+alice.prefix+'keyframes abstrPageTurnR{\n';                                // abstract page reverse [ center || middle ]
+            abstrPageReTurnF = '@'+alice.prefix+'keyframes abstrPageReTurnF{\n';                        // abstract page forward [ top || left || right || bottom ]
+            abstrPageReTurnR = '@'+alice.prefix+'keyframes abstrPageReTurnR{\n';                        // abstract page reverse [ top || left || right || bottom ]
 
             var closure = '}\n';
-
-            var abstrPageReTurnR, abstrPageReTurnF, abstrPageTurnR, abstrPageTurnF;
             
             // For single paging
             if(core.paging === 'single'){
@@ -176,7 +171,7 @@ alice.masterFx.caterpillar = function () {
                 alice.keyframeInsert(abstrPageReTurnR);
             }
 
-            var oddPageTurnF, oddPageTurnR, evenPageTurnF, evenPageTurnR;
+            
 
             if(core.paging === 'double'){
                 //vertical axis
@@ -215,8 +210,6 @@ alice.masterFx.caterpillar = function () {
         },
 
         config: function(params){
-            // configure the core variables
-            
             // Book details
             core.speed = params.speed;
             core.book = document.getElementById(params.elems || alice.anima);
@@ -242,6 +235,7 @@ alice.masterFx.caterpillar = function () {
             else{
                 bw = bWidth;
             }
+
             //set the core width
             core.pageWidth = bw;
 
@@ -294,14 +288,14 @@ alice.masterFx.caterpillar = function () {
             }
 
             // Set the array of pages for the book
-            var rawPages = core.book.childNodes;                                            // find me some raw contents!
-            var rpn = 0;                                                                    // real page number
+            var rawPages = core.book.childNodes;                                                // find me some raw contents!
+            var rpn = 0;                                                                        // real page number
             for(var p = 0; p < rawPages.length; p++){
                 if(rawPages[p].nodeType === 1){ 
-                    if(rawPages[p].tagName === "DIV" || rawPages[p].tagName === "div"){     // Ensure that they are elements
-                    core.pages[rpn] = rawPages[p];                                          // Add the div to the array
-                    core.realPageCount = core.realPageCount+1;                              // set the page count
-                    rpn++;
+                    if(rawPages[p].tagName === "DIV" || rawPages[p].tagName === "div"){         // Ensure that they are elements
+                        core.pages[rpn] = rawPages[p];                                          // Add the div to the array
+                        core.realPageCount = core.realPageCount+1;                              // set the page count
+                        rpn++;
                     }
                     else{
                         console.error("Your pages must be all be the DIV tag element. Please place the contents inside."); // At least give a reason for the malfunction
@@ -325,13 +319,13 @@ alice.masterFx.caterpillar = function () {
             }
 
             // If single paging we need a small book
-            if(params.paging == 'single'){
+            if(params.paging === 'single'){
                 core.book.style.width = core.pageWidth+'px';
                 core.book.style.height = core.pageHeight+'px';
             }
             //If double paging we need a big book
-            else if(params.paging == 'double'){
-                if(params.binding == 'left' || params.binding == 'right'){
+            else if(params.paging === 'double'){
+                if(params.binding === 'left' || params.binding === 'right'){
                     core.book.style.width = (core.pageWidth * 2)+'px';
                     core.book.style.height = core.pageHeight+'px';
                 }
@@ -345,7 +339,7 @@ alice.masterFx.caterpillar = function () {
             core.controlBoxStyle = core.book;
 
             // Set the details per binding
-            if(core.paging == 'single'){
+            if(core.paging === 'single'){
                 core.transformDegrees = [core._rot0, core._rot0, core._rot0]; //0, 0, 0
                 switch(params.binding){
                     case "center":
@@ -371,7 +365,7 @@ alice.masterFx.caterpillar = function () {
                         break;
                 }
             }
-            if(core.paging == 'double'){
+            if(core.paging === 'double'){
                 switch(params.binding){
                     case "left":
                         core.transformOrigin = core.pageWidth+'px 1px';
@@ -407,7 +401,7 @@ alice.masterFx.caterpillar = function () {
             _element.style[alice.prefixJS + "AnimationDirection"] = "";
             _element.style[alice.prefixJS + "AnimationPlayState"] = "";
 
-            if(core.binding == 'center' || core.binding == 'middle'){
+            if(core.binding === 'center' || core.binding === 'middle'){
                 if(idNum % 2 === 1){
                     if(core.pn % 2 === 1){
                         _element.style.display = 'none';
@@ -422,18 +416,16 @@ alice.masterFx.caterpillar = function () {
                     }
                 }
             }
-            else if(core.binding == 'left' || core.binding == 'top' || core.binding == 'right' || core.binding == 'bottom'){
+            else if(core.binding === 'left' || core.binding === 'top' || core.binding === 'right' || core.binding === 'bottom'){
                 _element.style.display = 'none';
             }
 
             // Abtsract page changes
-            if(core.paging == 'single'){
-                // get other pages
-                var prepage = document.getElementById('p'+(parseInt(idNum)-1)); 
-                var nextpage = document.getElementById('p'+(parseInt(idNum)+1));
+            if(core.paging === 'single'){
+                var prepage = document.getElementById('p'+(parseInt(idNum)-1, 10)); 
+                var nextpage = document.getElementById('p'+(parseInt(idNum)+1, 10));
 
-                //if its the last page
-                if(idNum == core.realPageCount){
+                if(idNum === core.realPageCount){                                //if its the last page
                     var nextpage = document.getElementById('p1'); 
                 }
 
@@ -441,7 +433,7 @@ alice.masterFx.caterpillar = function () {
                 _element.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[0];
                 _element.style.zIndex = '0';
                 
-                if(idNum > 1 && dir == 'forwards'){
+                if(idNum > 1 && dir === 'forwards'){
                     prepage.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[1];
                     if(core.binding == 'left' || core.binding == 'right' || core.binding == 'top' || core.binding == 'bottom'){    
                         nextpage.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[0];
@@ -452,24 +444,14 @@ alice.masterFx.caterpillar = function () {
                     prepage.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[1];
                 }
                 if(idNum > 0 && dir == 'reverse'){
-                    // gotta prepare ourselves
-                    var prepage = document.getElementById('p'+(idNum-1)); 
+                    var prepage = document.getElementById('p'+(idNum-1));           // gotta prepare ourselves
 
-                    //In case we need a book that never ends!
-                    if(core.wrap === true){
-                        // For all those special pages
-                        if(idNum == 1){
+                    if(core.wrap === true){                                         //In case we need a book that never ends!
+                        if(idNum == 1){                                             // For all those special pages
                             var prepage = document.getElementById('p'+core.realPageCount); 
                         }
                         if(idNum != core.realPageCount){
                             var nextpage = document.getElementById('p'+(parseInt(idNum)+1));
-                        }
-                    }
-                    // If we don't want the pages to wrap around.
-                    if(core.wrap === false){
-                        if(idNum === 1){
-                            idNum = 1;
-                            core.rightPage = 1;
                         }
                     }
 
@@ -487,7 +469,6 @@ alice.masterFx.caterpillar = function () {
                     nextpage.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[1];
                 }
             }
-            
             core.pn++;
         },
 
@@ -537,9 +518,7 @@ alice.masterFx.caterpillar = function () {
                             thisPage.style.top = '0px'; 
                             break;
                     }
-                }
-                // Regardless of the direction
-                thisPage.style[alice.prefixJS+"boxShadow"] = core.shadowPattern0;                                     
+                }                                  
             } 
             if(idNum % 2 === 0 ){
                 thisPage.setAttribute('style', '');                                                                     
@@ -584,10 +563,11 @@ alice.masterFx.caterpillar = function () {
                             break;
                     }
                     thisPage.style[alice.prefixJS+'Transform'] = flipAngleEven;  
-                }
-                // Regardless of the direction
-                thisPage.style[alice.prefixJS+"boxShadow"] = core.shadowPattern0;                                       
+                }                                       
             }
+
+            // Regardless of the direction
+            thisPage.style[alice.prefixJS+"boxShadow"] = core.shadowPattern0;
         },
 
         styleConfig: function(idNum){
@@ -645,6 +625,14 @@ alice.masterFx.caterpillar = function () {
             // Set the animations/ Add to stylesheet
             core.AnimGenerator(params);
 
+            // Report the book status
+            if(core.binding != 'center' || core.binding != 'middle'){
+                core.helper.bookStatus(core.rightPage-1);
+            }else{
+                core.helper.bookStatus(core.rightPage);
+            }
+
+            // Interactivity!
             var genController = function(loc){
                 var clickBox = document.createElement('div');
                 clickBox.setAttribute('id', '_'+loc+'Controller');
@@ -663,37 +651,38 @@ alice.masterFx.caterpillar = function () {
                     clickBox.style.left = (core.controlBoxStyle.offsetLeft + parseInt(core.pageWidth))+'px';
                     clickBox.style.borderTopRightRadius = '100px';
                     clickBox.style.borderBottomRightRadius = '100px';
-                    clickBox.setAttribute('onclick', pageRef+'._AbstractPageTurn('+pageRef+'.rightPage)');
+                    clickBox.setAttribute('onclick', pageRef+'.abPageTurn('+pageRef+'.rightPage)');
                 }else{
-                    clickBox.style.left = (core.controlBoxStyle.offsetLeft-parseInt(clickBox.style.width))+'px';
+                    clickBox.style.left = (core.controlBoxStyle.offsetLeft - parseInt(clickBox.style.width))+'px';
                     clickBox.style.borderTopLeftRadius = '100px';
                     clickBox.style.borderBottomLeftRadius = '100px';
-                    clickBox.setAttribute('onclick', pageRef+'._AbstractPageTurnR('+pageRef+'.rightPage)');
+                    clickBox.setAttribute('onclick', pageRef+'.abPageTurnR('+pageRef+'.rightPage)');
                 }
-                //document.getElementById('_controlBox').appendChild(clickBox);
                 document.body.appendChild(clickBox);
             }; 
             
             // Only if they really want them
             if(params.controls === true && params.paging === "single"){    
                 genController('left');
-                genController('right');   
+                genController('right');
+
+                //Required for page resizing 
+                window.onresize = function(event) {
+                    document.body.removeChild(document.getElementById("_leftController"));      // remove the original to make a new
+                    document.body.removeChild(document.getElementById("_rightController"));     // same thing here.
+                    genController('left');
+                    genController('right');
+                }   
             }
 
-            // Regardless they get these
+            // Regardless of the controls choice they get this
             function keyrelease(evt){
                 var dir = evt.keyCode;
                 var newPageCount = core.realPageCount+1;
                 if(dir === 39){
-                    if(core.rightPage < newPageCount){
+                    if(core.rightPage <= newPageCount){
                         if(core.paging === "single"){
-                            if(core.rightPage > core.realPageCount && core.wrap === false){
-                                core.rightPage = core.realPageCount;
-                            }
-                            if(core.rightPage === 1 && core.wrap === false){
-                                core.rightPage = 1;
-                            }
-                            core._AbstractPageTurn(core.rightPage);
+                            core.abPageTurn(core.rightPage);
                         }
                         if(core.paging === "double"){
                             core.turnPage(core.rightPage);
@@ -703,7 +692,7 @@ alice.masterFx.caterpillar = function () {
                 
                 if(dir == 37){ 
                     if(core.paging === "single"){
-                        core._AbstractPageTurnR(core.rightPage);
+                        core.abPageTurnR(core.rightPage);
                     }
                     if(core.paging === "double"){
                         if(core.leftPage >= 1){
@@ -716,10 +705,9 @@ alice.masterFx.caterpillar = function () {
             // Add the keylistener
             document.body.addEventListener("keyup", keyrelease, false);
 
-            //Acquired traits from params
+            // Give the book some class
             var className = core.pageClassName,
-                bookEffect = alice.masterFx.caterpillar,
-                n = 1; 
+                bookEffect = alice.masterFx.caterpillar;
             
             var NewClass =  '.'+core.NewPageClass+
                             '{ display: none; '+
@@ -737,38 +725,36 @@ alice.masterFx.caterpillar = function () {
             // insert the new class
             alice.keyframeInsert(NewClass);
 
-            //This is key generating the doubles required for this binding.
+            //==================================================================================
+            // Initial Page Setup
             if(core.paging === 'single'){ 
-                
                 var f = 1;
-                //var newPages = document.getElementById(alice.anima).childNodes;
                 for(var b = 0; b < core.pages.length; b++){
-                    if(core.pages[b].nodeType === 1){
-                        core.pages[b].setAttribute('id', 'p'+f);
-                        core.pages[b].setAttribute('class', className + ' ' +core.NewPageClass);
+                    core.pages[b].setAttribute('id', 'p'+f);
+                    core.pages[b].setAttribute('class', className + ' ' +core.NewPageClass);
 
-                        if(params.controls !== true){  
-                            core.pages[b].setAttribute('onclick', 'alice.masterFx.caterpillar._AbstractPageTurn('+f+')');                                
-                        }
-
-                        core.styleConfig(f);
-
-                        if(f === 1){
-                            core.pages[b].style.display = 'block';
-                            core.pages[b].setAttribute('style', 'display: block; z-index: 1;'+
-                            alice.prefix+'transform-origin:'+core.transformOrigin+';'+
-                            alice.prefix+'transform: '+ core.transformRotate + core._rot0 +';' +
-                            alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
-                        }
-
-                        f++;
+                    if(params.controls !== true){
+                        // Without controls we still need to move forward  
+                        core.pages[b].setAttribute('onclick', 'alice.masterFx.caterpillar.abPageTurn('+f+')');                                
                     }
+
+                    // pretify the pages
+                    core.styleConfig(f);
+
+                    // If its the first page we need to make it special
+                    if(f === 1){
+                        core.pages[b].style.display = 'block';
+                        core.pages[b].setAttribute('style', 'display: block; z-index: 1;'+
+                        alice.prefix+'transform-origin:'+core.transformOrigin+';'+
+                        alice.prefix+'transform: '+ core.transformRotate + core._rot0 +';' +
+                        alice.prefix+'box-shadow: '+ core.shadowPatternRev100 +';');
+                    }
+                    f++;
                 }
             }
 
             if(core.paging === 'double'){
-                // Initial page setup
-                //==================================================================================
+                var n = 1; 
                 for (var i = 0; i < core.pages.length; i++){
                     if(core.pages[i].nodeType === 1){
                         core.pages[i].setAttribute('id', 'p'+n);
@@ -780,148 +766,101 @@ alice.masterFx.caterpillar = function () {
                             core.pages[i].style[alice.prefixJS+'BoxShadow'] = core.shadowPattern100+';';
                         }
 
-                        core.styleConfig(n);
-
-                        core.pages[i].setAttribute('onclick', 'alice.masterFx.caterpillar.turnPage('+n+')');                                
-
-                        core.pages[i].addEventListener(core.animationEnd, function(){
-                            if(this.style[alice.prefixJS+'AnimationName'] === 'oddPageTurnF'){
-                                // even page flip
-                                core.evenPageFlip(this.getAttribute('id'));
-                                // reset the CSS
-                                core.resetCSS('forward', core.binding, this.getAttribute('id'));
-                                
+                        core.styleConfig(n);                                                                        // Configure the remaining pages
+                        
+                        core.pages[i].setAttribute('onclick', 'alice.masterFx.caterpillar.turnPage('+n+')');        // Empower the click action                              
+                        
+                        core.pages[i].addEventListener(core.animationEnd, function(){                               // Set up the animation end listener
+                            if(this.style[alice.prefixJS+'AnimationName'] === 'oddPageTurnF'){      // odd page forward flip
+                                core.turnNextPage(this.getAttribute('id'), 'odd');                         // incured even page flip
+                                core.resetCSS('forward', core.binding, this.getAttribute('id'));    // reset the css of the odd page
                             }   
-                            if(this.style[alice.prefixJS+'AnimationName'] === 'oddPageTurnR'){
-                                // reset the CSS
-                                core.resetCSS('reverse', core.binding, this.getAttribute('id'));
+                            if(this.style[alice.prefixJS+'AnimationName'] === 'oddPageTurnR'){      // odd page reverse flip incured by the even page reverse flip
+                                core.resetCSS('reverse', core.binding, this.getAttribute('id'));    // reset the css of the odd page
 
-                                var nxtId = this.getAttribute('id');
-                                nxtId = nxtId.substring(1, 8);
-                                nxtId = parseInt(nxtId)+2;
-
-                                console.log(nxtId);
-                                
-                                if(nxtId < core.realPageCount+1){
-                                    document.getElementById('p'+nxtId).style.display = 'none';
+                                var nxtId = core.helper.getThisId(this.getAttribute('id'));         // get the next page number
+                                nxtId = parseInt(nxtId)+2;                                          // go to the next next page
+                                if(nxtId < core.realPageCount+1){                                   // make sure it exsits
+                                    document.getElementById('p'+nxtId).style.display = 'none';      // hide it
                                 }
-                                core.animationRunning = false;
+
+                                core.animationRunning = false;                                      // set animationRunning state to false (prevent over running animations)
                             } 
-                            if(this.style[alice.prefixJS+'AnimationName'] === 'evenPageTurnF'){
-                                core.resetCSS('forward', core.binding, this.getAttribute('id'));
-                                core.animationRunning = false;
+                            if(this.style[alice.prefixJS+'AnimationName'] === 'evenPageTurnF'){     // even page forward flip (incured by the odd page flip)
+                                core.resetCSS('forward', core.binding, this.getAttribute('id'));    // reset the css of the even page
+                                core.animationRunning = false;                                      // set animationRunning state to false (prevents messy page flips)
                             }
-                            // for even pages moving backwards
-                            if(this.style[alice.prefixJS+'AnimationName'] === 'evenPageTurnR'){
-                                // odd page flip
-                                core.oddPageFlip(this.getAttribute('id'));
-                                // reset the CSS of the page
-                                core.resetCSS('reverse', core.binding, this.getAttribute('id'));
-
-                                var nxtId = this.getAttribute('id');
-                                nxtId = nxtId.substring(1, 8);
-                                nxtId = parseInt(nxtId)+1;
-
-                                if(nxtId < bookEffect.realPageCount){
-                                    //document.getElementById('p'+nxtId).style.zIndex = 0;
-                                }
-                                
+                            if(this.style[alice.prefixJS+'AnimationName'] === 'evenPageTurnR'){     // even page reverse flip
+                                core.turnNextPage(this.getAttribute('id'), 'even');                          // incur the odd page reverse flip
+                                core.resetCSS('reverse', core.binding, this.getAttribute('id'));    // reset the css of the even page
                             }
                         }, false);
-
-                        //This is needed for the generation of the required double pages
-                        if(core.binding === 'center'){
-                            var papier = core.mybook.removeChild(document.getElementById('p'+n));
-                            papiers.push(papier);
-                        }
 
                         n++;    
                     }    
                 }
             }         
 
-            return core;
+            return core;                                                                                // return the core of alice.masterFx.caterpillar
         },
 
-        abstrPageFlip: function(id){
-            var nxtId = core.getThisId(id)+1;
-            
-            if(nxtId === core.realPageCount+1){
-                nxtId = 1;
+        abstrPageFlip: function(id, dir){                                                               // Get the id and direction
+            var idNum, ani;
+            if(dir === 'forwards'){
+                idNum = core.helper.getThisId(id)+1;
+                ani = "abstrPageTurnR";
+                if(idNum === core.realPageCount+1){                                                     // make sure it doesn't exceed the book
+                    idNum = 1;                                                                          // reset the book to page one
+                }
+            }                                                         
+            else if(dir === 'reverse'){
+                ani = "abstrPageReTurnR";
+                idNum = core.helper.getThisId(id)-1;
+                if(idNum == 0){
+                    idNum = core.realPageCount;
+                }
             }
 
-            var nxtPageId = core.book.querySelector('div:nth-child('+nxtId+')').getAttribute('id');
+            var pageId = core.book.querySelector('div:nth-child('+idNum+')').getAttribute('id');        // With the next id number we get the next page
             
-            var nxtPage = document.getElementById(nxtPageId);
-                nxtPage.style[alice.prefixJS+'AnimationName'] = "abstrPageTurnR";
-                core.helper.setAnimDefaults(nxtPage); 
+            var page = document.getElementById(pageId);                                                 // Take the next page
+                page.style[alice.prefixJS+'AnimationName'] = ani;                                       // Make it flip
+                core.helper.setAnimDefaults(page);                                                      // Ensure the common details are set
 
-            nxtPage.addEventListener(core.animationEnd, function(){
-                if(nxtPage.style[alice.prefixJS+'AnimationName'] === 'abstrPageTurnR'){    
-                    core.clearAnimation('p'+nxtId, 'forwards');
-                    core.animationRunning = false;
+            page.addEventListener(core.animationEnd, function(){                                        // When the animation ends
+                if(page.style[alice.prefixJS+'AnimationName'] === ani){                                 // If its a particular animation
+                    core.clearAnimation('p'+idNum, dir);                                                // Clear the animation from the CSS
+                    core.animationRunning = false;                                                      // Set the animation Running state
                 }
             }, false);
+
+            core.helper.bookStatus(idNum);
         },
 
-        abstrPageReFlip: function(id){
-            var preId = core.getThisId(id)-1;
+        turnNextPage: function(id, type){                                                   // This is called for the backside page
+            var pg, pgId, page, aniName;    
+            pg = core.helper.getThisId(id);
+            pg = (type === 'odd') ? (pg+1) : (pg-1);                                        // Control the page requested
+            console.log("page: "+pg);
+            aniName = (type === 'even') ? "oddPageTurnR" : "evenPageTurnF";                 // Determine the required animation
 
-            if(preId == 0){
-                preId = core.realPageCount;
-            }
-
-            var prePageId = core.book.querySelector('div:nth-child('+preId+')').getAttribute('id');
+            core.animationRunning = true;                                                   // Set the state of the animation
             
-            var prePage = document.getElementById(prePageId);
-                prePage.style[alice.prefixJS+'AnimationName'] = "abstrPageReTurnR";
-                core.helper.setAnimDefaults(prePage); 
-
-            prePage.addEventListener(core.animationEnd, function(){
-                if(prePage.style[alice.prefixJS+'AnimationName'] === 'abstrPageReTurnR'){    
-                    core.clearAnimation(this.getAttribute('id'), 'reverse');
-                    core.animationRunning = false;
+            pgId = core.book.querySelector('div:nth-child('+pg+')').getAttribute('id');     // Get the page
+            
+            var page = document.getElementById(pgId);
+                page.style.zIndex = 1; 
+                if(type === 'odd'){
+                    page.style.display = 'block';
                 }
-            }, false);
-        },
-
-        evenPageFlip: function(id){
-            // In order to see if any animation is running.
-            core.animationRunning = true;
-
-
-            var nxtId = id;
-                nxtId = nxtId.substring(1, 8);
-                nxtId = parseInt(nxtId);
-                nxtId = nxtId + 1;
-            
-            var nxtPageId = core.book.querySelector('div:nth-child('+nxtId+')').getAttribute('id');
-            
-            var nxtPage = document.getElementById(nxtPageId);
-                nxtPage.style.zIndex = 1;
-                nxtPage.style[alice.prefixJS+'AnimationName'] = "evenPageTurnF";
-                core.helper.setAnimDefaults(nxtPage); 
-        },
-
-        oddPageFlip: function(id){
-            // In order to see if any animation is running.
-            core.animationRunning = true;
-
-            var preId = id;
-                preId = preId.substring(1, 8);
-                preId = parseInt(preId);                                
-
-            var prePageId = core.book.querySelector('div:nth-child('+(preId - 1)+')').getAttribute('id');
-
-            var prePage = document.getElementById(prePageId);
-                prePage.style.zIndex = 1;
-                prePage.style.display = 'block';
-                prePage.style[alice.prefixJS+'AnimationName'] = "oddPageTurnR";
-                core.helper.setAnimDefaults(prePage); 
+                page.style[alice.prefixJS+'AnimationName'] = aniName;
+                core.helper.setAnimDefaults(page); 
         },
 
         turnPage: function (pageId){
+            console.log("page: "+pageId);
             if(core.animationRunning === false){
+                var secondChild, thirdChild, ani;
 
                 if(core.leftPage < 0){
                     core.leftPage = 0;
@@ -931,231 +870,149 @@ alice.masterFx.caterpillar = function () {
                     core.leftPage = core.realPageCount;
                     core.rightPage = core.realPageCount+1;
                 }
+                if(pageId % 2 === 1){                               // Regarding the odd pages
+                    secondChild = pageId + 1;
+                    thirdChild = pageId + 2;
+                    ani = "oddPageTurnF";
+                }else{                                              // Those leftover even pages
+                    secondChild = pageId - 1;
+                    thirdChild = pageId - 2;
+                    ani = "evenPageTurnR";
+                }
 
-                if(pageId % 2 === 1){
+                if(pageId < core.realPageCount){
+                    core.animationRunning = true;
+                    
+                    var nxtPageId = core.book.querySelector('div:nth-child('+(secondChild)+')').getAttribute('id');     // Get the next page
+                    var nxtNxtPageId = core.book.querySelector('div:nth-child('+(thirdChild)+')');                      // Get the page after that  
+                    
+                    if(nxtNxtPageId){                                                                                   // If this page exists do the following
+                        nxtNxtPageId = nxtNxtPageId.getAttribute('id');                                                 // After all it should be there. 
+                        var nxtNxtPage = document.getElementById(nxtNxtPageId);
+                        nxtNxtPage.style.zIndex = '0';
+                        nxtNxtPage.style.display = 'block';
+                    }
 
-                    if(pageId < core.realPageCount){
-                        core.animationRunning = true;
+                    var page = document.getElementById('p'+pageId);                                                     // Animate this page
+                        page.style.zIndex = '1';                                                                        // Bring it front row
+                        page.style[alice.prefixJS+'AnimationName'] = ani;
+                        core.helper.setAnimDefaults(page); 
 
-                        
-                        var nxtPageId = core.book.querySelector('div:nth-child('+(pageId + 1)+')').getAttribute('id');
-
-                        var nxtNxtPageId = core.book.querySelector('div:nth-child('+(pageId + 2)+')');
-                        
-                        if(nxtNxtPageId){
-                            nxtNxtPageId = nxtNxtPageId.getAttribute('id');
-                            var nxtNxtPage = document.getElementById(nxtNxtPageId);
-                            nxtNxtPage.style.zIndex = '0';
-                            nxtNxtPage.style.display = 'block';
-                        }
-                        
-                        var page = document.getElementById('p'+pageId);
-                            page.style.zIndex = '1';
-                            page.style[alice.prefixJS+'AnimationName'] = "oddPageTurnF";
-                            core.helper.setAnimDefaults(page); 
-
+                    if(pageId % 2 == 1){                                                                                // For the odd pages
                         if(core.rightPage < core.realPageCount+1){
                             core.rightPage += 2;
                             core.leftPage += 2;
+                        }   
+                    }else{                                                                                              // For the even pages
+                        if(core.leftPage >= 1){
+                            core.rightPage -= 2;
+                            core.leftPage -= 2;
                         }
-                    }
-                }
-                if(pageId % 2 === 0){
-                    core.animationRunning = true;
-                    var prvPageId = core.book.querySelector('div:nth-child('+(pageId - 1)+')').getAttribute('id');
-                    var prvPrvPageElement = core.book.querySelector('div:nth-child('+(pageId - 2)+')');
-                    if(prvPrvPageElement){
-                        var prvPrvPageId = prvPrvPageElement.getAttribute('id');
-                        var prvPrvPage = document.getElementById(prvPrvPageId);
-                        prvPrvPage.style.display = 'block';
-                    }
-                    
-                    var page = document.getElementById('p'+pageId);
-                        page.style.zIndex = '1';
-                        
-                        page.style[alice.prefixJS+'AnimationName'] = "evenPageTurnR";
-                        core.helper.setAnimDefaults(page); 
-                
-                    if(core.leftPage >= 1){
-                        core.rightPage -= 2;
-                        core.leftPage -= 2;
                     }
                 }
             }
         },
 
-        //This creates a page turn and then sets the event listener for that single turn event.
-        _AbstractPageTurn: function (pageId){
-        if(core.animationRunning === false){ 
-            if(core.wrap === true){
-                if(core.rightPage === core.realPageCount){
-                    core.rightPage = 0;
+        abPageTurn: function (pageId){
+            if(core.animationRunning === false){
+                if(pageId >= core.realPageCount && core.wrap == true){
+                    pageId = 0;
                 }
-            }else{
-                if(core.binding === 'center' || core.binding === 'middle'){
-                    if(core.rightPage >= core.realPageCount){
-                        core.rightPage = core.realPageCount;
+                if(pageId === 0 && core.wrap == true){
+                    if(core.binding === 'center' || core.binding === 'middle'){
+                        pageId = core.realPageCount;
+                        core.rightPage = core.realPageCount; 
                     }
                 }
-            }
 
-            
-
-            var page = document.getElementById('p'+pageId);
-
-            
-
-            core.helper.piggyback(pageId, "standard");                           // We need both the page number, and direction
+                var page = document.getElementById('p'+core.rightPage);
                 
-
-            if(core.wrap === false){
-                if(pageId != core.realPageCount){
-                    page.style.zIndex = '100';
-                    page.style[alice.prefixJS+'AnimationName'] = "abstrPageTurnF";
+                try{
+                    var nxtPageId = core.book.querySelector('div:nth-child('+(pageId + 1)+')').getAttribute('id');
+                    var nxtPage = document.getElementById(nxtPageId);
+                        nxtPage.style.display = 'block';
+                }catch(err){ 
+                    if(core.wrap != true){   
+                        console.log("This is the end of the book!");                                                            // The end of the book
+                        return false;                                                                                           // Deny the flip animation
+                    }
                 }
-            }else{
+
                 page.style.zIndex = '100';
                 page.style[alice.prefixJS+'AnimationName'] = "abstrPageTurnF";
-            }
 
-            // In case we want the wrapAround effect
-            if(pageId == core.realPageCount){
-                if(core.wrap === true){ 
-                    
-                    //console.log(pageId);
-                }else{
-                    if(core.binding === 'center' || core.binding === 'middle'){
-                        pageId = core.realPageCount+1;
-                        core.rightPage = core.realPageCount+1;
-                        var page = document.getElementById('p'+pageId);
+                page.addEventListener(core.animationEnd, function(){
+                    if(page.style[alice.prefixJS+'AnimationName'] === 'abstrPageTurnF'){
+                        if(core.binding == 'center' || core.binding == 'middle'){
+                            alice.masterFx.caterpillar.abstrPageFlip(this.getAttribute('id'), 'forwards');
+                        }else{
+                            core.helper.bookStatus(pageId);
+                        }
+                        if(core.rightPage == core.realPageCount && core.wrap == true){
+                            pageId = core.realPageCount;
+                            core.rightPage = 0;
+                        }
+                        core.clearAnimation('p'+pageId, 'forwards');
+                        core.rightPage++;
+                        if(core.binding != 'center' && core.binding != 'middle'){
+                            core.animationRunning = false;   
+                        }
                     }
+                 }, false);
+
+                // Run animation run!
+                core.animationRunning = true;
+                core.helper.setAnimDefaults(page);
+
+                if(core.binding != "center" && core.binding != "middle" ){
+                    core.helper.piggyback(pageId, "standard");                  // We call piggyback to hide the backface
                 }
-            }  
-
-            if(core.rightPage != core.realPageCount && pageId != core.realPageCount && core.wrap == false){
-                page.style[alice.prefixJS+'AnimationName'] = "abstrPageTurnF";
             }
-
-            // Make sure we have the next page visible!
-            if(core.binding == 'left' || core.binding == 'top' || core.binding == 'right' || core.binding == 'bottom'){
-                if(pageId == core.realPageCount){
-                    if(core.wrap === true){ 
-                        pageId = 0; 
-                    }
-                }                        
-
-                var nxtPageId = core.book.querySelector('div:nth-child('+(pageId + 1)+')').getAttribute('id');
-                var nxtPage = document.getElementById(nxtPageId);
-                nxtPage.style.display = 'block';
-                if(pageId == 0){
-                    pageId = core.realPageCount;
-                }                   
-            }
-
-            page.addEventListener(core.animationEnd, function(){
-                if(page.style[alice.prefixJS+'AnimationName'] === 'abstrPageTurnF'){
-                    if(core.binding == 'center' || core.binding == 'middle'){
-                        alice.masterFx.caterpillar.abstrPageFlip(this.getAttribute('id'));
-                    }
-                    core.clearAnimation('p'+pageId, 'forwards');
-                    core.rightPage++;
-                    if(core.binding != 'center' && core.binding != 'middle'){
-                        core.animationRunning = false;   
-                    }
-                }
-             }, false);
-
-            // In order to see if any animation is running.
-            core.animationRunning = true;
-
-            core.helper.setAnimDefaults(page); 
-        }
         },
 
-        _AbstractPageTurnR: function (pageId){  
-            
+        abPageTurnR: function (pageId){  
+            var page, pageToClear;
             if(core.animationRunning === false){
-
-              core.animationRunning = true;  
-
-            if(core.binding == 'center' || core.binding == 'middle'){
-
-                
-
-                if(pageId >= core.realPageCount){
-                    pageId = core.realPageCount;
-                    core.rightPage = core.realPageCount;
-                }
-                
-                
-                if(core.rightPage === 0){
-                core.rightPage = core.realPageCount;
-                }
-
-                if(pageId !== 1){
-                core.helper.pageSetter(pageId);
-                }
-                
-                if(pageId === 0){
-                    pageId = core.realPageCount;
-                }
-                // We have to throw a curve ball to stop the function from working.
-                if(core.wrap === false){
-                    if(pageId === 1){
-                        pageId = -1;
+                if(core.binding == 'center' || core.binding == 'middle'){   // Because its fundamentally different from the other bindings
+                    if(pageId >= core.realPageCount){
+                        pageId = core.realPageCount;                // Because we're adding to the core.rightPage on each turn we need this, after all we cant have more pages than the total pages
+                        core.rightPage = core.realPageCount;        // Reset the core.rightPage so it matches the pageId
                     }
-                }
-
-                if(pageId >= 0){
-                    var page = document.getElementById('p'+pageId);
-                    page.style[alice.prefixJS+'AnimationName'] = "abstrPageReTurnF";
-
-                    page.addEventListener(core.animationEnd, function(){
-                        if(page.style[alice.prefixJS+'AnimationName'] === 'abstrPageReTurnF'){
-                            alice.masterFx.caterpillar.abstrPageReFlip(this.getAttribute('id'));
-                            core.clearAnimation(this.getAttribute('id'), 'reverse');
-                            core.rightPage--;
-                            if(core.binding != 'center' && core.binding != 'middle'){
-                                core.animationRunning = false;   
-                            }
-                        }
-                     }, false);
-
-                    core.animationRunning = true;
-
-                    core.helper.setAnimDefaults(page);
-                }
-            }
-
-            if(core.binding == 'left' || core.binding == 'right' || core.binding == 'top' || core.binding == 'bottom'){
-
-                core.helper.piggyback(pageId, "advanced");
-
-                if(core.wrap == true){
-                    if((pageId-1) == 0){
-                        pageId = core.realPageCount+1;
-                        core.rightPage = core.realPageCount+1;
+                    if(core.rightPage === 0 || pageId === 0){
+                        core.rightPage = core.realPageCount;        // In the case of going backwards, page zero doesnt exist.
+                        pageId = core.realPageCount;                // These identifiers need to be the same.
                     }
-                }
-                if(core.wrap === false && pageId >= core.realPageCount){
-                    pageId = core.realPageCount;
-                }
-
-                    console.log(pageId-1);
-
-                    if(core.wrap === true){
-                        if((pageId-1) === 0){
-
-                            console.log("I need to get this first page to not move.")
-                            // pageId = core.realPageCount+1;
-                            // core.rightPage = core.realPageCount+1;
+                    if(pageId !== 1){
+                        core.helper.pageSetter(pageId);             // As long as its not the first page set the details of the page, the first was already set.
+                    }
+                    if(core.wrap === false){                        // In the case of no wrap effect we idetify the page as non existing.
+                        if(pageId === 1){                       
+                            pageId = -1;                            
                         }
                     }
 
-                    //for 1 I need to change the rightpage, and id, and ensure the animation doesnt roll
+                    if(pageId >= 0){                                // Also to make sure we're able to turn off the wrap effect.     
+                        var page = document.getElementById('p'+core.rightPage);
+                        page.style[alice.prefixJS+'AnimationName'] = "abstrPageReTurnF";
+                        pageToClear = page.getAttribute('id');
+                    }
+                }
 
-                    var page = document.getElementById('p'+(pageId-1));
+                if(core.binding == 'left' || core.binding == 'right' || core.binding == 'top' || core.binding == 'bottom'){
 
+                    core.helper.piggyback(pageId, "advanced");
+
+                    if(core.wrap == true){
+                        if((pageId-1) == 0){
+                            pageId = core.realPageCount+1;
+                            core.rightPage = core.realPageCount+1;
+                        }
+                    }
+                    if(core.wrap === false && pageId >= core.realPageCount){
+                        pageId = core.realPageCount;
+                    }
+
+                    page = document.getElementById('p'+(pageId-1));
                     page.style.zIndex = '10';
 
                     switch (core.binding){
@@ -1171,26 +1028,29 @@ alice.masterFx.caterpillar = function () {
                         case "right": 
                             page.style[alice.prefixJS+'Transform'] = core.transformRotate+core._rot270;
                             break;
-                        
                     }
 
                     page.style[alice.prefixJS+'AnimationName'] = "abstrPageReTurnF";
-                
-                    page.addEventListener(core.animationEnd, function(){
-                        if(page.style[alice.prefixJS+'AnimationName'] === 'abstrPageReTurnF'){
-                            core.clearAnimation('p'+(pageId-1), 'reverse');
-                            core.rightPage--;
-                            if(core.binding != 'center' && core.binding != 'middle'){
-                                core.animationRunning = false;   
-                            }  
+                    pageToClear = 'p'+(pageId - 1);
+                    core.helper.bookStatus(pageId-2);
+                }
+
+                core.animationRunning = true;                                                                                       // The common event listener
+
+                page.addEventListener(core.animationEnd, function(){
+                    if(page.style[alice.prefixJS+'AnimationName'] === 'abstrPageReTurnF'){
+                        if(core.binding === 'center' || core.binding === 'middle'){
+                            alice.masterFx.caterpillar.abstrPageFlip(this.getAttribute('id'), 'reverse');
                         }
-                     }, false);
+                        core.clearAnimation(pageToClear, 'reverse');
+                        core.rightPage--;
+                        if(core.binding != 'center' && core.binding != 'middle'){
+                            core.animationRunning = false;   
+                        }
+                    }
+                 }, false);
 
-                    core.helper.setAnimDefaults(page);
-
-                
-            }
-
+                core.helper.setAnimDefaults(page);                                                                                  // Set the defaults to make it go!
             }
         }
     }
@@ -1199,10 +1059,23 @@ alice.masterFx.caterpillar = function () {
 
 }();
 
-// we need this to shorten things
-var _caterpillar = alice.masterFx.caterpillar;
+var _caterpillar = alice.masterFx.caterpillar;                                                                                      // we need this to shorten things
 
 alice.masterFx.caterpillar.helper = {
+
+    bookStatus: function(id){
+        if(_caterpillar.binding != 'center' && _caterpillar.binding != 'middle'){
+            id = id+1;
+        }
+        var state = "page: " +id;
+        if(id === 1){
+            state = "This is the first page";
+        }
+        if(id === _caterpillar.realPageCount || id === 0){
+            state = "This is the end of the book";
+        }
+        console.log(state);
+    },
 
     getThisId: function(pageId){
         var page = pageId.substring(1, 8);
@@ -1211,7 +1084,7 @@ alice.masterFx.caterpillar.helper = {
     },
 
     pageSetter: function(pageId){
-        if(pageId == 0){
+        if(pageId === 0){
             pageId = _caterpillar.realPageCount;
         }
         var prePageId = 'p'+ (pageId - 1);

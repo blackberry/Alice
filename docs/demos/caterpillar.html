@@ -22,7 +22,13 @@
         <link href="../../images/favicon.ico" rel="icon" type="image/x-icon">
         <link rel="stylesheet" href="../css/default.css">
         <style type="text/css">
-
+        #book{
+            width: 600px;
+            height: 400px;
+            background: #efefef;
+            text-align: center; 
+            margin: 100px auto;
+        }
         .page{
             background: #444;
         }
@@ -30,15 +36,8 @@
             color: #fff;
             padding: 40px;
         }
-
-
-
         .page:nth-child(odd){
             background: #888;
-        }
-
-        #_piggy{
-            background: #999 url(../../images/pat.jpg);
         }
     </style>
     </head>
@@ -105,17 +104,15 @@ $a("book").book({
                 </div>
                 <div class="spacer"></div>
 
-                <div id="book" style="text-align: center; margin: 100px auto;">
+                <div id="book">
                     <div>
                         <h1 style="color: #fff; text-align: center;">Alice in Wonderland</h1>
                         <img src="../../images/AliceMain.png" />
                     </div>
                     <div>
                         <p>Down the Rabbit Hole</p>
+                        <img src="../../images/rabbitColor.png" style="width: 200px;" />
                     </div>
-                    <!-- <span>
-                        <p>Down the Rabbit Hole</p>
-                    </span> -->
                     <div>
                         <p>The Pool of Tears</p>
                     </div>
@@ -183,16 +180,24 @@ $a("book").book({
 
         document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
 
-            $a("book").book({
+
+        // Must declare your event handlers before you create the book!
+        // document.addEventListener("bookStart", function(){ console.log("This book has started!"); }, false);
+        // document.addEventListener("bookEnd", function(){ console.log("This book has ended : ("); }, false);
+
+            $a().book({
+                elems: "book",
                 pageClassName: 'page',
-                bookWidth: "600px",
-                bookHeight: 400,
                 speed: '500ms',
                 paging: "single",
-                binding: "left",
+                binding: "top",
                 wrap: true,
-                controls: true
+                controls: true,
+                pageBackground: 'url(../../images/pat.jpg)',
+                controlsBackground: 'url(../../images/pat.jpg)'
             });
+
+
 
 
 

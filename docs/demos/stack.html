@@ -123,10 +123,10 @@
         </div>
 
         <!-- Add jWorkflow for Chaining -->
-        <script src="../libs/jworkflow/jworkflow-min-0.6.0.js"></script>
+        <!-- <script src="../libs/jworkflow/jworkflow-min-0.6.0.js"></script> -->
 
-        <script src="../js/src/alice.core.js"></script>
-        <script src="../js/src/alice.plugins.cheshire.js"></script>
+        <script src="../../src/alice.core.js"></script>
+        <script src="../../src/alice.plugins.cheshire.js"></script>
         <script type="text/javascript">
         var elems = document.getElementById("cards").children;
 
@@ -138,7 +138,7 @@
         }
 */
 
-        var a = alice.init();
+        var a = alicejs;
 
         document.getElementById("btn-demo").addEventListener("click", function () {
             a.log("slideLeft").slide(elems, "left", "", {

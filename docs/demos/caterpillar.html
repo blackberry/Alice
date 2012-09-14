@@ -155,7 +155,7 @@ alicejs.book({
                     </div>
                     <div class="page">
                         <p>Alice's Evidence</p>
-                        <button onclick="_caterpillar.loadMorePages('newgame.html', 'book')">Go Next</button>
+                        <button onclick="_caterpillar.loadNewBook('newgame.html', newBook);">Make A New Book</button>
                     </div>
                 </div>
         </div>
@@ -183,11 +183,18 @@ alicejs.book({
 
         document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
 
-        // Must declare your event handlers before you create the book!
-        // document.addEventListener("bookStart", function(){ console.log("This book has started!"); }, false);
+        function newBook(){
+            alicejs.book({
+                elems: "book",
+                speed: 500,
+                paging: "double",
+                binding: "left"
+            });
+        }
+
         document.addEventListener("pageTrigger", function(){
             if(_caterpillar.pageNumber === 13){
-                _caterpillar.loadMorePages('book2.html', 'book');
+                _caterpillar.loadMorePages('newgame.html', 'book');
             }
         }, false);
 
@@ -204,15 +211,6 @@ alicejs.book({
                 controlBackground: '#111'
             });
 
-
-            function newBook(){
-                alicejs.book({
-                    elems: "book",
-                    speed: 500,
-                    paging: "double",
-                    binding: "left"
-                });
-            }
 
         // Google Analytics
         // var _gaq = _gaq || [];

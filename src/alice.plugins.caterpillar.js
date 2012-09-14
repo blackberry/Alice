@@ -667,6 +667,7 @@ alice.plugins.caterpillar = function () {
                         page.style.left = core.pageWidth+'px';
                     }
                     if(idNum % 2 === 0){
+                        page.style[alice.prefixJS+'TransformOrigin'] = core.transformOrigin;
                         page.style[alice.prefixJS+'Transform'] = core.transformRotate+core._rot90;
                     }
                 }
@@ -686,6 +687,7 @@ alice.plugins.caterpillar = function () {
                         page.style[alice.prefixJS+'TransformOrigin'] = core.originZero;
                     }
                     if(idNum % 2 === 0){
+                        page.style[alice.prefixJS+'TransformOrigin'] = core.transformOrigin;
                         page.style[alice.prefixJS+'Transform'] = core.transformRotate+core._rotNeg90;
                     }
                 }

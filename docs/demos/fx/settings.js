@@ -494,7 +494,7 @@ settings.attachEvents = function () {
     var p,
         fn = function () {
             var p = settings.applyEffect(this, "running");
-            aliceJs().cheshire(p);
+            alicejs.cheshire(p);
         };
 
     document.getElementById("settings-button-toggle").addEventListener("click", function () {
@@ -504,7 +504,7 @@ settings.attachEvents = function () {
         if (settingsContent.display == "none") {
             button.innerHTML = "Hide Settings";
             settingsContent.display = "block";
-            aliceJs().slide("settings-content", "left", "5%", "1000ms");
+            alicejs.slide("settings-content", "left", "5%", "1000ms");
         }
         else {
             button.innerHTML = "Show Settings";
@@ -519,12 +519,12 @@ settings.attachEvents = function () {
 
     document.getElementById("settings-button-start").addEventListener("click", function () {
         var p = settings.applyEffect(document.getElementById("cards").children, "running");
-        aliceJs().cheshire(p);
+        alicejs.cheshire(p);
     }, false);
 
     document.getElementById("settings-button-stop").addEventListener("click", function () {
         var p = settings.applyEffect(document.getElementById("cards").children, "paused");
-        aliceJs().cheshire(p);
+        alicejs.cheshire(p);
     }, false);
 
     for (var i = 0; i < document.getElementById("cards").children.length; i++) {
@@ -535,12 +535,12 @@ settings.attachEvents = function () {
         if (document.getElementById("mini-login-username").value === "" || document.getElementById("mini-login-password").value === "") {
             document.getElementById("mini-login").style["background-color"] = "#70000F";
             p = settings.applyEffect(["mini-login"], "running");
-            aliceJs().cheshire(p);
+            alicejs.cheshire(p);
         }
         else {
             document.getElementById("mini-login").style["background-color"] = "#104100";
             p = settings.applyEffect(["mini-login"], "paused");
-            aliceJs().cheshire(p);
+            alicejs.cheshire(p);
         }
     }, false);
 };

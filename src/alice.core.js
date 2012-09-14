@@ -192,7 +192,7 @@ if (typeof module === "object" && typeof require === "function") {
 /**
  * @description
  */
-var alice = function () {
+var alice = (function () {
     "use strict";
 
     /*
@@ -208,14 +208,13 @@ var alice = function () {
         prefix: "",
         prefixJS: "",
 
-        //elems: null,
+        elems: null,
 
         cleaner: {},
 
         format: {},
         helper: {},
-        masterFx: {},
-        fx: {},
+        plugins: {},
         anima: null,
 
         debug: false,
@@ -590,8 +589,12 @@ var alice = function () {
              */
             keyframeInsert: function (rule) {
                 if (document.styleSheets && document.styleSheets.length) {
+                    var ruleNum = 0;
                     try {
-                        document.styleSheets[0].insertRule(rule, 10);
+                        if(document.styleSheets[0].cssRules.length > 0){
+                            ruleNum = document.styleSheets[0].cssRules.length;
+                        }
+                        document.styleSheets[0].insertRule(rule, ruleNum);
                         //console.log(rule);
                     }
                     catch (ex) {
@@ -644,15 +647,75 @@ var alice = function () {
                 alice.keyframeDelete(evt.animationName);
 
                 return;
+            },
+
+            init: function (params) {
+                console.info("Initializing " + this.name + " (" + this.description + ") " + this.version);
+
+                this.vendorPrefix();
+
+                if (params && params.elems) {
+                    this.elems = this.elements(params.elems);
+                    //console.log(this.elems);
+                }
+
+                // Add optional support for jWorkflow (https://github.com/tinyhippos/jWorkflow)
+                if (params && params.workflow === true) {
+                    console.log("jWorkflow: enabled");
+
+                    var id = (params && params.id) ? params.id : '',
+
+                        workflow = jWorkflow.order(),
+
+                        animation = {
+                            delay: function (ms) {
+                                workflow.chill(ms);
+                                return animation;
+                            },
+                            log: function (msg) {
+                                workflow.andThen(function () {
+                                    console.log(msg);
+                                });
+                                return animation;
+                            },
+                            custom: function (func) {
+                                workflow.andThen(func);
+                                return animation;
+                            },
+                            start: function () {
+                                workflow.start(function () {
+                                    console.info("workflow.start");
+                                });
+                            }
+                        };
+
+                    Array.prototype.forEach.call(Object.keys(core.plugins), function (plugin) {
+                        var func = core.plugins[plugin];
+                        animation[plugin] = function () {
+                            var args = arguments;
+                            workflow.andThen(function () {
+                                func.apply(document.getElementById(id), args);
+                            });
+                            return animation;
+                        };
+                    });
+
+                    return animation;
+                }
+                else {
+                    console.log("jWorkflow: disabled");
+                }
+
+                return core.plugins;
             }
         };
 
         return core;
-}();
+}());
 
 
 
-alice.fx.playPause = function() {
+alice.plugins.playPause = function() {
     var elms = alice.anima;
     var i, elems = alice.elements(elms),pfx = alice.prefixJS;
     
@@ -788,77 +851,5 @@ alice.cleaner = {
 /* 
  * Main Function
  */
-var $a = function(elems, params){
-    "use strict";
-    //console.info("Initializing " + alice.name + " (" + alice.description + ") " + alice.version);
-
-    alice.vendorPrefix();
-
-    if(elems){
-        alice.anima = elems;
-    }
-
-    if(params && params.chaining === true){
-            console.log("jWorkflow: enabled");
-
-            var id = (elems && elems) ? elems : '',
-
-                workflow = jWorkflow.order(),
-
-                animation = {
-                    addNext: function (ms){
-                        workflow.andThen(function (prev, baton) {
-                            baton.take();
-                                
-                            var animationend = alice.prefixJS+'AnimationEnd';
-                            if(alice.prefixJS === 'Moz'){
-                                animationend = 'animationend';
-                            }
-                            if(!ms){
-                                document.addEventListener(animationend, function(){     
-                                    baton.pass(prev);
-                                }, false);
-                            }else{
-                                setTimeout(function () {
-                                baton.pass(prev);
-                                }, ms);      
-                            }                      
-                        });
-                        return animation;    
-                    },
-                    log: function (msg) {
-                        workflow.andThen(function () {
-                            console.log(msg);
-                        });
-                        return animation;
-                    },
-                    custom: function (func) {
-                        workflow.andThen(func);
-                        return animation;
-                    },
-                    go: function () {
-                        workflow.start(function () {
-                            console.info('workflow.start()');
-                        });
-                    }
-                };
-
-            Array.prototype.forEach.call(Object.keys(alice.fx), function (plugin) {
-                var func = alice.fx[plugin];
-                animation[plugin] = function () {
-                    var args = arguments;
-                    workflow.andThen(function () {
-                        func.apply(document.getElementById(id), args);
-                    });
-
-                   return animation;
-                };
-            });
-
-            return animation;
-        }
-
-    return alice.fx;
-};
-
+var alicejs = alice.init();
 //----------------------------------------------------------------------------

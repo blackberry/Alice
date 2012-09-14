@@ -23,8 +23,8 @@
         <link rel="stylesheet" href="../css/default.css">
         <style type="text/css">
         #book{
-            width: 600px;
-            height: 400px;
+            width: 350px;
+            height: 450px;
             text-align: center; 
             margin: 100px auto;
         }
@@ -83,20 +83,25 @@
                 <a name="book"></a>
                 <div class="card">
                     <div id="book_info" class="icon">
-                        
+                    <img src="../../images/caterpillar.png" alt="Book" title="Book">  
                     </div>
-                    <p><a href="fx/bounce.html">Book</a> - The "book" effect generates book with the content provided in the child divs of the parent div, allowing the binding to be placed on any side of the parent div.</p>
+                    <p>Book - The "book" effect generates book with the content provided in the child divs of the parent div, allowing the binding to be placed on any side of the parent div.</p>
                     <div class="code">
                         <pre class="prettyprint lang-js">
 
-$a("book").book({
-    pageClassName: 'page',      // class title of pages
-    bookWidth: 600,             // integer relating to pixels
-    bookHeight: 400,            // integer relating to pixels
-    speed: '500ms',             // select a speed
-    paging: 'single',           // single || double
-    binding: "left",            // left || right || top || bottom || center || middle
-    circular: true              // true || false
+alicejs.book({
+    elems: "book",
+    pageClass: '',                  // a class to add to pages
+    shadow: true,                   // true || false
+    speed: '500ms',                 // select a speed
+    randomize: '15%'                // string of percetange (impacts the speed of the page turns)
+    paging: 'single',               // single || double
+    binding: "left",                // left || right || top || bottom || center || middle
+    wrap: true,                     // true || false
+    controls: true,                 // true || false ( external controls )
+    pageBackground: '#333',         // string (basic css applied to the page backgrounds)
+    controlsBackground: '#111',     // string (basic css applied to the page backgrounds)
+    inPageControls: true            // true || false
 });
                         </pre>
                     </div>
@@ -107,21 +112,24 @@ $a("book").book({
                     <div class="page">
                         <h1 style="color: #fff; text-align: center;">Alice in Wonderland</h1>
                         <img src="../../images/AliceMain.png" />
+                        <button onclick="_caterpillar.nxtPage()">Go To Next Page</button>
                     </div>
                     <div class="page">
                         <p>Down the Rabbit Hole</p>
-                        <img src="../../images/rabbitColor.png" style="width: 200px;" />
-                        <button style="padding: 10px;" onclick="alice.masterFx.caterpillar.goToPage(9);">Go to Page 9</button>
+                        <img src="../../images/rabbit.png" style="width: 200px;" />
+                        <button style="padding: 10px;" onclick="_caterpillar.goToPage(9);">Go to Page 9</button>
                     </div>
                     <div class="page">
                         <p>The Pool of Tears</p>
+                        <img src="../../images/caterpillar.png" style="width: 300px;" />
                     </div>
                     <div class="page">
                         <p>The Caucus Race and a Long Tale</p>
+                        <img src="../../images/cheshire.png" style="width: 300px;" />
                     </div>
                     <div class="page">
                         <p>The Rabbit Sends a Little Bill</p>
-                        
+                        <button onclick="_caterpillar.nxtPage()">Go To Next Page</button>
                     </div>
                     <div class="page">
                         <p>Advice from a Caterpillar</p>
@@ -134,7 +142,7 @@ $a("book").book({
                     </div>
                     <div class="page">
                         <p>The Queen's Croquet Ground</p>
-                        <button style="padding: 10px;" onclick="alice.masterFx.caterpillar.revToPage(2);">Go to Page 2</button>
+                        <button style="padding: 10px;" onclick="_caterpillar.revToPage(2);">Go to Page 2</button>
                     </div>
                     <div class="page">
                         <p>The Mock Turtle's Story</p>
@@ -152,9 +160,6 @@ $a("book").book({
                 </div>
         </div>
 
-        
-
-
         <div class="fineprint"><p>Copyright &copy; 2011-2012 Research In Motion Limited</p></div>
 
         <!-- Syntax Highlighting -->
@@ -167,8 +172,8 @@ $a("book").book({
 
         <!-- AliceJS -->
         <script src="../../src/alice.core.js"></script>
-        <script src="../../src/alice.masterFx.caterpillar.js"></script>
-        <script src="../../src/alice.masterFx.cheshire.js"></script>
+        <script src="../../src/alice.plugins.caterpillar.js"></script>
+        <script src="../../src/alice.plugins.cheshire.js"></script>
 <!--
         <script src="../js/alice-min.js"></script>
 -->
@@ -176,39 +181,36 @@ $a("book").book({
         prettyPrint();
         sniffer.init();
 
-        // function finishUp(){
-        //     $a('book').toss({iteration: 1, duration: "1000ms"});
-        //     setTimeout(moveIt, 700);
-        // }
-
         document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
-
 
         // Must declare your event handlers before you create the book!
         // document.addEventListener("bookStart", function(){ console.log("This book has started!"); }, false);
-        // document.addEventListener("bookEnd", function(){ console.log("This book has ended : ("); }, false);
+        document.addEventListener("pageTrigger", function(){
+            if(_caterpillar.pageNumber === 13){
+                _caterpillar.loadMorePages('book2.html', 'book');
+            }
+        }, false);
 
 
-            $a().book({
+            alicejs.book({
                 elems: "book",
-                speed: 750,
-                paging: "double",
-                binding: "left",
+                speed: '500ms',
+                paging: "single",
+                binding: "top",
                 wrap: true,
                 controls: true,
-                pageBackground: 'url(../../images/pat.jpg)',
-                controlBackground: 'url(../../images/pat.jpg)'
+                randomize: '15%',
+                pageBackground: '#333',
+                controlBackground: '#111'
             });
 
 
             function newBook(){
-                $a().book({
+                alicejs.book({
                     elems: "book",
                     speed: 500,
                     paging: "double",
-                    binding: "left",
-                    pageBackground: 'url(../../images/pat.jpg)',
-                    controlBackground: 'url(../../images/pat.jpg)'
+                    binding: "left"
                 });
             }
 

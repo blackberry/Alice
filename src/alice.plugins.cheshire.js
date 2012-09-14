@@ -2,7 +2,7 @@
 /*global alice: false */
 
 /* ===========================================================================
- * alice.masterFx.cheshire.js
+ * alice.plugins.cheshire.js
  * ===========================================================================
  *
  * Copyright 2011-2012 Research In Motion Limited.
@@ -27,7 +27,7 @@
  * @param  {[type]} params [description]
  * @return {[type]}
  */
-alice.masterFx.cheshire = function (params) {
+alice.plugins.cheshire = function (params) {
     "use strict";
 
     console.info("cheshire", params);
@@ -283,7 +283,7 @@ alice.masterFx.cheshire = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.bounce = function (params) {
+alice.plugins.bounce = function (params) {
     "use strict";
     console.info("bounce: ", arguments);
 
@@ -313,7 +313,7 @@ alice.fx.bounce = function (params) {
         playstate: params.playstate || "running"
     };
 
-    alice.masterFx.cheshire(opts);
+    alice.plugins.cheshire(opts);
     return opts;
 };
 
@@ -329,7 +329,7 @@ alice.fx.bounce = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.dance = function (params) {
+alice.plugins.dance = function (params) {
     "use strict";
     console.info("dance: ", arguments);
 
@@ -349,7 +349,7 @@ alice.fx.dance = function (params) {
         playstate: params.playstate || "running"
     };
 
-    alice.masterFx.cheshire(opts);
+    alice.plugins.cheshire(opts);
     return opts;
 };
 
@@ -366,7 +366,7 @@ alice.fx.dance = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.drain = function (params) {
+alice.plugins.drain = function (params) {
     "use strict";
     console.info("drain: ", arguments);
 
@@ -388,7 +388,7 @@ alice.fx.drain = function (params) {
         playstate: params.playstate || "running"
     };
 
-    alice.masterFx.cheshire(opts);
+    alice.plugins.cheshire(opts);
     return opts;
 };
 
@@ -404,7 +404,7 @@ alice.fx.drain = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.fade = function (params) {
+alice.plugins.fade = function (params) {
     "use strict";
     console.info("fade: ", arguments);
 
@@ -424,7 +424,7 @@ alice.fx.fade = function (params) {
         playstate: params.playstate || "running"
     };
 
-    alice.masterFx.cheshire(opts);
+    alice.plugins.cheshire(opts);
     return opts;
 };
 
@@ -441,7 +441,7 @@ alice.fx.fade = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.hinge = function (params) {
+alice.plugins.hinge = function (params) {
     "use strict";
     console.info("hinge: ", arguments);
 
@@ -463,7 +463,7 @@ alice.fx.hinge = function (params) {
         playstate: params.playstate || "running"
     };
 
-    alice.masterFx.cheshire(opts);
+    alice.plugins.cheshire(opts);
     return opts;
 };
 
@@ -481,7 +481,7 @@ alice.fx.hinge = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.pageFlip = function (params) {
+alice.plugins.pageFlip = function (params) {
     "use strict";
     console.info("pageFlip: ", arguments);
 
@@ -518,7 +518,7 @@ alice.fx.pageFlip = function (params) {
         playstate: params.playstate || 'running'
     };
 
-    alice.masterFx.cheshire(opts);
+    alice.plugins.cheshire(opts);
     return opts;
 };
 
@@ -535,7 +535,7 @@ alice.fx.pageFlip = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.pendulum = function (params) {
+alice.plugins.pendulum = function (params) {
     "use strict";
     console.info("pendulum: ", arguments);
 
@@ -557,7 +557,7 @@ alice.fx.pendulum = function (params) {
         playstate: params.playstate || "running"
     };
 
-    alice.masterFx.cheshire(opts);
+    alice.plugins.cheshire(opts);
     return opts;
 };
 
@@ -575,7 +575,7 @@ alice.fx.pendulum = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.phantomZone = function (params) {
+alice.plugins.phantomZone = function (params) {
     "use strict";
     console.info("phantomZone: ", arguments);
 
@@ -598,7 +598,7 @@ alice.fx.phantomZone = function (params) {
         playstate: params.playstate || "running"
     };
 
-    alice.masterFx.cheshire(opts);
+    alice.plugins.cheshire(opts);
     return opts;
 };
 
@@ -615,7 +615,7 @@ alice.fx.phantomZone = function (params) {
  * @param  {[type]} playstate         [description]
  * @return {[type]}
  */
-alice.fx.raceFlag = function (params) {
+alice.plugins.raceFlag = function (params) {
     "use strict";
     console.info("raceFlag: ", arguments);
 
@@ -637,7 +637,7 @@ alice.fx.raceFlag = function (params) {
         playstate: params.playstate || "running"
     };
 
-    alice.masterFx.cheshire(opts);
+    alice.plugins.cheshire(opts);
     return opts;
 };
 
@@ -654,7 +654,7 @@ alice.fx.raceFlag = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.slide = function (params) {
+alice.plugins.slide = function (params) {
     "use strict";
     console.info("slide: ", arguments);
 
@@ -674,7 +674,7 @@ alice.fx.slide = function (params) {
         playstate: params.playstate || "running"
     };
 
-    alice.masterFx.cheshire(opts);
+    alice.plugins.cheshire(opts);
     return opts;
 };
 
@@ -691,7 +691,7 @@ alice.fx.slide = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.spin = function (params) {
+alice.plugins.spin = function (params) {
     "use strict";
     console.info("spin: ", arguments);
 
@@ -714,7 +714,7 @@ alice.fx.spin = function (params) {
         playstate: params.playstate || "running"
     };
 
-    alice.masterFx.cheshire(opts);
+    alice.plugins.cheshire(opts);
     return opts;
 };
 
@@ -732,7 +732,7 @@ alice.fx.spin = function (params) {
  * @param  {[type]} playstate         [description]
  * @return {[type]}
  */
-alice.fx.toss = function (params) {
+alice.plugins.toss = function (params) {
     "use strict";
     console.info("toss: ", arguments);
 
@@ -756,7 +756,7 @@ alice.fx.toss = function (params) {
         playstate: params.playstate || "running"
     };
 
-    alice.masterFx.cheshire(opts);
+    alice.plugins.cheshire(opts);
     return opts;
 };
 
@@ -772,7 +772,7 @@ alice.fx.toss = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.twirl = function (params) {
+alice.plugins.twirl = function (params) {
     "use strict";
     console.info("twirl: ", arguments);
 
@@ -793,7 +793,7 @@ alice.fx.twirl = function (params) {
         playstate: params.playstate || "running"
     };
 
-    alice.masterFx.cheshire(opts);
+    alice.plugins.cheshire(opts);
     return opts;
 };
 
@@ -809,7 +809,7 @@ alice.fx.twirl = function (params) {
  * @param  {[type]} playstate         [description]
  * @return {[type]}
  */
-alice.fx.wobble = function (params) {
+alice.plugins.wobble = function (params) {
     "use strict";
     console.info("wobble: ", arguments);
 
@@ -829,7 +829,7 @@ alice.fx.wobble = function (params) {
         playstate: params.playstate || "running"
     };
 
-    alice.masterFx.cheshire(opts);
+    alice.plugins.cheshire(opts);
     return opts;
 };
 
@@ -847,7 +847,7 @@ alice.fx.wobble = function (params) {
  * @param  {[type]} playstate [description]
  * @return {[type]}
  */
-alice.fx.zoom = function (params) {
+alice.plugins.zoom = function (params) {
     "use strict";
     console.info("zoom: ", arguments);
 
@@ -880,7 +880,7 @@ alice.fx.zoom = function (params) {
         playstate: params.playstate || "running"
     };
 
-    alice.masterFx.cheshire(opts);
+    alice.plugins.cheshire(opts);
     return opts;
 };
 

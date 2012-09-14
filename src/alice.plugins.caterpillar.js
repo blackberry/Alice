@@ -92,6 +92,9 @@ alice.plugins.caterpillar = function () {
         loadPage: '',
         jumper: null,
         pageToClear: '',
+        pageNumber: '',
+        inPageControls: true,
+        randomizer: '',
 
         helpers: {},
 
@@ -231,6 +234,15 @@ alice.plugins.caterpillar = function () {
             core.controlsBg = params.controlsBg;                                    // the background of the controls
             core.originZero = '0 0';                                                // The default transform origin think top left
             core.pageClass = params.pageClass;                                      // Potential page class the author wants to add
+            if(params.inPageControls === false){
+                core.inPageControls = params.inPageControls;
+                console.warn(core.inPageControls)
+            }else{
+                core.inPageControls = true;
+            }
+            core.randomizer = params.randomize;
+
+            console.log(core.randomizer)
 
             // Create the Book Events
             core.bookStart = document.createEvent("Event");             
@@ -315,11 +327,11 @@ alice.plugins.caterpillar = function () {
             var goggles = Math.floor(core.pageWidth*4);
             
             // Set the shadows
-            core.shadowPattern0 = '4px 0px 10px rgba(0, 0, 0, 0.1)';
-            core.shadowPattern50 = '4px 0px 10px rgba(0, 0, 0, 0.2)';
-            core.shadowPattern100 = '4px 0px 10px rgba(0, 0, 0, 0.1)';
-            core.shadowPatternRev50 = '4px 0px 10px rgba(0, 0, 0, 0.2)';
-            core.shadowPatternRev100 = '4px 0px 10px rgba(0, 0, 0, 0.1)';
+            core.shadowPattern0 = '';//'2px 0px 10px rgba(0, 0, 0, 0.1)';
+            core.shadowPattern50 = '';//'2px 0px 10px rgba(0, 0, 0, 0.2)';
+            core.shadowPattern100 = '';//'2px 0px 10px rgba(0, 0, 0, 0.1)';
+            core.shadowPatternRev50 = '';//'2px 0px 10px rgba(0, 0, 0, 0.2)';
+            core.shadowPatternRev100 = '';//'2px 0px 10px rgba(0, 0, 0, 0.1)';
 
             // Various book details
             core.wrap = params.wrap;                                            // The true/false wrap state
@@ -434,7 +446,6 @@ alice.plugins.caterpillar = function () {
         },
 
         clearAnimation: function (id, dir) {
-            console.error('clear : '+id + ' :::: '+core.jumper)
             var idNum = core.helper.getThisId(id);                                          // strip the id to the number value
             var _element = document.getElementById(id);                                     // Get that page element by its id
 
@@ -747,7 +758,6 @@ alice.plugins.caterpillar = function () {
                 var dir = evt.keyCode;
                 var newPageCount = core.realPageCount+1;
                 if(dir === 39){
-                    console.warn(core.rightPage);
                     if(core.rightPage <= newPageCount){
                         if(core.paging === "single"){
                             core.abPageTurn(core.rightPage);
@@ -759,7 +769,6 @@ alice.plugins.caterpillar = function () {
                 }
                 
                 if(dir === 37){ 
-                     console.warn(core.rightPage);
                     if(core.paging === "single"){
                         core.abPageTurnR(core.rightPage);
                     }
@@ -776,6 +785,30 @@ alice.plugins.caterpillar = function () {
 
             core.pageBuilder(params);
 
+        },
+
+        nxtPage: function(){
+            var newPageCount = core.realPageCount+1;
+            if(core.rightPage <= newPageCount){
+                if(core.paging === "single"){
+                    core.abPageTurn(core.rightPage);
+                }
+                if(core.paging === "double"){
+                    core.turnPage(core.rightPage);
+                }
+            }
+        },
+
+        prePage: function(){
+            var newPageCount = core.realPageCount+1;
+            if(core.paging === "single"){
+                core.abPageTurnR(core.rightPage);
+            }
+            if(core.paging === "double"){
+                if(core.leftPage >= 1){
+                    core.turnPage(core.leftPage);
+                }
+            }
         },
 
         pageBuilder: function(params){
@@ -839,7 +872,7 @@ alice.plugins.caterpillar = function () {
                         }
                      }, false);
 
-                    if(params.controls !== true){
+                    if(params.controls !== true && core.inPageControls !== true){
                         core.pages[b].setAttribute('onclick', 'alice.plugins.caterpillar.abPageTurn('+f+')');     // Without controls we still need to move forward                               
                     }
                     
@@ -871,8 +904,10 @@ alice.plugins.caterpillar = function () {
 
                         core.styleConfig(n);                                                                        // Configure the remaining pages
                         
-                        core.pages[i].setAttribute('onclick', 'alice.plugins.caterpillar.turnPage('+n+')');        // Empower the click action                              
-                        
+                        if(core.inPageControls === true){
+                            core.pages[i].setAttribute('onclick', 'alice.plugins.caterpillar.turnPage('+n+')');        // Empower the click action                              
+                        }
+
                         core.pages[i].addEventListener(core.animationEnd, function(){                               // Set up the animation end listener
                             if(this.style[alice.prefixJS+'AnimationName'] === 'oddPageTurnF'){      // odd page forward flip
                                 core.turnNextPage(this.getAttribute('id'), 'odd');                  // incured even page flip
@@ -908,13 +943,13 @@ alice.plugins.caterpillar = function () {
         },
 
         goToPage: function(id){
-            if(core.binding === 'single'){
+            if(core.paging === 'single'){
                 core.abPageTurn(core.rightPage, id); 
             }
         },
 
         revToPage: function(id){ 
-            if(core.binding === 'single'){   
+            if(core.paging === 'single'){   
                 core.abPageTurnR(core.rightPage, id);      
             }
         },
@@ -1213,13 +1248,17 @@ alice.plugins.caterpillar = function () {
                         var npn = 1;
                         
                         for(j = 0; j < _newPageArray.length; j++){
+                            var truVal = (_originalPageCount + npn)
                             _newPageArray[j].setAttribute('class', currentClass);
                             _newPageArray[j].setAttribute('style', currentStyleOdd);
-                            _newPageArray[j].setAttribute('id', 'p'+(_originalPageCount + npn));
+                            _newPageArray[j].setAttribute('id', 'p'+truVal);
 
                             _element.appendChild(_newPageArray[j]);
 
                             if(core.paging === 'single'){
+                                if(core.inPageControls === true){
+                                    _newPageArray[j].setAttribute('onclick', 'alice.plugins.caterpillar.abPageTurn('+truVal+')');
+                                }
                                 _newPageArray[j].addEventListener(core.animationEnd, function(){
                                     if(this.style[alice.prefixJS+'AnimationName'] === 'abstrPageTurnF'){
                                         var pageId = this.getAttribute('id');
@@ -1251,7 +1290,10 @@ alice.plugins.caterpillar = function () {
                                  }, false);
                             }
                             else if(core.paging === 'double'){
-                                 _newPageArray[j].addEventListener(core.animationEnd, function(){                               // Set up the animation end listener
+                                if(core.inPageControls === true){
+                                    _newPageArray[j].setAttribute('onclick', 'alice.plugins.caterpillar.turnPage('+truVal+')');
+                                }
+                                _newPageArray[j].addEventListener(core.animationEnd, function(){                               // Set up the animation end listener
                                     if(this.style[alice.prefixJS+'AnimationName'] === 'oddPageTurnF'){      // odd page forward flip
                                         core.turnNextPage(this.getAttribute('id'), 'odd');                  // incured even page flip
                                         core.resetCSS('forward', core.binding, this.getAttribute('id'));    // reset the css of the odd page
@@ -1280,7 +1322,7 @@ alice.plugins.caterpillar = function () {
 
                             if(core.paging === 'double'){
                                 core.styleConfig(_originalPageCount + npn);
-                                document.getElementById('p'+(_originalPageCount + npn)).style.display = 'none';
+                                document.getElementById('p'+truVal).style.display = 'none';
                             }
 
                             npn++;
@@ -1376,12 +1418,18 @@ alice.plugins.caterpillar.helper = {
             id = id+1;
         }
         var state = "page: " +id;
+        _caterpillar.pageNumber = id;
+        document.dispatchEvent(_caterpillar.pageTrigger);
         if(id === 1){
             state = "This is the first page";
             document.dispatchEvent(_caterpillar.bookStart);       // Event trigger for end of book
         }
         if(id === _caterpillar.realPageCount || id === 0){
-            state = "This is the end of the book";
+            if(_caterpillar.paging === 'single'){
+                state = "This is the end of the book";
+            }else{
+                state = "This is the first page";
+            }
         }
         console.log(state);
         if(id === _caterpillar.realPageCount){
@@ -1412,7 +1460,7 @@ alice.plugins.caterpillar.helper = {
         if(speed){
             mySpeed = speed;                                                                        // This grabs the randomized speed from the page and gives it to the piggyback page
         }else{
-            mySpeed = alice.randomize(_caterpillar.speed, '15%')+'ms';                              // This tool randomizes the speed
+            mySpeed = alice.randomize(_caterpillar.speed, _caterpillar.randomizer)+'ms';                              // This tool randomizes the speed
         }
         page.style[alice.prefixJS+'AnimationDuration'] = mySpeed;                                   // Set the animation duration
         page.style[alice.prefixJS+'AnimationFillMode'] = "forwards";                                // forwards means it will leave everything alone when done   
@@ -1503,6 +1551,10 @@ alice.plugins.book = function (params) {
 
         shadow: params.shadow || true,
         speed: params.speed || "500ms",
+
+        inPageControls: params.inPageControls,
+
+        randomize: params.randomize || '15%',
 
         binding: params.binding || "vertical",
         paging: params.paging || "single",

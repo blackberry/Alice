@@ -96,7 +96,7 @@ a:hover {
 
 #container {
     overflow: hidden;
-    width: 75%;
+    width: 98%;
     margin: 0 auto;
     min-height: 1400px;  
 }
@@ -136,7 +136,6 @@ a:hover {
 
 .icon img {
     width: 96px;
-    height: 96px;
     border-radius: 5px;
 }
 
@@ -264,5 +263,5 @@ a.title{
 }
 
 h1{
-    font-family: 'Alice', serif;
+    /*font-family: 'Alice', serif;*/
     }

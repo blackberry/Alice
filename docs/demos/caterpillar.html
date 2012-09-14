@@ -25,7 +25,6 @@
         #book{
             width: 600px;
             height: 400px;
-            background: #efefef;
             text-align: center; 
             margin: 100px auto;
         }
@@ -105,46 +104,50 @@ $a("book").book({
                 <div class="spacer"></div>
 
                 <div id="book">
-                    <div>
+                    <div class="page">
                         <h1 style="color: #fff; text-align: center;">Alice in Wonderland</h1>
                         <img src="../../images/AliceMain.png" />
                     </div>
-                    <div>
+                    <div class="page">
                         <p>Down the Rabbit Hole</p>
                         <img src="../../images/rabbitColor.png" style="width: 200px;" />
+                        <button style="padding: 10px;" onclick="alice.masterFx.caterpillar.goToPage(9);">Go to Page 9</button>
                     </div>
-                    <div>
+                    <div class="page">
                         <p>The Pool of Tears</p>
                     </div>
-                    <div>
+                    <div class="page">
                         <p>The Caucus Race and a Long Tale</p>
                     </div>
-                    <div>
+                    <div class="page">
                         <p>The Rabbit Sends a Little Bill</p>
+                        
                     </div>
-                    <div>
+                    <div class="page">
                         <p>Advice from a Caterpillar</p>
                     </div>
-                    <div>
+                    <div class="page">
                         <p>Pig and Pepper</p>
                     </div>
-                    <div>
+                    <div class="page">
                         <p>A Mad Tea-Party</p>
                     </div>
-                    <div>
+                    <div class="page">
                         <p>The Queen's Croquet Ground</p>
+                        <button style="padding: 10px;" onclick="alice.masterFx.caterpillar.revToPage(2);">Go to Page 2</button>
                     </div>
-                    <div>
+                    <div class="page">
                         <p>The Mock Turtle's Story</p>
                     </div>
-                    <div>
+                    <div class="page">
                         <p>Lobster Quadrille</p>
                     </div>
-                    <div>
+                    <div class="page">
                         <p>Who Stole the Tarts?</p>
                     </div>
-                    <div>
+                    <div class="page">
                         <p>Alice's Evidence</p>
+                        <button onclick="_caterpillar.loadMorePages('newgame.html', 'book')">Go Next</button>
                     </div>
                 </div>
         </div>
@@ -185,23 +188,29 @@ $a("book").book({
         // document.addEventListener("bookStart", function(){ console.log("This book has started!"); }, false);
         // document.addEventListener("bookEnd", function(){ console.log("This book has ended : ("); }, false);
 
+
             $a().book({
                 elems: "book",
-                pageClassName: 'page',
-                speed: '500ms',
-                paging: "single",
-                binding: "top",
+                speed: 750,
+                paging: "double",
+                binding: "left",
                 wrap: true,
                 controls: true,
                 pageBackground: 'url(../../images/pat.jpg)',
-                controlsBackground: 'url(../../images/pat.jpg)'
+                controlBackground: 'url(../../images/pat.jpg)'
             });
 
 
-
-
-
-            //console.log(alice.anima);
+            function newBook(){
+                $a().book({
+                    elems: "book",
+                    speed: 500,
+                    paging: "double",
+                    binding: "left",
+                    pageBackground: 'url(../../images/pat.jpg)',
+                    controlBackground: 'url(../../images/pat.jpg)'
+                });
+            }
 
         // Google Analytics
         // var _gaq = _gaq || [];

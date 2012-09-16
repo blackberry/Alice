@@ -192,24 +192,26 @@ alicejs.book({
             });
         }
 
-        document.addEventListener("pageTrigger", function(){
-            if(_caterpillar.pageNumber === 13){
-                _caterpillar.loadMorePages('newgame.html', 'book');
-            }
-        }, false);
+        // document.addEventListener("pageTrigger", function(){
+        //     if(_caterpillar.pageNumber === 13){
+        //         _caterpillar.loadMorePages('newgame.html', 'book');
+        //     }
+        // }, false);
 
 
-            alicejs.book({
-                elems: "book",
-                speed: '500ms',
-                paging: "single",
-                binding: "top",
-                wrap: true,
-                controls: true,
-                randomize: '15%',
-                pageBackground: '#333',
-                controlBackground: '#111'
-            });
+        alicejs.book({
+            elems: "book",
+            speed: '500ms',
+            paging: "single",
+            binding: "top",
+            wrap: true,
+            controls: true,
+            inPageControls: true,
+            keyControls: true,
+            randomize: '15%',
+            pageBackground: '#333',
+            controlBackground: '#111'
+        });
 
 
         // Google Analytics

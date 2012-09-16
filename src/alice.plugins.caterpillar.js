@@ -93,8 +93,9 @@ alice.plugins.caterpillar = function () {
         jumper: null,
         pageToClear: '',
         pageNumber: '',
-        inPageControls: true,
         randomizer: '',
+        inPageControls: 0,
+        keyControls: 0,
 
         helpers: {},
 
@@ -234,12 +235,7 @@ alice.plugins.caterpillar = function () {
             core.controlsBg = params.controlsBg;                                    // the background of the controls
             core.originZero = '0 0';                                                // The default transform origin think top left
             core.pageClass = params.pageClass;                                      // Potential page class the author wants to add
-            if(params.inPageControls === false){
-                core.inPageControls = params.inPageControls;
-                console.warn(core.inPageControls)
-            }else{
-                core.inPageControls = true;
-            }
+            
             core.randomizer = params.randomize;
 
             console.log(core.randomizer)
@@ -715,6 +711,14 @@ alice.plugins.caterpillar = function () {
                 core.helper.bookStatus(core.rightPage);
             }
 
+            if(!params.inPageControls){
+                core.inPageControls = 1;
+            }
+
+            if(!params.keyControls){
+                core.keyControls = 1;
+            }
+
             var genController = function(loc){                                      // Fabricate the controls
                 var clickBox = document.createElement('div');
                 clickBox.setAttribute('id', '_'+loc+'Controller');
@@ -782,8 +786,9 @@ alice.plugins.caterpillar = function () {
                 }
             }
 
-            // Add the keylistener
-            document.body.addEventListener("keyup", keyrelease, false);
+            if(core.keyControls === 0){
+                document.body.addEventListener("keyup", keyrelease, false);         // Add the keylistener
+            }
 
             core.pageBuilder(params);
 
@@ -874,7 +879,7 @@ alice.plugins.caterpillar = function () {
                         }
                      }, false);
 
-                    if(params.controls !== true && core.inPageControls !== true){
+                    if(params.controls !== true && core.inPageControls === 0){
                         core.pages[b].setAttribute('onclick', 'alice.plugins.caterpillar.abPageTurn('+f+')');     // Without controls we still need to move forward                               
                     }
                     
@@ -906,7 +911,7 @@ alice.plugins.caterpillar = function () {
 
                         core.styleConfig(n);                                                                        // Configure the remaining pages
                         
-                        if(core.inPageControls === true){
+                        if(core.inPageControls === 0){
                             core.pages[i].setAttribute('onclick', 'alice.plugins.caterpillar.turnPage('+n+')');        // Empower the click action                              
                         }
 
@@ -1555,6 +1560,7 @@ alice.plugins.book = function (params) {
         speed: params.speed || "500ms",
 
         inPageControls: params.inPageControls,
+        keyControls: params.keyControls,
 
         randomize: params.randomize || '15%',
 
@@ -1567,6 +1573,9 @@ alice.plugins.book = function (params) {
     };
 
     console.log(opts);
+
+                        console.log('keyControls:  '+params.keyControls);
+            console.log('inPageControls:  '+params.inPageControls);
 
     alice.plugins.caterpillar.init(opts);
     return opts;

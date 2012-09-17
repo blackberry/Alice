@@ -8,6 +8,7 @@ This library and the sample code is Open Source under the [Apache 2.0 License](h
 
 * [Laurent Hasson](https://github.com/ldhasson) ([@ldhasson](http://twitter.com/ldhasson), lhasson at rim dot com)
 * [Jim Ing](https://github.com/psiborg) ([@jim_ing](http://twitter.com/jim_ing), jing at rim dot com)
+* [Matt Lantz](https://github.com/mlantz) ([@mattylantz](http://twitter.com/mattylantz), malantz at rim dot com)
 
 **Requirements:**
 
@@ -52,13 +53,16 @@ This library and the sample code is Open Source under the [Apache 2.0 License](h
 4. Apply Alice's effects by specifying the ID of your target DIV and some parameters. These options will apply a "slide (left)" effect to your DIVs.
 
             <script type="text/javascript">
-            var a = alice.init(),
-                deck = document.getElementById("deck").children;
+            var deck = document.getElementById("deck").children;
 
-            a.slide(deck, "left", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.slide({
+                elems: deck, 
+                move: "left", 
+                duration: {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
             </script>
 

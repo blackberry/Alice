@@ -60,7 +60,7 @@
 
                     <p><b>AliceJS</b> - <i>(A Lightweight Independent CSS Engine)</i> is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.</p>
 
-                    <p>Created by Laurent Hasson (<a href="http://twitter.com/ldhasson" target="_blank">@ldhasson</a>, lhasson at rim dot com), and co-developed with Jim Ing (<a href="http://twitter.com/jim_ing" target="_blank">@jim_ing</a>, jing at rim dot com)</p>
+                    <p>Created by Laurent Hasson (<a href="http://twitter.com/ldhasson" target="_blank">@ldhasson</a>, lhasson at rim dot com), and co-developed with Jim Ing (<a href="http://twitter.com/jim_ing" target="_blank">@jim_ing</a>, jing at rim dot com), and Matt Lantz (<a href="http://twitter.com/mattylantz" target="_blank">@mattylantz</a>, malantz at rim dot com)</p>
 
                     <h2>Introduction</h2>
 
@@ -82,8 +82,17 @@
 &lt;script src=&quot;/alice/alice.core.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;/alice/alice.plugins.cheshire.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
-alice.wobble([&quot;DIV1&quot;, &quot;IMG1&quot;], 5, &quot;center&quot;,
-    &quot;200ms&quot;, &quot;linear&quot;, &quot;0ms&quot;, &quot;infinite&quot;, &quot;alternate&quot;, &quot;running&quot;);
+aliceJs.wobble({
+    elems: [&quot;DIV1&quot;, &quot;IMG1&quot;], 
+    rotate: 5, 
+    perspectiveOrigin: &quot;center&quot;,
+    duration: &quot;200ms&quot;, 
+    timing: &quot;linear&quot;, 
+    delay: &quot;0ms&quot;, 
+    iteration: &quot;infinite&quot;, 
+    direction: &quot;alternate&quot;, 
+    playstate: &quot;running&quot;
+});
 &lt;/script&gt;
                     </pre>
 
@@ -105,11 +114,20 @@ alice.wobble([&quot;DIV1&quot;, &quot;IMG1&quot;], 5, &quot;center&quot;,
 
                     <p>AliceJS is completely self-contained and doesn't rely on any other libraries. It also focuses exclusively on setting up animations through CSS manipulations. This makes it easy to include along with other libraries without fear of collision as AliceJS doesn't try to do event handling (touch or mouse), nor does it enforce particular logic or layout elements. It's easy for instance to use AliceJS to animate a Dojo Dialog component for example, or a jQuery UI component, just by addressing the underlying DIV.</p>
                     <p>AliceJS is composed exclusively of JS files in a single folder, without image, CSS or any other dependencies. There is an "alice.core.js" file that contains common code and utilities, and then each effect has its own additional JS file, for example, "alice.plugins.cheshire.js". The goal is to keep each animation separate which makes it easy for a developer to create a minified build with only what is needed and nothing else. AliceJS is lean and right now, the gzipped minified version containing the entire library is about 5K only!</p>
-                    <p>The syntax for AliceJS is also kept minimal and in line with CSS, which we believe to be really simple and easy to grasp. For example:</p>
+                    <p>The syntax for AliceJS is also kept minimal but still objectified, which we believe to be really simple and easy to grasp. For example:</p>
 
                     <pre class="prettyprint lang-js">
-alice.wobble("MyDiv", 5, "center",
-    "200ms", "linear", "0ms", "infinite", "alternate", "running");
+aliceJs.wobble({
+    elems: "MyDiv", 
+    rotation: 5, 
+    perspectiveOrigin: "center",
+    duration: "200ms", 
+    timing: "linear", 
+    delay: "0ms", 
+    iteration: "infinite", 
+    direction: "alternate", 
+    playstate: "running"
+});
                     </pre>
 
                     <p>This can be thought of as:</p>
@@ -133,7 +151,7 @@ alice.wobble("MyDiv", 5, "center",
 }
                     </pre>
 
-                    <p>The preceding CSS code is just mock code to illustrate how to think about AliceJS. All effects are modeled around the same approach where a single line of JavaScript is sufficient to set up an effect. Ultimately, we would like CSS to adopt higher-level animation constructs to make it real easy to add more evolved visual special effects to web applications.</p>
+                    <p>The preceding CSS code is just mock code to illustrate how to think about AliceJS. All effects are modeled around the same approach where the JavaScript enables a detailed control or just an elems is sufficient to set up an effect. Ultimately, we would like CSS to adopt higher-level animation constructs to make it real easy to add more evolved visual special effects to web applications.</p>
 
                     <p>Finally, although we focus primarily on hardware-accelerated CSS at this point, we don't want to rule out using other technologies in the future such as Canvas and WebGL. Although the library focuses really on visual effects, we are exploring ways to tie in sensor input to make things more interesting, without interfering with application logic, or bringing in too much baggage.</p>
 

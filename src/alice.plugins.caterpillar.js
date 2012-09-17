@@ -96,6 +96,7 @@ alice.plugins.caterpillar = function () {
         randomizer: '',
         inPageControls: 0,
         keyControls: 0,
+        lastPage: null,
 
         helpers: {},
 
@@ -503,7 +504,12 @@ alice.plugins.caterpillar = function () {
                     prepage.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[1];                          // set the angle of the pre-page, just in case
                 }
                 if(idNum > 0 && dir === 'reverse'){                                                                                     // If we're going backwards
-                    prepage = document.getElementById('p'+(idNum-1));                                                                   // gotta prepare ourselves                  
+                    prepage = document.getElementById('p'+(idNum-1));   
+
+                    if(core.jumper != null){
+                        document.getElementById('p'+core.jumper).style.display = 'block';
+                        _element.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[1];
+                    }                                                                // gotta prepare ourselves                  
 
                     if(core.wrap === true){                                                                                             // In case we need a book that never ends!
                         if(idNum !== core.realPageCount){
@@ -711,11 +717,11 @@ alice.plugins.caterpillar = function () {
                 core.helper.bookStatus(core.rightPage);
             }
 
-            if(!params.inPageControls){
+            if(params.inPageControls === false){
                 core.inPageControls = 1;
             }
 
-            if(!params.keyControls){
+            if(params.keyControls === false){
                 core.keyControls = 1;
             }
 
@@ -957,11 +963,11 @@ alice.plugins.caterpillar = function () {
 
         revToPage: function(id){ 
             if(core.paging === 'single'){   
-                core.abPageTurnR(core.rightPage, id);      
+                core.abPageTurnR(core.rightPage, id);    
             }
         },
 
-        abstrPageFlip: function(id, dir, jumper, jumpDir){                                                       // Get the id and direction
+        abstrPageFlip: function(id, dir, jumper, jumpDir){                                                   // Get the id and direction
             var idNum, ani;
             if(dir === 'forwards'){
                 idNum = core.helper.getThisId(id)+1;
@@ -970,7 +976,6 @@ alice.plugins.caterpillar = function () {
                     idNum = 1;                                                                          // reset the book to page one
                 }
                 if(jumper && jumpDir === 'forwards'){
-                    console.log(jumper);
                     idNum = jumper;
                     core.rightPage = jumper-1;
                 }
@@ -1000,7 +1005,11 @@ alice.plugins.caterpillar = function () {
                 }
             }, false);
 
-            core.helper.bookStatus(idNum);
+            if(jumper){
+                core.helper.bookStatus(jumper);
+            }else{
+                core.helper.bookStatus(idNum);
+            }
         },
 
         turnNextPage: function(id, type){                                                   // This is called for the backside page
@@ -1027,6 +1036,7 @@ alice.plugins.caterpillar = function () {
         turnPage: function (pageId){
             core.helper.bookStatus(pageId);
             if(core.animationRunning === false){
+                core.lastPage = pageId;
                 var secondChild, thirdChild, ani, pageCounter;
 
                 if(core.realPageCount % 2 === 0){
@@ -1085,6 +1095,7 @@ alice.plugins.caterpillar = function () {
         },
 
         abPageTurn: function (pageId, jumper){
+            core.lastPage = pageId;
             if(core.animationRunning === false){
                 if(pageId >= core.realPageCount && core.wrap === true){
                     pageId = 0;
@@ -1132,8 +1143,12 @@ alice.plugins.caterpillar = function () {
 
         abPageTurnR: function (pageId, jumper){  
             var page;
+            core.lastPage = pageId;
             if(core.animationRunning === false){
-                
+                if(jumper > 0){
+                    core.lastPage = jumper;
+                }
+
                 if(core.binding === 'center' || core.binding === 'middle'){   // Because its fundamentally different from the other bindings
                     if(pageId >= core.realPageCount){
                         pageId = core.realPageCount;                // Because we're adding to the core.rightPage on each turn we need this, after all we cant have more pages than the total pages
@@ -1359,7 +1374,7 @@ alice.plugins.caterpillar = function () {
                         document.body.removeChild(document.getElementById("_rightController")); 
                     }
                     var xBook = document.createElement('div');
-                    xBook.setAttribute('id', 'xbook');
+                    xBook.setAttribute('id', '__xbook');
 
                     xBook.innerHTML = source;
 
@@ -1573,9 +1588,6 @@ alice.plugins.book = function (params) {
     };
 
     console.log(opts);
-
-                        console.log('keyControls:  '+params.keyControls);
-            console.log('inPageControls:  '+params.inPageControls);
 
     alice.plugins.caterpillar.init(opts);
     return opts;

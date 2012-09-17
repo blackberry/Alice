@@ -83,9 +83,9 @@
                 <a name="book"></a>
                 <div class="card">
                     <div id="book_info" class="icon">
-                    <img src="../../images/caterpillar.png" alt="Book" title="Book">  
+                    <a href="fx/book.html"><img src="../../images/caterpillar.png" alt="Book" title="Book"></a>  
                     </div>
-                    <p>Book - The "book" effect generates book with the content provided in the child divs of the parent div, allowing the binding to be placed on any side of the parent div.</p>
+                    <p><a href="fx/book.html">Book</a> - The "book" effect generates book with the content provided in the child divs of the parent div, allowing the binding to be placed on any side of the parent div.</p>
                     <div class="code">
                         <pre class="prettyprint lang-js">
 
@@ -117,7 +117,7 @@ alicejs.book({
                     <div class="page">
                         <p>Down the Rabbit Hole</p>
                         <img src="../../images/rabbit.png" style="width: 200px;" />
-                        <button style="padding: 10px;" onclick="_caterpillar.goToPage(9);">Go to Page 9</button>
+                        <button style="padding: 10px;" onclick="_caterpillar.goToPage(9)">Go to Page 9</button>
                     </div>
                     <div class="page">
                         <p>The Pool of Tears</p>
@@ -187,6 +187,7 @@ alicejs.book({
             alicejs.book({
                 elems: "book",
                 speed: 500,
+                inPageControls: true,
                 paging: "double",
                 binding: "left"
             });

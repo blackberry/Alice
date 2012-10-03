@@ -202,8 +202,8 @@ var alice = (function () {
         id: "alice",
         name: "AliceJS",
         description: "A Lightweight Independent CSS Engine",
-        version: "0.4",
-        build: "20120204-1040",
+        version: "0.5",
+        build: "20121002-0159",
 
         prefix: "",
         prefixJS: "",
@@ -712,23 +712,6 @@ var alice = (function () {
 
         return core;
 }());
-
-
-
-alice.plugins.playPause = function() {
-    var elms = alice.anima;
-    var i, elems = alice.elements(elms),pfx = alice.prefixJS;
-    
-    for(i = 0; i < elems.length; i++){
-    var elemId = elems[i].getAttribute('id');
-        if(document.getElementById(elemId).style[pfx + "AnimationPlayState"] === "paused"){
-            document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "running";
-        }
-        else{
-            document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "paused";
-        }
-    }
-}
 
 /**
  * Performs various acts of formating changes

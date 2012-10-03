@@ -91,9 +91,13 @@
 
         // Aces
 
-        //var a = alice.init();
+        var alicejsSlide = alice.init({workflow: true});
+        var alicejsToss = alice.init({workflow: true});
+        var alicejsPageFlip = alice.init({workflow: true});
+        var alicejsSpin = alice.init({workflow: true});
+        var alicejsDrain = alice.init({workflow: true});
 
-        alicejs.slide({
+        alicejsSlide.slide({
             elems: aces,
             move: "left",
             duration: {
@@ -101,106 +105,205 @@
                 "randomness": "0%",
                 "offset": "150ms"
             }
-        }).delay(2000).slide(aces, "right", "", {
-            "value": "1000ms",
-            "randomness": "0%",
-            "offset": "150ms"
-        }).delay(2000).slide(aces, "down", "", {
-            "value": "1000ms",
-            "randomness": "0%",
-            "offset": "150ms"
-        }).delay(2000).slide(aces, "up", "", {
-            "value": "1000ms",
-            "randomness": "0%",
-            "offset": "150ms"
+        }).delay(2000)
+        .slide({
+            elems: aces,
+            move: "right",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000)
+        .slide({
+            elems: aces,
+            move: "down",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000)
+        .slide({
+            elems: aces,
+            move: "up",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
         }).start();
 
         // Kings
 
-        //var a = alice.init();
-
-        $a().delay(4000).toss(kings, "left", "", "", {
-            "value": "1000ms",
-            "randomness": "0%",
-            "offset": "150ms"
-        }).delay(2000).toss(kings, "right", "", "", {
-            "value": "1000ms",
-            "randomness": "0%",
-            "offset": "150ms"
-        }).delay(2000).toss(kings, "down", "", "", {
-            "value": "1000ms",
-            "randomness": "0%",
-            "offset": "150ms"
-        }).delay(2000).toss(kings, "up", "", "", {
-            "value": "1000ms",
-            "randomness": "0%",
-            "offset": "150ms"
+        alicejsToss.delay(4000)
+        .toss({
+            elems: kings,
+            move: "right",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .toss({
+            elems: kings,
+            move: "left",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .toss({
+            elems: kings,
+            move: "down",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .toss({
+            elems: kings,
+            move: "up",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
         }).start();
 
         // Queens
 
-        var c = $a();
-
-        c.delay(8000).spin(queens, "left", "", "", {
-            "value": "1000ms",
-            "randomness": "0%",
-            "offset": "150ms"
-        }).delay(2000).spin(queens, "right", "", "", {
-            "value": "1000ms",
-            "randomness": "0%",
-            "offset": "150ms"
-        }).delay(2000).spin(queens, "down", "", "", {
-            "value": "1000ms",
-            "randomness": "0%",
-            "offset": "150ms"
-        }).delay(2000).spin(queens, "up", "", "", {
-            "value": "1000ms",
-            "randomness": "0%",
-            "offset": "150ms"
+        alicejsSpin.delay(8000)
+        .spin({
+            elems: queens,
+            flip: "left",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .spin({
+            elems: queens,
+            flip: "right",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .spin({
+            elems: queens,
+            flip: "down",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .spin({
+            elems: queens,
+            flip: "up",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
         }).start();
 
         // Jacks
 
-        var d = $a();
-
-        d.delay(12000).pageFlip(jacks, "left", "", "", {
-            "value": "1000ms",
-            "randomness": "0%",
-            "offset": "150ms"
-        }).delay(2000).pageFlip(jacks, "right", "", "", {
-            "value": "1000ms",
-            "randomness": "0%",
-            "offset": "150ms"
-        }).delay(2000).pageFlip(jacks, "down", "", "", {
-            "value": "1000ms",
-            "randomness": "0%",
-            "offset": "150ms"
-        }).delay(2000).pageFlip(jacks, "up", "", "", {
-            "value": "1000ms",
-            "randomness": "0%",
-            "offset": "150ms"
+        alicejsPageFlip.delay(12000)
+        .pageFlip({
+            elems: jacks,
+            flip: "left",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .pageFlip({
+            elems: jacks,
+            flip: "right",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .pageFlip({
+            elems: jacks,
+            flip: "down",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .pageFlip({
+            elems: jacks,
+            flip: "up",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
         }).start();
 
-        // Tens
+        // // Tens
 
-        var e = $a();
-
-        e.delay(16000).drain(tens, "", "", {
-            "value": "3000ms",
-            "randomness": "0%",
-            "offset": "150ms"
-        }).delay(2000).phantomZone(tens, "", "", "", {
-            "value": "4000ms",
-            "randomness": "0%",
-            "offset": "150ms"
-        }).delay(2000).twirl(tens, "left", {
-            "value": "2000ms",
-            "randomness": "0%",
-            "offset": "150ms"
-        }).delay(2000).raceFlag(tens, "", "", {
-            "value": "2000ms",
-            "randomness": "0%",
-            "offset": "150ms"
+        alicejsDrain.delay(18000)
+        .drain({
+            elems: tens,
+            iteration: "1",
+            duration: {
+                "value": "4000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .drain({
+            elems: tens,
+            iteration: "1",
+            duration: {
+                "value": "2000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .drain({
+            elems: tens,
+            iteration: "1",
+            duration: {
+                "value": "3000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .drain({
+            elems: tens,
+            iteration: "1",
+            duration: {
+                "value": "2000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
         }).start();
 
         // Google Analytics

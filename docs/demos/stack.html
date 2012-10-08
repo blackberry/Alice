@@ -122,9 +122,6 @@
 -->
         </div>
 
-        <!-- Add jWorkflow for Chaining -->
-        <!-- <script src="../libs/jworkflow/jworkflow-min-0.6.0.js"></script> -->
-
         <script src="../../src/alice.core.js"></script>
         <script src="../../src/alice.plugins.cheshire.js"></script>
         <script type="text/javascript">
@@ -138,42 +135,74 @@
         }
 */
 
-        var a = alicejs;
+        var a = alice.init({workflow: true});
 
         document.getElementById("btn-demo").addEventListener("click", function () {
-            a.log("slideLeft").slide(elems, "left", "", {
-                "value": "250ms",
-                "randomness": "0%",
-                "offset": "50ms"
+            a.log("slideLeft").slide({
+                elems: elems,
+                move: "left",
+                duration: {
+                    "value": "250ms",
+                    "randomness": "0%",
+                    "offset": "50ms"
+                    }
             }).delay(3700) // 3700 = (50ms * 54) + 1000
-            .log("tossLeft").toss(elems, "left", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            }).delay(9100).log("spinLeft").spin(elems, "left", "", "", {
-                "value": "2000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            }).delay(9100).log("pageFlipLeft").pageFlip(elems, "left", "", "", {
-                "value": "2000ms",
-                "randomness": "0%",
-                "offset": "250ms"
-            }).delay(14500).log("drain").drain(elems, "", "", {
-                "value": "500ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            }).delay(8100).log("phantomZone").phantomZone(elems, "", "", "", {
-                "value": "500ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            }).delay(8100).log("twirlFromRight").twirl(elems, "left", {
-                "value": "500ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            }).delay(9100).log("raceFlag").raceFlag(elems, "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "250ms"
+            .log("tossLeft").toss({
+                elems: elems,
+                move: "left",
+                duration: {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                    }
+            }).delay(9100).log("spinLeft").spin({
+                elems: elems,
+                move: "left",
+                duration: {
+                    "value": "2000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                    }
+            }).delay(9100).log("pageFlipLeft").pageFlip({
+                elems: elems,
+                move: "left",
+                duration: {
+                    "value": "2000ms",
+                    "randomness": "0%",
+                    "offset": "250ms"
+                    }
+            }).delay(14500).log("drain").drain({
+                elems: elems,
+                move: "left",
+                duration: {
+                    "value": "500ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                    }
+            }).delay(8100).log("phantomZone").phantomZone({
+                elems: elems,
+                move: "left",
+                duration: {
+                    "value": "500ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                    }
+            }).delay(8100).log("twirlFromRight").twirl({
+                elems: elems,
+                move: "left",
+                duration: {
+                    "value": "500ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                    }
+            }).delay(9100).log("raceFlag").raceFlag({
+                elems: elems,
+                move: "left",
+                duration: {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "250ms"
+                    }
             }).delay(1000).log("Done!").start();
         });
 

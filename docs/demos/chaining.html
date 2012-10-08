@@ -19,17 +19,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <title>AliceJS Chaining</title>
         <link href="../../images/favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="../css/default.css">
         <style type="text/css">
         body, select {
             font: 8pt Arial, sans-serif;
             /*overflow: hidden;*/
         }
 
-        .card {
+        .cardx {
             float: left;
             background: transparent;
             border: 1px dashed #CCC;
             text-align: center;
+        }
+
+        #cardBox{
+            width: 600px;
+            margin: 0 auto;
+            float: none;
         }
 
         input {
@@ -40,62 +47,127 @@
         </style>
     </head>
     <body>
-        <h1><a href="../index.html">AliceJS</a> &gt; <a href="index.html#moredemos">Demos</a> &gt; Chaining</h1>
+        <div id="container">
+            <div id="card1" class="card-edge" style="margin-top: 50px;">
+                <h1><a href="../index.html">AliceJS</a> &gt; <a href="index.html#moredemos">Demos</a> &gt; Chaining</h1>
 
-        <p>This is a demo of chaining effects (using the <a href="https://github.com/tinyhippos/jWorkflow" target="_blank">jWorkflow</a> library).</p>
+                    <div class="card">
+                        <p><a href="fx/book.html">Chaining</a> - Chaining is fundamentally simple to use. It's built right into the system with jWorkflow. </p>
+                        <div class="code">
+                            <pre class="prettyprint lang-js">
+var alicejsSlide = alice.init({workflow: true});
+var aces = ["elem1", "elem2", "elem3", "elem4"];
 
-        <!-- Test Elements -->
-        <div id="aces" style="clear: both;">
-            <div id="elem1" class="card"><img src="common/images/cards/ace_clubs.png" width="105" height="143"><p>Ace of Clubs</p></div>
-            <div id="elem2" class="card"><img src="common/images/cards/ace_diamonds.png" width="105" height="143"><p>Ace of Diamonds</p></div>
-            <div id="elem3" class="card"><img src="common/images/cards/ace_hearts.png" width="105" height="143"><p>Ace of Hearts</p></div>
-            <div id="elem4" class="card"><img src="common/images/cards/ace_spades.png" width="105" height="143"><p>Ace of Spades</p></div>
-        </div>
-        <div id="kings" style="clear: both;">
-            <div id="elem5" class="card"><img src="common/images/cards/king_clubs.png" width="105" height="143"></div>
-            <div id="elem6" class="card"><img src="common/images/cards/king_diamonds.png" width="105" height="143"></div>
-            <div id="elem7" class="card"><img src="common/images/cards/king_hearts.png" width="105" height="143"></div>
-            <div id="elem8" class="card"><img src="common/images/cards/king_spades.png" width="105" height="143"></div>
-        </div>
-        <div id="queens" style="clear: both;">
-            <div id="elem9" class="card"><img src="common/images/cards/queen_clubs.png" width="105" height="143"></div>
-            <div id="elem10" class="card"><img src="common/images/cards/queen_diamonds.png" width="105" height="143"></div>
-            <div id="elem11" class="card"><img src="common/images/cards/queen_hearts.png" width="105" height="143"></div>
-            <div id="elem12" class="card"><img src="common/images/cards/queen_spades.png" width="105" height="143"></div>
-        </div>
-        <div id="jacks" style="clear: both;">
-            <div id="elem13" class="card"><img src="common/images/cards/jack_clubs.png" width="105" height="143"></div>
-            <div id="elem14" class="card"><img src="common/images/cards/jack_diamonds.png" width="105" height="143"></div>
-            <div id="elem15" class="card"><img src="common/images/cards/jack_hearts.png" width="105" height="143"></div>
-            <div id="elem16" class="card"><img src="common/images/cards/jack_spades.png" width="105" height="143"></div>
-        </div>
-        <div id="tens" style="clear: both;">
-            <div id="elem17" class="card"><img src="common/images/cards/10_clubs.png" width="105" height="143"></div>
-            <div id="elem18" class="card"><img src="common/images/cards/10_diamonds.png" width="105" height="143"></div>
-            <div id="elem19" class="card"><img src="common/images/cards/10_hearts.png" width="105" height="143"></div>
-            <div id="elem20" class="card"><img src="common/images/cards/10_spades.png" width="105" height="143"></div>
+alicejsSlide.slide({
+            elems: aces,
+            move: "left",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000)
+        .slide({
+            elems: aces,
+            move: "right",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000)
+        .slide({
+            elems: aces,
+            move: "down",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000)
+        .slide({
+            elems: aces,
+            move: "up",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).start();
+
+        // All chained animations must conclude with .start(), and be separated by delay(#)
+
+                            </pre>
+                        </div>
+                    </div>
+
+                    <div class="spacer"></div>
+
+                    <div id="cardBox"> 
+
+                        <!-- Test Elements -->
+                        <div id="aces" style="clear: both;">
+                            <div id="elem1" class="cardx"><img src="common/images/cards/ace_clubs.png" width="105" height="143"><p>Ace of Clubs</p></div>
+                            <div id="elem2" class="cardx"><img src="common/images/cards/ace_diamonds.png" width="105" height="143"><p>Ace of Diamonds</p></div>
+                            <div id="elem3" class="cardx"><img src="common/images/cards/ace_hearts.png" width="105" height="143"><p>Ace of Hearts</p></div>
+                            <div id="elem4" class="cardx"><img src="common/images/cards/ace_spades.png" width="105" height="143"><p>Ace of Spades</p></div>
+                        </div>
+                        <div id="kings" style="clear: both;">
+                            <div id="elem5" class="cardx"><img src="common/images/cards/king_clubs.png" width="105" height="143"></div>
+                            <div id="elem6" class="cardx"><img src="common/images/cards/king_diamonds.png" width="105" height="143"></div>
+                            <div id="elem7" class="cardx"><img src="common/images/cards/king_hearts.png" width="105" height="143"></div>
+                            <div id="elem8" class="cardx"><img src="common/images/cards/king_spades.png" width="105" height="143"></div>
+                        </div>
+                        <div id="queens" style="clear: both;">
+                            <div id="elem9" class="cardx"><img src="common/images/cards/queen_clubs.png" width="105" height="143"></div>
+                            <div id="elem10" class="cardx"><img src="common/images/cards/queen_diamonds.png" width="105" height="143"></div>
+                            <div id="elem11" class="cardx"><img src="common/images/cards/queen_hearts.png" width="105" height="143"></div>
+                            <div id="elem12" class="cardx"><img src="common/images/cards/queen_spades.png" width="105" height="143"></div>
+                        </div>
+                        <div id="jacks" style="clear: both;">
+                            <div id="elem13" class="cardx"><img src="common/images/cards/jack_clubs.png" width="105" height="143"></div>
+                            <div id="elem14" class="cardx"><img src="common/images/cards/jack_diamonds.png" width="105" height="143"></div>
+                            <div id="elem15" class="cardx"><img src="common/images/cards/jack_hearts.png" width="105" height="143"></div>
+                            <div id="elem16" class="cardx"><img src="common/images/cards/jack_spades.png" width="105" height="143"></div>
+                        </div>
+                        <div id="tens" style="clear: both;">
+                            <div id="elem17" class="cardx"><img src="common/images/cards/10_clubs.png" width="105" height="143"></div>
+                            <div id="elem18" class="cardx"><img src="common/images/cards/10_diamonds.png" width="105" height="143"></div>
+                            <div id="elem19" class="cardx"><img src="common/images/cards/10_hearts.png" width="105" height="143"></div>
+                            <div id="elem20" class="cardx"><img src="common/images/cards/10_spades.png" width="105" height="143"></div>
+                        </div>
+                    </div>
+            </div>
         </div>
 
-        <!-- Add jWorkflow for Chaining -->
-        <!-- <script src="../../libs/jworkflow/jworkflow-min-0.6.0.js"></script>-->
+        <!-- Syntax Highlighting -->
+        <link rel="stylesheet" type="text/css" href="../../libs/prettify/themes/sunburst.css">
+        <script type="text/javascript" src="../../libs/prettify/prettify.js"></script>
+        <script type="text/javascript" src="../../libs/prettify/lang-css.js"></script>
+
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../../libs/sniffer.js"></script>
 
         <script src="../../src/alice.core.js"></script>
         <script src="../../src/alice.plugins.cheshire.js"></script>
 
         <script type="text/javascript">
-        var aces = ["elem1", "elem2", "elem3", "elem4"];
-        var kings = ["elem5", "elem6", "elem7", "elem8"];
-        var queens = ["elem9", "elem10", "elem11", "elem12"];
-        var jacks = ["elem13", "elem14", "elem15", "elem16"];
-        var tens = ["elem17", "elem18", "elem19", "elem20"];
+        prettyPrint();
+        sniffer.init();
 
-        // Aces
+        var aces = ["elem1", "elem2", "elem3", "elem4"],
+            kings = ["elem5", "elem6", "elem7", "elem8"],
+            queens = ["elem9", "elem10", "elem11", "elem12"],
+            jacks = ["elem13", "elem14", "elem15", "elem16"],
+            tens = ["elem17", "elem18", "elem19", "elem20"];
 
-        var alicejsSlide = alice.init({workflow: true});
-        var alicejsToss = alice.init({workflow: true});
-        var alicejsPageFlip = alice.init({workflow: true});
-        var alicejsSpin = alice.init({workflow: true});
-        var alicejsDrain = alice.init({workflow: true});
+        // Animations
+
+        var alicejsSlide = alice.init({workflow: true}),
+            alicejsToss = alice.init({workflow: true}),
+            alicejsPageFlip = alice.init({workflow: true}),
+            alicejsSpin = alice.init({workflow: true}),
+            alicejsDrain = alice.init({workflow: true});
 
         alicejsSlide.slide({
             elems: aces,

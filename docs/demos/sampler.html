@@ -119,122 +119,110 @@
         var elems = ["elem1", "elem2", "elem3", "elem4", "elem5", "elem6", "elem7", "elem8", "elem9", "elem10", "elem11", "elem12", "elem13", "elem14", "elem15", "elem16", "elem17", "elem18", "elem19", "elem20"];
 
         document.getElementById("effect-drainIn").addEventListener("click", function () {
-            a.drain(elems, "in", "", {
-                "value": "3000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            });
+           alicejs.drain({
+                elems: elems,
+                fade: "in"
+           });
         }, false);
 
         document.getElementById("effect-drainOut").addEventListener("click", function () {
-            a.drain(elems, "out", "", {
-                "value": "3000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.drain({
+                elems: elems,
+                fade: "out"
             });
         }, false);
 
         document.getElementById("effect-fadeIn").addEventListener("click", function () {
-            a.fade(elems, "in", {
-                "value": "2000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.fade({
+                elems: elems,
+                fade: "in"
             });
         }, false);
 
         document.getElementById("effect-fadeOut").addEventListener("click", function () {
-            a.fade(elems, "out", {
-                "value": "2000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.fade({
+                elems: elems,
+                fade: "out"
             });
         }, false);
 
         document.getElementById("effect-pageFlipLeft").addEventListener("click", function () {
-            a.pageFlip(elems, "left", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.pageFlip({
+                elems: elems,
+                flipDirection: "left",
+                iteration: 1
             });
         }, false);
 
         document.getElementById("effect-pageFlipRight").addEventListener("click", function () {
-            a.pageFlip(elems, "right", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.pageFlip({
+                elems: elems,
+                flipDirection: "right",
+                iteration: 1
             });
         }, false);
 
         document.getElementById("effect-pageFlipUp").addEventListener("click", function () {
-            a.pageFlip(elems, "up", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.pageFlip({
+                elems: elems,
+                flipDirection: "up",
+                iteration: 1
             });
         }, false);
 
         document.getElementById("effect-pageFlipDown").addEventListener("click", function () {
-            a.pageFlip(elems, "down", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.pageFlip({
+                elems: elems,
+                flipDirection: "down",
+                iteration: 1
             });
         }, false);
 
         document.getElementById("effect-phantomZoneIn").addEventListener("click", function () {
-            a.phantomZone(elems, "in", "", "", {
-                "value": "4000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.phantomZone({
+                elems: elems,
+                fade: "in"
             });
         }, false);
 
         document.getElementById("effect-phantomZoneOut").addEventListener("click", function () {
-            a.phantomZone(elems, "out", "", "", {
-                "value": "4000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.phantomZone({
+                elems: elems,
+                fade: "out"
             });
         }, false);
 
         document.getElementById("effect-raceFlag").addEventListener("click", function () {
-            a.raceFlag(elems, "", "", {
-                "value": "2000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.raceFlag({
+                elems: elems
             });
         }, false);
 
         document.getElementById("effect-slideLeft").addEventListener("click", function () {
-            a.slide(elems, "left", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.slide({
+                elems: elems,
+                move: "left"
             });
         }, false);
 
         document.getElementById("effect-slideRight").addEventListener("click", function () {
-            a.slide(elems, "right", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.slide({
+                elems: elems,
+                move: "right"
             });
         }, false);
 
         document.getElementById("effect-slideUp").addEventListener("click", function () {
-            a.slide(elems, "up", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.slide({
+                elems: elems,
+                move: "up"
             });
         }, false);
 
         document.getElementById("effect-slideDown").addEventListener("click", function () {
-            a.slide(elems, "down", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.slide({
+                elems: elems,
+                move: "down"
             });
         }, false);
 

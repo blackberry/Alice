@@ -43,6 +43,10 @@ body {
     height: 250px;
 }
 
+#logo-alice-txt-alice{
+    padding: 40px 0 0 0;
+}
+
 #logo-alice-txt-a {
     background: transparent url('../../images/logo_header_plain_sprite.png') no-repeat -120px 0px;
     float: left;
@@ -265,3 +269,9 @@ a.title{
 h1{
    font-family: 'Alice', serif;
     }
+
+.close{
+    position: absolute; 
+    top: 20px; 
+    right: 15px;
+}

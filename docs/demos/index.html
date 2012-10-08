@@ -27,7 +27,7 @@
     <body>
         <div class="fineprint"><p id="version"></p></div>
 
-        <div class="close" style="position: absolute; top: 45px; right: 15px;">
+        <div class="close">
             <a href="../index.html"><img src="../../images/close_icon.png"></a>
         </div>
 
@@ -41,7 +41,7 @@
                         <div>
                             <div id="logo-alice-img"></div>
                         </div>
-                        <div id="logo-alice-txt-alice" style="padding: 40px 0 0 0;">
+                        <div id="logo-alice-txt-alice">
                             <div id="logo-alice-txt-a"></div>
                             <div id="logo-alice-txt-l"></div>
                             <div id="logo-alice-txt-i"></div>
@@ -101,6 +101,28 @@
                         </ul>
                     </div>
                 </div>
+
+                <!-- Extras -->
+                <div class="infoBox" style="margin-top: 20px;">
+                    <div class="padded">
+                        <a class="title" href="caterpillar.html">Extras</a>
+                        <p>Demos of some extra possibilities and tools.</p>
+                        <p>Extras:</p>
+                        <ul>
+                            <li><a href="chaining.html">Chaining</a></li>
+                        </ul>
+                        <p>Samples:</p>
+                        <ul>
+                            <li><a href="stack.html">Stack</a></li>
+                            <li><a href="sampler.html">Sampler</a></li>
+                        </ul>
+                        <p>Tools:</p>
+                        <ul>
+                            <li><a href="builder.html">Builder</a></li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="spacer"></div>
 
                 <div style="width: 100%; float: left;"> 
@@ -117,26 +139,24 @@
 
         <!-- AliceJS -->
         <script src="../../src/alice.core.js"></script>
-        <script src="../../src/alice.masterFx.cheshire.js"></script>
+        <script src="../../src/alice.plugins.cheshire.js"></script>
 
         <script type="text/javascript">
         
         prettyPrint();
         sniffer.init();
 
-                animateLogo = function () {
-                $a("logo-alice-img").spin({
+            animateLogo = function () {
+                alicejs.spin({
+                    elems: "logo-alice-img",
                     move: "left",
                     overshoot: '7',
                     duration: "3000ms",
                     iteration: "1"
                 });
 
-                var kids = document.getElementById("logo-alice-txt-alice").children;
-                
-
-                $a(document.getElementById("logo-alice-txt-alice").children).slide({
-                    //elems: document.getElementById("logo-alice-txt-alice").children,
+                alicejs.slide({
+                    elems: document.getElementById("logo-alice-txt-alice").children,
                     move: "left",
                     overshoot: '0',
                     duration: {value: "2000ms", randomness: "100%", offset: "250ms"},
@@ -145,7 +165,8 @@
                     iteration: 1
                 });
 
-                $a(document.getElementById("logo-alice-txt-js").children).toss({
+                alicejs.toss({
+                    elems: document.getElementById("logo-alice-txt-js").children,
                     move: "left",
                     overshoot: "10%",
                     iteration: 1,

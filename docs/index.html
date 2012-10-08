@@ -76,13 +76,23 @@
 
                     <h2>Implementation</h2>
 
+                    <p>Alice has a handful of declared functions that are available for the client to impliment. At the core alice declares var alicejs = alice.init();</p>
+
+                    <pre class="prettyprint lang-html">
+// Alice Core
+
+var alicejs = alice.init(); //Is built right into alice!
+
+// This is why we can do ex. alicejs.wobble(); instead of alice.init().wobble();
+                    </pre>
+
                     <pre class="prettyprint lang-html">
 &lt;div id=&quot;DIV1&quot;&gt;HERE IS ONE DIV&lt;/div&gt;
 &lt;img id=&quot;IMG1&quot; src=&quot;/myimg.gif&quot;&gt;
 &lt;script src=&quot;/alice/alice.core.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;/alice/alice.plugins.cheshire.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
-aliceJs.wobble({
+alicejs.wobble({
     elems: [&quot;DIV1&quot;, &quot;IMG1&quot;], 
     rotate: 5, 
     perspectiveOrigin: &quot;center&quot;,
@@ -113,11 +123,11 @@ aliceJs.wobble({
                     <h2>Architecture</h2>
 
                     <p>AliceJS is completely self-contained and doesn't rely on any other libraries. It also focuses exclusively on setting up animations through CSS manipulations. This makes it easy to include along with other libraries without fear of collision as AliceJS doesn't try to do event handling (touch or mouse), nor does it enforce particular logic or layout elements. It's easy for instance to use AliceJS to animate a Dojo Dialog component for example, or a jQuery UI component, just by addressing the underlying DIV.</p>
-                    <p>AliceJS is composed exclusively of JS files in a single folder, without image, CSS or any other dependencies. There is an "alice.core.js" file that contains common code and utilities, and then each effect has its own additional JS file, for example, "alice.plugins.cheshire.js". The goal is to keep each animation separate which makes it easy for a developer to create a minified build with only what is needed and nothing else. AliceJS is lean and right now, the gzipped minified version containing the entire library is about 50K only!</p>
+                    <p>AliceJS is composed exclusively of JS files in a single folder, without image, CSS or any other dependencies. There is an "alice.core.js" file that contains common code and utilities, and then each effect has its own additional JS file, for example, "alice.plugins.cheshire.js". The goal is to keep each animation separate which makes it easy for a developer to create a minified build with only what is needed and nothing else. AliceJS is lean and right now, the gzipped minified version containing the entire library is about 11K only!</p>
                     <p>The syntax for AliceJS is also kept minimal but still objectified, which we believe to be really simple and easy to grasp. For example:</p>
 
                     <pre class="prettyprint lang-js">
-aliceJs.wobble({
+alicejs.wobble({
     elems: "MyDiv", 
     rotation: 5, 
     perspectiveOrigin: "center",
@@ -177,6 +187,8 @@ aliceJs.wobble({
                 </div>
 
                 <div class="spacer"></div>
+
+                
             </div>
         </div>
 
@@ -192,7 +204,7 @@ aliceJs.wobble({
 
         <!-- AliceJS -->
         <script src="../src/alice.core.js"></script>
-        <script src="../src/alice.masterFx.cheshire.js"></script>
+        <script src="../src/alice.plugins.cheshire.js"></script>
 
         <script type="text/javascript">
         prettyPrint();
@@ -203,18 +215,16 @@ aliceJs.wobble({
         // var a = alice.init(),
 
             animateLogo = function () {
-                $a("AliceMain").spin({
+                alicejs.spin({
+                    elems: "logo-alice-img",
                     move: "left",
-                    overshoot: '2',
+                    overshoot: '7',
                     duration: "3000ms",
-                    iteration: "3"
+                    iteration: "1"
                 });
 
-                var kids = document.getElementById("logo-alice-txt-alice").children;
-                
-
-                $a(document.getElementById("logo-alice-txt-alice").children).slide({
-                    //elems: document.getElementById("logo-alice-txt-alice").children,
+                alicejs.slide({
+                    elems: document.getElementById("logo-alice-txt-alice").children,
                     move: "left",
                     overshoot: '0',
                     duration: {value: "2000ms", randomness: "100%", offset: "250ms"},
@@ -223,7 +233,8 @@ aliceJs.wobble({
                     iteration: 1
                 });
 
-                $a(document.getElementById("logo-alice-txt-js").children).toss({
+                alicejs.toss({
+                    elems: document.getElementById("logo-alice-txt-js").children,
                     move: "left",
                     overshoot: "10%",
                     iteration: 1,
@@ -231,8 +242,6 @@ aliceJs.wobble({
                     timing: "ease-in-out"
                 });
             };
-
-        document.getElementById("logo").addEventListener("click", animateLogo, false);
 
         animateLogo();
 

@@ -713,23 +713,6 @@ var alice = (function () {
         return core;
 }());
 
-
-
-alice.plugins.playPause = function() {
-    var elms = alice.anima;
-    var i, elems = alice.elements(elms),pfx = alice.prefixJS;
-    
-    for(i = 0; i < elems.length; i++){
-    var elemId = elems[i].getAttribute('id');
-        if(document.getElementById(elemId).style[pfx + "AnimationPlayState"] === "paused"){
-            document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "running";
-        }
-        else{
-            document.getElementById(elemId).style[pfx + "AnimationPlayState"] = "paused";
-        }
-    }
-}
-
 /**
  * Performs various acts of formating changes
  */

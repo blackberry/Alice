@@ -239,7 +239,7 @@ alice.plugins.caterpillar = function () {
             
             core.randomizer = params.randomize;
 
-            console.log(core.randomizer)
+            console.log(core.randomizer);
 
             // Create the Book Events
             core.bookStart = document.createEvent("Event");             
@@ -256,21 +256,20 @@ alice.plugins.caterpillar = function () {
 
             // Required to determine the book's attributes.
             function findCSSRule(selector) {
-                var numOfSheets = document.styleSheets.length;      // Because we may have multiple stylesheets
+                var numOfSheets = document.styleSheets.length, theRules;      // Because we may have multiple stylesheets
                 for(var s = 0; s < numOfSheets; s++){
                     var mySheet = document.styleSheets[s];          // Grab the specific sheet
                     if (mySheet.rules) {                            // Verify it has rules
-                        var theRules = mySheet.rules;               // IE
+                        theRules = mySheet.rules;               // IE
                     } else {
-                        var theRules = mySheet.cssRules;            // Everybody else
+                        theRules = mySheet.cssRules;            // Everybody else
                     }
-                    var theRules = mySheet.cssRules ? mySheet.cssRules : mySheet.rules;
+                    theRules = mySheet.cssRules ? mySheet.cssRules : mySheet.rules;
                     for (var i=0; i<theRules.length; i++) {                     // Parse the set of rules
                         if (theRules[i].selectorText == selector) {             // If we have a match
                             var bW = theRules[i].style.width.toString();        // Get the book width
                             var bH = theRules[i].style.height.toString();       // Get the book height
                             return [bW, bH];                                    // Return the string values as an array
-                            break;
                         } // endif theRules[i]
                     } // end for i  
                 } // end for s
@@ -490,7 +489,7 @@ alice.plugins.caterpillar = function () {
                 _element.style.zIndex = '0';                                                                    // know your place little one!
                 
                 if(idNum > 1 && dir === 'forwards'){                                                                                    // If we're moving forwards
-                    if(core.jumper != null){
+                    if(core.jumper !== null){
                         document.getElementById('p'+core.jumper).style.display = 'block';
                         _element.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[1];
                     }
@@ -506,7 +505,7 @@ alice.plugins.caterpillar = function () {
                 if(idNum > 0 && dir === 'reverse'){                                                                                     // If we're going backwards
                     prepage = document.getElementById('p'+(idNum-1));   
 
-                    if(core.jumper != null){
+                    if(core.jumper !== null){
                         document.getElementById('p'+core.jumper).style.display = 'block';
                         _element.style[alice.prefixJS+"Transform"] = core.transformRotate+core.transformDegrees[1];
                     }                                                                // gotta prepare ourselves                  
@@ -521,7 +520,7 @@ alice.plugins.caterpillar = function () {
                         nextpage.style.display = 'none';
                         _element.style.display = 'block';
 
-                        if(core.jumper != null){
+                        if(core.jumper !== null){
                             document.getElementById('p'+core.jumper).style.display = 'none';
                         }
                     }
@@ -1107,13 +1106,13 @@ alice.plugins.caterpillar = function () {
                     }
                 }
 
-                var page = document.getElementById('p'+core.rightPage);
+                var page = document.getElementById('p'+core.rightPage), nxtPageId, nxtPage;
                 
                 if(!jumper){
                     try{
-                        var nxtPageId = core.book.querySelector('div:nth-child('+(pageId + 1)+')').getAttribute('id');
-                        var nxtPage = document.getElementById(nxtPageId);
-                            nxtPage.style.display = 'block';
+                        nxtPageId = core.book.querySelector('div:nth-child('+(pageId + 1)+')').getAttribute('id');
+                        nxtPage = document.getElementById(nxtPageId);
+                        nxtPage.style.display = 'block';
                     }catch(err){ 
                         if(core.wrap !== true){   
                             console.log("This is the end of the book!");                                                            // The end of the book
@@ -1122,8 +1121,8 @@ alice.plugins.caterpillar = function () {
                     }
                 }else{
                     core.jumper = jumper;
-                    var nxtPageId = core.book.querySelector('div:nth-child('+core.jumper+')').getAttribute('id');
-                    var nxtPage = document.getElementById(nxtPageId);
+                    nxtPageId = core.book.querySelector('div:nth-child('+core.jumper+')').getAttribute('id');
+                    nxtPage = document.getElementById(nxtPageId);
                     nxtPage.style.display = 'block';
                     core.rightPage = (jumper-1);
                 }
@@ -1270,7 +1269,7 @@ alice.plugins.caterpillar = function () {
                         var npn = 1;
                         
                         for(j = 0; j < _newPageArray.length; j++){
-                            var truVal = (_originalPageCount + npn)
+                            var truVal = (_originalPageCount + npn);
                             _newPageArray[j].setAttribute('class', currentClass);
                             _newPageArray[j].setAttribute('style', currentStyleOdd);
                             _newPageArray[j].setAttribute('id', 'p'+truVal);
@@ -1350,12 +1349,12 @@ alice.plugins.caterpillar = function () {
                             npn++;
                         }
                     }
-                }
+                };
 
-                xmlhttp.send(null)
+                xmlhttp.send(null);
             },
 
-            loadNewBook: function(page, newbookfunc){
+            loadNewBook: function(page, Newbookfunc){
                 var _caterpillar = alice.plugins.caterpillar, xmlhttp, source, _element, _pages, _elementParent, j;
 
                 _caterpillar.animationRunning = false;
@@ -1383,7 +1382,7 @@ alice.plugins.caterpillar = function () {
                     var _newPageArray = [];
 
                     for(var p = 0; p < _rawPages.length; p++){
-                        if(_rawPages[p].nodeType === 1){ 
+                    if(_rawPages[p].nodeType === 1){
                             if(_rawPages[p].tagName === "DIV" || _rawPages[p].tagName === "div"){ 
                                 _newPageArray[_rpn] = _rawPages[p];                                    
                                 _caterpillar.realPageCount = _caterpillar.realPageCount+1;   
@@ -1410,14 +1409,14 @@ alice.plugins.caterpillar = function () {
                     alice.plugins.caterpillar.rightPage = 1;
                     alice.plugins.caterpillar.leftPage = 0;
 
-                    new newbookfunc;
+                    new Newbookfunc();
 
                     console.log(_caterpillar.realPageCount);
 
                     }
-                }
+                };
 
-                xmlhttp.send(null)
+                xmlhttp.send(null);
             } 
     };
 

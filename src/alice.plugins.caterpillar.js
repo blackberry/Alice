@@ -237,6 +237,8 @@ alice.plugins.caterpillar = function () {
             core.originZero = '0 0';                                                // The default transform origin think top left
             core.pageClass = params.pageClass;                                      // Potential page class the author wants to add
             
+            core.shadow = params.shadow;
+
             core.randomizer = params.randomize;
 
             console.log(core.randomizer);
@@ -322,12 +324,14 @@ alice.plugins.caterpillar = function () {
             // Configure the perspective depth [ there was no science used in the formulating of this. ]
             var goggles = Math.floor(core.pageWidth*4);
             
-            // Set the shadows
-            core.shadowPattern0 = '';//'2px 0px 10px rgba(0, 0, 0, 0.1)';
-            core.shadowPattern50 = '';//'2px 0px 10px rgba(0, 0, 0, 0.2)';
-            core.shadowPattern100 = '';//'2px 0px 10px rgba(0, 0, 0, 0.1)';
-            core.shadowPatternRev50 = '';//'2px 0px 10px rgba(0, 0, 0, 0.2)';
-            core.shadowPatternRev100 = '';//'2px 0px 10px rgba(0, 0, 0, 0.1)';
+            if(core.shadow === true){
+                // Set the shadows
+                core.shadowPattern0 = '2px 0px 4px rgba(0, 0, 0, 0.1)';
+                core.shadowPattern50 = '2px 0px 4px rgba(0, 0, 0, 0.2)';
+                core.shadowPattern100 = '2px 0px 4px rgba(0, 0, 0, 0.1)';
+                core.shadowPatternRev50 = '2px 0px 4px rgba(0, 0, 0, 0.2)';
+                core.shadowPatternRev100 = '2px 0px 4px rgba(0, 0, 0, 0.1)';
+            }
 
             // Various book details
             core.wrap = params.wrap;                                            // The true/false wrap state
@@ -1570,7 +1574,7 @@ alice.plugins.book = function (params) {
         bookWidth: params.bookWidth || document.getElementById(params.elems || alice.anima).style.width,
         bookHeight: params.bookHeight || document.getElementById(params.elems || alice.anima).style.height,
 
-        shadow: params.shadow || true,
+        shadow: params.shadow || false,
         speed: params.speed || "500ms",
 
         inPageControls: params.inPageControls,

@@ -295,13 +295,6 @@ function newBook(){
             });
         }
 
-        // document.addEventListener("pageTrigger", function(){
-        //     if(_caterpillar.pageNumber === 13){
-        //         _caterpillar.loadMorePages('newgame.html', 'book');
-        //     }
-        // }, false);
-
-
         alicejs.book({
             elems: "book",
             speed: '500ms',
@@ -315,9 +308,6 @@ function newBook(){
             pageBackground: '#333',
             controlBackground: '#111'
         });
-
-        console.log(_caterpillar.realPageCount)
-
 
         //Google Analytics
         var _gaq = _gaq || [];

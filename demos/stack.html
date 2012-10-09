@@ -58,6 +58,42 @@
         <p>This is a demo of animating a stack of 54 playing card images.</p>
 
         <div id="cards" class="cards">
+            <div class="card"><img src="common/images/cards/2_diamonds.png"></div>
+            <div class="card"><img src="common/images/cards/2_clubs.png"></div>
+            <div class="card"><img src="common/images/cards/2_hearts.png"></div>
+            <div class="card"><img src="common/images/cards/2_spades.png"></div>
+            <div class="card"><img src="common/images/cards/3_clubs.png"></div>
+            <div class="card"><img src="common/images/cards/3_diamonds.png"></div>
+            <div class="card"><img src="common/images/cards/3_hearts.png"></div>
+            <div class="card"><img src="common/images/cards/3_spades.png"></div>
+            <div class="card"><img src="common/images/cards/4_clubs.png"></div>
+            <div class="card"><img src="common/images/cards/4_diamonds.png"></div>
+            <div class="card"><img src="common/images/cards/4_hearts.png"></div>
+            <div class="card"><img src="common/images/cards/4_spades.png"></div>
+            <div class="card"><img src="common/images/cards/5_clubs.png"></div>
+            <div class="card"><img src="common/images/cards/5_diamonds.png"></div>
+            <div class="card"><img src="common/images/cards/5_hearts.png"></div>
+            <div class="card"><img src="common/images/cards/5_spades.png"></div>
+            <div class="card"><img src="common/images/cards/6_clubs.png"></div>
+            <div class="card"><img src="common/images/cards/6_diamonds.png"></div>
+            <div class="card"><img src="common/images/cards/6_hearts.png"></div>
+            <div class="card"><img src="common/images/cards/6_spades.png"></div>
+            <div class="card"><img src="common/images/cards/7_clubs.png"></div>
+            <div class="card"><img src="common/images/cards/7_diamonds.png"></div>
+            <div class="card"><img src="common/images/cards/7_hearts.png"></div>
+            <div class="card"><img src="common/images/cards/7_spades.png"></div>
+            <div class="card"><img src="common/images/cards/8_clubs.png"></div>
+            <div class="card"><img src="common/images/cards/8_diamonds.png"></div>
+            <div class="card"><img src="common/images/cards/8_hearts.png"></div>
+            <div class="card"><img src="common/images/cards/8_spades.png"></div>
+            <div class="card"><img src="common/images/cards/9_clubs.png"></div>
+            <div class="card"><img src="common/images/cards/9_diamonds.png"></div>
+            <div class="card"><img src="common/images/cards/9_hearts.png"></div>
+            <div class="card"><img src="common/images/cards/9_spades.png"></div>
+            <div class="card"><img src="common/images/cards/10_clubs.png"></div>
+            <div class="card"><img src="common/images/cards/10_diamonds.png"></div>
+            <div class="card"><img src="common/images/cards/10_hearts.png"></div>
+            <div class="card"><img src="common/images/cards/10_spades.png"></div>
             <div class="card"><img src="common/images/cards/jack_clubs.png"></div>
             <div class="card"><img src="common/images/cards/jack_diamonds.png"></div>
             <div class="card"><img src="common/images/cards/jack_hearts.png"></div>
@@ -86,11 +122,7 @@
 -->
         </div>
 
-        <!-- Add jWorkflow for Chaining -->
-        <script src="../libs/jworkflow/jworkflow-min-0.6.0.js"></script>
-
-        <script src="../js/src/alice.core.js"></script>
-        <script src="../js/src/alice.plugins.cheshire.js"></script>
+        <script src="../js/alice.js"></script>
         <script type="text/javascript">
         var elems = document.getElementById("cards").children;
 
@@ -102,43 +134,75 @@
         }
 */
 
-        var a = alice.init();
+        var a = alice.init({workflow: true});
 
         document.getElementById("btn-demo").addEventListener("click", function () {
-            a.log("slideLeft").slide(elems, "left", "", {
-                "value": "250ms",
-                "randomness": "0%",
-                "offset": "50ms"
-            }, "ease-in-out").delay(1900) // 3700 = (50ms * 54) + 1000
-            .log("tossLeft").toss(elems, "left", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            }, "ease-in-out").delay(3700).log("spinLeft").spin(elems, "left", "", "", {
-                "value": "2000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            }, "ease-in-out").delay(3700).log("pageFlipLeft").pageFlip(elems, "left", "", "", {
-                "value": "2000ms",
-                "randomness": "0%",
-                "offset": "250ms"
-            }, "ease-in-out").delay(5500).log("drain").drain(elems, "", "", {
-                "value": "500ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            }, "ease-in-out").delay(3700).log("phantomZone").phantomZone(elems, "", "", "", {
-                "value": "500ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            }, "ease-in-out").delay(3700).log("twirlFromRight").twirl(elems, "left", {
-                "value": "500ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            }, "ease-in-out").delay(3700).log("raceFlag").raceFlag(elems, "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "250ms"
-            }, "ease-in-out").delay(1000).log("Done!").start();
+            a.log("slideLeft").slide({
+                elems: elems,
+                move: "left",
+                duration: {
+                    "value": "250ms",
+                    "randomness": "0%",
+                    "offset": "50ms"
+                    }
+            }).delay(3700) // 3700 = (50ms * 54) + 1000
+            .log("tossLeft").toss({
+                elems: elems,
+                move: "left",
+                duration: {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                    }
+            }).delay(9100).log("spinLeft").spin({
+                elems: elems,
+                move: "left",
+                duration: {
+                    "value": "2000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                    }
+            }).delay(9100).log("pageFlipLeft").pageFlip({
+                elems: elems,
+                move: "left",
+                duration: {
+                    "value": "2000ms",
+                    "randomness": "0%",
+                    "offset": "250ms"
+                    }
+            }).delay(14500).log("drain").drain({
+                elems: elems,
+                move: "left",
+                duration: {
+                    "value": "500ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                    }
+            }).delay(8100).log("phantomZone").phantomZone({
+                elems: elems,
+                move: "left",
+                duration: {
+                    "value": "500ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                    }
+            }).delay(8100).log("twirlFromRight").twirl({
+                elems: elems,
+                move: "left",
+                duration: {
+                    "value": "500ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                    }
+            }).delay(9100).log("raceFlag").raceFlag({
+                elems: elems,
+                move: "left",
+                duration: {
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "250ms"
+                    }
+            }).delay(1000).log("Done!").start();
         });
 
         // Google Analytics

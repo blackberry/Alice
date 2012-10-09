@@ -111,226 +111,273 @@
             <div id="elem20" class="card"><img src="common/images/cards/10_spades.png" width="175" height="238"></div>
         </div>
 
-        <script src="../js/src/alice.core.js"></script>
-        <script src="../js/src/alice.plugins.cheshire.js"></script>
+        <script src="../js/alice.js"></script>
         <script type="text/javascript">
-        var a = alice.init();
+        var a = alicejs;
 
         var elems = ["elem1", "elem2", "elem3", "elem4", "elem5", "elem6", "elem7", "elem8", "elem9", "elem10", "elem11", "elem12", "elem13", "elem14", "elem15", "elem16", "elem17", "elem18", "elem19", "elem20"];
 
         document.getElementById("effect-drainIn").addEventListener("click", function () {
-            a.drain(elems, "in", "", {
-                "value": "3000ms",
-                "randomness": "0%",
-                "offset": "150ms"
-            });
+           alicejs.drain({
+                elems: elems,
+                fade: "in"
+           });
         }, false);
 
         document.getElementById("effect-drainOut").addEventListener("click", function () {
-            a.drain(elems, "out", "", {
-                "value": "3000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.drain({
+                elems: elems,
+                fade: "out"
             });
         }, false);
 
         document.getElementById("effect-fadeIn").addEventListener("click", function () {
-            a.fade(elems, "in", {
-                "value": "2000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.fade({
+                elems: elems,
+                fade: "in"
             });
         }, false);
 
         document.getElementById("effect-fadeOut").addEventListener("click", function () {
-            a.fade(elems, "out", {
-                "value": "2000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.fade({
+                elems: elems,
+                fade: "out"
             });
         }, false);
 
         document.getElementById("effect-pageFlipLeft").addEventListener("click", function () {
-            a.pageFlip(elems, "left", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.pageFlip({
+                elems: elems,
+                flipDirection: "left",
+                iteration: 1
             });
         }, false);
 
         document.getElementById("effect-pageFlipRight").addEventListener("click", function () {
-            a.pageFlip(elems, "right", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.pageFlip({
+                elems: elems,
+                flipDirection: "right",
+                iteration: 1
             });
         }, false);
 
         document.getElementById("effect-pageFlipUp").addEventListener("click", function () {
-            a.pageFlip(elems, "up", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.pageFlip({
+                elems: elems,
+                flipDirection: "up",
+                iteration: 1
             });
         }, false);
 
         document.getElementById("effect-pageFlipDown").addEventListener("click", function () {
-            a.pageFlip(elems, "down", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.pageFlip({
+                elems: elems,
+                flipDirection: "down",
+                iteration: 1
             });
         }, false);
 
         document.getElementById("effect-phantomZoneIn").addEventListener("click", function () {
-            a.phantomZone(elems, "in", "", "", {
-                "value": "4000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.phantomZone({
+                elems: elems,
+                fade: "in"
             });
         }, false);
 
         document.getElementById("effect-phantomZoneOut").addEventListener("click", function () {
-            a.phantomZone(elems, "out", "", "", {
-                "value": "4000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.phantomZone({
+                elems: elems,
+                fade: "out"
             });
         }, false);
 
         document.getElementById("effect-raceFlag").addEventListener("click", function () {
-            a.raceFlag(elems, "", "", {
-                "value": "2000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.raceFlag({
+                elems: elems
             });
         }, false);
 
         document.getElementById("effect-slideLeft").addEventListener("click", function () {
-            a.slide(elems, "left", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.slide({
+                elems: elems,
+                move: "left"
             });
         }, false);
 
         document.getElementById("effect-slideRight").addEventListener("click", function () {
-            a.slide(elems, "right", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.slide({
+                elems: elems,
+                move: "right"
             });
         }, false);
 
         document.getElementById("effect-slideUp").addEventListener("click", function () {
-            a.slide(elems, "up", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.slide({
+                elems: elems,
+                move: "up"
             });
         }, false);
 
         document.getElementById("effect-slideDown").addEventListener("click", function () {
-            a.slide(elems, "down", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.slide({
+                elems: elems,
+                move: "down"
             });
         }, false);
 
         document.getElementById("effect-spinLeft").addEventListener("click", function () {
-            a.spin(elems, "left", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.spin({
+                elems: elems,
+                move: "left",
+                iteration: 1,
+                duration:{
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 
         document.getElementById("effect-spinRight").addEventListener("click", function () {
-            a.spin(elems, "right", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.spin({
+                elems: elems,
+                move: "right",
+                iteration: 1,
+                duration:{
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 
         document.getElementById("effect-spinUp").addEventListener("click", function () {
-            a.spin(elems, "up", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.spin({
+                elems: elems,
+                move: "up",
+                iteration: 1,
+                duration:{
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 
         document.getElementById("effect-spinDown").addEventListener("click", function () {
-            a.spin(elems, "down", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.spin({
+                elems: elems,
+                move: "down",
+                iteration: 1,
+                duration:{
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 
         document.getElementById("effect-tossLeft").addEventListener("click", function () {
-            a.toss(elems, "left", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.toss({
+                elems: elems,
+                move: "left",
+                iteration: 1,
+                duration:{
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 
         document.getElementById("effect-tossRight").addEventListener("click", function () {
-            a.toss(elems, "right", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.toss({
+                elems: elems,
+                move: "right",
+                iteration: 1,
+                duration:{
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 
         document.getElementById("effect-tossUp").addEventListener("click", function () {
-            a.toss(elems, "up", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.toss({
+                elems: elems,
+                move: "up",
+                iteration: 1,
+                duration:{
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 
         document.getElementById("effect-tossDown").addEventListener("click", function () {
-            a.toss(elems, "down", "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.toss({
+                elems: elems,
+                move: "down",
+                iteration: 1,
+                duration:{
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 
         document.getElementById("effect-twirlFromLeft").addEventListener("click", function () {
-            a.twirl(elems, "left", {
-                "value": "2000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.twirl({
+                elems: elems,
+                move: "left",
+                iteration: 1,
+                duration:{
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 
         document.getElementById("effect-twirlFromRight").addEventListener("click", function () {
-            a.twirl(elems, "right", {
-                "value": "2000ms",
-                "randomness": "0%",
-                "offset": "150ms"
+            alicejs.twirl({
+                elems: elems,
+                move: "right",
+                iteration: 1,
+                duration:{
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 
         document.getElementById("effect-zoomForward").addEventListener("click", function () {
-            a.zoom(elems, {from: "100%", to: "125%"}, true, "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "750ms"
+            alicejs.zoom({
+                elems: elems,
+                scale: {from: "100%", to: "125%"},
+                iteration: 1,
+                duration:{
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 
         document.getElementById("effect-zoomBackward").addEventListener("click", function () {
-            a.zoom(elems, {from: "100%", to: "75%"}, false, "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "750ms"
+            alicejs.zoom({
+                elems: elems,
+                scale: {from: "100%", to: "75%"},
+                iteration: 1,
+                duration:{
+                    "value": "1000ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 
@@ -366,54 +413,73 @@
         //---[ Continuous ]---------------------------------------------------
 
         document.getElementById("effect-bounce").addEventListener("click", function () {
-            a.bounce(elems, "", true, {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "1ms"
+            alicejs.bounce({
+                elems: elems, 
+                duration:{
+                    "value": "250ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 
         document.getElementById("effect-bounce-delay").addEventListener("click", function () {
-            a.bounce(elems, "", true, {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "1ms"
-            }, "", {
-                "value": "2500ms",
-                "randomness": "10%",
-                "offset": "250ms"
+            alicejs.bounce({
+                elems: elems,
+                duration:{
+                    "value": "250ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                },
+                delay: { 
+                    "value": "250ms",
+                    "randomness": "10%",
+                    "offset": "250ms"
+                }
             });
         }, false);
 
         document.getElementById("effect-dance").addEventListener("click", function () {
-            a.dance(elems, "", {
-                "value": "750ms",
-                "randomness": "0%",
-                "offset": "1ms"
+            alicejs.dance({
+                elems: elems,
+                duration:{
+                    "value": "250ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 
         document.getElementById("effect-hinge").addEventListener("click", function () {
-            a.hinge(elems, "", "", {
-                "value": "750ms",
-                "randomness": "0%",
-                "offset": "1ms"
+            alicejs.hinge({
+                elems: elems,
+                duration:{
+                    "value": "250ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 
         document.getElementById("effect-pendulum").addEventListener("click", function () {
-            a.pendulum(elems, "", "", {
-                "value": "1000ms",
-                "randomness": "0%",
-                "offset": "1ms"
+            alicejs.pendulum({
+                elems: elems,
+                duration:{
+                    "value": "250ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 
         document.getElementById("effect-wobble").addEventListener("click", function () {
-            a.wobble(elems, "", "", {
-                "value": "150ms",
-                "randomness": "0%",
-                "offset": "1ms"
+            alicejs.wobble({
+                elems: elems,
+                duration:{
+                    "value": "250ms",
+                    "randomness": "0%",
+                    "offset": "150ms"
+                }
             });
         }, false);
 

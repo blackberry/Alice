@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<!--
+    Copyright 2011-2012 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <title>AliceJS Chaining</title>
+        <link href="../../images/favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="../css/default.css">
+        <style type="text/css">
+        body, select {
+            font: 8pt Arial, sans-serif;
+            /*overflow: hidden;*/
+        }
+
+        .cardx {
+            float: left;
+            background: transparent;
+            border: 1px dashed #CCC;
+            text-align: center;
+        }
+
+        #cardBox{
+            width: 600px;
+            margin: 0 auto;
+            float: none;
+        }
+
+        input {
+            font: 8pt Arial, sans-serif;
+            width: 90px;
+            float: left;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div id="card1" class="card-edge" style="margin-top: 50px;">
+                <h1><a href="../index.html">AliceJS</a> &gt; <a href="index.html#moredemos">Demos</a> &gt; Chaining</h1>
+
+                    <div class="card">
+                        <p><a href="fx/book.html">Chaining</a> - Chaining is fundamentally simple to use. It's built right into the system with jWorkflow. </p>
+                        <div class="code">
+                            <pre class="prettyprint lang-js">
+var alicejsSlide = alice.init({workflow: true});
+var aces = ["elem1", "elem2", "elem3", "elem4"];
+
+alicejsSlide.slide({
+            elems: aces,
+            move: "left",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000)
+        .slide({
+            elems: aces,
+            move: "right",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000)
+        .slide({
+            elems: aces,
+            move: "down",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000)
+        .slide({
+            elems: aces,
+            move: "up",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).start();
+
+        // All chained animations must conclude with .start(), and be separated by delay(#)
+
+                            </pre>
+                        </div>
+                    </div>
+
+                    <div class="spacer"></div>
+
+                    <div id="cardBox"> 
+
+                        <!-- Test Elements -->
+                        <div id="aces" style="clear: both;">
+                            <div id="elem1" class="cardx"><img src="common/images/cards/ace_clubs.png" width="105" height="143"><p>Ace of Clubs</p></div>
+                            <div id="elem2" class="cardx"><img src="common/images/cards/ace_diamonds.png" width="105" height="143"><p>Ace of Diamonds</p></div>
+                            <div id="elem3" class="cardx"><img src="common/images/cards/ace_hearts.png" width="105" height="143"><p>Ace of Hearts</p></div>
+                            <div id="elem4" class="cardx"><img src="common/images/cards/ace_spades.png" width="105" height="143"><p>Ace of Spades</p></div>
+                        </div>
+                        <div id="kings" style="clear: both;">
+                            <div id="elem5" class="cardx"><img src="common/images/cards/king_clubs.png" width="105" height="143"></div>
+                            <div id="elem6" class="cardx"><img src="common/images/cards/king_diamonds.png" width="105" height="143"></div>
+                            <div id="elem7" class="cardx"><img src="common/images/cards/king_hearts.png" width="105" height="143"></div>
+                            <div id="elem8" class="cardx"><img src="common/images/cards/king_spades.png" width="105" height="143"></div>
+                        </div>
+                        <div id="queens" style="clear: both;">
+                            <div id="elem9" class="cardx"><img src="common/images/cards/queen_clubs.png" width="105" height="143"></div>
+                            <div id="elem10" class="cardx"><img src="common/images/cards/queen_diamonds.png" width="105" height="143"></div>
+                            <div id="elem11" class="cardx"><img src="common/images/cards/queen_hearts.png" width="105" height="143"></div>
+                            <div id="elem12" class="cardx"><img src="common/images/cards/queen_spades.png" width="105" height="143"></div>
+                        </div>
+                        <div id="jacks" style="clear: both;">
+                            <div id="elem13" class="cardx"><img src="common/images/cards/jack_clubs.png" width="105" height="143"></div>
+                            <div id="elem14" class="cardx"><img src="common/images/cards/jack_diamonds.png" width="105" height="143"></div>
+                            <div id="elem15" class="cardx"><img src="common/images/cards/jack_hearts.png" width="105" height="143"></div>
+                            <div id="elem16" class="cardx"><img src="common/images/cards/jack_spades.png" width="105" height="143"></div>
+                        </div>
+                        <div id="tens" style="clear: both;">
+                            <div id="elem17" class="cardx"><img src="common/images/cards/10_clubs.png" width="105" height="143"></div>
+                            <div id="elem18" class="cardx"><img src="common/images/cards/10_diamonds.png" width="105" height="143"></div>
+                            <div id="elem19" class="cardx"><img src="common/images/cards/10_hearts.png" width="105" height="143"></div>
+                            <div id="elem20" class="cardx"><img src="common/images/cards/10_spades.png" width="105" height="143"></div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <!-- Syntax Highlighting -->
+        <link rel="stylesheet" type="text/css" href="../../libs/prettify/themes/sunburst.css">
+        <script type="text/javascript" src="../../libs/prettify/prettify.js"></script>
+        <script type="text/javascript" src="../../libs/prettify/lang-css.js"></script>
+
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../../libs/sniffer.js"></script>
+
+        <script src="../../src/alice.core.js"></script>
+        <script src="../../src/alice.plugins.cheshire.js"></script>
+
+        <script type="text/javascript">
+        prettyPrint();
+        sniffer.init();
+
+        var aces = ["elem1", "elem2", "elem3", "elem4"],
+            kings = ["elem5", "elem6", "elem7", "elem8"],
+            queens = ["elem9", "elem10", "elem11", "elem12"],
+            jacks = ["elem13", "elem14", "elem15", "elem16"],
+            tens = ["elem17", "elem18", "elem19", "elem20"];
+
+        // Animations
+
+        var alicejsSlide = alice.init({workflow: true}),
+            alicejsToss = alice.init({workflow: true}),
+            alicejsPageFlip = alice.init({workflow: true}),
+            alicejsSpin = alice.init({workflow: true}),
+            alicejsDrain = alice.init({workflow: true});
+
+        alicejsSlide.slide({
+            elems: aces,
+            move: "left",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000)
+        .slide({
+            elems: aces,
+            move: "right",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000)
+        .slide({
+            elems: aces,
+            move: "down",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).delay(2000)
+        .slide({
+            elems: aces,
+            move: "up",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms"
+            }
+        }).start();
+
+        // Kings
+
+        alicejsToss.delay(4000)
+        .toss({
+            elems: kings,
+            move: "right",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .toss({
+            elems: kings,
+            move: "left",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .toss({
+            elems: kings,
+            move: "down",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .toss({
+            elems: kings,
+            move: "up",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).start();
+
+        // Queens
+
+        alicejsSpin.delay(8000)
+        .spin({
+            elems: queens,
+            flip: "left",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .spin({
+            elems: queens,
+            flip: "right",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .spin({
+            elems: queens,
+            flip: "down",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .spin({
+            elems: queens,
+            flip: "up",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).start();
+
+        // Jacks
+
+        alicejsPageFlip.delay(12000)
+        .pageFlip({
+            elems: jacks,
+            flip: "left",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .pageFlip({
+            elems: jacks,
+            flip: "right",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .pageFlip({
+            elems: jacks,
+            flip: "down",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .pageFlip({
+            elems: jacks,
+            flip: "up",
+            iteration: "1",
+            duration: {
+                "value": "1000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).start();
+
+        // // Tens
+
+        alicejsDrain.delay(18000)
+        .drain({
+            elems: tens,
+            iteration: "1",
+            duration: {
+                "value": "4000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .drain({
+            elems: tens,
+            iteration: "1",
+            duration: {
+                "value": "2000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .drain({
+            elems: tens,
+            iteration: "1",
+            duration: {
+                "value": "3000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).delay(2000)
+        .drain({
+            elems: tens,
+            iteration: "1",
+            duration: {
+                "value": "2000ms",
+                "randomness": "0%",
+                "offset": "150ms",
+            }
+        }).start();
+
+        // Google Analytics
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28534102-1']);
+        _gaq.push(['_setDomainName', 'github.com']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+        </script>
+    </body>
+</html>

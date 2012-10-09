@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--
+    Copyright 2011-2012 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <title>AliceJS Demos</title>
+        <link href="../../images/favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="../css/default.css">
+        <style type="text/css">
+        </style>
+    </head>
+    <body>
+        <div class="fineprint"><p id="version"></p></div>
+
+        <div class="close">
+            <a href="../index.html"><img src="../../images/close_icon.png"></a>
+        </div>
+
+        <div id="container">
+            <div id="card1" class="card-edge">
+                <div>
+                    <h1 class="seo">AliceJS Demos</h1>
+
+                    <!-- AliceJS Logo (CSS Sprites) -->
+                    <div id="logo">
+                        <div>
+                            <div id="logo-alice-img"></div>
+                        </div>
+                        <div id="logo-alice-txt-alice">
+                            <div id="logo-alice-txt-a"></div>
+                            <div id="logo-alice-txt-l"></div>
+                            <div id="logo-alice-txt-i"></div>
+                            <div id="logo-alice-txt-c"></div>
+                            <div id="logo-alice-txt-e"></div>
+                        </div>
+                        <div id="logo-alice-txt-js">
+                            <div id="logo-alice-txt-j"></div>
+                            <div id="logo-alice-txt-s"></div>
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+
+                    <!-- Overview -->
+                    <p><b><a href="../index.html">AliceJS</a></b> - <i>(A Lightweight Independent CSS Engine)</i> is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.</p>
+                </div>
+
+                <div>
+                    <h1>AliceJS Demos</h1>
+                    <p>Please browse through our collection of demos of the Cheshire and Caterpillar plugins, or try developing one of your own plugins.</p>
+                </div>
+
+                <!-- Cheshire -->
+                <div class="infoBox">
+                    <div class="padded">
+                        <a class="title" href="cheshire.html">Cheshire</a>
+                        <p>Cheshire is a simple to use yet remarkably expandable engine for building and implementing CSS3 based animations. </p>
+                        <p>Available Effects:</p>
+                        <ul>
+                            <li><a href="cheshire.html#bounce">bounce()</a></li>
+                            <li><a href="cheshire.html#dance">dance()</a></li>
+                            <li><a href="cheshire.html#drain">drain()</a></li>
+                            <li><a href="cheshire.html#fade">fade()</a></li>
+                            <li><a href="cheshire.html#hinge">hinge()</a></li>
+                            <li><a href="cheshire.html#pageFlip">pageFlip()</a></li>
+                            <li><a href="cheshire.html#pendulum">pendulum()</a></li>
+                            <li><a href="cheshire.html#phantomZone">phantomZone()</a></li>
+                            <li><a href="cheshire.html#raceFlag">raceFlag()</a></li>
+                            <li><a href="cheshire.html#slide">slide()</a></li>
+                            <li><a href="cheshire.html#spin">spin()</a></li>
+                            <li><a href="cheshire.html#toss">toss()</a></li>
+                            <li><a href="cheshire.html#twirl">twirl()</a></li>
+                            <li><a href="cheshire.html#wobble">wobble()</a></li>
+                            <li><a href="cheshire.html#zoom">zoom()</a></li>
+                        </ul>    
+                    </div>
+                </div>
+
+                <!-- Caterpillar -->
+                <div class="infoBox">
+                    <div class="padded">
+                        <a class="title" href="caterpillar.html">Caterpillar</a>
+                        <p>Caterpillar is a fully customizable 3D rendering that enables interaction with divs enabling the client to go further than simple animations. Stepping into a position to push the limits of human computer interaction.</p>
+                         <p>Available Effects:</p>
+                        <ul>
+                            <li><a href="caterpillar.html#book">book()</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Extras -->
+                <div class="infoBox" style="margin-top: 20px;">
+                    <div class="padded">
+                        <a class="title" href="caterpillar.html">Extras</a>
+                        <p>Demos of some extra possibilities and tools.</p>
+                        <p>Extras:</p>
+                        <ul>
+                            <li><a href="chaining.html">Chaining</a></li>
+                        </ul>
+                        <p>Samples:</p>
+                        <ul>
+                            <li><a href="stack.html">Stack</a></li>
+                            <li><a href="sampler.html">Sampler</a></li>
+                        </ul>
+                        <p>Tools:</p>
+                        <ul>
+                            <li><a href="builder.html">Builder</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="spacer"></div>
+
+                <div style="width: 100%; float: left;"> 
+                    <div class="fineprint"><p>Copyright &copy; 2011-2012 Research In Motion Limited</p></div>
+                </div>
+
+        <!-- Syntax Highlighting -->
+        <link rel="stylesheet" type="text/css" href="../../libs/prettify/themes/sunburst.css">
+        <script type="text/javascript" src="../../libs/prettify/prettify.js"></script>
+        <script type="text/javascript" src="../../libs/prettify/lang-css.js"></script>
+
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../../libs/sniffer.js"></script>
+
+        <!-- AliceJS -->
+        <script src="../../src/alice.core.js"></script>
+        <script src="../../src/alice.plugins.cheshire.js"></script>
+
+        <script type="text/javascript">
+        
+        prettyPrint();
+        sniffer.init();
+
+            animateLogo = function () {
+                alicejs.spin({
+                    elems: "logo-alice-img",
+                    move: "left",
+                    overshoot: '7',
+                    duration: "3000ms",
+                    iteration: "1"
+                });
+
+                alicejs.slide({
+                    elems: document.getElementById("logo-alice-txt-alice").children,
+                    move: "left",
+                    overshoot: '0',
+                    duration: {value: "2000ms", randomness: "100%", offset: "250ms"},
+                    timing: "easeOutQuint",
+                    delay: "0ms",
+                    iteration: 1
+                });
+
+                alicejs.toss({
+                    elems: document.getElementById("logo-alice-txt-js").children,
+                    move: "left",
+                    overshoot: "10%",
+                    iteration: 1,
+                    duration: { value: "2000ms", randomness: "50%", offset: "250ms" },
+                    timing: "ease-in-out"
+                });
+            };
+
+            animateLogo();
+
+        document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
+
+        // Google Analytics
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28534102-1']);
+        _gaq.push(['_setDomainName', 'github.com']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+        </script>
+    </body>
+</html>

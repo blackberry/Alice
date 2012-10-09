@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--
+    Copyright 2011-2012 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes">
+        <title>Credits</title>
+        <link href="favicon.ico" rel="icon" type="image/x-icon">
+        <style type="text/css">
+        body {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 84%;
+        }
+        th {
+            background-color: #000040;
+            color: #FFF;
+        }
+        td {
+            vertical-align: top;
+        }
+        img {
+            border: 0;
+        }
+        .odd {
+            background-color: #F5F5F5;
+        }
+        .even {
+            background-color: #EBEBEB;
+        }
+        .image {
+            text-align: center;
+        }
+        </style>
+    </head>
+    <body>
+        <h1><a href="index.html"><img src="../images/back_btn.png" style="vertical-align: middle; margin-right: 10px;"></a>Credits</h1>
+
+        <div id="content"></div>
+        <div>&nbsp;</div>
+
+        <script src="credits.json"></script>
+        <script type="text/javascript">
+        var html = '';
+
+        html += '<table border="0" cellpadding="3" cellspacing="2" width="100%">';
+
+        for (var i = 0; i < groups.length; i++) {
+            var group = groups[i];
+
+            html += '<tr>';
+            html += '<td colspan="6"><h2>' + group.path + '</h2></td>';
+            html += '</tr>';
+            html += '<tr>';
+            html += '<th>Resource</th>';
+            html += '<th>Filename</th>';
+            html += '<th>Description</th>';
+            html += '<th>License</th>';
+            html += '<th>Source</th>';
+            html += '<th>Credit</th>';
+            html += '</tr>';
+
+            for (var j = 0; j < group.items.length; j++) {
+                var item = group.items[j];
+
+                var rowcolor = (j % 2 === 0) ? 'even' : 'odd';
+
+                var ext_pos = item.filename.lastIndexOf(".");
+                var filename = item.filename.substring(0, ext_pos);
+                var extension = item.filename.substring(ext_pos);
+                //console.log(filename + ' -> ' + extension);
+
+                var name = item.filename || item.name;
+                var w = item.width || group.width || 64;
+                var h = item.height || group.height || 64;
+                var desc = item.desc || '&nbsp;';
+                var license = item.license || group.license || '&nbsp;';
+                var source = item.source || group.source || '&nbsp;';
+                var url = item.url || group.url || '';
+                var credit = item.credit || '&nbsp;'
+
+                var res_href = '';
+                if (item.filename) {
+                    if (extension == '.ico') {
+                        res_href = group.path + '/' + filename + '.ico';
+                    }
+                    else if (extension == '.m4v') {
+                        res_href = group.path + '/' + filename + '.jpg';
+                    }
+                    else {
+                        res_href = group.path + '/' + item.filename
+                    }
+                }
+                else {
+                    res_href = '../images/folder.png';
+                }
+
+                var src_href = '';
+                if (source) {
+                    if (url) {
+                        src_href = '<a href="' + url + '">' + source + '</a>';
+                    }
+                    else {
+                        src_href = source;
+                    }
+                }
+                else {
+                    src_href = '&nbsp;';
+                }
+
+                html += '<tr class="' + rowcolor + '">';
+                html += '<td class="image"><a href="' + group.path + '/' + item.filename + '"><img src="' + res_href + '" width="' + w + '" height="' + h + '"></a></td>';
+                html += '<td><a href="' + group.path + '/' + item.filename + '">' + name + '</a></td>';
+                html += '<td>' + desc + '</td>';
+                html += '<td>' + license + '</td>';
+                html += '<td>' + src_href + '</td>';
+                html += '<td>' + credit + '</td>';
+                html += '</tr>';
+            }
+        }
+
+        html += '</table>';
+
+        document.getElementById('content').innerHTML = html;
+
+        // Google Analytics
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28534102-1']);
+        _gaq.push(['_setDomainName', 'github.com']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+        </script>
+    </body>
+</html>

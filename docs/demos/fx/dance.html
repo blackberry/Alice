@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!--
+    Copyright 2011-2012 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <title>AliceJS Dance</title>
+        <link href="../../favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="default.css">
+        <style type="text/css">
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1><a href="../../index.html">AliceJS</a> &gt; <a href="../index.html#dance">Demos</a> &gt; Dance</h1>
+            <p></p>
+        </div>
+
+        <div id="settings"></div>
+
+        <div id="table" class="table"></div>
+
+        <div class="fineprint"><p class="copyright">Copyright &copy; 2011-2012 Research In Motion Limited</p></div>
+
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../../../libs/sniffer.js"></script>
+
+        <!-- AliceJS -->
+        <script src="../../../src/alice.core.js"></script>
+        <script src="../../../src/alice.plugins.cheshire.js"></script>
+
+        <script src="settings.js"></script>
+        <script type="text/javascript">
+        sniffer.init();
+
+        var a = alice.init();
+
+        settings.createSettings("settings", {
+            delay: {
+                min: 0,
+                max: 10000,
+                value: 0,
+                step: 250
+            },
+            duration: {
+                min: 50,
+                max: 5000,
+                value: 750,
+                step: 50
+            },
+            timing: "easeInOutBack",
+            iteration: "infinite",
+            direction: "alternate",
+
+            move: "none",
+            rotate: {
+                min: 1,
+                max: 90,
+                value: 20,
+                step: 1
+            },
+            flip: "",
+            fade: "",
+            scaleFrom: "100%",
+            scaleTo: "100%",
+            overshoot: {
+                min: 0,
+                max: 100,
+                value: 0,
+                step: 1
+            },
+            randomness: {
+                min: 0,
+                max: 100,
+                value: 0,
+                step: 1
+            },
+
+            perspective: "none",
+            perspectiveOrigin: "center",
+            backfaceVisibility: "visible"
+        }, {
+            delay: false,
+            duration: true,
+            timing: true,
+            iteration: false,
+            direction: false,
+
+            move: false,
+            rotate: true,
+            flip: false,
+            fade: false,
+            scale: false,
+            overshoot: false,
+            randomness: true,
+
+            perspective: false,
+            perspectiveOrigin: true,
+            backfaceVisibility: false
+        });
+
+        settings.createTable("table");
+
+        settings.animate();
+
+        // Google Analytics
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28534102-1']);
+        _gaq.push(['_setDomainName', 'github.com']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+        </script>
+    </body>
+</html>

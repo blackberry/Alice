@@ -856,8 +856,8 @@ alice.plugins.zoom = function (params) {
     var scaleObj = {from: "1%", to: "125%"}; // default
     if (params.scale) {
         if (typeof params.scale === "object") {
-            scaleObj = scale;
-            //scaleObj = {from: alice.percentage(scale.from), to: alice.percentage(scale.to)};
+            scaleObj = params.scale;
+            //scaleObj = {from: alice.percentage(params.scale.from), to: alice.percentage(params.scale.to)};
         }
         else {
             scaleObj.to = scale;

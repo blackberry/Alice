@@ -105,6 +105,107 @@ alicejs.book({
 });
                         </pre>
                     </div>
+
+                    <div style="margin-left: 160px;">
+                        <h1>The Rules</h1>
+                        <p>1. The book div, that is the parent of the pages must be sized in one of the following ways:
+                            <br />pixels
+                            <br />percentage
+                            <br />
+                            <br />Examples:
+                            <br />width: 400px;
+                            <br />height: 20%;
+                            <br />
+                        <br />2. The book div will dictate the details of the page sizes.
+                        <br />3. All pages must be divs, they can have as much or as little content as desired.
+                        </p>
+
+                    </div>
+
+                    <hr style="margin-left: 160px;" />
+
+                    <h1 style="margin-left: 160px;">But Wait! That's not all!</h1>
+                    <p style="margin-left: 160px;">The Caterpillar plugin is riddled with a variety of tools that go beyond a standard book effect.</p>
+
+                    <p style="margin-left: 160px;"><b>Information Feedback and Short Forms</b></p>
+
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+alice.plugins.caterpillar //Standard call for all built in functions.
+_caterpillar //short form available for all built in functions.
+
+.pageNumber //integer value of the current page
+.realPageCount //interger value of page total
+
+                        </pre>
+                    </div>
+                
+                    <p style="margin-left: 160px;"><b>Events</b>: Note* These must be defined before the alicejs.book() function is called.</p>
+
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+bookStart //Called at page 1
+bookEnd //Called on last page
+pageTrigger //Called on each page
+
+//Example 1
+document.addEventListener("bookStart", 
+    function(){ console.log("This book has started!"); 
+}, false);
+
+//Example 2
+document.addEventListener("pageTrigger", function(){
+    if(_caterpillar.pageNumber === 13){
+        _caterpillar.loadMorePages('newgame.html', 'book');
+    }
+}, false);
+                        </pre>
+                    </div>
+
+                    <p style="margin-left: 160px;"><b>Extra Functions</b></p>
+
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+_caterpillar.nxtPage(); //flips to the next page in the book
+_caterpillar.prePage(); //flips back a page in the book
+
+//load more pages can take the content of another document and load more pages into the book without the user knowing.
+_caterpillar.loadMorePages(‘< source file >’, “Book id name”); 
+
+//load more pages can take the content of another document and load more pages into the book without the user knowing.
+_caterpillar.loadMorePages(‘< source file >’, “Book id name”); 
+
+//Example 1 *Note* the pages document should consist of nothing but divs and their content intented to be pages
+alicejs.book({
+    elems: "book",
+    speed: 500,
+    paging: "double",
+    binding: "left"'
+});
+
+document.addEventListener("pageTrigger", function(){
+    if(_caterpillar.pageNumber === 13){
+        _caterpillar.loadMorePages('newgame.html', 'book');
+    }
+}, false);
+
+//load new book is similar but will switch the contents of the current book with a new book. Not allowing the user to go back.
+_caterpillar.loadNewBook(“< source file >”, function);
+
+//Example 2
+_caterpillar.loadNewBook(“newgame.html”, newBook() );
+
+function newBook(){
+    alicejs.book({
+        elems: "book",
+        speed: 500,
+        paging: "double",
+        binding: "left"'
+    });
+}
+                        </pre>
+                    </div>
+
                 </div>
                 <div class="spacer"></div>
 
@@ -156,6 +257,7 @@ alicejs.book({
                     <div class="page">
                         <p>Alice's Evidence</p>
                         <button onclick="_caterpillar.loadNewBook('newgame.html', newBook);">Make A New Book</button>
+                        <button onclick="_caterpillar.loadMorePages('newgame.html', 'book');">Load More Pages</button>
                     </div>
                 </div>
         </div>
@@ -214,20 +316,22 @@ alicejs.book({
             controlBackground: '#111'
         });
 
+        console.log(_caterpillar.realPageCount)
 
-        // Google Analytics
-        // var _gaq = _gaq || [];
-        // _gaq.push(['_setAccount', 'UA-28534102-1']);
-        // _gaq.push(['_setDomainName', 'github.com']);
-        // _gaq.push(['_trackPageview']);
-        // (function () {
-        //     var ga = document.createElement('script');
-        //     ga.type = 'text/javascript';
-        //     ga.async = true;
-        //     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        //     var s = document.getElementsByTagName('script')[0];
-        //     s.parentNode.insertBefore(ga, s);
-        // })();
+
+        //Google Analytics
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28534102-1']);
+        _gaq.push(['_setDomainName', 'github.com']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
         </script>
     </body>
 </html>

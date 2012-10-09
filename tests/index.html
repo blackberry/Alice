@@ -14,30 +14,49 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
+
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <title>AliceJS Unit Tests</title>
-        <link rel="stylesheet" href="../libs/qunit/qunit.css" type="text/css">
-        <script type="text/javascript" src="../libs/qunit/qunit.js"></script>
+        <style>
+            body{
+                background-color: #333;
+            }
+            h1{
+                font-family: arial;
+                font-size: 24px;
+            }
+            p, a, li{
+                font-family: arial;
+                color: #111;
+            }
+            .page{
+                width: 70%;
+                background-color: #fff;
+                border-radius: 15px;
+                margin: 40px auto;
+                padding: 20px;
+            }
+            li{
+                list-style: none;
+                line-height: 38px;
+                font-size: 24px;
+            }
+
+        </style>
     </head>
     <body>
-        <h1 id="qunit-header">AliceJS Unit Tests</h1>
-        <h2 id="qunit-banner"></h2>
-        <div id="qunit-testrunner-toolbar"></div>
-        <h2 id="qunit-userAgent"></h2>
-        <ol id="qunit-tests"></ol>
-        <div id="qunit-fixture"></div>
-
-        <!-- Library -->
-<!--
-        <script src="../js/alice-min.js"></script>
-        <script src="../js/alice.js"></script>
--->
-        <script src="../js/src/alice.core.js"></script>
-        <script src="../js/src/alice.plugins.cheshire.js"></script>
-
-        <!-- Unit Tests -->
-        <script type="text/javascript" src="alice.core.js"></script>
+        <div class="page">
+            <h1 id="qunit-header">AliceJS Unit Tests</h1>
+            <p>Please select a test package from below:</p>
+            <br />
+            <ul>
+                <li><a href="jasmine">Jasmine</a></li>
+                <li><a href="qunit">QUnit</a></li>
+            </ul>
+            <br />
+            <a href="../docs">Return to AliceJS docs and demos</a>
+        </div>
     </body>
 </html>

@@ -12,9 +12,11 @@ task("build", [], function () {
 
 
     console.log(" - including alice.core.js");
-    output += fs.readFileSync("js/src/alice.core.js", "utf-8");
+    output += fs.readFileSync("src/alice.core.js", "utf-8");
     console.log(" - including alice.plugins.cheshire.js");
-    output += fs.readFileSync("js/src/alice.plugins.cheshire.js", "utf-8");
+    output += fs.readFileSync("src/alice.plugins.cheshire.js", "utf-8");
+    console.log(" - including alice.plugins.caterpillar.js");
+    output += fs.readFileSync("src/alice.plugins.caterpillar.js", "utf-8");
     console.log("writing: js/alice.js");
     fs.writeFileSync("js/alice.js", output);
     console.log("minifying: js/alice-min.js");

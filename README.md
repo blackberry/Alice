@@ -8,6 +8,7 @@ This library and the sample code is Open Source under the [Apache 2.0 License](h
 
 * [Laurent Hasson](https://github.com/ldhasson) ([@ldhasson](http://twitter.com/ldhasson), lhasson at rim dot com)
 * [Jim Ing](https://github.com/psiborg) ([@jim_ing](http://twitter.com/jim_ing), jing at rim dot com)
+* [Gord Tanner](https://github.com/gtanner) ([@gordtanner](http://twitter.com/gordtanner), gtanner at rim dot com)
 * [Matt Lantz](https://github.com/mlantz) ([@mattylantz](http://twitter.com/mattylantz), malantz at rim dot com)
 
 **Requirements:**

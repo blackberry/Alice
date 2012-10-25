@@ -28,8 +28,30 @@
             text-align: center; 
             margin: 100px auto;
         }
+
+        #bookTwo{
+            width: 400px;
+            height: 400px;
+            text-align: center; 
+            margin: 100px auto;
+        }
+
+        #bookThree{
+            width: 400px;
+            height: 400px;
+            text-align: center; 
+            margin: 100px auto;
+        }
+
         .page{
             background: #444;
+            border-radius: 200px;
+        }
+        .pageX{
+            background: #222;
+        }
+        .pageXL{
+            background: #666;
         }
         .page p{
             color: #fff;
@@ -37,6 +59,10 @@
         }
         .page:nth-child(odd){
             background: #888;
+            /*margin-left: 40px;*/
+        }
+        .page:nth-child(even){
+            /*margin-right: 40px;*/
         }
     </style>
     </head>
@@ -172,9 +198,6 @@ _caterpillar.prePage(); //flips back a page in the book
 //load more pages can take the content of another document and load more pages into the book without the user knowing.
 _caterpillar.loadMorePages(‘< source file >’, “Book id name”); 
 
-//load more pages can take the content of another document and load more pages into the book without the user knowing.
-_caterpillar.loadMorePages(‘< source file >’, “Book id name”); 
-
 //Example 1 *Note* the pages document should consist of nothing but divs and their content intented to be pages
 alicejs.book({
     elems: "book",
@@ -209,11 +232,14 @@ function newBook(){
                 </div>
                 <div class="spacer"></div>
 
+                <button onclick="mybook.prePage()">Previous Page</button>
+                <button onclick="mybook.nxtPage()">Next Page</button>
+
                 <div id="book">
                     <div class="page">
                         <h1 style="color: #fff; text-align: center;">Alice in Wonderland</h1>
                         <img src="../../images/AliceMain.png" />
-                        <button onclick="_caterpillar.nxtPage()">Go To Next Page</button>
+                        <button onclick="mybook.nxtPage()">Go To Next Page</button>
                     </div>
                     <div class="page">
                         <p>Down the Rabbit Hole</p>
@@ -230,7 +256,7 @@ function newBook(){
                     </div>
                     <div class="page">
                         <p>The Rabbit Sends a Little Bill</p>
-                        <button onclick="_caterpillar.nxtPage()">Go To Next Page</button>
+                        <button onclick="mybook.nxtPage()">Go To Next Page</button>
                     </div>
                     <div class="page">
                         <p>Advice from a Caterpillar</p>
@@ -243,10 +269,29 @@ function newBook(){
                     </div>
                     <div class="page">
                         <p>The Queen's Croquet Ground</p>
-                        <button style="padding: 10px;" onclick="_caterpillar.revToPage(2);">Go to Page 2</button>
+                        <button style="padding: 10px;" onclick="revToPage(2);">Go to Page 2</button>
                     </div>
                     <div class="page">
                         <p>The Mock Turtle's Story</p>
+                    </div>
+                    <div class="page">
+                        <p>Lobster Quadrille</p>
+                    </div>
+                    <div class="page">
+                        <p>Who Stole the Tarts?</p>
+                    </div>
+                    <div class="page">
+                        <p>Alice's Evidence</p>
+                    </div>
+                </div>
+
+                <button onclick="myOtherBook.prePage()">Previous Page</button>
+                <button onclick="myOtherBook.nxtPage()">Next Page</button>
+
+                <div id="bookTwo">
+                    <div class="page">
+                        <p>The Mock Turtle's Story</p>
+                        <button onclick="myOtherBook.appendPages('moreStuff')">Add Pages</button>
                     </div>
                     <div class="page">
                         <p>Lobster Quadrille</p>
@@ -260,6 +305,74 @@ function newBook(){
                         <button onclick="_caterpillar.loadMorePages('newgame.html', 'book');">Load More Pages</button>
                     </div>
                 </div>
+
+                <button onclick="myOtherOtherBook.prePage()">Previous Page</button>
+                <button onclick="myOtherOtherBook.nxtPage()">Next Page</button>
+
+                <div id="bookThree">
+                    <div class="page">
+                        <p>A Mad Tea-Party</p>
+                        <button onclick="myOtherOtherBook.appendPages('moreStuffExtra')">Add More Pages</button>
+                    </div>
+                    <div class="page">
+                        <p>The Queen's Croquet Ground</p>
+                    </div>
+                    <div class="page">
+                        <p>The Mock Turtle's Story</p>
+                    </div>
+                    <div class="page">
+                        <p>Lobster Quadrille</p>
+                    </div>
+                    <div class="page">
+                        <p>Who Stole the Tarts?</p>
+                    </div>
+                    <div class="page">
+                        <p>Alice's Evidence</p>
+                    </div>
+                </div>
+
+                <div id="moreStuff">
+                    <div class="pageX">
+                        <p>A Mad Tea-Party</p>
+                    </div>
+                    <div class="pageX">
+                        <p>The Queen's Croquet Ground</p>
+                    </div>
+                    <div class="pageX">
+                        <p>The Mock Turtle's Story</p>
+                    </div>
+                    <div class="pageX">
+                        <p>Lobster Quadrille</p>
+                    </div>
+                    <div class="pageX">
+                        <p>Who Stole the Tarts?</p>
+                    </div>
+                    <div class="pageX">
+                        <p>Alice's Evidence</p>
+                    </div>
+                </div>
+
+                <div id="moreStuffExtra">
+                    <div class="pageXL">
+                        <p>1</p>
+                    </div>
+                    <div class="pageXL">
+                        <p>2</p>
+                    </div>
+                    <div class="pageXL">
+                        <p>3</p>
+                    </div>
+                    <div class="pageXL">
+                        <p>4</p>
+                    </div>
+                    <div class="pageXL">
+                        <p>5</p>
+                    </div>
+                    <div class="pageXL">
+                        <p>6</p>
+                    </div>
+                </div>
+
         </div>
 
         <div class="fineprint"><p>Copyright &copy; 2011-2012 Research In Motion Limited</p></div>
@@ -285,29 +398,48 @@ function newBook(){
 
         document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
 
-        function newBook(){
-            alicejs.book({
-                elems: "book",
-                speed: 500,
-                inPageControls: true,
-                paging: "double",
-                binding: "left"
-            });
-        }
-
-        alicejs.book({
+        var mybook = alicejs.notebook({
             elems: "book",
             speed: '500ms',
-            paging: "single",
             binding: "top",
-            wrap: true,
-            controls: true,
-            inPageControls: true,
-            keyControls: true,
-            randomize: '15%',
-            pageBackground: '#333',
-            controlBackground: '#111'
+            // wrap: true
+            // shadow: true
         });
+
+        var myOtherBook = alicejs.flipbook({
+            elems: "bookTwo",
+            speed: '500ms',
+            binding: "center",
+            wrap: true
+            // shadow: true
+        });
+
+        var myOtherOtherBook = alicejs.book({
+            elems: "bookThree",
+            speed: '500ms',
+            binding: "left",
+            shadow: true
+        });
+
+        //onPageTrigger event
+        myOtherOtherBook.book.addEventListener("onPageTrigger", function(){ 
+            if(myOtherOtherBook.pageNumber() === myOtherOtherBook.realPageCount){
+                console.log("End of the regular book");
+            }
+            if(myOtherOtherBook.pageNumber() === 1){
+                console.log("Beginning of the regular book");
+            }
+        }, false);  
+
+        //onPageTrigger event
+        mybook.book.addEventListener("onPageTrigger", function(){ 
+            if(mybook.pageNumber() === mybook.realPageCount){
+                console.log("End of the notebook");
+            }
+            if(mybook.pageNumber() === 1){
+                console.log("Beginning of the notebook");
+            }
+        }, false);        
 
         //Google Analytics
         var _gaq = _gaq || [];

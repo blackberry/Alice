@@ -22,7 +22,6 @@
  * limitations under the License.
  */
 
-
 /**
  * caterpillar performs the actual build of the animation
  * [caterpillar description]
@@ -43,7 +42,7 @@ alice.plugins.caterpillar = (function () {
         _rot0: '(0deg)',
         _rotNeg90: '(-90deg)',
         _rotNeg180: '(-180deg)',
-        _rotNeg270: '(-262deg)',    // same offset here.
+        _rotNeg270: '(-262deg)',
         originZero: '',             
 
         onPageTrigger: '',
@@ -87,7 +86,7 @@ alice.plugins.caterpillar = (function () {
                 }
             }, 
 
-            piggyback: function(id, type, pageName, book, speed, transformOrigin, binding, transformRotate, realPageCount){
+            piggyback: function(id, type, pageName, book, speed, transformOrigin, binding, transformRotate, realPageCount, piggyBg){
             "use strict";
                 if(id === 0){
                     id = realPageCount;
@@ -105,7 +104,7 @@ alice.plugins.caterpillar = (function () {
                     piggy.style.width = mybook.style.width;
                     piggy.style.height = mybook.style.height;
                     piggy.style.position = 'absolute';
-                    piggy.style.background = core.piggyBg || '#222';
+                    piggy.style.background = piggyBg || '#222';
                     piggy.style.top = '0px';
                     piggy.style.left = '0px';
                     if(type === "advanced"){
@@ -689,7 +688,7 @@ alice.plugins.caterpillar = (function () {
                 config.transformDegrees = [core._rot0, core._rot0]; //0, 0, 0
             }
 
-            config.pageClass = config.NewPageClass;
+            config.pageClass = config.pageClass;
 
             core.onPageTrigger = document.createEvent("Event");
             core.onPageTrigger.initEvent("onPageTrigger", true, true);
@@ -731,7 +730,8 @@ alice.plugins.caterpillar = (function () {
                         randomizer: config.randomize, 
                         transformOrigin: config.transformOrigin, 
                         paging: config.paging, 
-                        realPageCount: config.realPageCount
+                        realPageCount: config.realPageCount,
+                        piggyBg: config.piggyBg
                     };
 
                     runState = document.getElementById(config.bookName).getAttribute('data-state');
@@ -993,27 +993,31 @@ alice.plugins.caterpillar = (function () {
 
             //==================================================================================
             // Initial Page Setup
-            if(params.paging === 'single'){ 
-                var f = 1, pageId, b;
-                for(b = 0; b < params.pages.length; b++){
-                    params.pages[b].setAttribute('id', params.pageName+f);
-                    params.pages[b].setAttribute('class', currentPageClass + ' ' +params.NewPageClass);
+            
+            var f = 1, pageId, b;
+            for(b = 0; b < params.pages.length; b++){
+                params.pages[b].setAttribute('id', params.pageName+f);
+                params.pages[b].setAttribute('class', currentPageClass + ' ' +params.NewPageClass);
 
-                    core.eventListenerFunc(f, params);
-                    
-                    core.styleConfig({ 
+                core.eventListenerFunc(f, params);
+                
+                core.styleConfig({ 
                         pageId: f, 
                         pageName: params.pageName, 
                         binding: params.binding, 
                         paging: params.paging, 
-                        bookName: params.bookName, 
-                        wrap: params.wrap, 
+                        bookName: params.bookName,
+                        pageWidth: params.pageWidth,
+                        pageHeight: params.pageHeight, 
                         speed: params.speed, 
-                        randomizer: params.randomize , 
+                        randomizer: params.randomize, 
                         transformOrigin: params.transformOrigin,
-                        transformRotate: params.transformRotate
+                        transformRotate: params.transformRotate,
+                        originZero: params.originZero
                     });     
 
+
+                if(params.paging === 'single'){ 
                     if(f === 1){
                         params.pages[b].style.display = 'block';
                         params.pages[b].setAttribute('style', 'display: block; z-index: 1;'+
@@ -1021,44 +1025,16 @@ alice.plugins.caterpillar = (function () {
                         alice.prefix+'transform: '+ params.transformRotate + core._rot0 +';' +
                         alice.prefix+'box-shadow: '+ params.shadowPatternRev100 +';');
                     }
-
-                    f++;
+                }else if(params.paging === "double"){
+                    if(f === 1){ 
+                        params.pages[b].style.display = 'block';
+                        params.pages[b].style[alice.prefixJS+'BoxShadow'] = params.shadowPattern100+';';
+                    } 
                 }
+
+            f++;
+            
             }
-
-            if(params.paging === 'double'){
-                var n = 1, nxtId, i; 
-                for (i = 0; i < params.pages.length; i++){
-                    if(params.pages[i].nodeType === 1){
-                        params.pages[i].setAttribute('id', params.pageName+n);
-                        params.pages[i].setAttribute('class', currentPageClass + ' ' +params.NewPageClass);                                      
-
-                        core.eventListenerFunc(n, params);
-
-                        core.styleConfig({ 
-                            pageId: n, 
-                            pageName: params.pageName, 
-                            binding: params.binding, 
-                            paging: params.paging, 
-                            bookName: params.bookName,
-                            pageWidth: params.pageWidth,
-                            pageHeight: params.pageHeight, 
-                            speed: params.speed, 
-                            randomizer: params.randomize, 
-                            transformOrigin: params.transformOrigin,
-                            transformRotate: params.transformRotate,
-                            originZero: params.originZero
-                        });  
-
-                        if(n === 1){ 
-                            params.pages[i].style.display = 'block';
-                            params.pages[i].style[alice.prefixJS+'BoxShadow'] = params.shadowPattern100+';';
-                        }  
-
-                        n++;    
-                    }    
-                }
-            }         
 
             return core;
         },
@@ -1152,7 +1128,7 @@ alice.plugins.caterpillar = (function () {
                 core.helper.setAnimationDefaults(page, mySpeed);
 
                 if(params.binding !== "center" && params.binding !== "middle" ){
-                    core.helper.piggyback(params.pageId, "standard", params.pageName, params.bookName, mySpeed, params.transformOrigin, params.binding, params.transformRotate, params.realPageCount);
+                    core.helper.piggyback(params.pageId, "standard", params.pageName, params.bookName, mySpeed, params.transformOrigin, params.binding, params.transformRotate, params.realPageCount, params.piggyBg);
                 }
             }
         },
@@ -1213,7 +1189,7 @@ alice.plugins.caterpillar = (function () {
                 core.helper.setAnimationDefaults(page, mySpeed);
 
                 if(params.binding !== "center" && params.binding !== "middle" ){
-                    core.helper.piggyback(params.pageId, "advanced", params.pageName, params.bookName, mySpeed, params.transformOrigin, params.binding, params.transformRotate, params.realPageCount); 
+                    core.helper.piggyback(params.pageId, "advanced", params.pageName, params.bookName, mySpeed, params.transformOrigin, params.binding, params.transformRotate, params.realPageCount, params.piggyBg); 
                 }
             }
         },

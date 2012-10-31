@@ -7,9 +7,12 @@ task("build", [], function () {
     console.log("building Alice.js ...");
 
     var fs = require('fs'),
+        zlib = require('zlib'),
+        gzip = zlib.createGzip(),
+        ginp = "",
+        gout = '',
         childProcess = require('child_process'),
         output = "";
-
 
     console.log(" - including alice.core.js");
     output += fs.readFileSync("src/alice.core.js", "utf-8");
@@ -17,8 +20,15 @@ task("build", [], function () {
     output += fs.readFileSync("src/alice.plugins.cheshire.js", "utf-8");
     console.log(" - including alice.plugins.caterpillar.js");
     output += fs.readFileSync("src/alice.plugins.caterpillar.js", "utf-8");
-    console.log("writing: js/alice.js");
-    fs.writeFileSync("js/alice.js", output);
-    console.log("minifying: js/alice-min.js");
-    childProcess.exec("uglifyjs js/alice.js > js/alice-min.js", complete);
+    console.log("writing: build/alice.js");
+    fs.writeFileSync("build/alice.js", output);
+    console.log("minifying: build/alice.min.js");
+    childProcess.exec("uglifyjs build/alice.js > build/alice.min.js", complete);
+    console.log("gzipping: build/alice.min.js");
+    setTimeout(function(){
+        ginp = fs.createReadStream('build/alice.min.js');
+        gout = fs.createWriteStream('build/alice.min.js.gz');
+        ginp.pipe(gzip).pipe(gout);
+        console.log("Build Complete."); 
+    }, 2000);
 }, true);

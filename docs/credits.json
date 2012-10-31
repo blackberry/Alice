@@ -243,7 +243,7 @@ var groups = [{
         credit: "NASA/Goddard Space Flight Center/J. Dwyer/Florida Inst. of Technology"
     }]
 }, {
-    path: "../images/backgrounds",
+    path: "images/backgrounds",
 
     items: [{
         filename: "black_canvas.jpg",
@@ -263,7 +263,7 @@ var groups = [{
         height: 15
     }]
 }, {
-    path: "../images",
+    path: "images",
 
     items: [{
         filename: "app_icon.png",
@@ -382,7 +382,7 @@ var groups = [{
         license: "Apache License 2.0"
     }]
 }, {
-    path: "./",
+    path: "images",
 
     items: [{
         filename: "favicon.ico",

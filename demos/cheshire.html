@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<!--
+    Copyright 2011-2012 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <title>AliceJS Demos</title>
+        <link href="../images/favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="../css/default.css">
+        <style type="text/css">
+        </style>
+    </head>
+    <body>
+        <div class="fineprint"><p id="version"></p></div>
+
+        <div class="close">
+            <a href="../index.html"><img src="../images/close_icon.png"></a>
+        </div>
+
+        <div id="container">
+            <div id="card1" class="card-edge">
+                <div>
+                    <h1 class="seo">AliceJS Demos</h1>
+
+                    <!-- AliceJS Logo (CSS Sprites) -->
+                    <div id="logo">
+                        <div>
+                            <div id="logo-alice-img"></div>
+                        </div>
+                        <div id="logo-alice-txt-alice">
+                            <div id="logo-alice-txt-a"></div>
+                            <div id="logo-alice-txt-l"></div>
+                            <div id="logo-alice-txt-i"></div>
+                            <div id="logo-alice-txt-c"></div>
+                            <div id="logo-alice-txt-e"></div>
+                        </div>
+                        <div id="logo-alice-txt-js">
+                            <div id="logo-alice-txt-j"></div>
+                            <div id="logo-alice-txt-s"></div>
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+
+                    <!-- Overview -->
+                    <p><b><a href="../index.html">AliceJS</a></b> - <i>(A Lightweight Independent CSS Engine)</i> is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.</p>
+                </div>
+
+                <div>
+                    <h2>Cheshire Demos</h2>
+                </div>
+
+                <!-- Bounce -->
+                <a name="bounce"></a>
+                <div class="card">
+                    <div id="my_bounce" class="icon">
+                        <a href="fx/bounce.html"><img src="../images/cheshire.png" alt="Bounce" title="Bounce"></a>
+                        <span>Bounce</span>
+                    </div>
+                    <p><a href="fx/bounce.html">Bounce</a> - The "bounce" effect simulates the bouncing of an object from a top view including a shadow.</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+alicejs.bounce({
+    elems: "my_bounce",
+    scale: 125,
+    shadow: true,
+    duration: "750ms",
+    timing: "easeOutSine",
+    delay: "0ms",
+    iteration: "infinite",
+    direction: "alternate",
+    playstate: "running"
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Dance -->
+                <a name="dance"></a>
+                <div class="card">
+                    <div id="my_dance" class="icon">
+                        <a href="fx/dance.html"><img src="../images/cheshire.png" alt="Dance" title="Dance"></a>
+                        <span>Dance</span>
+                    </div>
+                    <p><a href="fx/dance.html">Dance</a> - The "dance" effect...</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+alicejs.dance({
+    elems: "my_dance",
+    rotate: 45,
+    duration: "950ms",
+    timing: "easeInOutBack",
+    delay: "0ms",
+    iteration: "infinite",
+    direction: "alternate",
+    playstate: "running"
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Drain -->
+                <a name="drain"></a>
+                <div class="card">
+                    <div id="my_drain" class="icon">
+                        <a href="fx/drain.html"><img src="../images/cheshire.png" alt="Drain" title="Drain"></a>
+                        <span>Drain</span>
+                    </div>
+                    <p><a href="fx/drain.html">Drain</a> - The "drain" effect...</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+alicejs.drain({
+    elems: "my_drain",
+    fade: "out",
+    rotate: -720,  
+    duration: "4500ms",
+    timing: "ease-in-out",
+    delay: "0ms",
+    iteration: "infinite",
+    direction: "normal",
+    playstate:  "running"
+});
+
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Fade (in) -->
+                <a name="fade"></a>
+                <div class="card">
+                    <div id="my_fade" class="icon">
+                        <a href="fx/fade.html"><img src="../images/cheshire.png" alt="Fade (in)" title="Fade (in)"></a>
+                        <span>Fade (in)</span>
+                    </div>
+                    <p><a href="fx/fade.html">Fade (in)</a> - The "fade (in)" effect...</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+alicejs.fade({
+    elems: "my_fade",
+    fade: "in",   
+    duration: "4500ms",
+    timing: "ease-in-out",
+    delay: "0ms",
+    iteration: "infinite",
+    direction: "normal",
+    playstate: "running"
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Hinge -->
+                <a name="hinge"></a>
+                <div class="card">
+                    <div id="my_hinge" class="icon">
+                        <a href="fx/hinge.html"><img src="../images/cheshire.png" alt="Hinge" title="Hinge"></a>
+                        <span>Hinge</span>
+                    </div>
+                    <p><a href="fx/hinge.html">Hinge</a> - The "hinge" effect...</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+alicejs.hinge({
+    elems: "my_hinge",
+    rotate: 35,
+    overshoot: 0,
+    duration: "1000ms",
+    timing: "linear",
+    delay: "0ms",
+    iteration: "infinite",
+    direction: "alternate",
+    playstate: "running"
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Page Flip (left) -->
+                <a name="pageFlip"></a>
+                <div class="card">
+                    <div id="my_pageFlip" class="icon">
+                        <a href="fx/pageFlip.html"><img src="../images/cheshire.png" alt="Page Flip (left)" title="Page Flip (left)"></a>
+                        <span>Page Flip (left)</span>
+                    </div>
+                    <p><a href="fx/pageFlip.html">Page Flip (left)</a> - The "pageFlip (left)" effect...</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+alicejs.pageFlip({
+    elems: "my_pageFlip",
+    flipDirection: "left",
+    turns: 1,
+    overshoot: 0,
+    duration: "2000ms",
+    timing: "ease-in-out",
+    delay: "0ms",
+    iteration: "infinite",
+    direction: "normal",
+    playstate: "running"
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Pendulum -->
+                <a name="pendulum"></a>
+                <div class="card">
+                    <div id="my_pendulum" class="icon">
+                        <a href="fx/pendulum.html"><img src="../images/cheshire.png" alt="Pendulum" title="Pendulum"></a>
+                        <span>Pendulum</span>
+                    </div>
+                    <p><a href="fx/pendulum.html">Pendulum</a> - The "pendulum" effect...</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+alicejs.pendulum({
+    elems: "my_pendulum",
+    rotate: 45,
+    overshoot: 0,
+    duration: "2000ms",
+    timing: "ease-in-out",
+    delay: "0ms",
+    iteration: "infinite",
+    direction: "alternate",
+    playstate: "running"
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Phantom Zone -->
+                <a name="phantomZone"></a>
+                <div class="card">
+                    <div id="my_phantomZone" class="icon">
+                        <a href="fx/phantomZone.html"><img my_phantomZone src="../images/cheshire.png" alt="Phantom Zone" title="Phantom Zone"></a>
+                        <span>Phantom Zone</span>
+                    </div>
+                    <p><a href="fx/phantomZone.html">Phantom Zone</a> - The "phantomZone" effect...</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+alicejs.phantomZone({
+    elems: "my_phantomZone",
+    fade: "in",
+    rotate: -720,
+    flip: "left",
+    duration: "5000ms",
+    timing: "ease-in-out",
+    delay: "0ms",
+    iteration: "infinite",
+    direction: "normal",
+    playstate: "running"
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Race Flag -->
+                <a name="raceFlag"></a>
+                <div class="card">
+                    <div id="my_raceFlag" class="icon">
+                        <a href="fx/raceFlag.html"><img src="../images/cheshire.png" alt="Race Flag" title="Race Flag"></a>
+                        <span>Race Flag</span>
+                    </div>
+                    <p><a href="fx/raceFlag.html">Race Flag</a> - The "raceFlag" effect...</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+alicejs.raceFlag({
+    elems: "my_raceFlag",
+    rotate: -720,
+    perspectiveOrigin: "top-right",
+    duration: "3000ms",
+    timing: "ease-in-out",
+    delay: "0ms",
+    iteration: 'infinite',
+    direction: "normal",
+    playstate: "running" 
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Slide (left) -->
+                <a name="slide"></a>
+                <div class="card">
+                    <div id="my_slide" class="icon">
+                        <a href="fx/slide.html"><img src="../images/cheshire.png" alt="Slide (left)" title="Slide (left)"></a>
+                        <span>Slide (left)</span>
+                    </div>
+                    <p><a href="fx/slide.html">Slide (left)</a> - The "slide (left)" effect...</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+alicejs.slide({
+    elems: "my_slide",
+    move: {direction: "left", start: 0, end: 500},
+    overshoot: '0',
+    duration: "3000ms",
+    timing: "ease",
+    delay: "0ms",
+    iteration: "infinite",
+    direction: "alternate",
+    playstate: "running"  
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Spin (left) -->
+                <a name="spin"></a>
+                <div class="card">
+                    <div id="my_spin" class="icon">
+                        <a href="fx/spin.html"><img src="../images/cheshire.png" alt="Spin (left)" title="Spin (left)"></a>
+                        <span>Spin (left)</span>
+                    </div>
+                    <p><a href="fx/spin.html">Spin (left)</a> - The "spin (left)" effect...</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+alicejs.spin({
+    elems: "my_spin",
+    flip: "left",
+    turns: 1,
+    oevrshoot: 0,
+    duration: "1200ms",
+    timing: "ease-in-out",
+    delay: "0ms",
+    iteration: "infinite",
+    direction: "normal",
+    playstate: "running"  
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Toss (left) -->
+                <a name="toss"></a>
+                <div class="card">
+                    <div id="my_toss" class="icon">
+                        <a href="fx/toss.html"><img src="../images/cheshire.png" alt="Toss (left)" title="Toss (left)"></a>
+                        <span>Toss (left)</span>
+                    </div>
+                    <p><a href="fx/toss.html">Toss (left)</a> - The "toss (left)" effect...</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+alicejs.toss({
+    elems: "my_toss",
+    move: "right",
+    perspectiveOrigin: "center",
+    oevrshoot: 0,
+    duration: "2500ms",
+    timing: "ease-in-out",
+    delay: "0ms",
+    iteration: "infinite",
+    direction: "normal",
+    playstate: "running" 
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Twirl (from left) -->
+                <a name="twirl"></a>
+                <div class="card">
+                    <div id="my_twirl" class="icon">
+                        <a href="fx/twirl.html"><img src="../images/cheshire.png" alt="Twirl (from left)" title="Twirl (from left)"></a>
+                        <span>Twirl (from left)</span>
+                    </div>
+                    <p><a href="fx/twirl.html">Twirl (from left)</a> - The "twirl (from left)" effect...</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+alicejs.twirl({
+    elems: "my_twirl",
+    flip: "left",
+    duration: "3000ms",
+    timing: "ease",
+    delay: "0ms",
+    iteration: "infinite",
+    direction: "normal",
+    playstate: "running" 
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Wobble -->
+                <a name="wobble"></a>
+                <div class="card">
+                    <div id="my_wobble" class="icon">
+                        <a href="fx/wobble.html"><img src="../images/cheshire.png" alt="Wobble" title="Wobble"></a>
+                        <span>Wobble</span>
+                    </div>
+                    <p><a href="fx/wobble.html">Wobble</a> - The "wobble" effect...</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+alicejs.wobble({
+    elems: "my_wobble",
+    rotate: 5,
+    perspectiveOrigin: "center",
+    duration: "200ms",
+    timing: "linear",
+    delay: "0ms",
+    iteration: "infinite",
+    direction: "normal",
+    playstate: "running" 
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- Zoom -->
+                <a name="zoom"></a>
+                <div class="card">
+                    <div id="my_zoom" class="icon">
+                        <a href="fx/zoom.html"><img src="../images/cheshire.png" alt="Zoom" title="Zoom"></a>
+                        <span>Zoom</span>
+                    </div>
+                    <p><a href="fx/zoom.html">Zoom</a> - The "zoom" effect...</p>
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+alicejs.zoom({
+    elems: "my_zoom",
+    scale: {from: "1%", to: "125%"},
+    move: "none",
+    duration: "200ms",
+    timing: "linear",
+    delay: "0ms",
+    iteration: "infinite",
+    direction: "normal",
+    playstate: "running" 
+});
+                        </pre>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+
+                <!-- More Demos -->
+                <a name="moredemos"></a>
+                <!-- 
+                <div>
+                    <h2>More Demos</h2>
+                </div>
+
+                <ul>
+                    <li><a href="sampler.html">Sampler (with offsets)</a></li>
+                    <li><a href="builder.html">Builder</a></li>
+                    <li><a href="chaining.html">Chaining Effects</a></li>
+                    <li><a href="stack.html">Stack</a></li>
+                </ul> -->
+            </div>
+        </div>
+
+        <div class="fineprint"><p>Copyright &copy; 2011-2012 Research In Motion Limited</p></div>
+
+        <!-- Syntax Highlighting -->
+        <link rel="stylesheet" type="text/css" href="../libs/prettify/themes/sunburst.css">
+        <script type="text/javascript" src="../libs/prettify/prettify.js"></script>
+        <script type="text/javascript" src="../libs/prettify/lang-css.js"></script>
+
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../libs/sniffer.js"></script>
+
+        <!-- AliceJS -->
+        <script src="../js/alice.min.js"></script>
+        
+        <script type="text/javascript">
+        prettyPrint();
+        sniffer.init();
+
+        document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
+
+        //var a = alice.init();
+
+        alicejs.bounce({
+            elems: "my_bounce",
+            // scale: 125,
+            // shadow: true,
+            // duration: "750ms",
+            // timing: "easeOutSine",
+            // delay: "0ms",
+            iteration: "infinite",
+            // direction: "alternate",
+            // playstate: "running"
+        });
+
+        alicejs.dance({
+            elems: "my_dance",
+            // rotate: 45,
+            // duration: "950ms",
+            // timing: "easeInOutBack",
+            // delay: "0ms",
+            iteration: "infinite",
+            // direction: "alternate",
+            // playstate: "running"
+        });
+
+        alicejs.drain({
+            elems: "my_drain",
+            // fade: "out",
+            // rotate: -720,  
+            // duration: "4500ms",
+            // timing: "ease-in-out",
+            // delay: "0ms",
+            iteration: "infinite",
+            // direction: "normal",
+            // playstate:  "running"
+        });
+
+        alicejs.fade({
+            elems: "my_fade",
+            // fade: "in",   
+            // duration: "4500ms",
+            // timing: "ease-in-out",
+            // delay: "0ms",
+            iteration: "infinite",
+            // direction: "normal",
+            // playstate: "running"
+        });
+
+        alicejs.hinge({
+            elems: "my_hinge",
+            // rotate: 35,
+            // overshoot: 0,
+            // duration: "1000ms",
+            // timing: "linear",
+            // delay: "0ms",
+            iteration: "infinite",
+            // direction: "alternate",
+            // playstate: "running"
+        });
+
+        alicejs.pageFlip({
+            elems: "my_pageFlip",
+            // flipDirection: "left",
+            // turns: 1,
+            // overshoot: 0,
+            // duration: "2000ms",
+            // timing: "ease-in-out",
+            // delay: "0ms",
+            iteration: "infinite",
+            // direction: "normal",
+            // playstate: "running"
+        });
+
+        alicejs.pendulum({
+            elems: "my_pendulum",
+            // rotate: 45,
+            // overshoot: 0,
+            // duration: "2000ms",
+            // timing: "ease-in-out",
+            // delay: "0ms",
+            iteration: "infinite",
+            // direction: "alternate",
+            // playstate: "running"
+        });
+
+        alicejs.phantomZone({
+            elems: "my_phantomZone",
+            // fade: "in",
+            // rotate: -720,
+            // flip: "left",
+            // duration: "5000ms",
+            // timing: "ease-in-out",
+            // delay: "0ms",
+            iteration: "infinite",
+            // direction: "normal",
+            // playstate: "running"
+        });
+
+        alicejs.raceFlag({
+            elems: "my_raceFlag",
+            // rotate: -720,
+            // perspectiveOrigin: "top-right",
+            // duration: "3000ms",
+            // timing: "ease-in-out",
+            // delay: "0ms",
+            iteration: 'infinite',
+            // direction: "normal",
+            // playstate: "running" 
+        });
+
+        alicejs.slide({
+            elems: "my_slide",
+            // move: {direction: "left", start: 0, end: 500},
+            // overshoot: '0',
+            // duration: "3000ms",
+            // timing: "ease",
+            // delay: "0ms",
+            iteration: "infinite",
+            // direction: "alternate",
+            // playstate: "running"  
+        });
+
+        alicejs.spin({
+            elems: "my_spin",
+            // flip: "left",
+            // turns: 1,
+            // oevrshoot: 0,
+            // duration: "1200ms",
+            // timing: "ease-in-out",
+            // delay: "0ms",
+            iteration: "infinite",
+            // direction: "normal",
+            // playstate: "running"  
+        });
+
+        alicejs.toss({
+            elems: "my_toss",
+            // move: "right",
+            // perspectiveOrigin: "center",
+            // oevrshoot: 0,
+            // duration: "2500ms",
+            // timing: "ease-in-out",
+            // delay: "0ms",
+            iteration: "infinite",
+            // direction: "normal",
+            // playstate: "running" 
+        });
+
+        alicejs.twirl({
+            elems: "my_twirl",
+            // flip: "left",
+            // duration: "3000ms",
+            // timing: "ease",
+            // delay: "0ms",
+            iteration: "infinite",
+            // direction: "normal",
+            // playstate: "running" 
+        });
+
+        alicejs.wobble({
+            elems: "my_wobble",
+            // rotate: 5,
+            // perspectiveOrigin: "center",
+            // duration: "200ms",
+            // timing: "linear",
+            // delay: "0ms",
+            iteration: "infinite",
+            // direction: "normal",
+            // playstate: "running" 
+        });
+
+        alicejs.zoom({
+            elems: "my_zoom",
+            // scale: {from: "1%", to: "125%"},
+            // move: "none",
+            // duration: "200ms",
+            // timing: "linear",
+            // delay: "0ms",
+            iteration: "infinite",
+            // direction: "normal",
+            // playstate: "running" 
+        });
+
+        // Google Analytics
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28534102-1']);
+        _gaq.push(['_setDomainName', 'github.com']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+        </script>
+    </body>
+</html>

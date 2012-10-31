@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!--
+    Copyright 2011-2012 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <title>AliceJS Book</title>
+        <link href="../../images/favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="default.css">
+
+        <style type="text/css">
+
+        html, body{
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #mainBox{
+            width: 90%;
+            margin: 0px auto 100px;
+            border-radius: 15px;
+        }
+
+        #book{
+            width: 600px;
+            height: 600px;
+            text-align: center; 
+            margin: 0px auto;
+        }
+        
+        .page{
+            background: #ccc;
+            border-radius: 15px;
+        }
+        
+        .page p{
+            color: #111;
+            font-size: 1.2em;
+        }
+
+        .title{
+            font-size: 2em;
+            padding: 0 0 0 20px;
+            text-align: left;
+            color: #990CA6;
+        }
+
+        button{
+            padding: 20px;
+            width: 85%;
+            background: #3697FF;
+            color: #fff;
+            border-radius: 5px;
+            border: #3697FF 1px solid;
+            font-size: 2em;
+            float: left;
+            margin-left: 40px;
+        }
+
+        button:hover{
+            background: #106BCC;
+            color: #fff;
+            border: #3697FF 1px solid;
+        }
+
+        .halfPage{
+            width: 50%;
+            float: left;
+            margin: 0px;
+        }
+
+        .halfPage h1{
+            color: #111;
+        }
+
+        </style>
+
+        <script type="text/javascript">
+
+        var _score = 0;
+
+        </script>
+    </head>
+    <body>
+        
+        <div id="mainBox">
+
+            <div class="header">
+                <h1><a href="../../index.html">AliceJS</a> &gt; <a href="../index.html">Demos</a> &gt; Book Effect</h1>
+                <br />
+                <h1>Alice in Wonderland: An HTML5 Powered Trivia Game!</h1>
+            </div>
+
+            <div id="book">
+                <div class="page">
+                    <div style="width: 100%; height: 100%; background: url(../../images/pat.jpg); margin-top: -45px; border-radius: 15px;">
+                        <h1 style="color: #fff; text-align: center; font-size: 6em; padding-top: 40px;">Alice in Wonderland</h1>
+                        <h1 style="color: #fff; text-align: center; margin: -20px 0 0 20px; color: #A31A81;">A Mini Triva Game</h1>
+                        <button style="margin-top: 100px;" onclick="mybook.nxtPage()">PLAY!</button>
+                    </div>
+                </div>
+                <div class="page">
+                    <h1 class="title">Question 1</h1>
+                    <img src="../../images/AliceMain.png" style="width: 200px;" />
+                    <p>To begin our tale let us look at the facts!</p>
+                    <p>Where, oh where, does Alice relax?</p>
+                    <button style="padding: 10px;" onclick="mybook.nxtPage(); _score+=1;">Sitting by a tree</button>
+                    <button style="padding: 10px;" onclick="mybook.nxtPage();">Hacking on her laptop</button>
+                </div>
+                <div class="page">
+                    <h1 class="title">Question 2</h1>
+                    <img src="../../images/caterpillar.png" style="width: 240px;" />
+                    <p>Rabbit and mouse are scared away,</p>
+                    <p>but, caterpillar, what does he say?</p>
+                    <button style="padding: 10px; font-size: 1.5em;" onclick="mybook.nxtPage(); _score+=1;">Reveals the power of the Mushroom</button>
+                    <button style="padding: 10px; font-size: 1.5em;" onclick="mybook.nxtPage();">Informs her of bipartisan politics</button>
+                </div>
+                <div class="page">
+                    <h1 class="title">Question 3</h1>
+                    <img src="../../images/cheshire.png" style="width: 300px;" />
+                    <p>Baby pig and a powerful sneeze,</p>
+                    <p>who was the cat, if you please?</p>
+                    <br />
+                    <br />
+                    <button style="padding: 10px;" onclick="mybook.nxtPage();">Worcestershire</button>
+                    <button style="padding: 10px;" onclick="mybook.nxtPage(); _score+=1;">Cheshire</button>
+                </div>
+                <div class="page">
+                    <h1 class="title">Question 4</h1>
+                    <img src="../../images/madhatter.png" style="width: 150px;" />
+                    <p>March Hare, Mad Hatter and more,</p>
+                    <p>when is tea time with riddles gallore?</p>
+                    <button style="padding: 10px;" onclick="mybook.nxtPage();">6:00 am</button>
+                    <button style="padding: 10px;" onclick="mybook.nxtPage(); _score+=1;">6:00 pm</button>
+                </div>
+                <div class="page">
+                    <h1 class="title">Question 5</h1>
+                    <img src="../../images/queen.png" style="width: 170px;" />
+                    <p>A game of croquet and Queen of Hearts,</p>
+                    <p>But who, oh who, stole the queens tarts?</p>
+                    <button style="padding: 10px;" onclick="mybook.nxtPage(); _score+=1; tallyScore()">Knave of Hears</button>
+                    <button style="padding: 10px;" onclick="mybook.nxtPage(); tallyScore()">Dancing Gryphon</button>
+                </div>
+                <div class="page">
+                    <h1 class="title">A Score!</h1>
+                    <p>What is your score!</p> 
+                    <p>Please be patient we do implore!</p>
+                    <div style="width: 100%;">
+                        <div class="halfPage">
+                            <h1>YOUR SCORE:</h1>
+                            <h1 id="scoreBox" style="font-size: 6em;"></h1>
+                        </div>
+                        <div class="halfPage">
+                            <img src="../../images/rabbit.png" style="width: 250px;" />
+                        </div>
+                    </div>
+                    <button onclick="window.location = window.location;">Play Again!</button>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="fineprint"><p class="copyright">Copyright &copy; 2011-2012 Research In Motion Limited</p><br /></div>
+
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../../libs/sniffer.js"></script>
+
+        <!-- AliceJS -->
+        <script src="../../js/alice.min.js"></script>
+
+        <script type="text/javascript">
+
+        function tallyScore(){
+            document.getElementById("scoreBox").innerHTML = _score + '/5';
+        }
+
+        var mybook = alicejs.notebook({
+            elems: "book",
+            speed: 1000,
+            binding: "left",
+            randomize: '5%',
+            pageBackground: '#555'
+        });
+
+        // Google Analytics
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28534102-1']);
+        _gaq.push(['_setDomainName', 'github.com']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+        </script>
+    </body>
+</html>

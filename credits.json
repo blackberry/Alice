@@ -314,13 +314,61 @@ var groups = [{
         width: 128,
         height: 54
     }, {
-        filename: "rabbit.png",
+        filename: "rabbit2.png",
         desc: "Rabbit",
         source: "Clker",
         url: "http://www.clker.com/clipart-running-rabbit.html",
         license: "Public Domain",
         width: 96,
         height: 96
+    }, {
+        filename: "AliceMain.png",
+        desc: "Alice",
+        source: "RIM",
+        url: "http://blackberry.github.com/Alice",
+        license: "Public Domain",
+        width: 96,
+        height: 160
+    }, {
+        filename: "caterpillar.png",
+        desc: "Caterpillar",
+        source: "RIM",
+        url: "http://blackberry.github.com/Alice",
+        license: "Public Domain",
+        width: 96,
+        height: 140
+    }, {
+        filename: "madhatter.png",
+        desc: "Mad Hatter",
+        source: "RIM",
+        url: "http://blackberry.github.com/Alice",
+        license: "Public Domain",
+        width: 96,
+        height: 180
+    }, {
+        filename: "queen.png",
+        desc: "Queen",
+        source: "RIM",
+        url: "http://blackberry.github.com/Alice",
+        license: "Public Domain",
+        width: 96,
+        height: 160
+    }, {
+        filename: "rabbit.png",
+        desc: "Rabbit",
+        source: "RIM",
+        url: "http://blackberry.github.com/Alice",
+        license: "Public Domain",
+        width: 96,
+        height: 140
+    }, {
+        filename: "cheshire.png",
+        desc: "Alice",
+        source: "RIM",
+        url: "http://blackberry.github.com/Alice",
+        license: "Public Domain",
+        width: 96,
+        height: 66
     }]
 }, {
     path: "lib/prettify",
@@ -334,7 +382,7 @@ var groups = [{
         license: "Apache License 2.0"
     }]
 }, {
-    path: "./",
+    path: "images",
 
     items: [{
         filename: "favicon.ico",

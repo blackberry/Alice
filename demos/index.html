@@ -19,15 +19,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <title>AliceJS Demos</title>
-        <link href="../favicon.ico" rel="icon" type="image/x-icon">
-        <link rel="stylesheet" href="../default.css">
+        <link href="images/favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="../css/default.css">
         <style type="text/css">
         </style>
     </head>
     <body>
         <div class="fineprint"><p id="version"></p></div>
 
-        <div class="close" style="position: absolute; top: 45px; right: 15px;">
+        <div class="close">
             <a href="../index.html"><img src="../images/close_icon.png"></a>
         </div>
 
@@ -60,467 +60,74 @@
                 </div>
 
                 <div>
-                    <h2>Demos</h2>
-                    Catch the rabbits, or click on the links, to get to full-page demos for each effect below. There 
-                    are also other demos such as <a href="sampler.html">Sampler (with offsets)</a>,  
-                    <a href="chaining.html">Chaining Effects</a> and <a href="stack.html">Stack</a>. Finally, you should 
-                    play around with the <a href="builder.html">Builder</a> tool.<BR>
-                    <BR>
+                    <h1>AliceJS Demos</h1>
+                    <p>Please browse through our collection of demos of the Cheshire and Caterpillar plugins, or try developing one of your own plugins.</p>
                 </div>
 
-                <!-- Bounce -->
-                <a name="bounce"></a>
-                <div class="card">
-                    <div id="my_bounce" class="icon">
-                        <a href="fx/bounce.html"><img src="../images/rabbit.png" alt="Bounce" title="Bounce"></a>
-                        <span>Bounce</span>
-                    </div>
-                    <p><a href="fx/bounce.html">Bounce</a> - The "bounce" effect simulates the bouncing of an object from a top view including a shadow.</p>
-                    <div class="code">
-                        <pre class="prettyprint lang-js">
-/**
- * [bounce description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} scale     [description]
- * @param  {[type]} shadow    [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} direction [description]
- * @param  {[type]} playstate [description]
- * @return {[type]}
- */
-a.bounce("my_bounce", 125, true, "750ms", "easeOutSine", "0ms", "infinite", "alternate", "running");
-                        </pre>
+                <!-- Cheshire -->
+                <div class="infoBox">
+                    <div class="padded">
+                        <a class="title" href="cheshire.html">Cheshire</a>
+                        <p>Cheshire is a simple to use yet remarkably expandable engine for building and implementing CSS3 based animations. </p>
+                        <p>Available Effects:</p>
+                        <ul>
+                            <li><a href="fx/bounce.html">bounce()</a></li>
+                            <li><a href="fx/dance.html">dance()</a></li>
+                            <li><a href="fx/drain.html">drain()</a></li>
+                            <li><a href="fx/fade.html">fade()</a></li>
+                            <li><a href="fx/hinge.html">hinge()</a></li>
+                            <li><a href="fx/pageFlip.html">pageFlip()</a></li>
+                            <li><a href="fx/pendulum.html">pendulum()</a></li>
+                            <li><a href="fx/phantomZone.html">phantomZone()</a></li>
+                            <li><a href="fx/raceFlag.html">raceFlag()</a></li>
+                            <li><a href="fx/slide.html">slide()</a></li>
+                            <li><a href="fx/spin.html">spin()</a></li>
+                            <li><a href="fx/toss.html">toss()</a></li>
+                            <li><a href="fx/twirl.html">twirl()</a></li>
+                            <li><a href="fx/wobble.html">wobble()</a></li>
+                            <li><a href="fx/zoom.html">zoom()</a></li>
+                        </ul>    
                     </div>
                 </div>
+
+                <!-- Caterpillar -->
+                <div class="infoBox">
+                    <div class="padded">
+                        <a class="title" href="caterpillar.html">Caterpillar</a>
+                        <p>Caterpillar is a fully customizable 3D rendering that enables interaction with divs enabling the client to go further than simple animations. Stepping into a position to push the limits of human computer interaction.</p>
+                         <p>Available Effects:</p>
+                        <ul>
+                            <li><a href="fx/book.html">book()</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Extras -->
+                <div class="infoBox" style="margin-top: 20px;">
+                    <div class="padded">
+                        <a class="title" href="caterpillar.html">Extras</a>
+                        <p>Demos of some extra possibilities and tools.</p>
+                        <p>Extras:</p>
+                        <ul>
+                            <li><a href="chaining.html">Chaining</a></li>
+                        </ul>
+                        <p>Samples:</p>
+                        <ul>
+                            <li><a href="stack.html">Stack</a></li>
+                            <li><a href="sampler.html">Sampler</a></li>
+                        </ul>
+                        <p>Tools:</p>
+                        <ul>
+                            <li><a href="builder.html">Builder</a></li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="spacer"></div>
 
-                <!-- Dance -->
-                <a name="dance"></a>
-                <div class="card">
-                    <div id="my_dance" class="icon">
-                        <a href="fx/dance.html"><img src="../images/rabbit.png" alt="Dance" title="Dance"></a>
-                        <span>Dance</span>
-                    </div>
-                    <p><a href="fx/dance.html">Dance</a> - The "dance" effect...</p>
-                    <div class="code">
-                        <pre class="prettyprint lang-js">
-/**
- * [dance description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} rotate    [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} direction [description]
- * @param  {[type]} playstate [description]
- * @return {[type]}
- */
-a.dance("my_dance", 45, "750ms", "easeInOutBack", "0ms", "infinite", "alternate", "running");
-                        </pre>
-                    </div>
+                <div style="width: 100%; float: left;"> 
+                    <div class="fineprint"><p>Copyright &copy; 2011-2012 Research In Motion Limited</p></div>
                 </div>
-                <div class="spacer"></div>
-
-                <!-- Drain -->
-                <a name="drain"></a>
-                <div class="card">
-                    <div id="my_drain" class="icon">
-                        <a href="fx/drain.html"><img src="../images/rabbit.png" alt="Drain" title="Drain"></a>
-                        <span>Drain</span>
-                    </div>
-                    <p><a href="fx/drain.html">Drain</a> - The "drain" effect...</p>
-                    <div class="code">
-                        <pre class="prettyprint lang-js">
-/**
- * [drain description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} fade      [description]
- * @param  {[type]} rotate    [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} direction [description]
- * @param  {[type]} playstate [description]
- * @return {[type]}
- */
-a.drain("my_drain", "out", -2880, "4500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
-                        </pre>
-                    </div>
-                </div>
-                <div class="spacer"></div>
-
-                <!-- Fade (in) -->
-                <a name="fade"></a>
-                <div class="card">
-                    <div id="my_fade" class="icon">
-                        <a href="fx/fade.html"><img src="../images/rabbit.png" alt="Fade (in)" title="Fade (in)"></a>
-                        <span>Fade (in)</span>
-                    </div>
-                    <p><a href="fx/fade.html">Fade (in)</a> - The "fade (in)" effect...</p>
-                    <div class="code">
-                        <pre class="prettyprint lang-js">
-/**
- * [fade description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} fade      [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} direction [description]
- * @param  {[type]} playstate [description]
- * @return {[type]}
- */
-a.fade("my_fade", "in", "4500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
-                        </pre>
-                    </div>
-                </div>
-                <div class="spacer"></div>
-
-                <!-- Hinge -->
-                <a name="hinge"></a>
-                <div class="card">
-                    <div id="my_hinge" class="icon">
-                        <a href="fx/hinge.html"><img src="../images/rabbit.png" alt="Hinge" title="Hinge"></a>
-                        <span>Hinge</span>
-                    </div>
-                    <p><a href="fx/hinge.html">Hinge</a> - The "hinge" effect...</p>
-                    <div class="code">
-                        <pre class="prettyprint lang-js">
-/**
- * [hinge description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} rotate    [description]
- * @param  {[type]} overshoot [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} direction [description]
- * @param  {[type]} playstate [description]
- * @return {[type]}
- */
-a.hinge("my_hinge", 25, 0, "1000ms", "linear", "0ms", "infinite", "alternate", "running");
-                        </pre>
-                    </div>
-                </div>
-                <div class="spacer"></div>
-
-                <!-- Page Flip (left) -->
-                <a name="pageFlip"></a>
-                <div class="card">
-                    <div id="my_pageFlip" class="icon">
-                        <a href="fx/pageFlip.html"><img src="../images/rabbit.png" alt="Page Flip (left)" title="Page Flip (left)"></a>
-                        <span>Page Flip (left)</span>
-                    </div>
-                    <p><a href="fx/pageFlip.html">Page Flip (left)</a> - The "pageFlip (left)" effect...</p>
-                    <div class="code">
-                        <pre class="prettyprint lang-js">
-/**
- * [pageFlip description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} flip      [description]
- * @param  {[type]} turns     [description]
- * @param  {[type]} overshoot [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} direction [description]
- * @param  {[type]} playstate [description]
- * @return {[type]}
- */
-a.pageFlip("my_pageFlip", "left", 1, 0, "2500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
-                        </pre>
-                    </div>
-                </div>
-                <div class="spacer"></div>
-
-                <!-- Pendulum -->
-                <a name="pendulum"></a>
-                <div class="card">
-                    <div id="my_pendulum" class="icon">
-                        <a href="fx/pendulum.html"><img src="../images/rabbit.png" alt="Pendulum" title="Pendulum"></a>
-                        <span>Pendulum</span>
-                    </div>
-                    <p><a href="fx/pendulum.html">Pendulum</a> - The "pendulum" effect...</p>
-                    <div class="code">
-                        <pre class="prettyprint lang-js">
-/**
- * [pendulum description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} rotate    [description]
- * @param  {[type]} overshoot [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} direction [description]
- * @param  {[type]} playstate [description]
- * @return {[type]}
- */
-a.pendulum("my_pendulum", 45, 0, "1000ms", "ease-in-out", "0ms", "infinite", "alternate", "running");
-                        </pre>
-                    </div>
-                </div>
-                <div class="spacer"></div>
-
-                <!-- Phantom Zone -->
-                <a name="phantomZone"></a>
-                <div class="card">
-                    <div id="my_phantomZone" class="icon">
-                        <a href="fx/phantomZone.html"><img src="../images/rabbit.png" alt="Phantom Zone" title="Phantom Zone"></a>
-                        <span>Phantom Zone</span>
-                    </div>
-                    <p><a href="fx/phantomZone.html">Phantom Zone</a> - The "phantomZone" effect...</p>
-                    <div class="code">
-                        <pre class="prettyprint lang-js">
-/**
- * [phantomZone description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} fade      [description]
- * @param  {[type]} rotate    [description]
- * @param  {[type]} flip      [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} direction [description]
- * @param  {[type]} playstate [description]
- * @return {[type]}
- */
-a.phantomZone("my_phantomZone", "out", -720, "left", "5000ms", "ease", "0ms", "infinite", "normal", "running");
-                        </pre>
-                    </div>
-                </div>
-                <div class="spacer"></div>
-
-                <!-- Race Flag -->
-                <a name="raceFlag"></a>
-                <div class="card">
-                    <div id="my_raceFlag" class="icon">
-                        <a href="fx/raceFlag.html"><img src="../images/rabbit.png" alt="Race Flag" title="Race Flag"></a>
-                        <span>Race Flag</span>
-                    </div>
-                    <p><a href="fx/raceFlag.html">Race Flag</a> - The "raceFlag" effect...</p>
-                    <div class="code">
-                        <pre class="prettyprint lang-js">
-/**
- * [raceFlag description]
- * @param  {[type]} elems             [description]
- * @param  {[type]} rotate            [description]
- * @param  {[type]} perspectiveOrigin [description]
- * @param  {[type]} duration          [description]
- * @param  {[type]} timing            [description]
- * @param  {[type]} delay             [description]
- * @param  {[type]} iteration         [description]
- * @param  {[type]} direction         [description]
- * @param  {[type]} playstate         [description]
- * @return {[type]}
- */
-a.raceFlag("my_raceFlag", -720, "top-right", "3000ms", "ease", "0ms", "infinite", "normal", "running");
-                        </pre>
-                    </div>
-                </div>
-                <div class="spacer"></div>
-
-                <!-- Slide (left) -->
-                <a name="slide"></a>
-                <div class="card">
-                    <div id="my_slide" class="icon">
-                        <a href="fx/slide.html"><img src="../images/rabbit.png" alt="Slide (left)" title="Slide (left)"></a>
-                        <span>Slide (left)</span>
-                    </div>
-                    <p><a href="fx/slide.html">Slide (left)</a> - The "slide (left)" effect...</p>
-                    <div class="code">
-                        <pre class="prettyprint lang-js">
-/**
- * [slide description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} move      [description]
- * @param  {[type]} overshoot [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} direction [description]
- * @param  {[type]} playstate [description]
- * @return {[type]}
- */
-a.slide("my_slide", "left", 0, "3000ms", "ease", "0ms", "infinite", "alternate", "running");
-                        </pre>
-                    </div>
-                </div>
-                <div class="spacer"></div>
-
-                <!-- Spin (left) -->
-                <a name="spin"></a>
-                <div class="card">
-                    <div id="my_spin" class="icon">
-                        <a href="fx/spin.html"><img src="../images/rabbit.png" alt="Spin (left)" title="Spin (left)"></a>
-                        <span>Spin (left)</span>
-                    </div>
-                    <p><a href="fx/spin.html">Spin (left)</a> - The "spin (left)" effect...</p>
-                    <div class="code">
-                        <pre class="prettyprint lang-js">
-/**
- * [spin description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} flip      [description]
- * @param  {[type]} turns     [description]
- * @param  {[type]} overshoot [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} playstate [description]
- * @return {[type]}
- */
-a.spin("my_spin", "left", 1, 0, "3000ms", "ease", "0ms", "infinite", "normal", "running");
-                        </pre>
-                    </div>
-                </div>
-                <div class="spacer"></div>
-
-                <!-- Toss (left) -->
-                <a name="toss"></a>
-                <div class="card">
-                    <div id="my_toss" class="icon">
-                        <a href="fx/toss.html"><img src="../images/rabbit.png" alt="Toss (left)" title="Toss (left)"></a>
-                        <span>Toss (left)</span>
-                    </div>
-                    <p><a href="fx/toss.html">Toss (left)</a> - The "toss (left)" effect...</p>
-                    <div class="code">
-                        <pre class="prettyprint lang-js">
-/**
- * [toss description]
- * @param  {[type]} elems             [description]
- * @param  {[type]} move              [description]
- * @param  {[type]} overshoot         [description]
- * @param  {[type]} perspectiveOrigin [description]
- * @param  {[type]} duration          [description]
- * @param  {[type]} timing            [description]
- * @param  {[type]} delay             [description]
- * @param  {[type]} iteration         [description]
- * @param  {[type]} direction         [description]
- * @param  {[type]} playstate         [description]
- * @return {[type]}
- */
-a.toss("my_toss", "left", 0, "center", "2500ms", "ease", "0ms", "infinite", "alternate", "running");
-                        </pre>
-                    </div>
-                </div>
-                <div class="spacer"></div>
-
-                <!-- Twirl (from left) -->
-                <a name="twirl"></a>
-                <div class="card">
-                    <div id="my_twirl" class="icon">
-                        <a href="fx/twirl.html"><img src="../images/rabbit.png" alt="Twirl (from left)" title="Twirl (from left)"></a>
-                        <span>Twirl (from left)</span>
-                    </div>
-                    <p><a href="fx/twirl.html">Twirl (from left)</a> - The "twirl (from left)" effect...</p>
-                    <div class="code">
-                        <pre class="prettyprint lang-js">
-/**
- * [twirl description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} flip      [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} direction [description]
- * @param  {[type]} playstate [description]
- * @return {[type]}
- */
-a.twirl("my_twirl", "left", "3000ms", "ease", "0ms", "infinite", "normal", "running");
-                        </pre>
-                    </div>
-                </div>
-                <div class="spacer"></div>
-
-                <!-- Wobble -->
-                <a name="wobble"></a>
-                <div class="card">
-                    <div id="my_wobble" class="icon">
-                        <a href="fx/wobble.html"><img src="../images/rabbit.png" alt="Wobble" title="Wobble"></a>
-                        <span>Wobble</span>
-                    </div>
-                    <p><a href="fx/wobble.html">Wobble</a> - The "wobble" effect...</p>
-                    <div class="code">
-                        <pre class="prettyprint lang-js">
-/**
- * [wobble description]
- * @param  {[type]} elems             [description]
- * @param  {[type]} rotate            [description]
- * @param  {[type]} perspectiveOrigin [description]
- * @param  {[type]} duration          [description]
- * @param  {[type]} timing            [description]
- * @param  {[type]} delay             [description]
- * @param  {[type]} iteration         [description]
- * @param  {[type]} playstate         [description]
- * @return {[type]}
- */
-a.wobble("my_wobble", 5, "center", "200ms", "linear", "0ms", "infinite", "alternate", "running");
-                        </pre>
-                    </div>
-                </div>
-                <div class="spacer"></div>
-
-                <!-- Zoom -->
-                <a name="zoom"></a>
-                <div class="card">
-                    <div id="my_zoom" class="icon">
-                        <a href="fx/zoom.html"><img src="../images/rabbit.png" alt="Zoom" title="Zoom"></a>
-                        <span>Zoom</span>
-                    </div>
-                    <p><a href="fx/zoom.html">Zoom</a> - The "zoom" effect...</p>
-                    <div class="code">
-                        <pre class="prettyprint lang-js">
-/**
- * [zoom description]
- * @param  {[type]} elems     [description]
- * @param  {[type]} scale     [description]
- * @param  {[type]} shadow    [description]
- * @param  {[type]} move      [description]
- * @param  {[type]} duration  [description]
- * @param  {[type]} timing    [description]
- * @param  {[type]} delay     [description]
- * @param  {[type]} iteration [description]
- * @param  {[type]} direction [description]
- * @param  {[type]} playstate [description]
- * @return {[type]}
- */
-a.zoom("my_zoom", {
-    from: "1%", to: "125%"
-}, true, "none", "5000ms", "ease", "0ms", "infinite", "normal", "running");
-                        </pre>
-                    </div>
-                </div>
-                <div class="spacer"></div>
-
-                <!-- More Demos -->
-                <a name="moredemos"></a>
-                <div>
-                    <h2>More Demos</h2>
-                </div>
-
-                <ul>
-                    <li><a href="sampler.html">Sampler (with offsets)</a></li>
-                    <li><a href="builder.html">Builder</a></li>
-                    <li><a href="chaining.html">Chaining Effects</a></li>
-                    <li><a href="stack.html">Stack</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="fineprint"><p>Copyright &copy; 2011-2012 Research In Motion Limited</p></div>
 
         <!-- Syntax Highlighting -->
         <link rel="stylesheet" type="text/css" href="../libs/prettify/themes/sunburst.css">
@@ -531,50 +138,45 @@ a.zoom("my_zoom", {
         <script type="text/javascript" src="../libs/sniffer.js"></script>
 
         <!-- AliceJS -->
-        <script src="../js/src/alice.core.js"></script>
-        <script src="../js/src/alice.plugins.cheshire.js"></script>
-<!--
-        <script src="../js/alice-min.js"></script>
--->
+        <script src="../js/alice.min.js"></script>
+
         <script type="text/javascript">
+        
         prettyPrint();
         sniffer.init();
 
+            animateLogo = function () {
+                alicejs.spin({
+                    elems: "logo-alice-img",
+                    move: "left",
+                    overshoot: '7',
+                    duration: "3000ms",
+                    iteration: "1"
+                });
+
+                alicejs.slide({
+                    elems: document.getElementById("logo-alice-txt-alice").children,
+                    move: "left",
+                    overshoot: '0',
+                    duration: {value: "2000ms", randomness: "100%", offset: "250ms"},
+                    timing: "easeOutQuint",
+                    delay: "0ms",
+                    iteration: 1
+                });
+
+                alicejs.toss({
+                    elems: document.getElementById("logo-alice-txt-js").children,
+                    move: "left",
+                    overshoot: "10%",
+                    iteration: 1,
+                    duration: { value: "2000ms", randomness: "50%", offset: "250ms" },
+                    timing: "ease-in-out"
+                });
+            };
+
+            animateLogo();
+
         document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
-
-        var a = alice.init();
-
-        a.bounce("my_bounce", 125, true, "750ms", "easeOutSine", "0ms", "infinite", "alternate", "running");
-
-        a.dance("my_dance", 45, "750ms", "easeInOutBack", "0ms", "infinite", "alternate", "running");
-
-        a.drain("my_drain", "out", -2880, "4500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
-
-        a.fade("my_fade", "in", "4500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
-
-        a.hinge("my_hinge", 25, 0, "1000ms", "linear", "0ms", "infinite", "alternate", "running");
-
-        a.pageFlip("my_pageFlip", "left", 1, 0, "2500ms", "ease-in-out", "0ms", "infinite", "normal", "running");
-
-        a.pendulum("my_pendulum", 45, 0, "1000ms", "ease-in-out", "0ms", "infinite", "alternate", "running");
-
-        a.phantomZone("my_phantomZone", "out", -720, "left", "5000ms", "ease", "0ms", "infinite", "normal", "running");
-
-        a.raceFlag("my_raceFlag", -720, "top-right", "3000ms", "ease", "0ms", "infinite", "normal", "running");
-
-        a.slide("my_slide", "left", 0, "3000ms", "ease", "0ms", "infinite", "alternate", "running");
-
-        a.spin("my_spin", "left", 1, 0, "3000ms", "ease", "0ms", "infinite", "normal", "running");
-
-        a.toss("my_toss", "left", 0, "center", "2500ms", "ease", "0ms", "infinite", "alternate", "running");
-
-        a.twirl("my_twirl", "left", "3000ms", "ease", "0ms", "infinite", "normal", "running");
-
-        a.wobble("my_wobble", 5, "center", "200ms", "linear", "0ms", "infinite", "alternate", "running");
-
-        a.zoom("my_zoom", {
-            from: "1%", to: "125%"
-        }, true, "none", "5000ms", "ease", "0ms", "infinite", "normal", "running");
 
         // Google Analytics
         var _gaq = _gaq || [];

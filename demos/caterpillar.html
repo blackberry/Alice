@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<!--
+    Copyright 2011-2012 Research In Motion Limited.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <title>AliceJS Demos</title>
+        <link href="../images/favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="../css/default.css">
+        <style type="text/css">
+        #book{
+            width: 350px;
+            height: 450px;
+            text-align: center; 
+            margin: 100px auto;
+        }
+        #bookTwo{
+            width: 400px;
+            height: 400px;
+            text-align: center; 
+            margin: 100px auto;
+        }
+        #bookThree{
+            width: 400px;
+            height: 400px;
+            text-align: center; 
+            margin: 100px auto;
+        }
+        .page{
+            background: #444;
+            border-radius: 200px;
+        }
+        .pageB{
+            width: 100px;
+            height: 100px;
+            float: left;
+            margin: 10px;
+            background: #ccc;
+        }
+        .pageX{
+            background: #222;
+        }
+        .pageN{
+            background: #ccc;
+        }
+        .pageXL{
+            background: #666;
+        }
+        .page p{
+            color: #fff;
+            padding: 40px;
+        }
+        .page:nth-child(odd){
+            background: #888;
+        }
+        .subBooks{
+            position: relative;
+            height: 120px;
+        }
+    </style>
+    </head>
+    <body>      
+        <div class="fineprint"><p id="version"></p></div>
+
+        <div class="close">
+            <a href="../index.html"><img src="../images/close_icon.png"></a>
+        </div>
+
+        <div id="container">
+            <div id="card1" class="card-edge">
+                <div>
+                    <h1 class="seo">AliceJS Demos</h1>
+
+                    <!-- AliceJS Logo (CSS Sprites) -->
+                    <div id="logo">
+                        <div>
+                            <div id="logo-alice-img"></div>
+                        </div>
+                        <div id="logo-alice-txt-alice">
+                            <div id="logo-alice-txt-a"></div>
+                            <div id="logo-alice-txt-l"></div>
+                            <div id="logo-alice-txt-i"></div>
+                            <div id="logo-alice-txt-c"></div>
+                            <div id="logo-alice-txt-e"></div>
+                        </div>
+                        <div id="logo-alice-txt-js">
+                            <div id="logo-alice-txt-j"></div>
+                            <div id="logo-alice-txt-s"></div>
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+
+                    <!-- Overview -->
+                    <p><b><a href="../index.html">AliceJS</a></b> - <i>(A Lightweight Independent CSS Engine)</i> is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.</p>
+                </div>
+
+                <div>
+                    <h1>Caterpillar Demos</h1>
+                </div>
+
+                <!-- Book -->
+                <a name="book"></a>
+                <div class="card">
+                    <div id="book_info" class="icon">
+                    <a href="fx/book.html"><img src="../images/caterpillar.png" alt="Book" title="Book"></a>  
+                    </div>
+                    <p><a href="fx/book.html">Caterpillar</a> - The "book" effect generates book with the content provided in the child divs of the parent div, allowing the binding to be placed on any side of the parent div.</p>
+
+                    <div style="margin-left: 160px;">
+                        <h1>General Book Effect Rules</h1>
+                        <p>1. The book div, that is the parent of the pages must be sized in one of the following ways:
+                            <br />pixels
+                            <br />percentage
+                            <br />
+                            <br />Examples:
+                            <br />width: 400px;
+                            <br />height: 20%;
+                            <br />
+                        <br />2. The book div will dictate the details of the page sizes.
+                        <br />3. All pages must be divs, they can have as much or as little content as desired.
+                        </p>
+
+                        <h1>But Wait! That's not all!</h1>
+                        <p>Since the caterpillar effect is object based { example. var mybook = alicejs.notebook() } we make sure to not overstep our boundaries and put all the power in your hands. So what does this mean for you? It means you control the following aspects of your book:</p>
+
+                        <p><b>Built In Functions and Feedback</b></p>
+                    </div>
+                    
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+var mybook = alicejs.notebook({
+   elems: "book",
+   binding: "left",
+   wrap: false,
+   pageBackground: "#333" 
+});
+
+//This is your basic notebook method call for the caterpillar effect.
+
+//Page Turn Methods
+
+mybook.nxtPage() //Moves to the next page
+mybook.prePage() //Flips to the previous page
+
+//Modify the book itself by adding content
+
+mybook.appendPages("div id") //Allows the specified div to be incorportated into the book as more pages
+mybook.book //Returns the book in document object form
+mybook.bookName //Returns the id of the book
+
+//Page Numbers and Totals
+
+mybook.pageNumber() //Returns the page number currently at the fore-front
+mybook.realPageCount //Returns the number of pages in the book
+
+
+
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="spacer"></div>
+
+                <div class="card">
+                    <div id="book_info" class="icon">
+                    <a href="fx/book.html"><img src="../images/caterpillar.png" alt="Book" title="Book"></a>  
+                    </div>
+                    <p><a href="fx/book.html">notebook</a> - A single page book with modifiable page background.</p>
+                    
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+var notebook = alicejs.notebook({
+    elems: "book",
+    pageClass: '',                  //a class to add to pages
+    shadow: true,                   //true || false
+    speed: '500ms',                 //select a speed
+    randomize: '15%'                //string of percetange (impacts the speed of the page turns)
+    binding: "left",                //left || right || top || bottom
+    wrap: true,                     //true || false
+    pageBackground: '#333'          //string (basic css applied to the page backgrounds)
+});
+
+                        </pre>
+                    </div>
+                    
+                    <button onclick="notebook.prePage()">Previous Page</button>
+                    <button onclick="notebook.nxtPage()">Next Page</button>
+
+                    <div id="book">
+                        <div class="pageN">
+                            <h1 style="color: #fff; text-align: center;">Alice in Wonderland</h1>
+                            <img src="../images/AliceMain.png" />
+                        </div>
+                        <div class="pageN">
+                            <p>Down the Rabbit Hole</p>
+                            <img src="../images/rabbit.png" style="width: 200px;" />
+                        </div>
+                        <div class="pageN">
+                            <p>The Pool of Tears</p>
+                            <img src="../images/caterpillar.png" style="width: 300px;" />
+                        </div>
+                        <div class="pageN">
+                            <p>The Caucus Race and a Long Tale</p>
+                            <img src="../images/cheshire.png" style="width: 300px;" />
+                        </div>
+                        <div class="pageN">
+                            <p>The Rabbit Sends a Little Bill</p>
+                        </div>
+                        <div class="pageN">
+                            <p>Advice from a Caterpillar</p>
+                        </div>
+                        <div class="pageN">
+                            <p>Pig and Pepper</p>
+                        </div>
+                        <div class="pageN">
+                            <p>A Mad Tea-Party</p>
+                        </div>
+                        <div class="pageN">
+                            <p>The Queen's Croquet Ground</p>
+                        </div>
+                        <div class="pageN">
+                            <p>The Mock Turtle's Story</p>
+                        </div>
+                        <div class="pageN">
+                            <p>Lobster Quadrille</p>
+                        </div>
+                        <div class="pageN">
+                            <p>Who Stole the Tarts?</p>
+                        </div>
+                        <div class="pageN">
+                            <p>Alice's Evidence</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="spacer"></div>
+
+                <div class="card">
+                    <div id="book_info" class="icon">
+                    <a href="fx/book.html"><img src="../images/caterpillar.png" alt="Book" title="Book"></a>  
+                    </div>
+                    <p><a href="fx/book.html">notebook</a> - A single page book with modifiable page background.</p>
+                    
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+var flipbook = alicejs.flipbook({
+    elems: "book",
+    pageClass: '',                  //a class to add to pages
+    shadow: true,                   //true || false
+    speed: '500ms',                 //select a speed
+    randomize: '15%'                //string of percetange (impacts the speed of the page turns)
+    binding: "left",                //center || middle
+    wrap: true                      //true || false
+});
+
+                        </pre>
+                    </div>
+                    
+                    <button onclick="flipbook.prePage()">Previous Page</button>
+                    <button onclick="flipbook.nxtPage()">Next Page</button>
+
+                    <div id="bookTwo">
+                        <div class="page">
+                            <p>The Mock Turtle's Story</p>
+                            <button onclick="flipbook.appendPages('moreStuff')">Add Pages</button>
+                        </div>
+                        <div class="page">
+                            <p>Lobster Quadrille</p>
+                        </div>
+                        <div class="page">
+                            <p>Who Stole the Tarts?</p>
+                        </div>
+                        <div class="page">
+                            <p>Alice's Evidence</p>
+                        </div>
+                    </div>
+
+                    <div id="moreStuff" class="subBooks">
+                        <div class="pageB">
+                            <p>A Mad Tea-Party</p>
+                        </div>
+                        <div class="pageB">
+                            <p>The Queen's Croquet Ground</p>
+                        </div>
+                        <div class="pageB">
+                            <p>The Mock Turtle's Story</p>
+                        </div>
+                        <div class="pageB">
+                            <p>Lobster Quadrille</p>
+                        </div>
+                        <div class="pageB">
+                            <p>Who Stole the Tarts?</p>
+                        </div>
+                        <div class="pageB">
+                            <p>Alice's Evidence</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="spacer"></div>
+
+                <div class="card">
+                    <div id="book_info" class="icon">
+                    <a href="fx/book.html"><img src="../images/caterpillar.png" alt="Book" title="Book"></a>  
+                    </div>
+                    <p><a href="fx/book.html">notebook</a> - A single page book with modifiable page background.</p>
+                    
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+var book = alicejs.book({
+    elems: "book",
+    pageClass: '',                  //a class to add to pages
+    shadow: true,                   //true || false
+    speed: '500ms',                 //select a speed
+    randomize: '15%'                //string of percetange (impacts the speed of the page turns)
+    binding: "left",                //left || right || top || bottom
+});
+
+                        </pre>
+                    </div>
+                    
+                    <button onclick="book.prePage()">Previous Page</button>
+                    <button onclick="book.nxtPage()">Next Page</button>
+
+                    <div id="bookThree">
+                        <div class="page">
+                            <p>A Mad Tea-Party</p>
+                            <button onclick="book.appendPages('moreStuffExtra')">Add More Pages</button>
+                        </div>
+                        <div class="page">
+                            <p>The Queen's Croquet Ground</p>
+                        </div>
+                        <div class="page">
+                            <p>The Mock Turtle's Story</p>
+                        </div>
+                        <div class="page">
+                            <p>Lobster Quadrille</p>
+                        </div>
+                        <div class="page">
+                            <p>Who Stole the Tarts?</p>
+                        </div>
+                        <div class="page">
+                            <p>Alice's Evidence</p>
+                        </div>
+                    </div>
+
+                    <div id="moreStuffExtra" class="subBooks">
+                        <div class="pageB">
+                            <p>1</p>
+                        </div>
+                        <div class="pageB">
+                            <p>2</p>
+                        </div>
+                        <div class="pageB">
+                            <p>3</p>
+                        </div>
+                        <div class="pageB">
+                            <p>4</p>
+                        </div>
+                        <div class="pageB">
+                            <p>5</p>
+                        </div>
+                        <div class="pageB">
+                            <p>6</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="spacer"></div>
+
+        </div>
+
+        <div class="fineprint"><p>Copyright &copy; 2011-2012 Research In Motion Limited</p></div>
+
+        <!-- Syntax Highlighting -->
+        <link rel="stylesheet" type="text/css" href="../libs/prettify/themes/sunburst.css">
+        <script type="text/javascript" src="../libs/prettify/prettify.js"></script>
+        <script type="text/javascript" src="../libs/prettify/lang-css.js"></script>
+
+        <!-- Feature Sniffer -->
+        <script type="text/javascript" src="../libs/sniffer.js"></script>
+
+        <!-- AliceJS -->
+        <script src="../js/alice.min.js"></script>
+
+        <script type="text/javascript">
+        prettyPrint();
+        sniffer.init();
+
+        document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
+
+        var notebook = alicejs.notebook({
+            elems: "book",
+            speed: '800ms',
+            binding: "top"
+        });
+
+        var flipbook = alicejs.flipbook({
+            elems: "bookTwo",
+            speed: '500ms',
+            binding: "center",
+            wrap: true
+        });
+
+        var book = alicejs.book({
+            elems: "bookThree",
+            speed: '500ms',
+            binding: "left",
+            shadow: true
+        });
+
+        //onPageTrigger event
+        book.book.addEventListener("onPageTrigger", function(){ 
+            if(book.pageNumber() === book.realPageCount){
+                console.log("End of the regular book");
+            }
+            if(book.pageNumber() === 1){
+                console.log("Beginning of the regular book");
+            }
+        }, false);  
+
+        //onPageTrigger event
+        notebook.book.addEventListener("onPageTrigger", function(){ 
+            if(notebook.pageNumber() === notebook.realPageCount){
+                console.log("End of the notebook");
+            }
+            if(notebook.pageNumber() === 1){
+                console.log("Beginning of the notebook");
+            }
+        }, false);        
+
+        //Google Analytics
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28534102-1']);
+        _gaq.push(['_setDomainName', 'github.com']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+        </script>
+    </body>
+</html>

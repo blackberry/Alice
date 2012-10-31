@@ -23,15 +23,19 @@
 
 var a = alice.init();
 
-a.slide("elem1", "left", "", {
-    "value": "1000ms",
-    "randomness": "0%",
-    "offset": "150ms"
+a.slide({
+    elems: "elem1",
+    move: "left",
+    duration: {
+        "value": "1000ms",
+        "randomness": "0%",
+        "offset": "150ms"
+    }
 });
 
-if (typeof jWorkflow !== "undefined") {
-    a.start();
-}
+// if (typeof jWorkflow !== "undefined") {
+//     a.start();
+// }
 
 //----------------------------------------------------------------------------
 
@@ -200,130 +204,130 @@ app.applyEffect = function (param) {
         case "drain (in)":
             p.fade = "in";
             p.rotate = 720;
-            ret = a.drain(p.elems, p.fade, p.rotate, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.drain({elems: p.elems, fade: p.fade, rotate: p.rotate, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
         case "drain (out)":
             p.fade = "out";
             p.rotate = -720;
-            ret = a.drain(p.elems, p.fade, p.rotate, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.drain({elems: p.elems, fade: p.fade, rotate: p.rotate, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
 
         case "fade (in)":
             p.fade = "in";
-            ret = a.fade(p.elems, p.fade, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.fade({elems: p.elems, fade: p.fade, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
         case "fade (out)":
             p.fade = "out";
-            ret = a.fade(p.elems, p.fade, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.fade({elems: p.elems, fade: p.fade, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
 
         case "pageFlip (left)":
             p.flip = "left";
-            ret = a.pageFlip(p.elems, p.flip, p.turns, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.pageFlip({elems: p.elems, flip: p.flip, turns: p.turns, overshoot: p.overshoot, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
         case "pageFlip (right)":
             p.flip = "right";
-            ret = a.pageFlip(p.elems, p.flip, p.turns, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.pageFlip({elems: p.elems, flip: p.flip, turns: p.turns, overshoot: p.overshoot, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
         case "pageFlip (up)":
             p.flip = "up";
-            ret = a.pageFlip(p.elems, p.flip, p.turns, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.pageFlip({elems: p.elems, flip: p.flip, turns: p.turns, overshoot: p.overshoot, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
         case "pageFlip (down)":
             p.flip = "down";
-            ret = a.pageFlip(p.elems, p.flip, p.turns, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.pageFlip({elems: p.elems, flip: p.flip, turns: p.turns, overshoot: p.overshoot, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
 
         case "phantomZone (in)":
             p.fade = "in";
             p.rotate = 720;
             p.flip = "right";
-            ret = a.phantomZone(p.elems, p.fade, p.rotate, p.flip, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.phantomZone({elems: p.elems, fade: p.fade, rotate: p.rotate, flip: p.flip, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
         case "phantomZone (out)":
             p.fade = "out";
             p.rotate = -720;
             p.flip = "left";
-            ret = a.phantomZone(p.elems, p.fade, p.rotate, p.flip, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.phantomZone({elems: p.elems, fade: p.fade, rotate: p.rotate, flip: p.flip, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
 
         case "raceFlag":
             p.rotate = -720;
             p.perspectiveOrigin = "top-right";
-            ret = a.raceFlag(p.elems, p.rotate, p.perspectiveOrigin, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.raceFlag({elems: p.elems, rotate: p.rotate, perspectiveOrigin: p.perspectiveOrigin, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
 
         case "slide (left)":
             p.move = "left";
-            ret = a.slide(p.elems, p.move, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.slide({elems: p.elems, move: p.move, overshoot: p.overshoot, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
         case "slide (right)":
             p.move = "right";
-            ret = a.slide(p.elems, p.move, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.slide({elems: p.elems, move: p.move, overshoot: p.overshoot, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
         case "slide (up)":
             p.move = "up";
-            ret = a.slide(p.elems, p.move, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.slide({elems: p.elems, move: p.move, overshoot: p.overshoot, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
         case "slide (down)":
             p.move = "down";
-            ret = a.slide(p.elems, p.move, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.slide({elems: p.elems, move: p.move, overshoot: p.overshoot, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
 
         case "spin (left)":
             p.flip = "left";
-            ret = a.spin(p.elems, p.flip, p.turns, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
+            ret = a.spin({elems: p.elems, flip: p.flip, turns: p.turns, overshoot: p.overshoot, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, playstate: p.playstate});
             break;
         case "spin (right)":
             p.flip = "right";
-            ret = a.spin(p.elems, p.flip, p.turns, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
+            ret = a.spin({elems: p.elems, flip: p.flip, turns: p.turns, overshoot: p.overshoot, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, playstate: p.playstate});
             break;
         case "spin (up)":
             p.flip = "up";
-            ret = a.spin(p.elems, p.flip, p.turns, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
+            ret = a.spin({elems: p.elems, flip: p.flip, turns: p.turns, overshoot: p.overshoot, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, playstate: p.playstate});
             break;
         case "spin (down)":
             p.flip = "down";
-            ret = a.spin(p.elems, p.flip, p.turns, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.playstate);
+            ret = a.spin({elems: p.elems, flip: p.flip, turns: p.turns, overshoot: p.overshoot, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, playstate: p.playstate});
             break;
 
         case "toss (left)":
             p.move = "left";
-            ret = a.toss(p.elems, p.move, p.overshoot, p.perspectiveOrigin, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.toss({elems: p.elems, move: p.move, overshoot: p.overshoot, perspectiveOrigin: p.perspectiveOrigin, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
         case "toss (right)":
             p.move = "right";
-            ret = a.toss(p.elems, p.move, p.overshoot, p.perspectiveOrigin, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.toss({elems: p.elems, move: p.move, overshoot: p.overshoot, perspectiveOrigin: p.perspectiveOrigin, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
         case "toss (up)":
             p.move = "up";
-            ret = a.toss(p.elems, p.move, p.overshoot, p.perspectiveOrigin, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.toss({elems: p.elems, move: p.move, overshoot: p.overshoot, perspectiveOrigin: p.perspectiveOrigin, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
         case "toss (down)":
             p.move = "down";
-            ret = a.toss(p.elems, p.move, p.overshoot, p.perspectiveOrigin, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.toss({elems: p.elems, move: p.move, overshoot: p.overshoot, perspectiveOrigin: p.perspectiveOrigin, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
 
         case "twirl (from left)":
             p.flip = "left";
-            ret = a.twirl(p.elems, p.flip, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.twirl({elems: p.elems, flip: p.flip, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
         case "twirl (from right)":
             p.flip = "right";
-            ret = a.twirl(p.elems, p.flip, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.twirl({elems: p.elems, flip: p.flip, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
 
         case "zoom (125%)":
             p.scale = {from: "100%", to: "125%"};
             p.shadow = true;
             p.move = "left";
-            ret = a.zoom(p.elems, p.scale, p.shadow, p.move, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.zoom({elems: p.elems, scale: p.scale, shadow: p.shadow, move: p.move, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
         case "zoom (75%)":
             p.scale = {from: "100%", to: "75%"};
             p.shadow = false;
             p.move = "left";
-            ret = a.zoom(p.elems, p.scale, p.shadow, p.move, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.zoom({elems: p.elems, scale: p.scale, shadow: p.shadow, move: p.move, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
 
         case "bounce":
@@ -333,7 +337,7 @@ app.applyEffect = function (param) {
             p.timing = "easeOutSine";
             p.iteration = "infinite";
             p.direction = "alternate";
-            ret = a.bounce(p.elems, p.scale, p.shadow, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.bounce({elems: p.elems, scale: p.scale, shadow: p.shadow, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
 
         case "dance":
@@ -342,7 +346,7 @@ app.applyEffect = function (param) {
             p.iteration = "infinite";
             p.direction = "alternate";
             p.rotate = 45;
-            ret = a.dance(p.elems, p.rotate, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.dance({elems: p.elems, rotate: p.rotate, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
 
         case "hinge":
@@ -352,7 +356,7 @@ app.applyEffect = function (param) {
             p.direction = "alternate";
             p.rotate = 45;
             p.overshoot = 0;
-            ret = a.hinge(p.elems, p.rotate, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.hinge({elems: p.elems, rotate: p.rotate, overshoot: p.overshoot, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
 
         case "pendulum":
@@ -362,7 +366,7 @@ app.applyEffect = function (param) {
             p.direction = "alternate";
             p.rotate = 45;
             p.overshoot = 0;
-            ret = a.pendulum(p.elems, p.rotate, p.overshoot, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.pendulum({elems: p.elems, rotate: p.rotate, overshoot: p.overshoot, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
 
         case "wobble":
@@ -372,7 +376,7 @@ app.applyEffect = function (param) {
             p.direction = "alternate";
             p.rotate = 5;
             p.perspectiveOrigin = "center";
-            ret = a.wobble(p.elems, p.rotate, p.perspectiveOrigin, p.duration, p.timing, p.delay, p.iteration, p.direction, p.playstate);
+            ret = a.wobble({elems: p.elems, rotate: p.rotate, perspectiveOrigin: p.perspectiveOrigin, duration: p.duration, timing: p.timing, delay: p.delay, iteration: p.iteration, direction: p.direction, playstate: p.playstate});
             break;
 
         default:
@@ -380,9 +384,9 @@ app.applyEffect = function (param) {
             break;
         }
 
-        if (typeof jWorkflow !== "undefined") {
-            a.start();
-        }
+        // if (typeof jWorkflow !== "undefined") {
+        //     a.start();
+        // }
 
         if (document.getElementById("json")) {
             //document.getElementById("json").innerHTML += JSON.stringify(ret) + "\n\n";

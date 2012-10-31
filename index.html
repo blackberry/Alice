@@ -19,8 +19,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <title>AliceJS - (A Lightweight Independent CSS Engine)</title>
-        <link href="favicon.ico" rel="icon" type="image/x-icon">
-        <link rel="stylesheet" href="default.css">
+        <link href="images/favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="css/default.css">
         <style type="text/css">
         </style>
     </head>
@@ -37,7 +37,7 @@
                     <!-- AliceJS Logo (CSS Sprites) -->
                     <div id="logo">
                         <div>
-                            <div id="logo-alice-img"></div>
+                            <div id="logo-alice-img-original"></div>
                         </div>
                         <div id="logo-alice-txt-alice">
                             <div id="logo-alice-txt-a"></div>
@@ -60,13 +60,16 @@
 
                     <p><b>AliceJS</b> - <i>(A Lightweight Independent CSS Engine)</i> is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects.</p>
 
-                    <p>Created by Laurent Hasson (<a href="http://twitter.com/ldhasson" target="_blank">@ldhasson</a>, lhasson at rim dot com), and co-developed with Jim Ing (<a href="http://twitter.com/jim_ing" target="_blank">@jim_ing</a>, jing at rim dot com)</p>
+                    <p>Created by Laurent Hasson (<a href="http://twitter.com/ldhasson" target="_blank">@ldhasson</a>, lhasson at rim dot com), and co-developed with Jim Ing (<a href="http://twitter.com/jim_ing" target="_blank">@jim_ing</a>, jing at rim dot com), and Matt Lantz (<a href="http://twitter.com/mattylantz" target="_blank">@mattylantz</a>, malantz at rim dot com)</p>
 
                     <h2>Introduction</h2>
 
                     <p>While working on a simple game written in HTML5, I wanted to use a "flip3D" effect. That effect had become popular since CSS3 was introduced and performed well due to hardware-acceleration in most mobile browsers. I thought there would be a simple library to do the job, but all I found was samples of varying quality with tons of CSS and HTML markup that were not very cross-platform. Even more important, as I researched more options, I was surprised to see that in the many years since CSS3 appeared, we hadn't gone beyond Flip, Fade, Slide and Zoom. When compared to other major development environments where rich visual libraries are the norm, I lamented the apparent lack of progress in the HTML world.</p>
                     <p>So I decided to explore the ability to package such animations in a very lightweight library that would set up all the CSS and manage my base HTML for me, and keep my page clean of "effects logic". AliceJS was born. I had no idea where this could lead and I literally felt like the real Alice following the white rabbit down a scary hole. Very quickly, it became clear that lots of cool things could be done that would not just be fancy animations, but which could actually make a general UI better, and help with games too. This is an area that Research In Motion (RIM) is particularly interested in, pushing boundaries in graphically rich web applications to create more compelling experiences.</p>
                     <p>We are experimenting with many UI components, with tying in sensors, adding physics, and even organics. This is perhaps one of the more exciting feature of AliceJS. The human eye is very good at spotting differences in movement. Something so subtle as a millisecond difference can be perceived. Achieving natural/organic randomness is at the heart of most high-end visual effects in Hollywood blockbuster films. The beauty is that we don't need to reach that level of sophistication to give an effect some variability so that during the lifetime of the application, things don't feel repetitive. Varying just slightly the speed, perspective, and over-rotation on a flip effect adds a degree of subtle "freshness" every time it comes up.</p>
+
+                    <h2>Alice 0.1, 0.2 Compatibility and Special Notes</h2>
+                    <p>With version 0.5 we've introduced some changes to the core and cheshire while introducing the all new caterpillar effect. However, with great change comes great responsibity, and it is our responsibility to inform you that 0.5 is not compatible with 0.2, or 0.1. The main reason for this stems from the transition to object based paramters for the different methods.</p>
 
                     <h2>Demos</h2>
 
@@ -76,14 +79,33 @@
 
                     <h2>Implementation</h2>
 
+                    <p>Alice has a handful of declared functions that are available for the client to impliment. At the core alice declares var alicejs = alice.init();</p>
+
+                    <pre class="prettyprint lang-html">
+// Alice Core
+
+var alicejs = alice.init(); //Is built right into alice!
+
+// This is why we can do ex. alicejs.wobble(); instead of alice.init().wobble();
+                    </pre>
+
                     <pre class="prettyprint lang-html">
 &lt;div id=&quot;DIV1&quot;&gt;HERE IS ONE DIV&lt;/div&gt;
 &lt;img id=&quot;IMG1&quot; src=&quot;/myimg.gif&quot;&gt;
 &lt;script src=&quot;/alice/alice.core.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;/alice/alice.plugins.cheshire.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
-alice.wobble([&quot;DIV1&quot;, &quot;IMG1&quot;], 5, &quot;center&quot;,
-    &quot;200ms&quot;, &quot;linear&quot;, &quot;0ms&quot;, &quot;infinite&quot;, &quot;alternate&quot;, &quot;running&quot;);
+alicejs.wobble({
+    elems: [&quot;DIV1&quot;, &quot;IMG1&quot;], 
+    rotate: 5, 
+    perspectiveOrigin: &quot;center&quot;,
+    duration: &quot;200ms&quot;, 
+    timing: &quot;linear&quot;, 
+    delay: &quot;0ms&quot;, 
+    iteration: &quot;infinite&quot;, 
+    direction: &quot;alternate&quot;, 
+    playstate: &quot;running&quot;
+});
 &lt;/script&gt;
                     </pre>
 
@@ -104,12 +126,21 @@ alice.wobble([&quot;DIV1&quot;, &quot;IMG1&quot;], 5, &quot;center&quot;,
                     <h2>Architecture</h2>
 
                     <p>AliceJS is completely self-contained and doesn't rely on any other libraries. It also focuses exclusively on setting up animations through CSS manipulations. This makes it easy to include along with other libraries without fear of collision as AliceJS doesn't try to do event handling (touch or mouse), nor does it enforce particular logic or layout elements. It's easy for instance to use AliceJS to animate a Dojo Dialog component for example, or a jQuery UI component, just by addressing the underlying DIV.</p>
-                    <p>AliceJS is composed exclusively of JS files in a single folder, without image, CSS or any other dependencies. There is an "alice.core.js" file that contains common code and utilities, and then each effect has its own additional JS file, for example, "alice.plugins.cheshire.js". The goal is to keep each animation separate which makes it easy for a developer to create a minified build with only what is needed and nothing else. AliceJS is lean and right now, the gzipped minified version containing the entire library is about 5K only!</p>
-                    <p>The syntax for AliceJS is also kept minimal and in line with CSS, which we believe to be really simple and easy to grasp. For example:</p>
+                    <p>AliceJS is composed exclusively of JS files in a single folder, without image, CSS or any other dependencies. There is an "alice.core.js" file that contains common code and utilities, and then each effect has its own additional JS file, for example, "alice.plugins.cheshire.js". The goal is to keep each animation separate which makes it easy for a developer to create a minified build with only what is needed and nothing else. AliceJS is lean and right now, the gzipped minified version containing the entire library is about 11K only!</p>
+                    <p>The syntax for AliceJS is also kept minimal but still objectified, which we believe to be really simple and easy to grasp. For example:</p>
 
                     <pre class="prettyprint lang-js">
-alice.wobble("MyDiv", 5, "center",
-    "200ms", "linear", "0ms", "infinite", "alternate", "running");
+alicejs.wobble({
+    elems: "MyDiv", 
+    rotation: 5, 
+    perspectiveOrigin: "center",
+    duration: "200ms", 
+    timing: "linear", 
+    delay: "0ms", 
+    iteration: "infinite", 
+    direction: "alternate", 
+    playstate: "running"
+});
                     </pre>
 
                     <p>This can be thought of as:</p>
@@ -133,11 +164,11 @@ alice.wobble("MyDiv", 5, "center",
 }
                     </pre>
 
-                    <p>The preceding CSS code is just mock code to illustrate how to think about AliceJS. All effects are modeled around the same approach where a single line of JavaScript is sufficient to set up an effect. Ultimately, we would like CSS to adopt higher-level animation constructs to make it real easy to add more evolved visual special effects to web applications.</p>
+                    <p>The preceding CSS code is just mock code to illustrate how to think about AliceJS. All effects are modeled around the same approach where the JavaScript enables a detailed control or just an elems is sufficient to set up an effect. Ultimately, we would like CSS to adopt higher-level animation constructs to make it real easy to add more evolved visual special effects to web applications.</p>
 
                     <p>Finally, although we focus primarily on hardware-accelerated CSS at this point, we don't want to rule out using other technologies in the future such as Canvas and WebGL. Although the library focuses really on visual effects, we are exploring ways to tie in sensor input to make things more interesting, without interfering with application logic, or bringing in too much baggage.</p>
 
-                    <h2>Compatibility</h2>
+                    <h2>Browser Compatibility</h2>
 
                     <p>The library is intended to work at least on Chrome (V13 or higher because of hardware-acceleration requirements), iOS, and BlackBerry platforms. As the library evolves and more people participate, it's our goal to support all major platforms the best way we can.</p>
 
@@ -151,7 +182,7 @@ alice.wobble("MyDiv", 5, "center",
                     <h2>Unit Tests</h2>
 
                     <div>
-                        <a href="specs/index.html">Jasmine</a>
+                        <a href="../tests">Review Unit Tests</a>
                     </div>
 
                     <h2>License</h2>
@@ -159,6 +190,8 @@ alice.wobble("MyDiv", 5, "center",
                 </div>
 
                 <div class="spacer"></div>
+
+                
             </div>
         </div>
 
@@ -173,8 +206,7 @@ alice.wobble("MyDiv", 5, "center",
         <script type="text/javascript" src="libs/sniffer.js"></script>
 
         <!-- AliceJS -->
-        <script src="js/src/alice.core.js"></script>
-        <script src="js/src/alice.plugins.cheshire.js"></script>
+        <script src="js/alice.min.js"></script>
 
         <script type="text/javascript">
         prettyPrint();
@@ -182,25 +214,36 @@ alice.wobble("MyDiv", 5, "center",
 
         document.getElementById('version').innerHTML = 'Version ' + alice.version + ' (Build: ' + alice.build + ')';
 
-        var a = alice.init(),
+        // var a = alice.init(),
 
             animateLogo = function () {
-                a.spin("logo-alice-img", "left", 2, "", "3000ms");
+                alicejs.spin({
+                    elems: "logo-alice-img-original",
+                    move: "left",
+                    overshoot: '7',
+                    duration: "3000ms",
+                    iteration: "1"
+                });
 
-                a.slide(document.getElementById("logo-alice-txt-alice").children, "left", "0%", {
-                    value: "1000ms",
-                    randomness: "100%",
-                    offset: "250ms"
-                }, "easeOutQuint");
+                alicejs.slide({
+                    elems: document.getElementById("logo-alice-txt-alice").children,
+                    move: "left",
+                    overshoot: '0',
+                    duration: {value: "2000ms", randomness: "100%", offset: "250ms"},
+                    timing: "easeOutQuint",
+                    delay: "0ms",
+                    iteration: 1
+                });
 
-                a.toss(document.getElementById("logo-alice-txt-js").children, "left", "10%", "", {
-                    value: "2000ms",
-                    randomness: "50%",
-                    offset: "250ms"
-                }, "ease-in-out");
+                alicejs.toss({
+                    elems: document.getElementById("logo-alice-txt-js").children,
+                    move: "left",
+                    overshoot: "10%",
+                    iteration: 1,
+                    duration: { value: "2000ms", randomness: "50%", offset: "250ms" },
+                    timing: "ease-in-out"
+                });
             };
-
-        document.getElementById("logo").addEventListener("click", animateLogo, false);
 
         animateLogo();
 

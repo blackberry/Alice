@@ -19,8 +19,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <title>AliceJS Book</title>
-        <link href="../../favicon.ico" rel="icon" type="image/x-icon">
-        <link rel="stylesheet" href="../../css/default.css">
+        <link href="../../images/favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="default.css">
 
         <style type="text/css">
 
@@ -34,6 +34,7 @@
         #mainBox{
             width: 90%;
             margin: 0px auto 100px;
+            border-radius: 15px;
         }
 
         #book{
@@ -44,20 +45,13 @@
         }
         
         .page{
-            background: #eee;
+            background: #ccc;
+            border-radius: 15px;
         }
         
         .page p{
             color: #111;
             font-size: 1.2em;
-        }
-
-        h1{
-            color: #fff;
-        }
-
-        h1 a{
-            color: #888;
         }
 
         .title{
@@ -115,62 +109,53 @@
 
             <div id="book">
                 <div class="page">
-                    <div style="width: 100%; height: 100%; background: url(../../../images/pat.jpg); margin-top: -55px;">
+                    <div style="width: 100%; height: 100%; background: url(../../images/pat.jpg); margin-top: -45px; border-radius: 15px;">
                         <h1 style="color: #fff; text-align: center; font-size: 6em; padding-top: 40px;">Alice in Wonderland</h1>
                         <h1 style="color: #fff; text-align: center; margin: -20px 0 0 20px; color: #A31A81;">A Mini Triva Game</h1>
-                        <button style="margin-top: 100px;" onclick="_caterpillar.nxtPage()">PLAY!</button>
+                        <button style="margin-top: 100px;" onclick="mybook.nxtPage()">PLAY!</button>
                     </div>
                 </div>
                 <div class="page">
                     <h1 class="title">Question 1</h1>
-                    <img src="../../../images/AliceMain.png" style="width: 200px;" />
+                    <img src="../../images/AliceMain.png" style="width: 200px;" />
                     <p>To begin our tale let us look at the facts!</p>
                     <p>Where, oh where, does Alice relax?</p>
-                    <button style="padding: 10px;" onclick="_caterpillar.goToPage(3); _score+=1;">Sitting by a tree</button>
-                    <button style="padding: 10px;" onclick="_caterpillar.goToPage(7)">Hacking on her laptop</button>
+                    <button style="padding: 10px;" onclick="mybook.nxtPage(); _score+=1;">Sitting by a tree</button>
+                    <button style="padding: 10px;" onclick="mybook.nxtPage();">Hacking on her laptop</button>
                 </div>
                 <div class="page">
                     <h1 class="title">Question 2</h1>
-                    <img src="../../../images/caterpillar.png" style="width: 240px;" />
+                    <img src="../../images/caterpillar.png" style="width: 240px;" />
                     <p>Rabbit and mouse are scared away,</p>
                     <p>but, caterpillar, what does he say?</p>
-                    <button style="padding: 10px; font-size: 1.5em;" onclick="_caterpillar.goToPage(4); _score+=1;">Reveals the power of the Mushroom</button>
-                    <button style="padding: 10px; font-size: 1.5em;" onclick="_caterpillar.goToPage(7)">Informs her of bipartisan politics</button>
+                    <button style="padding: 10px; font-size: 1.5em;" onclick="mybook.nxtPage(); _score+=1;">Reveals the power of the Mushroom</button>
+                    <button style="padding: 10px; font-size: 1.5em;" onclick="mybook.nxtPage();">Informs her of bipartisan politics</button>
                 </div>
                 <div class="page">
                     <h1 class="title">Question 3</h1>
-                    <img src="../../../images/cheshire.png" style="width: 300px;" />
+                    <img src="../../images/cheshire.png" style="width: 300px;" />
                     <p>Baby pig and a powerful sneeze,</p>
                     <p>who was the cat, if you please?</p>
                     <br />
                     <br />
-                    <button style="padding: 10px;" onclick="_caterpillar.goToPage(7);">Worcestershire</button>
-                    <button style="padding: 10px;" onclick="_caterpillar.goToPage(5); _score+=1;">Cheshire</button>
+                    <button style="padding: 10px;" onclick="mybook.nxtPage();">Worcestershire</button>
+                    <button style="padding: 10px;" onclick="mybook.nxtPage(); _score+=1;">Cheshire</button>
                 </div>
                 <div class="page">
                     <h1 class="title">Question 4</h1>
-                    <img src="../../../images/madhatter.png" style="width: 150px;" />
+                    <img src="../../images/madhatter.png" style="width: 150px;" />
                     <p>March Hare, Mad Hatter and more,</p>
                     <p>when is tea time with riddles gallore?</p>
-                    <button style="padding: 10px;" onclick="_caterpillar.goToPage(7);">6:00 am</button>
-                    <button style="padding: 10px;" onclick="_caterpillar.goToPage(6); _score+=1;">6:00 pm</button>
+                    <button style="padding: 10px;" onclick="mybook.nxtPage();">6:00 am</button>
+                    <button style="padding: 10px;" onclick="mybook.nxtPage(); _score+=1;">6:00 pm</button>
                 </div>
                 <div class="page">
                     <h1 class="title">Question 5</h1>
-                    <img src="../../../images/queen.png" style="width: 170px;" />
+                    <img src="../../images/queen.png" style="width: 170px;" />
                     <p>A game of croquet and Queen of Hearts,</p>
                     <p>But who, oh who, stole the queens tarts?</p>
-                    <button style="padding: 10px;" onclick="_caterpillar.goToPage(8); _score+=1; tallyScore()">Knave of Hears</button>
-                    <button style="padding: 10px;" onclick="_caterpillar.goToPage(7)">Dancing Gryphon</button>
-                </div>
-                <div class="page">
-                    <h1 class="title">Oh No!</h1>
-                    <p>No, no, no, this cannot be!</p> 
-                    <p>Oh dear, oh dear, sad to see.</p>
-                    <div style="width: 100%; text-align: right;">
-                        <img src="../../../images/rabbit.png" style="width: 250px;" />
-                    </div>
-                    <button onclick="_caterpillar.revToPage(_caterpillar.lastPage);">Try Again!</button>
+                    <button style="padding: 10px;" onclick="mybook.nxtPage(); _score+=1; tallyScore()">Knave of Hears</button>
+                    <button style="padding: 10px;" onclick="mybook.nxtPage(); tallyScore()">Dancing Gryphon</button>
                 </div>
                 <div class="page">
                     <h1 class="title">A Score!</h1>
@@ -182,7 +167,7 @@
                             <h1 id="scoreBox" style="font-size: 6em;"></h1>
                         </div>
                         <div class="halfPage">
-                            <img src="../../../images/rabbit.png" style="width: 250px;" />
+                            <img src="../../images/rabbit.png" style="width: 250px;" />
                         </div>
                     </div>
                     <button onclick="window.location = window.location;">Play Again!</button>
@@ -191,16 +176,13 @@
             
         </div>
 
-
-
         <div class="fineprint"><p class="copyright">Copyright &copy; 2011-2012 Research In Motion Limited</p><br /></div>
 
         <!-- Feature Sniffer -->
-        <script type="text/javascript" src="../../../libs/sniffer.js"></script>
+        <script type="text/javascript" src="../../libs/sniffer.js"></script>
 
         <!-- AliceJS -->
-        <script src="../../../src/alice.core.js"></script>
-        <script src="../../../src/alice.plugins.caterpillar.js"></script>
+        <script src="../../js/alice.min.js"></script>
 
         <script type="text/javascript">
 
@@ -208,15 +190,12 @@
             document.getElementById("scoreBox").innerHTML = _score + '/5';
         }
 
-        alicejs.book({
+        var mybook = alicejs.notebook({
             elems: "book",
-            speed: 500,
-            paging: "single",
+            speed: 1000,
             binding: "left",
-            inPageControls: false,
-            keyControls: false,
             randomize: '5%',
-            pageBackground: '#333'
+            pageBackground: '#555'
         });
 
         // Google Analytics

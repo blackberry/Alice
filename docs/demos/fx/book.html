@@ -170,7 +170,7 @@
                             <img src="../../images/rabbit.png" style="width: 250px;" />
                         </div>
                     </div>
-                    <button onclick="window.location = window.location;">Play Again!</button>
+                    <button onclick="mybook.nxtPage(); resetScore();">Play Again!</button>
                 </div>
             </div>
             
@@ -190,12 +190,17 @@
             document.getElementById("scoreBox").innerHTML = _score + '/5';
         }
 
+        function resetScore(){
+            _score = 0;
+        }
+
         var mybook = alicejs.notebook({
             elems: "book",
             speed: 1000,
             binding: "left",
             randomize: '5%',
-            pageBackground: '#555'
+            pageBackground: '#555',
+            wrap: true
         });
 
         // Google Analytics

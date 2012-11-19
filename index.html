@@ -37,7 +37,7 @@
                     <!-- AliceJS Logo (CSS Sprites) -->
                     <div id="logo">
                         <div>
-                            <div id="logo-alice-img"></div>
+                            <div id="logo-alice-img-original"></div>
                         </div>
                         <div id="logo-alice-txt-alice">
                             <div id="logo-alice-txt-a"></div>
@@ -67,6 +67,9 @@
                     <p>While working on a simple game written in HTML5, I wanted to use a "flip3D" effect. That effect had become popular since CSS3 was introduced and performed well due to hardware-acceleration in most mobile browsers. I thought there would be a simple library to do the job, but all I found was samples of varying quality with tons of CSS and HTML markup that were not very cross-platform. Even more important, as I researched more options, I was surprised to see that in the many years since CSS3 appeared, we hadn't gone beyond Flip, Fade, Slide and Zoom. When compared to other major development environments where rich visual libraries are the norm, I lamented the apparent lack of progress in the HTML world.</p>
                     <p>So I decided to explore the ability to package such animations in a very lightweight library that would set up all the CSS and manage my base HTML for me, and keep my page clean of "effects logic". AliceJS was born. I had no idea where this could lead and I literally felt like the real Alice following the white rabbit down a scary hole. Very quickly, it became clear that lots of cool things could be done that would not just be fancy animations, but which could actually make a general UI better, and help with games too. This is an area that Research In Motion (RIM) is particularly interested in, pushing boundaries in graphically rich web applications to create more compelling experiences.</p>
                     <p>We are experimenting with many UI components, with tying in sensors, adding physics, and even organics. This is perhaps one of the more exciting feature of AliceJS. The human eye is very good at spotting differences in movement. Something so subtle as a millisecond difference can be perceived. Achieving natural/organic randomness is at the heart of most high-end visual effects in Hollywood blockbuster films. The beauty is that we don't need to reach that level of sophistication to give an effect some variability so that during the lifetime of the application, things don't feel repetitive. Varying just slightly the speed, perspective, and over-rotation on a flip effect adds a degree of subtle "freshness" every time it comes up.</p>
+
+                    <h2>Alice 0.1, 0.2 Compatibility and Special Notes</h2>
+                    <p>With version 0.5 we've introduced some changes to the core and cheshire while introducing the all new caterpillar effect. However, with great change comes great responsibity, and it is our responsibility to inform you that 0.5 is not compatible with 0.2, or 0.1. The main reason for this stems from the transition to object based paramters for the different methods.</p>
 
                     <h2>Demos</h2>
 
@@ -165,7 +168,7 @@ alicejs.wobble({
 
                     <p>Finally, although we focus primarily on hardware-accelerated CSS at this point, we don't want to rule out using other technologies in the future such as Canvas and WebGL. Although the library focuses really on visual effects, we are exploring ways to tie in sensor input to make things more interesting, without interfering with application logic, or bringing in too much baggage.</p>
 
-                    <h2>Compatibility</h2>
+                    <h2>Browser Compatibility</h2>
 
                     <p>The library is intended to work at least on Chrome (V13 or higher because of hardware-acceleration requirements), iOS, and BlackBerry platforms. As the library evolves and more people participate, it's our goal to support all major platforms the best way we can.</p>
 
@@ -179,7 +182,7 @@ alicejs.wobble({
                     <h2>Unit Tests</h2>
 
                     <div>
-                        <a href="tests">Review Unit Tests</a>
+                        <a href="specs">Review Unit Tests</a>
                     </div>
 
                     <h2>License</h2>
@@ -203,7 +206,7 @@ alicejs.wobble({
         <script type="text/javascript" src="libs/sniffer.js"></script>
 
         <!-- AliceJS -->
-        <script src="js/alice.js"></script>
+        <script src="js/alice.min.js"></script>
 
         <script type="text/javascript">
         prettyPrint();
@@ -215,7 +218,7 @@ alicejs.wobble({
 
             animateLogo = function () {
                 alicejs.spin({
-                    elems: "logo-alice-img",
+                    elems: "logo-alice-img-original",
                     move: "left",
                     overshoot: '7',
                     duration: "3000ms",

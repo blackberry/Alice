@@ -18,7 +18,9 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <title>AliceJS Stack</title>
-        <link href="../favicon.ico" rel="icon" type="image/x-icon">
+        <link href="../images/favicon.ico" rel="icon" type="image/x-icon">
+        <link href="fx/default.css" rel="stylesheet">
+
         <style type="text/css">
         body, select {
             font: 8pt Arial, sans-serif;
@@ -31,7 +33,7 @@
             height: 190px;
         }
 
-        .card {
+        .cardx {
             position: absolute;
             width: 140px;
             height: 190px;
@@ -58,60 +60,61 @@
         <p>This is a demo of animating a stack of 54 playing card images.</p>
 
         <div id="cards" class="cards">
-            <div class="card"><img src="common/images/cards/2_diamonds.png"></div>
-            <div class="card"><img src="common/images/cards/2_clubs.png"></div>
-            <div class="card"><img src="common/images/cards/2_hearts.png"></div>
-            <div class="card"><img src="common/images/cards/2_spades.png"></div>
-            <div class="card"><img src="common/images/cards/3_clubs.png"></div>
-            <div class="card"><img src="common/images/cards/3_diamonds.png"></div>
-            <div class="card"><img src="common/images/cards/3_hearts.png"></div>
-            <div class="card"><img src="common/images/cards/3_spades.png"></div>
-            <div class="card"><img src="common/images/cards/4_clubs.png"></div>
-            <div class="card"><img src="common/images/cards/4_diamonds.png"></div>
-            <div class="card"><img src="common/images/cards/4_hearts.png"></div>
-            <div class="card"><img src="common/images/cards/4_spades.png"></div>
-            <div class="card"><img src="common/images/cards/5_clubs.png"></div>
-            <div class="card"><img src="common/images/cards/5_diamonds.png"></div>
-            <div class="card"><img src="common/images/cards/5_hearts.png"></div>
-            <div class="card"><img src="common/images/cards/5_spades.png"></div>
-            <div class="card"><img src="common/images/cards/6_clubs.png"></div>
-            <div class="card"><img src="common/images/cards/6_diamonds.png"></div>
-            <div class="card"><img src="common/images/cards/6_hearts.png"></div>
-            <div class="card"><img src="common/images/cards/6_spades.png"></div>
-            <div class="card"><img src="common/images/cards/7_clubs.png"></div>
-            <div class="card"><img src="common/images/cards/7_diamonds.png"></div>
-            <div class="card"><img src="common/images/cards/7_hearts.png"></div>
-            <div class="card"><img src="common/images/cards/7_spades.png"></div>
-            <div class="card"><img src="common/images/cards/8_clubs.png"></div>
-            <div class="card"><img src="common/images/cards/8_diamonds.png"></div>
-            <div class="card"><img src="common/images/cards/8_hearts.png"></div>
-            <div class="card"><img src="common/images/cards/8_spades.png"></div>
-            <div class="card"><img src="common/images/cards/9_clubs.png"></div>
-            <div class="card"><img src="common/images/cards/9_diamonds.png"></div>
-            <div class="card"><img src="common/images/cards/9_hearts.png"></div>
-            <div class="card"><img src="common/images/cards/9_spades.png"></div>
-            <div class="card"><img src="common/images/cards/10_clubs.png"></div>
-            <div class="card"><img src="common/images/cards/10_diamonds.png"></div>
-            <div class="card"><img src="common/images/cards/10_hearts.png"></div>
-            <div class="card"><img src="common/images/cards/10_spades.png"></div>
-            <div class="card"><img src="common/images/cards/jack_clubs.png"></div>
-            <div class="card"><img src="common/images/cards/jack_diamonds.png"></div>
-            <div class="card"><img src="common/images/cards/jack_hearts.png"></div>
-            <div class="card"><img src="common/images/cards/jack_spades.png"></div>
-            <div class="card"><img src="common/images/cards/queen_clubs.png"></div>
-            <div class="card"><img src="common/images/cards/queen_diamonds.png"></div>
-            <div class="card"><img src="common/images/cards/queen_hearts.png"></div>
-            <div class="card"><img src="common/images/cards/queen_spades.png"></div>
-            <div class="card"><img src="common/images/cards/king_clubs.png"></div>
-            <div class="card"><img src="common/images/cards/king_diamonds.png"></div>
-            <div class="card"><img src="common/images/cards/king_hearts.png"></div>
-            <div class="card"><img src="common/images/cards/king_spades.png"></div>
-            <div class="card"><img src="common/images/cards/ace_clubs.png"></div>
-            <div class="card"><img src="common/images/cards/ace_diamonds.png"></div>
-            <div class="card"><img src="common/images/cards/ace_hearts.png"></div>
-            <div class="card"><img src="common/images/cards/ace_spades.png"></div>
-            <div class="card"><img src="common/images/cards/joker_black.png"></div>
-            <div class="card"><img src="common/images/cards/joker_red.png"></div>
+
+            <div class="cardx"><img src="common/images/cards/2_diamonds.png"></div>
+            <div class="cardx"><img src="common/images/cards/2_clubs.png"></div>
+            <div class="cardx"><img src="common/images/cards/2_hearts.png"></div>
+            <div class="cardx"><img src="common/images/cards/2_spades.png"></div>
+            <div class="cardx"><img src="common/images/cards/3_clubs.png"></div>
+            <div class="cardx"><img src="common/images/cards/3_diamonds.png"></div>
+            <div class="cardx"><img src="common/images/cards/3_hearts.png"></div>
+            <div class="cardx"><img src="common/images/cards/3_spades.png"></div>
+            <div class="cardx"><img src="common/images/cards/4_clubs.png"></div>
+            <div class="cardx"><img src="common/images/cards/4_diamonds.png"></div>
+            <div class="cardx"><img src="common/images/cards/4_hearts.png"></div>
+            <div class="cardx"><img src="common/images/cards/4_spades.png"></div>
+            <div class="cardx"><img src="common/images/cards/5_clubs.png"></div>
+            <div class="cardx"><img src="common/images/cards/5_diamonds.png"></div>
+            <div class="cardx"><img src="common/images/cards/5_hearts.png"></div>
+            <div class="cardx"><img src="common/images/cards/5_spades.png"></div>
+            <div class="cardx"><img src="common/images/cards/6_clubs.png"></div>
+            <div class="cardx"><img src="common/images/cards/6_diamonds.png"></div>
+            <div class="cardx"><img src="common/images/cards/6_hearts.png"></div>
+            <div class="cardx"><img src="common/images/cards/6_spades.png"></div>
+            <div class="cardx"><img src="common/images/cards/7_clubs.png"></div>
+            <div class="cardx"><img src="common/images/cards/7_diamonds.png"></div>
+            <div class="cardx"><img src="common/images/cards/7_hearts.png"></div>
+            <div class="cardx"><img src="common/images/cards/7_spades.png"></div>
+            <div class="cardx"><img src="common/images/cards/8_clubs.png"></div>
+            <div class="cardx"><img src="common/images/cards/8_diamonds.png"></div>
+            <div class="cardx"><img src="common/images/cards/8_hearts.png"></div>
+            <div class="cardx"><img src="common/images/cards/8_spades.png"></div>
+            <div class="cardx"><img src="common/images/cards/9_clubs.png"></div>
+            <div class="cardx"><img src="common/images/cards/9_diamonds.png"></div>
+            <div class="cardx"><img src="common/images/cards/9_hearts.png"></div>
+            <div class="cardx"><img src="common/images/cards/9_spades.png"></div>
+            <div class="cardx"><img src="common/images/cards/10_clubs.png"></div>
+            <div class="cardx"><img src="common/images/cards/10_diamonds.png"></div>
+            <div class="cardx"><img src="common/images/cards/10_hearts.png"></div>
+            <div class="cardx"><img src="common/images/cards/10_spades.png"></div>
+            <div class="cardx"><img src="common/images/cards/jack_clubs.png"></div>
+            <div class="cardx"><img src="common/images/cards/jack_diamonds.png"></div>
+            <div class="cardx"><img src="common/images/cards/jack_hearts.png"></div>
+            <div class="cardx"><img src="common/images/cards/jack_spades.png"></div>
+            <div class="cardx"><img src="common/images/cards/queen_clubs.png"></div>
+            <div class="cardx"><img src="common/images/cards/queen_diamonds.png"></div>
+            <div class="cardx"><img src="common/images/cards/queen_hearts.png"></div>
+            <div class="cardx"><img src="common/images/cards/queen_spades.png"></div>
+            <div class="cardx"><img src="common/images/cards/king_clubs.png"></div>
+            <div class="cardx"><img src="common/images/cards/king_diamonds.png"></div>
+            <div class="cardx"><img src="common/images/cards/king_hearts.png"></div>
+            <div class="cardx"><img src="common/images/cards/king_spades.png"></div>
+            <div class="cardx"><img src="common/images/cards/ace_clubs.png"></div>
+            <div class="cardx"><img src="common/images/cards/ace_diamonds.png"></div>
+            <div class="cardx"><img src="common/images/cards/ace_hearts.png"></div>
+            <div class="cardx"><img src="common/images/cards/ace_spades.png"></div>
+            <div class="cardx"><img src="common/images/cards/joker_black.png"></div>
+            <div class="cardx"><img src="common/images/cards/joker_red.png"></div>
         </div>
 
         <div class="controls">
@@ -122,7 +125,7 @@
 -->
         </div>
 
-        <script src="../js/alice.js"></script>
+        <script src="../js/alice.min.js"></script>
         <script type="text/javascript">
         var elems = document.getElementById("cards").children;
 

@@ -4,6 +4,9 @@
 
 This library and the sample code is Open Source under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html).
 
+**Special Attention**
+As of version 0.5 there is no support for the 0.2 and 0.1 since there was a large transition in the method styling. So please if you're looking to transition to 0.5, you will need to re-write your code to fit the new method styling. Please take caution in doing so.
+
 **Author(s):**
 
 * [Laurent Hasson](https://github.com/ldhasson) ([@ldhasson](http://twitter.com/ldhasson), lhasson at rim dot com)
@@ -11,6 +14,9 @@ This library and the sample code is Open Source under the [Apache 2.0 License](h
 * [Gord Tanner](https://github.com/gtanner) ([@gordtanner](http://twitter.com/gordtanner), gtanner at rim dot com)
 * [Matt Lantz](https://github.com/mlantz) ([@mattylantz](http://twitter.com/mattylantz), malantz at rim dot com)
 
+**Compatibility Issues:**
+AliceJs 0.5 is not compatible with 0.2 or 0.1. We made improvements in the readability of AliceJs with objectifying the parameters of the methods. We hope this doesn't cause any confusion or stop you from trying out the new caterpillar effect!
+ 
 **Requirements:**
 
 1. A WebKit-based browser with support for CSS3.

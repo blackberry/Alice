@@ -382,7 +382,7 @@ var groups = [{
         license: "Apache License 2.0"
     }]
 }, {
-    path: "./",
+    path: "images",
 
     items: [{
         filename: "favicon.ico",

@@ -1822,7 +1822,7 @@ alice.plugins.caterpillar = (function () {
                     numZ = "0",
                     piggy = document.createElement('div'); 
                     
-                    piggy.style = myPageStyle;
+                    piggy.setAttribute("style", myPageStyle);
                     piggy.setAttribute('id', '_piggy');  
                     piggy.setAttribute('class', document.getElementById(pageName+id).getAttribute('class'));
                     piggy.style[alice.prefix+'backfaceVisibility'] = 'visible';
@@ -2545,7 +2545,7 @@ alice.plugins.caterpillar = (function () {
                                 }else{
                                     if(runState === "paused"){     
                                         alice.plugins.caterpillar.abPageTurnR(dets);
-                                        document.getElementById(config.bookName).setAttribute('data-page-number', (pageNum-1)); 
+                                        document.getElementById(config.bookName).setAttribute('data-page-number', pageNum); 
                                     } 
                                 }
                             }else{

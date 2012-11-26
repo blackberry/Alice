@@ -2833,8 +2833,7 @@ alice.plugins.caterpillar = (function () {
                     if(params.pageId >= params.realPageCount && params.wrap === true){
                         params.pageId = 0;
                     }
-                    nxtPageId = document.getElementById(params.bookName).querySelector('div:nth-child('+(params.pageId + 1)+')').getAttribute('id');
-                    nxtPage = document.getElementById(nxtPageId);
+                    nxtPage = document.getElementById(params.bookName+"p_"+(params.pageId+1));
                     nxtPage.style.display = 'block'; 
                     if(params.binding === 'center' || params.binding === 'middle'){
                         nxtPage.style[alice.prefixJS+'Transform'] = params.transformRotate+core._rot90;   

@@ -2546,7 +2546,7 @@ alice.plugins.caterpillar = (function () {
                                 }else{
                                     if(runState === "paused"){     
                                         alice.plugins.caterpillar.abPageTurnR(dets);
-                                        document.getElementById(config.bookName).setAttribute('data-page-number', (pageNum-1)); 
+                                        document.getElementById(config.bookName).setAttribute('data-page-number', pageNum); 
                                     } 
                                 }
                             }else{

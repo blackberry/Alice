@@ -152,7 +152,7 @@ alice.plugins.cheshire = function (params) {
             }
 
             // Generate transforms
-            // Animation @ 0% 
+            // Animation @ 0%
             transformStart = "";
             transformStart += (flip) ? " rotate" + flip.axis + "(" + flip.start + "deg)" : " translate" + axis + "(" + posStart + "px)";
             transformStart += (calc.rotate && parseInt(calc.rotate, 10) !== 0) ? " rotate(" + calc.rotateStart + "deg)" : "";
@@ -221,7 +221,7 @@ alice.plugins.cheshire = function (params) {
 
             // Apply perspective to parent container
             container.style[alice.prefixJS + "Perspective"] = perspective + "px";
-            container.style[alice.prefixJS + "PerspectiveOrigin"] = alice.format.coords(perspectiveOrigin); 
+            container.style[alice.prefixJS + "PerspectiveOrigin"] = alice.format.coords(perspectiveOrigin);
 
             // Apply properties to elements
             elem.style[alice.prefixJS + "BackfaceVisibility"] = backfaceVisibility;
@@ -233,6 +233,8 @@ alice.plugins.cheshire = function (params) {
             elem.style[alice.prefixJS + "AnimationIterationCount"] = iteration;
             elem.style[alice.prefixJS + "AnimationDirection"] = direction;
             elem.style[alice.prefixJS + "AnimationPlayState"] = playstate;
+
+            elem.style[alice.prefixJS + "AnimationFillMode"] = 'forwards';
 
             // Apply styles from last key frame
             elem.style[alice.prefixJS + "Transform"] = transformEnd;
@@ -619,7 +621,7 @@ alice.plugins.raceFlag = function (params) {
     "use strict";
     console.info("raceFlag: ", arguments);
 
-    if(!params){ params = ''; } 
+    if(!params){ params = ''; }
 
     var opts = {
         flip: "down",
@@ -658,7 +660,7 @@ alice.plugins.slide = function (params) {
     "use strict";
     console.info("slide: ", arguments);
 
-    if(!params){ params = ''; } 
+    if(!params){ params = ''; }
 
     var opts = {
         elems: params.elems || alice.anima,
@@ -695,7 +697,7 @@ alice.plugins.spin = function (params) {
     "use strict";
     console.info("spin: ", arguments);
 
-    if(!params){ params = ''; } 
+    if(!params){ params = ''; }
 
     var opts = {
         perspectiveOrigin: "center",
@@ -736,7 +738,7 @@ alice.plugins.toss = function (params) {
     "use strict";
     console.info("toss: ", arguments);
 
-    if(!params){ params = ''; } 
+    if(!params){ params = ''; }
 
     var opts = {
         rotate: (params.move === "left" || params.move === "down") ? 720 : -720,

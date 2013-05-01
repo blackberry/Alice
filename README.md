@@ -108,6 +108,20 @@ This will install the dependancies. You should then be able to run:
 
 to build Alice.js
 
+### Running tests in a headless PhantomJS instance
+
+Those tests require _Grunt_. Also, require _grunt-contrib-qunit_ and _grunt-contrib-jasmine_ plugins.
+To install all of them, type:
+
+```
+npm install -g grunt-cli
+npm install grunt grunt-contrib-qunit grunt-contrib-jasmine
+```
+
+* Run **qunit** tests with the ``grunt qunit -v`` command.
+* Run **jasmine** tests with the ``grunt jasmine -v`` command.
+* Run **all tests** with the ``grunt test -v`` command.
+
 ## Bug Reporting and Feature Requests
 
 If you find a bug or have an enhancement request, please report an [Issue](https://github.com/blackberry/Alice/issues) and send a message (via github messages) to the author(s) to let them know that you have filed an issue.

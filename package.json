@@ -1,0 +1,14 @@
+{
+  "name": "Alice",
+  "version": "0.2.0",
+  "description": "AliceJS - (A Lightweight Independent CSS Engine) is a micro JavaScript library focused on using hardware-accelerated capabilities (in particular CSS3 features) in modern browsers for generating high-quality, high-end visual effects",
+  "devDependencies": {
+    "wd": "*",
+    "saucelauncher": "*",
+    "q": "*",
+    "request": "*",
+    "grunt": "*",
+    "grunt-contrib-qunit": "*",
+    "grunt-contrib-jasmine": "*"
+  }
+}

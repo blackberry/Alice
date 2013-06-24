@@ -1,0 +1,61 @@
+framework: jasmine
+
+src_files:
+  - src/alice.core.js
+  - tests/jasmine/*.js
+
+launchers:
+  Win7_Firefox:
+    command: node tests/lib/saucelauncher-webdriver.js jasmine 'firefox' '21' 'Windows 7'
+    protocol: browser
+
+  Win7_Chrome:
+    command: node tests/lib/saucelauncher-webdriver.js jasmine 'chrome' '27' 'Windows 7'
+    protocol: browser
+
+  Win7_Opera:
+    command: node tests/lib/saucelauncher-webdriver.js jasmine 'opera' '12' 'Windows 7'
+    protocol: browser
+
+  Win7_Safari:
+    command: node tests/lib/saucelauncher-webdriver.js jasmine 'safari' '5' 'Windows 7'
+    protocol: browser
+
+  Win7_IE_9:
+    command: node tests/lib/saucelauncher-webdriver.js jasmine 'internet explorer' '9' 'Windows 7'
+    protocol: browser
+
+  Win8_Firefox:
+    command: node tests/lib/saucelauncher-webdriver.js jasmine 'firefox' '21' 'Windows 8'
+    protocol: browser
+
+  Win8_Chrome:
+    command: node tests/lib/saucelauncher-webdriver.js jasmine 'chrome' '27' 'Windows 8'
+    protocol: browser
+
+  Win8_IE_10:
+    command: node tests/lib/saucelauncher-webdriver.js jasmine 'internet explorer' '10' 'Windows 8'
+    protocol: browser
+
+  WinXP_Firefox:
+    command: node tests/lib/saucelauncher-webdriver.js jasmine 'firefox' '21' 'Windows XP'
+    protocol: browser
+
+  WinXP_Chrome:
+    command: node tests/lib/saucelauncher-webdriver.js jasmine 'chrome' '27' 'Windows XP'
+    protocol: browser
+
+  WinXP_Opera:
+    command: node tests/lib/saucelauncher-webdriver.js jasmine 'opera' '12' 'Windows XP'
+    protocol: browser
+
+  iPhone:
+    command: node tests/lib/saucelauncher-webdriver.js jasmine 'iphone' '6' 'OS X 10.8'
+    protocol: browser
+
+  iPad:
+    command: node tests/lib/saucelauncher-webdriver.js jasmine 'ipad' '6' 'OS X 10.8'
+    protocol: browser
+
+launch_in_ci: [Win7_Firefox, Win7_Chrome, Win7_Opera, Win7_Safari, Win7_IE_9, Win8_Firefox, Win8_Chrome, Win8_IE_10, WinXP_Firefox, WinXP_Chrome, WinXP_Opera, iPhone, iPad]
+launch_in_dev: [phantomjs]
